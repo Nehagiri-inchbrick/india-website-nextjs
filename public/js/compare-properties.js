@@ -114,7 +114,7 @@
           '<img src="' + p.img.replace("w=1200", "w=400") + '" alt="' + p.name + '">' +
           '<strong>' + p.name + '</strong>' +
           '<span>' + p.type + ' · ' + p.status + '</span>' +
-          '<a href="listing-detail.html">View Details <i class="fas fa-arrow-right"></i></a>' +
+          '<a href="/listing-detail">View Details <i class="fas fa-arrow-right"></i></a>' +
         '</th>';
       }).join("") + '</tr>';
 

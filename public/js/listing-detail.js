@@ -33,28 +33,28 @@
       title: "RERA Updates: What Buyers Should Know in 2026",
       date: "Mar 12, 2026",
       img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=400&q=80",
-      href: "blog-detail.html?id=9"
+      href: "/blog-detail?id=9"
     },
     {
       type: "Article",
       title: "How to Evaluate Luxury Projects Before You Buy",
       date: "Feb 28, 2026",
       img: "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=400&q=80",
-      href: "blog-detail.html?id=5"
+      href: "/blog-detail?id=5"
     },
     {
       type: "Article",
       title: "Home Loan Tips: Reduce EMI Without Stress",
       date: "Feb 15, 2026",
       img: "https://images.unsplash.com/photo-1463320726281-696a485928c7?auto=format&fit=crop&w=400&q=80",
-      href: "blog-detail.html?id=2"
+      href: "/blog-detail?id=2"
     },
     {
       type: "News",
       title: "Metro Expansion Boosts Property Demand in Key Corridors",
       date: "Jan 30, 2026",
       img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=400&q=80",
-      href: "blog-detail.html?id=4"
+      href: "/blog-detail?id=4"
     }
   ];
 
@@ -64,7 +64,7 @@
       title: "Top Localities to Invest in " + city + " in 2026",
       date: "Mar 5, 2026",
       img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80",
-      href: "blog-detail.html?id=1"
+      href: "/blog-detail?id=1"
     };
     return [cityArticle, ...ARTICLES.slice(0, 3)];
   }
@@ -424,7 +424,7 @@
       list
         .map(
           (p) =>
-            '<a href="listing-detail.html?id=' +
+            '<a href="/listing-detail?id=' +
             p.id +
             '" class="ld-similar-card">' +
             '<img src="' +

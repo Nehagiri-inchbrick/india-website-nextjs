@@ -29,7 +29,7 @@
 
   function shareProperty(p) {
     var text = p.name + " — " + p.price + " | " + p.location + ", " + p.city;
-    var url = location.origin + location.pathname.replace(/[^/]+$/, "") + "listing-detail.html?id=" + p.id;
+    var url = location.origin + "/listing-detail?id=" + p.id;
 
     if (navigator.share) {
       navigator.share({ title: p.name, text: text, url: url }).catch(function () {});
@@ -64,14 +64,14 @@
       var isSaved = store.isSaved(p.id);
       return (
         '<article class="sp-card' + (isSelected ? " is-selected" : "") + '" data-id="' + p.id + '">' +
-        '<a href="listing-detail.html?id=' + p.id + '" class="sp-card-media">' +
+        '<a href="/listing-detail?id=' + p.id + '" class="sp-card-media">' +
         '<img src="' + p.img.replace("w=1200", "w=600") + '" alt="' + p.name + '">' +
         '<span class="sp-card-badge">' + p.status + "</span>" +
         '<label class="sp-card-select" title="Select for compare">' +
         '<input type="checkbox" data-action="select"' + (isSelected ? " checked" : "") + ">" +
         "</label></a>" +
         '<div class="sp-card-body">' +
-        "<h3><a href=\"listing-detail.html?id=" + p.id + '">' + p.name + "</a></h3>" +
+        "<h3><a href=\"/listing-detail?id=" + p.id + '">' + p.name + "</a></h3>" +
         '<p class="sp-card-loc"><i class="fas fa-map-marker-alt"></i> ' + p.location + ", " + p.city + "</p>" +
         '<div class="sp-card-meta">' +
         "<span><i class=\"fas fa-bed\"></i> " + p.bhk + "</span>" +

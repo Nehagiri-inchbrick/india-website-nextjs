@@ -29,7 +29,7 @@
   function renderNotFound() {
     document.title = "Article Not Found | Inchbrick Realty";
     root.innerHTML =
-      '<div class="bd-not-found"><h1>Article not found</h1><p>This post may have been removed.</p><a href="blog.html">Back to blog</a></div>';
+      '<div class="bd-not-found"><h1>Article not found</h1><p>This post may have been removed.</p><a href="/blog">Back to blog</a></div>';
   }
 
   function render(a) {
@@ -42,7 +42,7 @@
     root.innerHTML =
       '<article class="bd-page">' +
       '<div class="bd-container">' +
-      '<a href="blog.html" class="bd-back"><i class="fas fa-arrow-left"></i> Back to Blog</a>' +
+      '<a href="/blog" class="bd-back"><i class="fas fa-arrow-left"></i> Back to Blog</a>' +
       "</div>" +
       '<header class="bd-hero">' +
       '<div class="bd-container bd-hero-inner">' +
@@ -101,7 +101,7 @@
           related
             .map(
               (r) =>
-                '<a href="blog-detail.html?id=' +
+                '<a href="/blog-detail?id=' +
                 r.id +
                 '" class="bd-related-item">' +
                 '<img src="' +
@@ -121,8 +121,8 @@
       '<div class="bd-sidebar-cta">' +
       "<h3>Looking for a home?</h3>" +
       "<p>Browse verified listings or talk to our experts.</p>" +
-      '<a href="listings.html" class="bd-btn bd-btn--primary">View Properties</a>' +
-      '<a href="contact.html#contactForm" class="bd-btn bd-btn--outline">Contact Us</a>' +
+      '<a href="/listings" class="bd-btn bd-btn--primary">View Properties</a>' +
+      '<a href="/contact#contactForm" class="bd-btn bd-btn--outline">Contact Us</a>' +
       "</div></aside></div>" +
       '<section class="bd-newsletter">' +
       '<div class="bd-container bd-newsletter-inner">' +

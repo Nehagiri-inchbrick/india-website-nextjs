@@ -1,5 +1,12 @@
 /**
  * Property expo events dataset
+ *
+ * status: "live" | "upcoming" | "past"
+ * Optional region: "americas" | "europe" | "middle-east" | "asia-pacific" | "india"
+ * (If omitted, region is inferred from country.)
+ *
+ * Tip: keep all 25+ expos here — the expo page only shows the next 4 as rich
+ * timeline cards, then a compact list via "Show more" + region filters.
  */
 window.EVENTS_DATA = [
   {
@@ -15,6 +22,7 @@ window.EVENTS_DATA = [
     venue: "Metro Toronto Convention Centre",
     address: "255 Front St W, Toronto, ON M5V 2W6, Canada",
     img: "https://images.unsplash.com/photo-1507992781348-31024be7976e?auto=format&fit=crop&w=1600&q=90",
+    video: "https://videos.pexels.com/video-files/3209676/3209676-hd_1920_1080_25fps.mp4",
     excerpt: "India's largest overseas property expo — meet 16+ top developers, explore 120+ premium projects, and book one-on-one advisory sessions.",
     description: [
       "The Toronto edition brings India's finest residential and commercial projects to the Canadian diaspora. Walk through model displays, compare payment plans, and schedule private meetings with RERA-verified developers.",

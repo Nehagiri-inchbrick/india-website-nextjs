@@ -288,7 +288,7 @@
         '<div class="city-proj-panel' + (i === 0 ? " is-active" : "") + '" data-panel="' + t.id + '">' +
         '<div class="city-projects-grid">' +
         t.items.slice(0, 3).map((p) =>
-          '<a href="listing-detail.html" class="city-project-card">' +
+          '<a href="/listing-detail" class="city-project-card">' +
           '<img src="' + p.img + '" alt="' + esc(p.name) + '">' +
           '<div class="city-project-body">' +
           '<span class="city-project-badge">' + esc(p.status || "Available") + "</span>" +

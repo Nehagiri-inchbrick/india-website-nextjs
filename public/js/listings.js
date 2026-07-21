@@ -165,7 +165,7 @@
         const featured = i % 4 === 0;
         const shareText = encodeURIComponent(p.name + " — " + p.price + " | Inchbrick Realty");
         const waText = encodeURIComponent("Hi, I'm interested in " + p.name + " (" + p.price + ")");
-        const detailHref = "listing-detail.html?id=" + p.id;
+        const detailHref = "/listing-detail?id=" + p.id;
         return (
           '<article class="prop-list-item" data-id="' + p.id + '">' +
           '<a href="' + detailHref + '" class="prop-list-img">' +

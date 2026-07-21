@@ -401,7 +401,7 @@
 
     const properties = `<div class="ls-prop-showcase">
       <div class="ls-prop-track">${PROPERTIES.map(function (p, i) {
-        return `<a href="listing-detail.html" class="ls-prop-card">
+        return `<a href="/listing-detail" class="ls-prop-card">
           <div class="ls-prop-card-img"><img src="${p.img}" alt="${esc(p.name)}"><span class="ls-prop-badge">Featured</span><span class="ls-prop-rank">0${i + 1}</span></div>
           <div class="ls-prop-card-body"><strong>${esc(p.name)}</strong><span><i class="fas fa-location-dot"></i> ${esc(p.loc)}</span><em>${esc(p.price)}</em></div>
         </a>`;
