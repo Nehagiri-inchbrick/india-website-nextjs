@@ -26,12 +26,13 @@
   }
 
   function renderNotFound() {
+    if (!root) return;
     document.title = 'Event Not Found | Inchbrick Realty';
     root.innerHTML =
       '<div class="evd-not-found evd-wrap">' +
       '<h1>Event not found</h1>' +
       '<p>This expo may have been removed or the link is incorrect.</p>' +
-      '<a href="events-expo.html"><i class="fas fa-arrow-left"></i> Back to Events</a>' +
+      '<a href="/events-expo"><i class="fas fa-arrow-left"></i> Back to Events</a>' +
       '</div>';
   }
 
@@ -55,7 +56,7 @@
       '<h2><i class="fas fa-building"></i> Participating Developers</h2>' +
       '<div class="evd-dev-grid">' +
       devs.map(function (d) {
-        return '<a href="developers.html" class="evd-dev-card">' +
+        return '<a href="/developers" class="evd-dev-card">' +
           '<img src="' + esc(d.logo) + '" alt="' + esc(d.name) + '">' +
           '<span>' + esc(d.name) + '</span></a>';
       }).join('') +
@@ -336,7 +337,7 @@
     if (isPast) {
       sidebar +=
         '<h3>Event Concluded</h3>' +
-        '<div class="evd-past-note">This edition has ended. Browse upcoming expos or register for the next one in this city. <a href="events-expo.html">View all events</a></div>';
+        '<div class="evd-past-note">This edition has ended. Browse upcoming expos or register for the next one in this city. <a href="/events-expo">View all events</a></div>';
     } else {
       sidebar +=
         '<h3>Free Registration</h3>' +
@@ -359,7 +360,7 @@
         '<h3>Other Events</h3>' +
         '<div class="evd-related-list">' +
         related.map(function (r) {
-          return '<a href="event-detail.html?slug=' + esc(r.slug) + '" class="evd-related-item">' +
+          return '<a href="/event-detail?slug=' + esc(r.slug) + '" class="evd-related-item">' +
             '<img src="' + esc(r.img) + '" alt="">' +
             '<div><strong>' + esc(r.city) + '</strong><span>' + esc(r.dateLabel) + '</span></div></a>';
         }).join('') +
@@ -415,7 +416,7 @@
       '<div class="evd-hero-img"><img src="' + esc(evt.img) + '" alt="' + esc(evt.name) + '"></div>' +
       '<div class="evd-hero-shade"></div>' +
       '<div class="evd-wrap evd-hero-body">' +
-      '<a href="events-expo.html" class="evd-back"><i class="fas fa-arrow-left"></i> All Events</a>' +
+      '<a href="/events-expo" class="evd-back"><i class="fas fa-arrow-left"></i> All Events</a>' +
       '<span class="evd-status ' + statusClass(evt.status) + '">' + liveDot + esc(evt.statusLabel) + '</span>' +
       '<h1>' + esc(evt.name) + '</h1>' +
       '<div class="evd-hero-meta">' +
@@ -471,6 +472,13 @@
 
     bindForm(evt);
     bindPassInvitation(evt);
+  }
+
+  if (!root) return;
+
+  if (!slug) {
+    var liveEvent = data.find(function (e) { return e.status === 'live'; });
+    slug = (liveEvent || data[0] || {}).slug || '';
   }
 
   var found = data.find(function (e) { return e.slug === slug; });

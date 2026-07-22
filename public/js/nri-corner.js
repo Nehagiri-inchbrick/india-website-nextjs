@@ -35,31 +35,86 @@
   ];
 
   var faqList = document.getElementById("nriFaqList");
-  if (!faqList) return;
+  if (faqList) {
+    faqList.innerHTML = FAQS.map(function (item, i) {
+      return (
+        '<article class="nri-faq-item' + (i === 0 ? " is-open" : "") + '">' +
+        '<button type="button" class="nri-faq-q" aria-expanded="' + (i === 0 ? "true" : "false") + '">' +
+        item.q + '<i class="fas fa-chevron-down"></i></button>' +
+        '<div class="nri-faq-a">' + item.a + "</div></article>"
+      );
+    }).join("");
 
-  faqList.innerHTML = FAQS.map(function (item, i) {
-    return (
-      '<article class="nri-faq-item' + (i === 0 ? " is-open" : "") + '">' +
-      '<button type="button" class="nri-faq-q" aria-expanded="' + (i === 0 ? "true" : "false") + '">' +
-      item.q + '<i class="fas fa-chevron-down"></i></button>' +
-      '<div class="nri-faq-a">' + item.a + "</div></article>"
-    );
-  }).join("");
+    faqList.querySelectorAll(".nri-faq-q").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var item = btn.closest(".nri-faq-item");
+        var isOpen = item.classList.contains("is-open");
 
-  faqList.querySelectorAll(".nri-faq-q").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var item = btn.closest(".nri-faq-item");
-      var isOpen = item.classList.contains("is-open");
+        faqList.querySelectorAll(".nri-faq-item").forEach(function (el) {
+          el.classList.remove("is-open");
+          el.querySelector(".nri-faq-q").setAttribute("aria-expanded", "false");
+        });
 
-      faqList.querySelectorAll(".nri-faq-item").forEach(function (el) {
-        el.classList.remove("is-open");
-        el.querySelector(".nri-faq-q").setAttribute("aria-expanded", "false");
+        if (!isOpen) {
+          item.classList.add("is-open");
+          btn.setAttribute("aria-expanded", "true");
+        }
       });
-
-      if (!isOpen) {
-        item.classList.add("is-open");
-        btn.setAttribute("aria-expanded", "true");
-      }
     });
-  });
+  }
+
+  // Scroll reveal
+  var reveals = document.querySelectorAll(".nri-reveal");
+  if (reveals.length && "IntersectionObserver" in window) {
+    var revealObs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    reveals.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 6, 4) * 0.06 + "s";
+      revealObs.observe(el);
+    });
+  } else {
+    reveals.forEach(function (el) {
+      el.classList.add("is-visible");
+    });
+  }
+
+  // Sticky jump active state
+  var jumpLinks = Array.prototype.slice.call(
+    document.querySelectorAll(".nri-jump-inner a[href^='#']")
+  );
+  var sections = jumpLinks
+    .map(function (a) {
+      return document.querySelector(a.getAttribute("href"));
+    })
+    .filter(Boolean);
+
+  if (jumpLinks.length && sections.length && "IntersectionObserver" in window) {
+    var activeId = "";
+    var sectionObs = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) activeId = entry.target.id;
+        });
+        jumpLinks.forEach(function (a) {
+          a.classList.toggle(
+            "is-active",
+            a.getAttribute("href") === "#" + activeId
+          );
+        });
+      },
+      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach(function (sec) {
+      sectionObs.observe(sec);
+    });
+  }
 })();

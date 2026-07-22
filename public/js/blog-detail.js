@@ -5,7 +5,6 @@
   const data = window.BLOG_DATA || [];
   const root = document.getElementById("blogDetailRoot");
   const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get("id"), 10);
 
   function esc(s) {
     return String(s)
@@ -138,13 +137,40 @@
     });
   }
 
+  function wireNewsletter() {
+    document.getElementById("bdNewsletter")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      e.target.reset();
+      alert("Thanks for subscribing!");
+    });
+  }
+
+  function resolveArticle() {
+    const slug = params.get("slug");
+    if (slug) {
+      return data.find((a) => a.slug === slug);
+    }
+    const idRaw = params.get("id");
+    if (idRaw == null || idRaw === "") {
+      return null;
+    }
+    const parsed = parseInt(idRaw, 10);
+    if (!Number.isFinite(parsed)) return undefined;
+    return data.find((a) => a.id === parsed);
+  }
+
   function metaItem(icon, text) {
     return '<span><i class="' + icon + '"></i> ' + esc(text) + "</span>";
   }
 
   if (!root) return;
-  const article = data.find((a) => a.id === id);
-  if (!article) {
+
+  const article = resolveArticle();
+  if (article === null) {
+    wireNewsletter();
+    return;
+  }
+  if (article === undefined || !article) {
     renderNotFound();
     return;
   }

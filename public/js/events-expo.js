@@ -439,10 +439,7 @@
 
   function openModal(eventValue) {
     if (!modal) return;
-    modal.style.display = 'flex';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { modal.classList.add('ex-open'); });
-    });
+    modal.classList.add('ex-open');
     document.body.style.overflow = 'hidden';
     if (eventValue && evtSelect) evtSelect.value = eventValue;
   }
@@ -451,10 +448,10 @@
     if (!modal) return;
     modal.classList.remove('ex-open');
     document.body.style.overflow = '';
-    setTimeout(function () {
-      if (!modal.classList.contains('ex-open')) modal.style.display = 'none';
-    }, 320);
   }
+
+  // Always start closed (avoids stuck blur overlay after remounts)
+  closeModal();
 
   function bindRegister(el) {
     el.addEventListener('click', function () {

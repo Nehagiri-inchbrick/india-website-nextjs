@@ -1682,21 +1682,28 @@ body.ex-page .html-body-page {
   color: #fff;
 }
 
-/* â”€â”€ MODAL â”€â”€ */
+/* ── MODAL ── */
 .ex-modal {
   position: fixed;
   inset: 0;
   background: rgba(8, 16, 32, .78);
-  backdrop-filter: blur(10px);
   z-index: 2000;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   opacity: 0;
-  transition: opacity .3s;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .3s, visibility .3s;
 }
-.ex-modal.ex-open { display: flex; opacity: 1; }
+.ex-modal.ex-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
 .ex-modal-box {
   display: grid;

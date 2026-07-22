@@ -81,22 +81,63 @@ const NAV_ITEMS = [
   },
   {
     key: 'events',
-    label: 'Events',
+    label: 'Global Expos',
     href: '/events-expo',
   },
   {
     key: 'services',
     label: 'Service',
     href: '/contact',
+    hasServices: true,
     dropdown: [
-      { label: 'Home Buying Assistance', href: '/contact' },
-      { label: 'Home Loan Assistance', href: '/home-loan' },
-      { label: 'EMI Calculator', href: '/emi-calculator' },
-      { label: 'Compare Properties', href: '/compare-properties' },
-      { label: 'Saved Properties', href: '/saved-properties' },
-      { label: 'Investment Advisory', href: '/investment-opportunities' },
-      { label: 'Market Insights', href: '/market-insights' },
-      { label: 'Design Your House', href: '/design-your-house' },
+      {
+        label: 'Home Buying Assistance',
+        href: '/contact',
+        desc: 'End-to-end support from shortlist to booking',
+        icon: 'fa-house-chimney',
+      },
+      {
+        label: 'Home Loan Assistance',
+        href: '/home-loan',
+        desc: 'Best rates with leading banks & NBFCs',
+        icon: 'fa-landmark',
+      },
+      {
+        label: 'EMI Calculator',
+        href: '/emi-calculator',
+        desc: 'Plan monthly payments instantly',
+        icon: 'fa-calculator',
+      },
+      {
+        label: 'Compare Properties',
+        href: '/compare-properties',
+        desc: 'Side-by-side project comparison',
+        icon: 'fa-code-compare',
+      },
+      {
+        label: 'Saved Properties',
+        href: '/saved-properties',
+        desc: 'Your personal shortlist',
+        icon: 'fa-heart',
+      },
+      {
+        label: 'Investment Advisory',
+        href: '/investment-opportunities',
+        desc: 'ROI tools & growth corridors',
+        icon: 'fa-chart-line',
+      },
+      {
+        label: 'Market Insights',
+        href: '/market-insights',
+        desc: 'Trends, forecasts & expert views',
+        icon: 'fa-newspaper',
+      },
+      {
+        label: 'Design Your House',
+        href: '/design-your-house',
+        desc: 'Styles, floor plans & interiors',
+        icon: 'fa-compass-drafting',
+      },
     ],
   },
 ];
@@ -141,10 +182,22 @@ export default function Header() {
     return () => document.removeEventListener('click', close);
   }, [menuOpen]);
 
-  function toggleMenuBtn() {
-    setMenuOpen(v => !v);
-    setMoreOpen(v => !v);
+  function toggleMenuBtn(e) {
+    e.stopPropagation();
+    setMenuOpen((v) => !v);
+    if (moreOpen) setMoreOpen(false);
   }
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setOpenNav(null);
+    setMoreOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle('header-nav-open', menuOpen);
+    return () => document.body.classList.remove('header-nav-open');
+  }, [menuOpen]);
 
   function isMobile() {
     return typeof window !== 'undefined' && window.innerWidth <= 1024;
@@ -153,7 +206,7 @@ export default function Header() {
   function handleNavClick(key, e) {
     if (!isMobile()) return;
     const item = NAV_ITEMS.find(n => n.key === key);
-    if (!item?.dropdown && !item?.hasMega) return;
+    if (!item?.dropdown && !item?.hasMega && !item?.hasServices) return;
     e.preventDefault();
     setOpenNav(prev => prev === key ? null : key);
   }
@@ -164,38 +217,44 @@ export default function Header() {
         {/* Brand */}
         <div className="nav-brand">
           <Link href="/" className="logo-brand" aria-label="Inchbrick Realty Home">
-            <span className="logo-mark" aria-hidden="true">
-              <svg width="38" height="38" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="36" height="36" rx="10" fill="rgba(201,36,43,0.08)"/>
-                <path d="M6 30V14L18 6L30 14V30H6Z" fill="#c9242b"/>
-                <path d="M12 30V18H24V30H12Z" fill="#fff"/>
-                <path d="M15 30V22H21V30H15Z" fill="#c9242b"/>
-                <path d="M18 6L6 14H10L18 8.5L26 14H30L18 6Z" fill="#a71d22"/>
-              </svg>
-            </span>
-            <span className="logo-wordmark">
-              <span className="logo-title">INCHBRICK</span>
-              <span className="logo-subtitle">REALTY</span>
-            </span>
+            <img
+              src="/img/inchbrick-logo.png"
+              alt="Inchbrick Realty"
+              className="logo-img"
+              width={180}
+              height={48}
+            />
           </Link>
           <span className="nav-brand-divider" aria-hidden="true"></span>
         </div>
 
         {/* Nav Links */}
-        <nav className={`nav-links${menuOpen ? ' open' : ''}`} id="navLinks" aria-label="Main navigation">
+        <nav
+          className={`nav-links${menuOpen ? ' open' : ''}`}
+          id="navLinks"
+          aria-label="Main navigation"
+          onClick={(e) => {
+            if (e.target.closest('a[href]')) {
+              setMenuOpen(false);
+              setOpenNav(null);
+            }
+          }}
+        >
           {NAV_ITEMS.map((item) => {
             const isActive = activeKey === item.key;
             const isOpen = openNav === item.key;
             const hasDropdown = item.dropdown || item.hasMega;
+            const isServices = item.hasServices;
 
             return (
               <div
                 key={item.key}
-                className={`nav-item${item.hasMega ? ' nav-item--mega' : ''}${isActive ? ' active' : ''}${isOpen ? ' open' : ''}`}
+                className={`nav-item${item.hasMega ? ' nav-item--mega' : ''}${isServices ? ' nav-item--services' : ''}${isActive ? ' active' : ''}${isOpen ? ' open' : ''}`}
                 data-nav={item.key}
               >
                 {hasDropdown ? (
                   <button
+                    type="button"
                     className="nav-trigger"
                     onClick={(e) => handleNavClick(item.key, e)}
                     aria-expanded={isOpen}
@@ -236,8 +295,36 @@ export default function Header() {
                   </div>
                 )}
 
+                {/* Services mega dropdown */}
+                {isServices && item.dropdown && (
+                  <div className="nav-dropdown nav-dropdown--services">
+                    <div className="nav-dropdown-inner nav-services">
+                      <div className="nav-services-head">
+                        <div>
+                          <span className="nav-services-kicker">Inchbrick Services</span>
+                          <strong>Professional real estate support</strong>
+                        </div>
+                        <Link href="/contact" className="nav-services-cta">Talk to Expert →</Link>
+                      </div>
+                      <div className="nav-services-grid">
+                        {item.dropdown.map((link, li) => (
+                          <Link href={link.href} key={li} className="nav-service-card">
+                            <span className="nav-service-ico" aria-hidden="true">
+                              <i className={`fas ${link.icon}`}></i>
+                            </span>
+                            <span className="nav-service-copy">
+                              <strong>{link.label}</strong>
+                              <em>{link.desc}</em>
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Regular dropdown */}
-                {item.dropdown && (
+                {item.dropdown && !isServices && (
                   <div className="nav-dropdown">
                     <div className="nav-dropdown-inner">
                       {item.dropdown.map((link, li) => (
@@ -277,8 +364,9 @@ export default function Header() {
             className={`menu-btn${menuOpen ? ' active' : ''}`}
             type="button"
             id="menuBtn"
-            aria-label="Open menu"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
+            aria-controls="navLinks"
             onClick={toggleMenuBtn}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
