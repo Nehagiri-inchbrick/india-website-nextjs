@@ -14,7 +14,7 @@ export default function HomePage() {
     <HtmlBodyPage
       html={html}
       bodyClass={bodyClass}
-      scripts={['/js/cities-data.js', '/js/city-search.js']}
+      scripts={['/js/brand-showcase.js', '/js/cities-data.js', '/js/city-search.js']}
     />
   );
 }

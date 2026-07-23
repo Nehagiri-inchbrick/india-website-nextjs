@@ -5,17 +5,27 @@
     return '/event-detail?slug=' + encodeURIComponent(slug);
   };
 
-  var data = Array.isArray(window.EVENTS_DATA) ? window.EVENTS_DATA.slice() : [];
+  var data = [];
+  var live = null;
+  var upcoming = [];
+  var past = [];
 
   function byDate(a, b) {
     return String(a.dateStart || '').localeCompare(String(b.dateStart || ''));
   }
 
-  var live = data.find(function (e) { return e.status === 'live'; }) || null;
-  var upcoming = data.filter(function (e) { return e.status === 'upcoming'; }).sort(byDate);
-  var past = data.filter(function (e) { return e.status === 'past'; }).sort(function (a, b) {
-    return String(b.dateStart || '').localeCompare(String(a.dateStart || ''));
-  });
+  function refreshEventLists() {
+    data = Array.isArray(window.EVENTS_DATA) ? window.EVENTS_DATA.slice() : [];
+    live = data.find(function (e) { return e.status === 'live'; }) || null;
+    upcoming = data.filter(function (e) {
+      return e.status === 'upcoming' || e.status === 'live';
+    }).sort(byDate);
+    past = data.filter(function (e) { return e.status === 'past'; }).sort(function (a, b) {
+      return String(b.dateStart || '').localeCompare(String(a.dateStart || ''));
+    });
+  }
+
+  refreshEventLists();
 
   /* ── Active event banner ── */
   function renderBanner(event) {
@@ -84,7 +94,7 @@
     }
   }
 
-  var FEATURED_COUNT = 4;
+  var FEATURED_COUNT = 6;
   var COMPACT_STEP = 8;
   var DEFAULT_BANNER_VIDEO = 'https://videos.pexels.com/video-files/3209676/3209676-hd_1920_1080_25fps.mp4';
 
@@ -182,25 +192,45 @@
   }
 
   function timelineCard(e, i) {
+    var isLive = e.status === 'live';
+    var badge = isLive ? 'Live Now' : (e.statusLabel || 'Upcoming');
+    var badgeClass = isLive ? ' is-live' : '';
+    var region = getRegion(e);
+    var regionLabel = {
+      americas: 'Americas',
+      europe: 'Europe',
+      'middle-east': 'Middle East',
+      'asia-pacific': 'Asia Pacific',
+      india: 'India'
+    }[region] || 'Global';
+
     return (
-      '<li class="ex-tl-item' + (i === 0 ? ' is-next' : '') + '">' +
-        '<span class="ex-tl-dot" aria-hidden="true"></span>' +
-        '<div class="ex-tl-card">' +
-          '<div class="ex-tl-img"><img src="' + e.img + '" alt="' + (e.city || '') + '" loading="lazy"></div>' +
+      '<li class="ex-tl-item' + (i === 0 ? ' is-next' : '') + (isLive ? ' is-live' : '') + '">' +
+        '<article class="ex-tl-card">' +
+          '<div class="ex-tl-media">' +
+            '<img src="' + e.img + '" alt="' + (e.city || e.name || '') + '" loading="lazy">' +
+            '<div class="ex-tl-shade" aria-hidden="true"></div>' +
+            '<span class="ex-tl-badge' + badgeClass + '">' + badge + '</span>' +
+            '<span class="ex-tl-region">' + regionLabel + '</span>' +
+          '</div>' +
           '<div class="ex-tl-body">' +
             '<span class="ex-tl-date"><i class="far fa-calendar" aria-hidden="true"></i> ' + (e.dateLabel || '') + '</span>' +
             '<h3>' + (e.name || e.city) + '</h3>' +
-            '<p class="ex-tl-loc"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>' +
+            '<p class="ex-tl-loc"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ' +
               (e.venue || '') + (e.city ? ' · ' + e.city : '') +
             '</p>' +
+            (e.excerpt
+              ? '<p class="ex-tl-excerpt">' + e.excerpt + '</p>'
+              : '') +
             '<div class="ex-tl-actions">' +
               '<button type="button" class="ex-btn ex-btn--fill openRegisterModalBtn" data-event="' + e.slug + '">' +
-                'Get VIP Pass <i class="fas fa-arrow-right" aria-hidden="true"></i>' +
+                (isLive ? 'Register Now' : 'Get VIP Pass') +
+                ' <i class="fas fa-arrow-right" aria-hidden="true"></i>' +
               '</button>' +
               '<a class="ex-btn ex-btn--gold-outline" href="' + DETAIL_URL(e.slug) + '">Details</a>' +
             '</div>' +
           '</div>' +
-        '</div>' +
+        '</article>' +
       '</li>'
     );
   }
@@ -373,6 +403,32 @@
   renderTimeline();
   renderPast(past);
   fillEventSelect();
+
+  window.__inchbrickInitEventsExpo = function () {
+    refreshEventLists();
+    renderBanner(live);
+    renderTimeline();
+    renderPast(past);
+    fillEventSelect();
+  };
+
+  window.addEventListener('html-page-scripts-ready', function () {
+    window.__inchbrickInitEventsExpo();
+  });
+
+  // Retry if React remount wiped the timeline after first paint
+  setTimeout(function () {
+    var root = document.getElementById('exTimeline');
+    if (root && !root.querySelector('.ex-tl-item')) {
+      window.__inchbrickInitEventsExpo();
+    }
+  }, 120);
+  setTimeout(function () {
+    var root = document.getElementById('exTimeline');
+    if (root && !root.querySelector('.ex-tl-item')) {
+      window.__inchbrickInitEventsExpo();
+    }
+  }, 500);
 
   /* Past events carousel */
   var pastTrack = document.getElementById('pastExposTrack');

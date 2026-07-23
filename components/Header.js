@@ -59,16 +59,6 @@ const NAV_ITEMS = [
     key: 'nri',
     label: 'NRI Corner',
     href: '/nri-corner',
-    dropdown: [
-      { label: 'NRI Corner Home', href: '/nri-corner' },
-      { label: 'Why Invest in India', href: '/nri-corner#nri-why' },
-      { label: 'Buying Process', href: '/nri-corner#nri-process' },
-      { label: 'Documentation', href: '/nri-corner#nri-docs' },
-      { label: 'Taxation', href: '/nri-corner#nri-tax' },
-      { label: 'Currency Guide', href: '/nri-corner#nri-currency' },
-      { label: 'FAQs', href: '/nri-corner#nri-faq' },
-      { label: 'Talk to NRI Advisor →', href: '/contact', className: 'nav-dropdown-view' },
-    ],
   },
   {
     key: 'blog',

@@ -13,7 +13,7 @@ export default function Page() {
     <HtmlBodyPage
       html={html}
       bodyClass={bodyClass}
-      scripts={[]}
+      scripts={["/js/contact.js"]}
     />
   );
 }

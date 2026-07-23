@@ -47,7 +47,7 @@
 }
 
 .hpd-section-head h2 {
-  font-family: "Playfair Display", serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   color: #0f2339;
   font-size: clamp(1.65rem, 2.8vw, 2.25rem);
   line-height: 1.12;
@@ -130,7 +130,7 @@
 .hpd-eyebrow i { font-size: 11px; }
 
 .hpd-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-size: clamp(1.9rem, 2.6vw, 2.6rem);
   font-weight: 700;
   line-height: 1.15;
