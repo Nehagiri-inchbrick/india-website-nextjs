@@ -63,30 +63,6 @@
     });
   }
 
-  // Scroll reveal
-  var reveals = document.querySelectorAll(".nri-reveal");
-  if (reveals.length && "IntersectionObserver" in window) {
-    var revealObs = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            revealObs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-    reveals.forEach(function (el, i) {
-      el.style.transitionDelay = Math.min(i % 6, 4) * 0.06 + "s";
-      revealObs.observe(el);
-    });
-  } else {
-    reveals.forEach(function (el) {
-      el.classList.add("is-visible");
-    });
-  }
-
   // Sticky jump active state
   var jumpLinks = Array.prototype.slice.call(
     document.querySelectorAll(".nri-jump-inner a[href^='#']")
