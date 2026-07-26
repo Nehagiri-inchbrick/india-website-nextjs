@@ -28,6 +28,24 @@
   refreshEventLists();
 
   /* ── Active event banner ── */
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatBannerTitle(event) {
+    var name = event.name || ((event.city || '') + ' Property Expo');
+    var city = event.city || '';
+    if (!city) return escapeHtml(name);
+    var re = new RegExp('^' + city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'i');
+    if (!re.test(name)) return escapeHtml(name);
+    var rest = name.replace(re, '');
+    return '<span>' + escapeHtml(city) + '</span> ' + escapeHtml(rest);
+  }
+
   function renderBanner(event) {
     var img = document.getElementById('exBannerImg');
     var kicker = document.getElementById('exBannerKicker');
@@ -37,23 +55,22 @@
     var stats = document.getElementById('exBannerStats');
     var registerBtn = document.getElementById('exBannerRegister');
     var detailLink = document.getElementById('exBannerDetail');
-    var ctaBtn = document.getElementById('exCtaRegister');
-    var devs = document.getElementById('exBannerDevs');
 
     if (!event) {
       // Fallback: next upcoming becomes the banner focus
       event = upcoming[0] || past[0];
       if (!event) return;
       if (kicker) {
-        kicker.innerHTML = '<span class="ex-dot-live" style="background:#c29a63;animation:none"></span> Next Expo';
-        kicker.style.background = 'rgba(194,154,99,.22)';
-        kicker.style.borderColor = 'rgba(194,154,99,.5)';
-        kicker.style.color = '#f2d6a2';
+        kicker.classList.add('is-upcoming');
+        kicker.innerHTML =
+          '<span class="ex-dot-live" style="background:#c29a63;animation:none"></span> Next Expo · ' +
+          escapeHtml(event.city || 'Upcoming');
       }
     } else if (kicker) {
+      kicker.classList.remove('is-upcoming');
       kicker.innerHTML =
         '<span class="ex-dot-live"></span> ' +
-        (event.city || 'Live') + ' · ' + (event.statusLabel || 'Live Now');
+        escapeHtml((event.city || 'Live') + ' · ' + (event.statusLabel || 'Live Now'));
     }
 
     if (img) {
@@ -61,37 +78,26 @@
       img.alt = event.name || event.city || '';
     }
     setBannerVideo(event);
-    if (title) title.textContent = event.name || (event.city + ' Property Expo');
+    if (title) title.innerHTML = formatBannerTitle(event);
     if (sub) sub.textContent = event.excerpt || '';
 
     if (meta) {
       meta.innerHTML =
-        '<li><i class="far fa-calendar" aria-hidden="true"></i> <span>' + (event.dateLabel || '') + '</span></li>' +
-        '<li><i class="far fa-clock" aria-hidden="true"></i> <span>' + (event.time || '') + '</span></li>' +
-        '<li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>' + (event.venue || '') + '</span></li>';
+        '<li><i class="far fa-calendar" aria-hidden="true"></i> <span>' + escapeHtml(event.dateLabel || '') + '</span></li>' +
+        '<li><i class="far fa-clock" aria-hidden="true"></i> <span>' + escapeHtml(event.time || '') + '</span></li>' +
+        '<li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>' + escapeHtml(event.venue || '') + '</span></li>';
     }
 
     if (stats && event.stats) {
       var labels = { projects: 'Projects', developers: 'Developers', visitors: 'Visitors', booths: 'Booths' };
       stats.innerHTML = Object.keys(labels).map(function (key) {
         if (!event.stats[key]) return '';
-        return '<div class="ex-banner-stat"><strong>' + event.stats[key] + '</strong><span>' + labels[key] + '</span></div>';
+        return '<div class="ex-banner-stat"><strong>' + escapeHtml(event.stats[key]) + '</strong><span>' + labels[key] + '</span></div>';
       }).join('');
     }
 
     if (registerBtn) registerBtn.setAttribute('data-event', event.slug);
-    if (ctaBtn) ctaBtn.setAttribute('data-event', event.slug);
     if (detailLink) detailLink.href = DETAIL_URL(event.slug);
-
-    if (devs && Array.isArray(event.developers)) {
-      var logos = event.developers.slice(0, 5).map(function (d) {
-        return '<img src="' + d.logo + '" alt="' + (d.name || '') + '">';
-      }).join('');
-      var more = event.developers.length > 5
-        ? '<span>+' + (event.developers.length - 5) + ' more</span>'
-        : '';
-      devs.innerHTML = logos + more;
-    }
   }
 
   var FEATURED_COUNT = 6;
@@ -180,209 +186,274 @@
     return REGION_MAP[key] || 'asia-pacific';
   }
 
-  var ui = {
-    region: 'all',
-    compactVisible: 0,
-    expanded: false
+  var MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var REGION_SHORT = {
+    americas: 'NA',
+    europe: 'EU',
+    'middle-east': 'ME',
+    'asia-pacific': 'APAC',
+    india: 'INDIA'
   };
 
+  var ui = {
+    monthKey: 'all'
+  };
+
+  function monthKeyOf(event) {
+    var raw = String(event.dateStart || '');
+    if (/^\d{4}-\d{2}/.test(raw)) return raw.slice(0, 7);
+    var label = String(event.dateLabel || '');
+    var yearMatch = label.match(/\d{4}/);
+    var monthMatch = label.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*/i);
+    if (!yearMatch || !monthMatch) return 'unknown';
+    var mi = MONTH_NAMES.findIndex(function (m) {
+      return monthMatch[1].toLowerCase().indexOf(m.toLowerCase()) === 0;
+    });
+    if (mi < 0) return 'unknown';
+    return yearMatch[0] + '-' + String(mi + 1).padStart(2, '0');
+  }
+
+  function monthLabelOf(key) {
+    if (!key || key === 'all' || key === 'unknown') return 'All';
+    var parts = key.split('-');
+    var mi = parseInt(parts[1], 10) - 1;
+    return (MONTH_NAMES[mi] || parts[1]) + ' ' + parts[0];
+  }
+
+  function parseDateParts(event) {
+    var label = String(event.dateLabel || '');
+    var days = (label.match(/(\d{1,2}\s*[–—\-]\s*\d{1,2}|\d{1,2})/) || [])[1] || '';
+    var month = (label.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*/i) || [])[1] || '';
+    if ((!days || !month) && event.dateStart) {
+      var d = new Date(event.dateStart + 'T12:00:00');
+      if (!isNaN(d.getTime())) {
+        if (!days) days = String(d.getDate());
+        if (!month) month = MONTH_NAMES[d.getMonth()];
+      }
+    }
+    return {
+      days: days.replace(/\s+/g, ''),
+      month: month.slice(0, 3).toUpperCase()
+    };
+  }
+
+  function eventTitleRest(event) {
+    var name = event.name || '';
+    var city = event.city || '';
+    if (!city || !name) return name || 'Property Expo';
+    var re = new RegExp('^' + city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'i');
+    var rest = name.replace(re, '').trim();
+    return rest || 'Property Expo';
+  }
+
+  function buildMonthTabs() {
+    var counts = {};
+    upcoming.forEach(function (e) {
+      var key = monthKeyOf(e);
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    var keys = Object.keys(counts).filter(function (k) { return k !== 'unknown'; }).sort();
+    if (!keys.length) return [{ key: 'all', label: 'All', count: upcoming.length }];
+
+    return [{ key: 'all', label: 'All Months', count: upcoming.length }].concat(keys.map(function (key) {
+      return {
+        key: key,
+        label: monthLabelOf(key),
+        count: counts[key]
+      };
+    }));
+  }
+
   function filteredUpcoming() {
-    if (ui.region === 'all') return upcoming;
-    return upcoming.filter(function (e) { return getRegion(e) === ui.region; });
+    if (ui.monthKey === 'all') return upcoming;
+    return upcoming.filter(function (e) { return monthKeyOf(e) === ui.monthKey; });
   }
 
   function timelineCard(e, i) {
     var isLive = e.status === 'live';
-    var badge = isLive ? 'Live Now' : (e.statusLabel || 'Upcoming');
-    var badgeClass = isLive ? ' is-live' : '';
     var region = getRegion(e);
-    var regionLabel = {
-      americas: 'Americas',
-      europe: 'Europe',
-      'middle-east': 'Middle East',
-      'asia-pacific': 'Asia Pacific',
-      india: 'India'
-    }[region] || 'Global';
+    var regionShort = REGION_SHORT[region] || 'GLOBAL';
+    var parts = parseDateParts(e);
+    var titleRest = eventTitleRest(e);
 
     return (
-      '<li class="ex-tl-item' + (i === 0 ? ' is-next' : '') + (isLive ? ' is-live' : '') + '">' +
-        '<article class="ex-tl-card">' +
-          '<div class="ex-tl-media">' +
-            '<img src="' + e.img + '" alt="' + (e.city || e.name || '') + '" loading="lazy">' +
-            '<div class="ex-tl-shade" aria-hidden="true"></div>' +
-            '<span class="ex-tl-badge' + badgeClass + '">' + badge + '</span>' +
-            '<span class="ex-tl-region">' + regionLabel + '</span>' +
+      '<li class="ex-cal-card' + (isLive ? ' is-live' : '') + (i === 0 ? ' is-next' : '') + '">' +
+        '<a class="ex-cal-link" href="' + DETAIL_URL(e.slug) + '">' +
+          '<div class="ex-cal-date" aria-hidden="true">' +
+            '<strong>' + escapeHtml(parts.days || '—') + '</strong>' +
+            '<span>' + escapeHtml(parts.month || '') + '</span>' +
           '</div>' +
-          '<div class="ex-tl-body">' +
-            '<span class="ex-tl-date"><i class="far fa-calendar" aria-hidden="true"></i> ' + (e.dateLabel || '') + '</span>' +
-            '<h3>' + (e.name || e.city) + '</h3>' +
-            '<p class="ex-tl-loc"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ' +
-              (e.venue || '') + (e.city ? ' · ' + e.city : '') +
-            '</p>' +
-            (e.excerpt
-              ? '<p class="ex-tl-excerpt">' + e.excerpt + '</p>'
-              : '') +
-            '<div class="ex-tl-actions">' +
-              '<button type="button" class="ex-btn ex-btn--fill openRegisterModalBtn" data-event="' + e.slug + '">' +
-                (isLive ? 'Register Now' : 'Get VIP Pass') +
-                ' <i class="fas fa-arrow-right" aria-hidden="true"></i>' +
-              '</button>' +
-              '<a class="ex-btn ex-btn--gold-outline" href="' + DETAIL_URL(e.slug) + '">Details</a>' +
+          '<div class="ex-cal-info">' +
+            '<div class="ex-cal-top">' +
+              '<span class="ex-cal-region">' + escapeHtml(regionShort) + '</span>' +
+              (isLive ? '<span class="ex-cal-live">Live</span>' : '') +
             '</div>' +
+            '<h3>' + escapeHtml(e.city || e.name || 'Expo') + '</h3>' +
+            '<p class="ex-cal-name">' + escapeHtml(titleRest) + '</p>' +
+            '<span class="ex-cal-country">' + escapeHtml(e.country || '') + '</span>' +
           '</div>' +
-        '</article>' +
-      '</li>'
-    );
-  }
-
-  function compactRow(e) {
-    return (
-      '<li>' +
-        '<a class="ex-compact-item" href="' + DETAIL_URL(e.slug) + '">' +
-          '<span class="ex-compact-date">' + (e.dateLabel || '') + '</span>' +
-          '<div class="ex-compact-info">' +
-            '<h4>' + (e.name || e.city) + '</h4>' +
-            '<p>' + (e.city || '') + (e.country ? ', ' + e.country : '') + '</p>' +
-          '</div>' +
-          '<span class="ex-compact-cta">Details <i class="fas fa-arrow-right" aria-hidden="true"></i></span>' +
+          '<span class="ex-cal-go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>' +
         '</a>' +
+        '<button type="button" class="ex-cal-pass openRegisterModalBtn" data-event="' + escapeHtml(e.slug) + '">' +
+          (isLive ? 'Register' : 'VIP Pass') +
+        '</button>' +
       '</li>'
     );
   }
 
-  function updateFilterCounts() {
-    var allBtn = document.querySelector('.ex-filter[data-region="all"] span');
-    if (allBtn) allBtn.textContent = String(upcoming.length);
-
-    document.querySelectorAll('.ex-filter[data-region]').forEach(function (btn) {
-      var region = btn.getAttribute('data-region');
-      if (region === 'all') return;
-      var count = upcoming.filter(function (e) { return getRegion(e) === region; }).length;
-      var badge = btn.querySelector('span');
-      if (!badge) {
-        badge = document.createElement('span');
-        btn.appendChild(badge);
-      }
-      badge.textContent = String(count);
-      btn.hidden = count === 0;
-    });
+  function renderMonthTabs() {
+    var wrap = document.getElementById('exCalMonths');
+    if (!wrap) return;
+    var tabs = buildMonthTabs();
+    if (ui.monthKey !== 'all' && !tabs.some(function (t) { return t.key === ui.monthKey; })) {
+      ui.monthKey = 'all';
+    }
+    wrap.innerHTML = tabs.map(function (tab) {
+      return (
+        '<button type="button" class="ex-cal-month' + (tab.key === ui.monthKey ? ' is-active' : '') + '" data-month="' + tab.key + '" role="tab" aria-selected="' + (tab.key === ui.monthKey) + '">' +
+          '<strong>' + escapeHtml(tab.label) + '</strong>' +
+          '<span>' + String(tab.count).padStart(2, '0') + ' ' + (tab.count === 1 ? 'city' : 'cities') + '</span>' +
+        '</button>'
+      );
+    }).join('');
   }
 
   function renderUpcoming() {
     var list = filteredUpcoming();
     var root = document.getElementById('exTimeline');
-    var compactWrap = document.getElementById('exCompactWrap');
-    var compactList = document.getElementById('exCompactList');
-    var moreBtn = document.getElementById('exShowMoreBtn');
-    var lessBtn = document.getElementById('exShowLessBtn');
     var hint = document.getElementById('exTlHint');
     var sub = document.getElementById('exUpcomingSub');
+    var reserve = document.getElementById('exCalReserve');
 
     if (sub) {
       sub.textContent = upcoming.length
-        ? upcoming.length + ' upcoming expos worldwide — browse the next stops or filter by region.'
+        ? 'Plan your city stop. Switch months to explore ' + upcoming.length + ' investor expos worldwide.'
         : 'Follow our global calendar — register early for priority VIP access.';
     }
 
     if (!root) return;
 
     if (!list.length) {
-      root.innerHTML = '<li class="ex-tl-empty">No upcoming expos in this region. Try another filter.</li>';
-      if (compactWrap) compactWrap.hidden = true;
-      if (moreBtn) moreBtn.hidden = true;
-      if (lessBtn) lessBtn.hidden = true;
-      if (hint) hint.textContent = 'No matches for this filter.';
+      root.innerHTML = '<li class="ex-cal-empty">No expos in this month. Try another tab.</li>';
+      if (hint) hint.textContent = 'No matches for this month.';
       return;
     }
 
-    var featured = list.slice(0, FEATURED_COUNT);
-    var rest = list.slice(FEATURED_COUNT);
+    root.innerHTML = list.map(timelineCard).join('');
 
-    root.innerHTML = featured.map(timelineCard).join('');
-
-    if (!rest.length) {
-      if (compactWrap) compactWrap.hidden = true;
-      if (moreBtn) moreBtn.hidden = true;
-      if (lessBtn) lessBtn.hidden = true;
-      if (hint) {
-        hint.textContent = 'Showing all ' + list.length + ' upcoming expo' + (list.length === 1 ? '' : 's') +
-          (ui.region === 'all' ? '' : ' in this region') + '.';
-      }
-      return;
+    if (reserve) {
+      reserve.setAttribute('data-event', list[0].slug || '');
     }
 
-    if (!ui.expanded) {
-      ui.compactVisible = 0;
-      if (compactWrap) compactWrap.hidden = true;
-      if (compactList) compactList.innerHTML = '';
-      if (moreBtn) {
-        moreBtn.hidden = false;
-        moreBtn.innerHTML = 'Show more expos (' + rest.length + ' more) <i class="fas fa-chevron-down" aria-hidden="true"></i>';
-      }
-      if (lessBtn) lessBtn.hidden = true;
-      if (hint) {
-        hint.textContent = 'Showing next ' + featured.length + ' of ' + list.length +
-          ' — tap Show more for the compact calendar.';
-      }
-      return;
-    }
-
-    var visible = Math.min(ui.compactVisible || COMPACT_STEP, rest.length);
-    ui.compactVisible = visible;
-    if (compactWrap) compactWrap.hidden = false;
-    if (compactList) compactList.innerHTML = rest.slice(0, visible).map(compactRow).join('');
-
-    var remaining = rest.length - visible;
-    if (moreBtn) {
-      moreBtn.hidden = remaining <= 0;
-      moreBtn.innerHTML = remaining > 0
-        ? 'Show ' + Math.min(COMPACT_STEP, remaining) + ' more <i class="fas fa-chevron-down" aria-hidden="true"></i>'
-        : '';
-    }
-    if (lessBtn) lessBtn.hidden = false;
     if (hint) {
-      hint.textContent = 'Showing ' + (featured.length + visible) + ' of ' + list.length + ' upcoming expos.';
+      if (ui.monthKey === 'all') {
+        hint.textContent = 'Showing all ' + list.length + ' upcoming destinations — more cities are added through the year.';
+      } else {
+        hint.textContent = list.length + ' destination' + (list.length === 1 ? '' : 's') + ' in ' + monthLabelOf(ui.monthKey) + '.';
+      }
     }
   }
 
-  /* ── Upcoming timeline (featured + compact) ── */
+  /* ── Upcoming calendar board ── */
   function renderTimeline() {
-    updateFilterCounts();
+    renderMonthTabs();
     renderUpcoming();
   }
 
-  /* ── Past events ── */
-  function renderPast(list) {
-    var track = document.getElementById('pastExposTrack');
-    if (!track) return;
+  /* ── Past events (featured journey) ── */
+  var pastList = [];
+  var pastActive = 0;
 
-    if (!list.length) {
-      track.innerHTML = '<p class="ex-past-empty">Past expo highlights will appear here soon.</p>';
+  function yearOf(e) {
+    var match = String(e.dateLabel || '').match(/\d{4}/);
+    return match ? match[0] : (e.dateLabel || '');
+  }
+
+  function renderPastYears() {
+    var years = document.getElementById('exPastYears');
+    if (!years) return;
+    years.innerHTML = pastList.map(function (e, i) {
+      return (
+        '<li class="ex-past-year-item">' +
+          '<button type="button" class="ex-past-year-btn' + (i === pastActive ? ' is-active' : '') + '" data-idx="' + i + '">' +
+            '<span class="ex-past-year-label">' + escapeHtml(yearOf(e)) + '</span>' +
+            '<span class="ex-past-year-dot" aria-hidden="true"></span>' +
+          '</button>' +
+        '</li>'
+      );
+    }).join('');
+  }
+
+  function pastStatCell(icon, value, label) {
+    if (!value) return '';
+    return (
+      '<div class="ex-pf-stat">' +
+        '<span class="ex-pf-stat-ico" aria-hidden="true"><i class="fas ' + icon + '"></i></span>' +
+        '<div><strong>' + escapeHtml(value) + '</strong><span>' + escapeHtml(label) + '</span></div>' +
+      '</div>'
+    );
+  }
+
+  function renderPastFeature() {
+    var wrap = document.getElementById('exPastFeature');
+    if (!wrap) return;
+
+    if (!pastList.length) {
+      wrap.innerHTML = '<p class="ex-past-empty">Past expo highlights will appear here soon.</p>';
       return;
     }
 
-    track.innerHTML = list.map(function (e) {
-      var location = (e.city || '') + (e.country ? ', ' + e.country : '');
-      return (
-        '<a href="' + DETAIL_URL(e.slug) + '" class="ex-past-card">' +
-          '<div class="ex-past-img">' +
-            '<img src="' + e.img + '" alt="' + (e.name || e.city || 'Past expo') + '" loading="lazy">' +
-            '<span class="ex-past-year">' + (e.dateLabel || '') + '</span>' +
-            '<span class="ex-past-shade"></span>' +
+    var e = pastList[pastActive] || pastList[0];
+    var location = (e.city || '') + (e.country ? ', ' + e.country : '');
+    var stats = e.stats || {};
+    var highlights = Array.isArray(e.highlights) ? e.highlights.slice(0, 3) : [];
+    var isLatest = pastActive === 0;
+
+    wrap.innerHTML =
+      '<article class="ex-pf-card">' +
+        '<div class="ex-pf-media">' +
+          '<img src="' + escapeHtml(e.img) + '" alt="' + escapeHtml(e.name || e.city || 'Past expo') + '" loading="lazy">' +
+          (isLatest ? '<span class="ex-pf-latest"><i class="fas fa-star" aria-hidden="true"></i> Latest</span>' : '') +
+          '<div class="ex-pf-statbar">' +
+            pastStatCell('fa-users', stats.visitors, 'Visitors') +
+            pastStatCell('fa-building', stats.developers, 'Developers') +
+            pastStatCell('fa-globe', stats.projects, 'Projects Showcased') +
           '</div>' +
-          '<div class="ex-past-body">' +
-            '<span class="ex-past-badge"><i class="fas fa-check-circle" aria-hidden="true"></i> Completed</span>' +
-            '<h3>' + (e.name || e.city + ' Property Expo') + '</h3>' +
-            '<ul class="ex-past-meta">' +
-              '<li><i class="far fa-calendar" aria-hidden="true"></i> ' + (e.dateLabel || '') + '</li>' +
-              '<li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ' + (e.venue || '') + '</li>' +
-            '</ul>' +
-            '<span class="ex-past-loc">' + location + '</span>' +
-            '<span class="ex-past-link">View recap <i class="fas fa-arrow-right" aria-hidden="true"></i></span>' +
+        '</div>' +
+        '<div class="ex-pf-body">' +
+          '<div class="ex-pf-meta">' +
+            '<span><i class="far fa-calendar" aria-hidden="true"></i> ' + escapeHtml(e.dateLabel || '') + '</span>' +
+            '<span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ' + escapeHtml(location) + '</span>' +
           '</div>' +
-        '</a>'
-      );
-    }).join('');
+          '<h3>' + escapeHtml(e.name || (e.city + ' Property Expo')) + '</h3>' +
+          '<p class="ex-pf-venue"><i class="fas fa-location-dot" aria-hidden="true"></i> ' + escapeHtml(e.venue || '') + '</p>' +
+          '<p class="ex-pf-desc">' + escapeHtml(e.description || e.excerpt || '') + '</p>' +
+          (highlights.length
+            ? '<span class="ex-pf-hl-label">Highlights</span>' +
+              '<ul class="ex-pf-hl">' +
+                highlights.map(function (h) {
+                  return '<li><i class="fas fa-circle-check" aria-hidden="true"></i> ' + escapeHtml(h) + '</li>';
+                }).join('') +
+              '</ul>'
+            : '') +
+          '<a class="ex-pf-cta" href="' + DETAIL_URL(e.slug) + '">View Recap <i class="fas fa-arrow-right" aria-hidden="true"></i></a>' +
+        '</div>' +
+      '</article>';
+  }
+
+  function setPastActive(index) {
+    if (!pastList.length) return;
+    var n = pastList.length;
+    pastActive = ((index % n) + n) % n;
+    renderPastYears();
+    renderPastFeature();
+  }
+
+  function renderPast(list) {
+    pastList = Array.isArray(list) ? list : [];
+    if (pastActive >= pastList.length) pastActive = 0;
+    renderPastYears();
+    renderPastFeature();
   }
 
   /* ── Modal event select ── */
@@ -430,61 +501,37 @@
     }
   }, 500);
 
-  /* Past events carousel */
-  var pastTrack = document.getElementById('pastExposTrack');
+  /* Past events journey navigation */
   var pastPrev = document.getElementById('exPastPrev');
   var pastNext = document.getElementById('exPastNext');
+  var pastYears = document.getElementById('exPastYears');
 
-  function pastStep() {
-    var card = pastTrack && pastTrack.querySelector('.ex-past-card');
-    if (!card) return 340;
-    var gap = parseFloat(window.getComputedStyle(pastTrack).gap) || 16;
-    return card.offsetWidth + gap;
-  }
-
-  if (pastTrack && pastPrev && pastNext) {
+  if (pastPrev) {
     pastPrev.addEventListener('click', function () {
-      pastTrack.scrollBy({ left: -pastStep(), behavior: 'smooth' });
+      setPastActive(pastActive - 1);
     });
+  }
+  if (pastNext) {
     pastNext.addEventListener('click', function () {
-      pastTrack.scrollBy({ left: pastStep(), behavior: 'smooth' });
+      setPastActive(pastActive + 1);
+    });
+  }
+  if (pastYears) {
+    pastYears.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-idx]');
+      if (!btn) return;
+      setPastActive(parseInt(btn.getAttribute('data-idx'), 10) || 0);
     });
   }
 
-  /* Filters + show more */
-  document.querySelectorAll('.ex-filter').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.ex-filter').forEach(function (b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      ui.region = btn.getAttribute('data-region') || 'all';
-      ui.expanded = false;
-      ui.compactVisible = 0;
-      renderUpcoming();
-    });
-  });
-
-  var moreBtn = document.getElementById('exShowMoreBtn');
-  var lessBtn = document.getElementById('exShowLessBtn');
-
-  if (moreBtn) {
-    moreBtn.addEventListener('click', function () {
-      if (!ui.expanded) {
-        ui.expanded = true;
-        ui.compactVisible = COMPACT_STEP;
-      } else {
-        ui.compactVisible += COMPACT_STEP;
-      }
-      renderUpcoming();
-    });
-  }
-
-  if (lessBtn) {
-    lessBtn.addEventListener('click', function () {
-      ui.expanded = false;
-      ui.compactVisible = 0;
-      renderUpcoming();
-      var section = document.getElementById('ex-upcoming');
-      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  /* Month tabs */
+  var monthWrap = document.getElementById('exCalMonths');
+  if (monthWrap) {
+    monthWrap.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-month]');
+      if (!btn) return;
+      ui.monthKey = btn.getAttribute('data-month') || 'all';
+      renderTimeline();
     });
   }
 
@@ -572,7 +619,7 @@
     });
   }
 
-  /* ── Gallery: compact reel (no scroll-jack) ── */
+  /* ── Gallery: cinematic exhibition reel ── */
   function runGalleryInit() {
     var track = document.getElementById('exGalTrack');
     var counter = document.getElementById('exGalCounter');
@@ -580,6 +627,7 @@
     var thumbs = document.getElementById('exGalThumbs');
     var btnPrev = document.getElementById('exGalPrev');
     var btnNext = document.getElementById('exGalNext');
+    var progress = document.getElementById('exGalProgress');
     var viewport = track && track.parentElement;
     var section = document.getElementById('ex-gallery');
     if (!track || !viewport || !section) return;
@@ -611,11 +659,27 @@
       return (n < 10 ? '0' : '') + n;
     }
 
+    function stopProgress() {
+      if (!progress) return;
+      progress.classList.remove('is-running');
+      progress.style.width = '0%';
+      void progress.offsetWidth;
+    }
+
+    function startProgress() {
+      if (!progress || reducedMotion.matches) return;
+      stopProgress();
+      progress.style.setProperty('--gal-auto', AUTO_MS + 'ms');
+      section.style.setProperty('--gal-auto', AUTO_MS + 'ms');
+      progress.classList.add('is-running');
+    }
+
     function stopAuto() {
       if (autoTimer) {
         clearTimeout(autoTimer);
         autoTimer = null;
       }
+      stopProgress();
     }
 
     function pauseAuto() {
@@ -631,6 +695,7 @@
     function scheduleAuto(delay) {
       stopAuto();
       if (userPaused || !inView || total < 2 || document.hidden) return;
+      if (delay === AUTO_MS || delay >= AUTO_MS - 50) startProgress();
       autoTimer = setTimeout(function () {
         autoTimer = null;
         if (userPaused || !inView || document.hidden) return;
@@ -665,16 +730,12 @@
         var title = slide.getAttribute('data-title') || ('Scene ' + (i + 1));
         var src = img ? img.getAttribute('src') : '';
         return (
-          '<button type="button" data-i="' + i + '" aria-label="' + title + '"' +
+          '<button type="button" data-i="' + i + '" data-num="' + pad(i + 1) + '" data-title="' + title.replace(/"/g, '&quot;') + '" aria-label="' + title + '"' +
           (i === 0 ? ' class="is-active"' : '') + '>' +
             '<img src="' + src + '" alt="">' +
           '</button>'
         );
       }).join('');
-    }
-
-    function sizeSlides() {
-      /* stacked slides — no width sizing needed */
     }
 
     function scrollThumbIntoView(btn) {

@@ -2,15 +2,19 @@
    Hero Banner - Inchbrick Search Hero
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playball&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Dancing+Script:wght@700&family=Outfit:wght@400;500;600;700&family=Playball&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
 
 :root {
   --hero-navy: #0c1a2e;
   --hero-navy-dark: #070e1a;
-  --hero-gold: #c9a55c;
-  --hero-gold-light: #dbb97a;
+  --hero-gold: #c29a63;
+  --hero-gold-light: #e4c79a;
+  --hero-ivory: #f4efe6;
+  --hero-copper: #b8844a;
   --hero-white: #ffffff;
   --hero-gray: #9ca3af;
+  --hero-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --hero-ui: "Outfit", "Plus Jakarta Sans", sans-serif;
 }
 
 /* ── Cinematic Hero (center search + featured slide) ── */
@@ -35,7 +39,7 @@
   justify-content: center;
   overflow: hidden;
   background: var(--hero-navy-dark);
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--hero-ui);
 }
 
 .hero-cinema-media {
@@ -106,9 +110,9 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(7, 14, 26, 0.55) 0%, rgba(7, 14, 26, 0.18) 32%, rgba(7, 14, 26, 0.22) 58%, rgba(7, 14, 26, 0.82) 100%),
-    radial-gradient(ellipse 80% 60% at 50% 45%, transparent 0%, rgba(7, 14, 26, 0.35) 100%);
+  /* background:
+    linear-gradient(105deg, rgba(8, 18, 34, 0.88) 0%, rgba(8, 18, 34, 0.42) 48%, rgba(12, 24, 42, 0.72) 100%),
+    linear-gradient(180deg, rgba(7, 14, 26, 0.45) 0%, rgba(7, 14, 26, 0.12) 38%, rgba(7, 14, 26, 0.78) 100%); */
 }
 
 .hero-cinema-center {
@@ -131,25 +135,26 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 1.5px solid rgba(201, 165, 92, 0.7);
-  background: rgba(201, 165, 92, 0.18);
-  color: #dbb97a;
+  border: 1.5px solid rgba(228, 199, 154, 0.7);
+  background: rgba(194, 154, 99, 0.16);
+  color: var(--hero-gold-light);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
   margin-bottom: 0.55rem;
-  box-shadow: 0 0 0 4px rgba(201, 165, 92, 0.08);
+  box-shadow: 0 0 0 4px rgba(194, 154, 99, 0.1);
 }
 
 .hero-banner-tagline {
   margin: 0;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 0.68rem;
+  font-family: var(--hero-display);
+  font-size: clamp(1.15rem, 2.2vw, 1rem);
   font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--hero-ivory);
 }
 
 .hero-banner-divider {
@@ -157,7 +162,7 @@
   width: 56px;
   height: 1px;
   margin-top: 0.7rem;
-  background: linear-gradient(90deg, transparent, rgba(201, 165, 92, 0.75), transparent);
+  background: linear-gradient(90deg, transparent, rgba(228, 199, 154, 0.85), transparent);
   position: relative;
 }
 
@@ -169,40 +174,43 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--hero-gold);
+  background: var(--hero-copper);
   transform: translate(-50%, -50%);
 }
 
 .hero-cinema-title {
-  margin: 0 0 0.55rem;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2rem, 5.2vw, 3.35rem);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.45);
+  margin: 0 0 0.65rem;
+  font-family: var(--hero-display);
+  font-size: clamp(2.35rem, 5.8vw, 4.1rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: var(--hero-ivory);
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 
 .hero-cinema-title span {
   display: block;
   font-size: 1em;
   font-weight: 700;
+  font-style: italic;
   color: var(--hero-gold-light);
-  background: linear-gradient(135deg, #e8c98a 0%, #c9a55c 45%, #b8903f 100%);
+  background: linear-gradient(120deg, #f0d7ad 0%, #c29a63 48%, #a67c45 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero-banner-subtitle {
-  margin: 0 auto 1.25rem;
-  max-width: 480px;
-  font-size: clamp(0.88rem, 1.5vw, 1rem);
-  font-weight: 500;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.78);
+  margin: 0 auto 1.35rem;
+  max-width: 520px;
+  font-family: var(--hero-ui);
+  font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: rgba(244, 239, 230, 0.78);
 }
 
 .hero-cinema-tabs {
@@ -212,53 +220,53 @@
   justify-content: center;
   gap: 0.45rem;
   margin-bottom: 1.15rem;
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
-  border: none;
-  backdrop-filter: none;
-  box-shadow: none;
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: rgba(12, 26, 46, 0.45);
+  border: 1px solid rgba(228, 199, 154, 0.22);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
 }
 
 .hero-cinema-tab {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border: 1px solid transparent;
   border-radius: 999px;
-  padding: 0.58rem 1.2rem;
-  background: rgba(255, 255, 255, 0.95);
-  color: #0f2339;
+  padding: 0.58rem 1.15rem;
+  background: transparent;
+  color: rgba(244, 239, 230, 0.82);
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
-  font-family: inherit;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  font-family: var(--hero-ui);
+  box-shadow: none;
 }
 
 .hero-cinema-tab i {
   font-size: 0.78rem;
-  color: #64748b;
+  color: var(--hero-gold-light);
   transition: color 0.22s ease;
 }
 
 .hero-cinema-tab:hover {
-  color: #0f2339;
-  background: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
   transform: translateY(-1px);
 }
 
 .hero-cinema-tab.active {
-  background: linear-gradient(135deg, #0f2339 0%, #1a3352 100%);
+  background: linear-gradient(135deg, #c9242b 0%, #a81d24 100%);
   color: #fff;
-  border-color: #0f2339;
-  box-shadow: 0 8px 22px rgba(15, 35, 57, 0.4);
+  border-color: rgba(228, 199, 154, 0.35);
+  box-shadow: 0 8px 22px rgba(201, 36, 43, 0.35);
   transform: translateY(-1px);
 }
 
 .hero-cinema-tab.active i {
-  color: var(--hero-gold-light);
+  color: var(--hero-ivory);
 }
 
 .hero-cinema-search {
@@ -351,14 +359,14 @@
   border-radius: 999px;
   padding: 0 1.45rem;
   min-width: 128px;
-  background: linear-gradient(135deg, #dbb97a 0%, #c9a55c 45%, #b8903f 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #e4c79a 0%, #c29a63 48%, #a67c45 100%);
+  color: #0f2339;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: inherit;
+  font-family: var(--hero-ui);
   box-shadow: 0 8px 22px rgba(201, 165, 92, 0.4);
   transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
   position: relative;
@@ -1135,29 +1143,33 @@
   }
 
   .hero-banner-tagline {
-    letter-spacing: 0.16em;
-    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+    font-size: 1.05rem;
   }
 
   .hero-cinema-title {
-    font-size: 1.7rem;
+    font-size: clamp(2rem, 9vw, 2.6rem);
     margin-bottom: 0.45rem;
   }
 
   .hero-banner-subtitle {
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     margin-bottom: 1rem;
   }
 
   .hero-cinema-tabs {
     width: 100%;
-    border-radius: 0;
-    padding: 0;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    border-radius: 999px;
+    padding: 0.3rem;
+    scrollbar-width: none;
   }
 
   .hero-cinema-tab {
-    flex: 1 1 calc(50% - 0.3rem);
-    padding: 0.55rem 0.65rem;
+    flex: 0 0 auto;
+    padding: 0.55rem 0.9rem;
     font-size: 0.72rem;
     justify-content: center;
   }

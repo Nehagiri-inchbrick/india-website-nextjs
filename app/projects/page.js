@@ -4,8 +4,9 @@ import '@/styles/projects.css';
 import '@/styles/projects-inline.css';
 
 export const metadata = {
-  title: "Projects | Inchbrick Realty",
-  description: "Explore verified real estate projects.",
+  title: 'Projects | Inchbrick Realty',
+  description:
+    'Explore featured, ready-to-move, under-construction, new launch, luxury, commercial, and township projects across India.',
 };
 
 export default function Page() {

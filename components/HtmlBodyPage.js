@@ -59,6 +59,12 @@ export default function HtmlBodyPage({ html, bodyClass = '', scriptSrc, scripts 
         if (typeof window.__inchbrickInitBrandShowcase === 'function') {
           window.__inchbrickInitBrandShowcase();
         }
+        if (typeof window.__inchbrickInitMoodSlider === 'function') {
+          window.__inchbrickInitMoodSlider();
+        }
+        if (typeof window.__inchbrickInitProjects === 'function') {
+          window.__inchbrickInitProjects();
+        }
         if (typeof window.__inchbrickInitEventsExpo === 'function') {
           window.__inchbrickInitEventsExpo();
         }

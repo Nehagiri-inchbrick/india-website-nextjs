@@ -64,7 +64,7 @@ export default function Footer() {
             <div className="footer-block">
               <h4>Real Estate Services</h4>
               <div className="footer-links">
-                <Link href="/contact">Home Buying Assistance</Link>
+                <Link href="/home-buying-assistance">Home Buying Assistance</Link>
                 <Link href="/home-loan">Home Loan Assistance</Link>
                 <Link href="/emi-calculator">EMI Calculator</Link>
                 <Link href="/investment-opportunities">Investment Advisory</Link>
@@ -80,6 +80,7 @@ export default function Footer() {
               <h4>Quick Access</h4>
               <div className="footer-links">
                 <Link href="/about">About Us</Link>
+                <Link href="/projects">Projects</Link>
                 <Link href="/blog">Blog</Link>
                 <Link href="/careers">Careers</Link>
                 <Link href="/compare-properties">Compare Properties</Link>

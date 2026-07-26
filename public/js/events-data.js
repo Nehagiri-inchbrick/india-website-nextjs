@@ -21,7 +21,7 @@ window.EVENTS_DATA = [
     time: "10:00 AM – 7:00 PM",
     venue: "Metro Toronto Convention Centre",
     address: "255 Front St W, Toronto, ON M5V 2W6, Canada",
-    img: "https://images.unsplash.com/photo-1507992781348-31024be7976e?auto=format&fit=crop&w=1600&q=90",
+    img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=90",
     video: "https://videos.pexels.com/video-files/3209676/3209676-hd_1920_1080_25fps.mp4",
     excerpt: "India's largest overseas property expo — meet 16+ top developers, explore 120+ premium projects, and book one-on-one advisory sessions.",
     description: [
@@ -55,7 +55,7 @@ window.EVENTS_DATA = [
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=85",
       "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=85",
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=85",
-      "https://images.unsplash.com/photo-1505373877841-8d25f39d4692?auto=format&fit=crop&w=900&q=85"
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"
     ]
   },
   {
@@ -185,7 +185,7 @@ window.EVENTS_DATA = [
     time: "10:00 AM – 7:00 PM",
     venue: "Kuala Lumpur Convention Centre",
     address: "Kuala Lumpur City Centre, 50088 Kuala Lumpur, Malaysia",
-    img: "https://images.unsplash.com/photo-1595841696660-1e5c0106e236?auto=format&fit=crop&w=900&q=90",
+    img: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=900&q=90",
     excerpt: "Southeast Asia's gateway expo for Indian real estate — curated projects for Malaysian NRIs and investors.",
     description: [
       "KL edition connects Malaysian-based buyers with verified Indian developers. Focus on mid-premium apartments and township projects with strong rental demand.",
@@ -203,7 +203,7 @@ window.EVENTS_DATA = [
       { time: "3:00 PM", title: "Township Focus Session", desc: "Brigade & Prestige township walkthroughs." }
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1595841696660-1e5c0106e236?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=900&q=85",
       "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=85"
     ]
   },

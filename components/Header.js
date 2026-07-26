@@ -6,6 +6,11 @@ import { useEffect, useRef, useState } from 'react';
 
 const NAV_ITEMS = [
   {
+    key: 'projects',
+    label: 'Projects',
+    href: '/projects',
+  },
+  {
     key: 'listings',
     label: 'Property Listing',
     href: '/listings',
@@ -15,6 +20,7 @@ const NAV_ITEMS = [
         {
           label: 'Buy Properties',
           links: [
+            { label: 'All Projects', href: '/projects' },
             { label: 'Flats & Apartments', href: '/listings' },
             { label: 'Independent Houses', href: '/listings' },
             { label: 'Luxury Villas', href: '/listings' },
@@ -61,6 +67,12 @@ const NAV_ITEMS = [
     href: '/nri-corner',
   },
   {
+    key: 'events',
+    label: 'Global Expos',
+    href: '/events-expo',
+    highlight: true,
+  },
+  {
     key: 'blog',
     label: 'Blog',
     href: '/blog',
@@ -70,11 +82,6 @@ const NAV_ITEMS = [
     ],
   },
   {
-    key: 'events',
-    label: 'Global Expos',
-    href: '/events-expo',
-  },
-  {
     key: 'services',
     label: 'Service',
     href: '/contact',
@@ -82,7 +89,7 @@ const NAV_ITEMS = [
     dropdown: [
       {
         label: 'Home Buying Assistance',
-        href: '/contact',
+        href: '/home-buying-assistance',
         desc: 'End-to-end support from shortlist to booking',
         icon: 'fa-house-chimney',
       },
@@ -142,11 +149,12 @@ export default function Header() {
   // Active page mapping
   function getActiveKey() {
     if (pathname === '/' || pathname.startsWith('/home')) return 'home';
+    if (pathname.startsWith('/projects')) return 'projects';
     if (pathname.startsWith('/listings')) return 'listings';
     if (pathname.startsWith('/nri')) return 'nri';
     if (pathname.startsWith('/blog') || pathname.startsWith('/market')) return 'blog';
     if (pathname.startsWith('/events')) return 'events';
-    if (pathname.startsWith('/contact') || pathname.startsWith('/home-loan') || pathname.startsWith('/emi') || pathname.startsWith('/compare') || pathname.startsWith('/saved') || pathname.startsWith('/investment') || pathname.startsWith('/design')) return 'services';
+    if (pathname.startsWith('/contact') || pathname.startsWith('/home-buying') || pathname.startsWith('/home-loan') || pathname.startsWith('/emi') || pathname.startsWith('/compare') || pathname.startsWith('/saved') || pathname.startsWith('/investment') || pathname.startsWith('/design')) return 'services';
     return '';
   }
 
@@ -239,7 +247,7 @@ export default function Header() {
             return (
               <div
                 key={item.key}
-                className={`nav-item${item.hasMega ? ' nav-item--mega' : ''}${isServices ? ' nav-item--services' : ''}${isActive ? ' active' : ''}${isOpen ? ' open' : ''}`}
+                className={`nav-item${item.hasMega ? ' nav-item--mega' : ''}${isServices ? ' nav-item--services' : ''}${item.highlight ? ' nav-item--highlight' : ''}${isActive ? ' active' : ''}${isOpen ? ' open' : ''}`}
                 data-nav={item.key}
               >
                 {hasDropdown ? (
@@ -257,7 +265,15 @@ export default function Header() {
                   </button>
                 ) : (
                   <Link href={item.href} className="nav-trigger">
-                    {item.label}
+                    {item.highlight ? (
+                      <>
+                        <span className="nav-highlight-dot" aria-hidden="true" />
+                        <span className="nav-highlight-label">{item.label}</span>
+                        <span className="nav-highlight-badge">Live</span>
+                      </>
+                    ) : (
+                      item.label
+                    )}
                   </Link>
                 )}
 

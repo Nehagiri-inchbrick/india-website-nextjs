@@ -1,4 +1,16 @@
 /* Event detail page */
+body.evd-page #main-content {
+  padding: 0;
+  max-width: none;
+  width: 100%;
+  overflow-x: clip;
+}
+body.evd-page .html-body-page {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
 .evd-page {
   --evd-navy: #0f2339;
   --evd-gold: #c29a63;
@@ -7,9 +19,12 @@
   --evd-muted: #64748b;
   --evd-border: #e2e8f0;
   --evd-bg: #eef1f5;
+  --evd-gutter: clamp(1rem, 4vw, 1.75rem);
+  --evd-content: min(1180px, 100%);
   background: var(--evd-bg);
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   color: #1e293b;
+  overflow-x: clip;
 }
 
 .evd-loading,
@@ -38,7 +53,15 @@
   text-decoration: none;
 }
 
-.evd-wrap { width: min(1180px, 92%); margin: 0 auto; }
+.evd-wrap {
+  width: var(--evd-content, min(1180px, 100%));
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--evd-gutter, clamp(1rem, 4vw, 1.75rem));
+  padding-right: var(--evd-gutter, clamp(1rem, 4vw, 1.75rem));
+  box-sizing: border-box;
+}
 
 .evd-back {
   display: inline-flex;
@@ -55,7 +78,9 @@
 /* Hero */
 .evd-hero {
   position: relative;
-  min-height: clamp(320px, 50vh, 480px);
+  isolation: isolate;
+  width: 100%;
+  min-height: clamp(340px, 52vh, 520px);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -64,22 +89,30 @@
 .evd-hero-img {
   position: absolute;
   inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 .evd-hero-img img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 .evd-hero-shade {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(0deg, rgba(15, 35, 57, .96) 0%, rgba(15, 35, 57, .45) 55%, rgba(15, 35, 57, .25) 100%);
+  pointer-events: none;
 }
 .evd-hero-body {
   position: relative;
   z-index: 2;
-  padding: 2rem 0 2.75rem;
-  width: 100%;
+  padding-top: 2.75rem;
+  padding-bottom: 3.25rem;
+  /* keep .evd-wrap width/gutters — do not set width: 100% here */
 }
 
 .evd-status {
