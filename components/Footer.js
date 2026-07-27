@@ -85,6 +85,7 @@ export default function Footer() {
                 <Link href="/careers">Careers</Link>
                 <Link href="/compare-properties">Compare Properties</Link>
                 <Link href="/developers">Developers</Link>
+                <Link href="/lifestyle">Lifestyle</Link>
                 <Link href="/contact">Contact Us</Link>
                 <Link href="/privacy-policy">Privacy Policy</Link>
                 <Link href="/terms">Terms &amp; Conditions</Link>

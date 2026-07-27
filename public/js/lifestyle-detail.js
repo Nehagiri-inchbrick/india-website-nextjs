@@ -9,9 +9,9 @@
   ];
 
   const PROPERTIES = [
-    { name: "Skyline Towers", loc: "Bandra West, Mumbai", price: "₹ 2.85 Cr*", img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" },
-    { name: "Azure Bay Villa", loc: "North Goa", price: "₹ 2.45 Cr*", img: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80" },
-    { name: "Green Valley Residency", loc: "Sector 150, Noida", price: "₹ 78 L*", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" }
+    { name: "Ganga View Residences", loc: "Rishikesh, Uttarakhand", price: "₹ 68 L*", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" },
+    { name: "Temple Town Villas", loc: "Haridwar, Uttarakhand", price: "₹ 95 L*", img: "https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&w=600&q=80" },
+    { name: "Ghat Side Apartments", loc: "Varanasi, Uttar Pradesh", price: "₹ 72 L*", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" }
   ];
 
   const COLLECTIONS = {
@@ -286,275 +286,161 @@
     return COLLECTIONS[slug] ? slug : "spiritual";
   }
 
-  function section(id, title, icon, body, alt, desc) {
-    const kicker = title.split(" ").slice(0, 1).join(" ");
-    return `<section class="ls-section${alt ? " ls-section--alt" : ""}" id="${id}">
-      <div class="ls-container">
-        <div class="ls-sec-head">
-          <span class="ls-sec-kicker"><i class="fas ${icon}"></i> ${kicker}</span>
-          <h2>${title}</h2>
-          ${desc ? `<p class="ls-sec-desc">${desc}</p>` : ""}
-        </div>
-        ${body}
-      </div>
-    </section>`;
+  function headBlock(label, title) {
+    return '<div class="lsd-head"><span class="lsd-label">' + label + '</span><h2>' + title + '</h2></div>';
   }
 
-  function getSlides(c, idx) {
-    const locImgs = c.featuredLocations.map(function (l) { return l.img; });
-    return [c.img].concat(locImgs).concat(GALLERY_POOL.slice(idx, idx + 3)).slice(0, 5);
-  }
-
-  function renderHero(c, slides) {
-    const slideHtml = slides.map(function (url, i) {
-      return `<div class="ls-cinema-slide${i === 0 ? " is-active" : ""}" data-index="${i}"><img src="${url}" alt="${esc(c.name)} slide ${i + 1}"></div>`;
-    }).join("");
-
-    const dots = slides.map(function (_, i) {
-      return `<button type="button" class="ls-cinema-dot${i === 0 ? " is-active" : ""}" data-index="${i}" aria-label="Slide ${i + 1}"></button>`;
-    }).join("");
-
-    const thumbs = slides.map(function (url, i) {
-      return `<button type="button" class="ls-cinema-thumb${i === 0 ? " is-active" : ""}" data-index="${i}"><img src="${url}" alt=""></button>`;
-    }).join("");
-
+  function renderHero(c) {
     const nav = Object.values(COLLECTIONS).map(function (item) {
       const active = item.slug === c.slug ? " is-active" : "";
-      return `<a href="lifestyle-detail.html?slug=${item.slug}" class="ls-hero-nav-item${active}"><i class="fas ${item.icon}"></i><span>${esc(item.name)}</span></a>`;
+      return '<a href="/lifestyle-detail?slug=' + item.slug + '" class="lsd-nav-chip' + active + '"><i class="fas ' + item.icon + '"></i><span>' + esc(item.name) + '</span></a>';
     }).join("");
 
-    const stats = [
-      { val: "120+", label: "Homes" },
-      { val: "15+", label: "Cities" },
-      { val: "4.8", label: "Rating" }
-    ].map(function (s) {
-      return `<div class="ls-cinema-stat"><strong>${s.val}</strong><span>${s.label}</span></div>`;
-    }).join("");
-
-    return `<section class="ls-cinema-hero" id="ls-hero">
-      <div class="ls-cinema-slider" data-autoplay="6000">
-        <div class="ls-cinema-track">${slideHtml}</div>
-        <div class="ls-cinema-shade"></div>
-        <div class="ls-container ls-cinema-content">
-          <a href="lifestyle.html" class="ls-back"><i class="fas fa-arrow-left"></i> All Collections</a>
-          <div class="ls-cinema-copy">
-            <span class="ls-collection-tag"><i class="fas ${c.icon}"></i> Lifestyle Collection</span>
-            <h1>${esc(c.name)}</h1>
-            <p>${esc(c.tagline)}</p>
-            <div class="ls-cinema-stats">${stats}</div>
-            <div class="ls-cinema-actions">
-              <a href="#ls-properties" class="ls-btn ls-btn--primary ls-btn--sm"><i class="fas fa-building"></i> View Properties</a>
-              <a href="contact.html#contactForm" class="ls-btn ls-btn--glass ls-btn--sm"><i class="fas fa-phone"></i> Talk to Expert</a>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="ls-cinema-arrow ls-cinema-arrow--prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-        <button type="button" class="ls-cinema-arrow ls-cinema-arrow--next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-        <div class="ls-cinema-progress"><span class="ls-cinema-progress-bar"></span></div>
-        <div class="ls-cinema-dots">${dots}</div>
-        <div class="ls-cinema-thumbs-wrap">
-          <div class="ls-container">
-            <div class="ls-cinema-thumbs">${thumbs}</div>
-          </div>
-        </div>
-      </div>
-      <div class="ls-hero-nav-wrap">
-        <div class="ls-container">
-          <nav class="ls-hero-nav" aria-label="Lifestyle collections">${nav}</nav>
-        </div>
-      </div>
-    </section>`;
+    return (
+      '<section class="lsd-hero" style="--ls-accent:' + c.accent + ';--lsd-hero:url(\'' + c.img + '\')">' +
+      '<div class="lsd-hero-shade"></div>' +
+      '<div class="ls-container lsd-hero-inner">' +
+      '<a href="/lifestyle" class="lsd-back"><i class="fas fa-arrow-left"></i> Collections</a>' +
+      '<div class="lsd-hero-main">' +
+      '<div class="lsd-hero-copy">' +
+      '<span class="lsd-kicker"><i class="fas ' + c.icon + '"></i> Lifestyle Collection</span>' +
+      "<h1>" + esc(c.name) + "</h1>" +
+      "<p>" + esc(c.tagline) + "</p>" +
+      '<div class="lsd-hero-actions">' +
+      '<a href="#ls-properties" class="lsd-btn lsd-btn--fill"><i class="fas fa-building"></i> View Homes</a>' +
+      '<a href="/contact#contactForm" class="lsd-btn lsd-btn--line">Talk to Expert</a>' +
+      "</div></div>" +
+      '<div class="lsd-hero-stats">' +
+      "<div><strong>120+</strong><span>Homes</span></div>" +
+      "<div><strong>15+</strong><span>Cities</span></div>" +
+      "<div><strong>4.8</strong><span>Rating</span></div>" +
+      "</div></div>" +
+      '<nav class="lsd-nav" aria-label="Collections">' + nav + "</nav>" +
+      "</div></section>"
+    );
   }
 
-  function renderCollection(c, idx) {
-    const slides = getSlides(c, idx);
-    const gallery = slides.concat(GALLERY_POOL.slice(idx + 1, idx + 4)).slice(0, 8);
-
-    const benefits = `<div class="ls-benefits-bento">
-      <article class="ls-benefit-card ls-benefit-card--lead">
-        <span class="ls-benefit-num">01</span>
-        <span class="ls-benefit-icon"><i class="fas ${c.benefits[0].icon}"></i></span>
-        <strong>${esc(c.benefits[0].title)}</strong>
-        <p>${esc(c.benefits[0].text)}</p>
-        <img src="${slides[1] || c.img}" alt="" class="ls-benefit-bg" aria-hidden="true">
-      </article>
-      ${c.benefits.slice(1).map(function (b, i) {
-        return `<article class="ls-benefit-card">
-          <span class="ls-benefit-num">0${i + 2}</span>
-          <span class="ls-benefit-icon"><i class="fas ${b.icon}"></i></span>
-          <strong>${esc(b.title)}</strong>
-          <p>${esc(b.text)}</p>
-        </article>`;
-      }).join("")}
-    </div>`;
-
-    const locations = `<div class="ls-loc-showcase">
-      <div class="ls-loc-track">${c.featuredLocations.map(function (l, i) {
-        return `<article class="ls-loc-spot" style="--ls-spot-i:${i}">
-          <div class="ls-loc-spot-img"><img src="${l.img}" alt="${esc(l.name)}"><span class="ls-loc-spot-num">0${i + 1}</span></div>
-          <div class="ls-loc-spot-body"><strong>${esc(l.name)}</strong><span>${esc(l.desc)}</span><em>Explore <i class="fas fa-arrow-right"></i></em></div>
-        </article>`;
-      }).join("")}</div>
-      <button type="button" class="ls-scroll-btn ls-scroll-btn--prev" data-target=".ls-loc-track" aria-label="Scroll locations left"><i class="fas fa-chevron-left"></i></button>
-      <button type="button" class="ls-scroll-btn ls-scroll-btn--next" data-target=".ls-loc-track" aria-label="Scroll locations right"><i class="fas fa-chevron-right"></i></button>
-    </div>`;
-
-    const properties = `<div class="ls-prop-showcase">
-      <div class="ls-prop-track">${PROPERTIES.map(function (p, i) {
-        return `<a href="/listing-detail" class="ls-prop-card">
-          <div class="ls-prop-card-img"><img src="${p.img}" alt="${esc(p.name)}"><span class="ls-prop-badge">Featured</span><span class="ls-prop-rank">0${i + 1}</span></div>
-          <div class="ls-prop-card-body"><strong>${esc(p.name)}</strong><span><i class="fas fa-location-dot"></i> ${esc(p.loc)}</span><em>${esc(p.price)}</em></div>
-        </a>`;
-      }).join("")}</div>
-      <button type="button" class="ls-scroll-btn ls-scroll-btn--prev" data-target=".ls-prop-track" aria-label="Scroll properties left"><i class="fas fa-chevron-left"></i></button>
-      <button type="button" class="ls-scroll-btn ls-scroll-btn--next" data-target=".ls-prop-track" aria-label="Scroll properties right"><i class="fas fa-chevron-right"></i></button>
-    </div>
-    <a href="listings.html" class="ls-link-btn">View all listings <i class="fas fa-arrow-right"></i></a>`;
-
-    const nearby = `<div class="ls-nearby-timeline">${c.nearby.map(function (n, i) {
-      return `<div class="ls-nearby-step">
-        <div class="ls-nearby-dot"><i class="fas ${c.nearbyIcon || "fa-map-pin"}"></i></div>
-        <div class="ls-nearby-card">
-          <span class="ls-nearby-index">0${i + 1}</span>
-          <strong>${esc(n.name)}</strong>
-          <span>${esc(n.type)}</span>
-          <em>${esc(n.dist)}</em>
-        </div>
-      </div>`;
-    }).join("")}</div>`;
-
-    const galleryHtml = `<div class="ls-gallery-cinema">
-      <div class="ls-gallery-main"><img src="${gallery[0]}" alt="${esc(c.name)} gallery hero" id="ls-gallery-main-img"></div>
-      <div class="ls-gallery-strip">${gallery.map(function (url, i) {
-        return `<button type="button" class="ls-gallery-thumb${i === 0 ? " is-active" : ""}" data-src="${url}"><img src="${url}" alt="Gallery ${i + 1}"></button>`;
-      }).join("")}</div>
-    </div>`;
-
-    const faq = `<div class="ls-faq-split">
-      <div class="ls-faq-visual">
-        <img src="${slides[2] || c.img}" alt="${esc(c.name)}">
-        <div class="ls-faq-visual-overlay">
-          <i class="fas ${c.icon}"></i>
-          <strong>Got questions?</strong>
-          <span>Our lifestyle advisors are here to help.</span>
-        </div>
-      </div>
-      <div class="ls-faq-list">${c.faq.map(function (f) {
-        return `<details class="ls-faq-item"><summary class="ls-faq-q">${esc(f.q)}<i class="fas fa-plus"></i></summary><div class="ls-faq-a"><p>${esc(f.a)}</p></div></details>`;
-      }).join("")}</div>
-    </div>`;
-
-    const cta = `<section class="ls-cta ls-cta--creative">
-      <div class="ls-cta-bg" style="background-image:url('${c.img}')"></div>
-      <div class="ls-container ls-cta-inner">
-        <div><span class="ls-cta-kicker">Start your journey</span><h2>Ready to explore ${esc(c.name)}?</h2><p>Get a curated shortlist from Inchbrick lifestyle advisors.</p></div>
-        <div><a href="listings.html" class="ls-btn ls-btn--primary">Browse Properties</a><a href="contact.html#contactForm" class="ls-btn ls-btn--outline">Talk to Expert</a></div>
-      </div>
-    </section>`;
-
-    return renderHero(c, slides)
-      + section("ls-benefits", "Benefits", "fa-star", benefits, false, "Why this lifestyle collection stands out for buyers like you.")
-      + section("ls-locations", "Featured Locations", "fa-map-location-dot", locations, true, "Handpicked destinations where this lifestyle truly comes alive.")
-      + section("ls-properties", "Recommended Properties", "fa-building", properties, false, "Top picks curated for this collection.")
-      + section("ls-nearby", esc(c.nearbyTitle), c.nearbyIcon || "fa-map-pin", nearby, true, "Essential places and landmarks close to these homes.")
-      + section("ls-gallery", "Lifestyle Gallery", "fa-images", galleryHtml, false, "A visual journey through spaces, settings, and surroundings.")
-      + section("ls-faq", "FAQ", "fa-circle-question", faq, true, "Common questions answered by our advisory team.")
-      + cta;
+  function renderBenefits(c) {
+    return (
+      '<section class="lsd-block" id="ls-benefits">' +
+      '<div class="ls-container">' +
+      headBlock("Benefits", "Why this lifestyle") +
+      '<div class="lsd-benefits">' +
+      c.benefits.map(function (b, i) {
+        return '<article class="lsd-benefit"><span>0' + (i + 1) + '</span><i class="fas ' + b.icon + '"></i><strong>' + esc(b.title) + "</strong><p>" + esc(b.text) + "</p></article>";
+      }).join("") +
+      "</div></div></section>"
+    );
   }
 
-  function initCinemaSlider(slider) {
-    const slides = slider.querySelectorAll(".ls-cinema-slide");
-    const dots = slider.querySelectorAll(".ls-cinema-dot");
-    const thumbs = slider.querySelectorAll(".ls-cinema-thumb");
-    const prev = slider.querySelector(".ls-cinema-arrow--prev");
-    const next = slider.querySelector(".ls-cinema-arrow--next");
-    const bar = slider.querySelector(".ls-cinema-progress-bar");
-    let current = 0;
-    let timer = null;
-    const delay = parseInt(slider.dataset.autoplay, 10) || 6000;
-
-    function goTo(index) {
-      current = (index + slides.length) % slides.length;
-      slides.forEach(function (s, i) { s.classList.toggle("is-active", i === current); });
-      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === current); });
-      thumbs.forEach(function (t, i) { t.classList.toggle("is-active", i === current); });
-      if (bar) {
-        bar.style.animation = "none";
-        void bar.offsetWidth;
-        bar.style.animation = "lsCinemaProgress " + delay + "ms linear forwards";
-      }
-    }
-
-    function nextSlide() { goTo(current + 1); }
-    function prevSlide() { goTo(current - 1); }
-
-    function startAutoplay() {
-      clearInterval(timer);
-      timer = setInterval(nextSlide, delay);
-      if (bar) {
-        bar.style.animation = "none";
-        void bar.offsetWidth;
-        bar.style.animation = "lsCinemaProgress " + delay + "ms linear forwards";
-      }
-    }
-
-    if (next) next.addEventListener("click", function () { nextSlide(); startAutoplay(); });
-    if (prev) prev.addEventListener("click", function () { prevSlide(); startAutoplay(); });
-    dots.forEach(function (dot) {
-      dot.addEventListener("click", function () { goTo(parseInt(dot.dataset.index, 10)); startAutoplay(); });
-    });
-    thumbs.forEach(function (thumb) {
-      thumb.addEventListener("click", function () { goTo(parseInt(thumb.dataset.index, 10)); startAutoplay(); });
-    });
-
-    slider.addEventListener("mouseenter", function () { clearInterval(timer); });
-    slider.addEventListener("mouseleave", startAutoplay);
-    startAutoplay();
+  function renderLocations(c) {
+    return (
+      '<section class="lsd-block lsd-block--soft" id="ls-locations">' +
+      '<div class="ls-container">' +
+      headBlock("Locations", "Featured destinations") +
+      '<div class="lsd-locs">' +
+      c.featuredLocations.map(function (l, i) {
+        return '<article class="lsd-loc"><img src="' + l.img + '" alt="' + esc(l.name) + '" loading="lazy"><div><em>0' + (i + 1) + "</em><strong>" + esc(l.name) + "</strong><span>" + esc(l.desc) + "</span></div></article>";
+      }).join("") +
+      "</div></div></section>"
+    );
   }
 
-  function initScrollTracks(root) {
-    root.querySelectorAll(".ls-scroll-btn").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        const track = root.querySelector(btn.dataset.target);
-        if (!track) return;
-        const amount = track.clientWidth * 0.75;
-        track.scrollBy({ left: btn.classList.contains("ls-scroll-btn--next") ? amount : -amount, behavior: "smooth" });
-      });
-    });
+  function renderProperties() {
+    return (
+      '<section class="lsd-block" id="ls-properties">' +
+      '<div class="ls-container">' +
+      '<div class="lsd-head-row">' + headBlock("Homes", "Recommended properties") +
+      '<a href="/listings" class="lsd-link">All listings <i class="fas fa-arrow-right"></i></a></div>' +
+      '<div class="lsd-props">' +
+      PROPERTIES.map(function (p) {
+        return '<a href="/listing-detail" class="lsd-prop"><img src="' + p.img + '" alt="' + esc(p.name) + '" loading="lazy"><div><strong>' + esc(p.name) + '</strong><span><i class="fas fa-location-dot"></i> ' + esc(p.loc) + "</span><em>" + esc(p.price) + "</em></div></a>";
+      }).join("") +
+      "</div></div></section>"
+    );
   }
 
-  function initGallery(root) {
-    const main = root.querySelector("#ls-gallery-main-img");
-    root.querySelectorAll(".ls-gallery-thumb").forEach(function (thumb) {
-      thumb.addEventListener("click", function () {
-        root.querySelectorAll(".ls-gallery-thumb").forEach(function (t) { t.classList.remove("is-active"); });
-        thumb.classList.add("is-active");
-        if (main) main.src = thumb.dataset.src;
-      });
-    });
+  function renderNearby(c) {
+    return (
+      '<section class="lsd-block lsd-block--soft" id="ls-nearby">' +
+      '<div class="ls-container">' +
+      headBlock("Nearby", esc(c.nearbyTitle)) +
+      '<div class="lsd-nearby">' +
+      c.nearby.map(function (n) {
+        return '<article class="lsd-near"><i class="fas ' + (c.nearbyIcon || "fa-map-pin") + '"></i><div><strong>' + esc(n.name) + "</strong><span>" + esc(n.type) + "</span></div><em>" + esc(n.dist) + "</em></article>";
+      }).join("") +
+      "</div></div></section>"
+    );
   }
 
-  function initInteractivity(root) {
-    const slider = root.querySelector(".ls-cinema-slider");
-    if (slider) initCinemaSlider(slider);
-    initScrollTracks(root);
-    initGallery(root);
+  function renderGallery(c, idx) {
+    const imgs = [c.img]
+      .concat(c.featuredLocations.map(function (l) { return l.img; }))
+      .concat(GALLERY_POOL.slice(idx, idx + 3))
+      .slice(0, 6);
+    return (
+      '<section class="lsd-block" id="ls-gallery">' +
+      '<div class="ls-container">' +
+      headBlock("Gallery", "Lifestyle moments") +
+      '<div class="lsd-gallery">' +
+      imgs.map(function (url, i) {
+        return '<figure class="lsd-gal' + (i === 0 ? " lsd-gal--hero" : "") + '"><img src="' + url + '" alt="' + esc(c.name) + " " + (i + 1) + '" loading="lazy"></figure>';
+      }).join("") +
+      "</div></div></section>"
+    );
+  }
+
+  function renderFaq(c) {
+    return (
+      '<section class="lsd-block lsd-block--soft" id="ls-faq">' +
+      '<div class="ls-container lsd-faq-wrap">' +
+      '<div class="lsd-faq-intro">' + headBlock("FAQ", "Quick answers") +
+      "<p>Common questions about " + esc(c.name) + ".</p></div>" +
+      '<div class="lsd-faq">' +
+      c.faq.map(function (f) {
+        return '<details class="lsd-faq-item"><summary>' + esc(f.q) + '<i class="fas fa-plus"></i></summary><p>' + esc(f.a) + "</p></details>";
+      }).join("") +
+      "</div></div></section>"
+    );
+  }
+
+  function renderCta(c) {
+    return (
+      '<section class="lsd-cta">' +
+      '<div class="ls-container lsd-cta-inner">' +
+      '<div><span class="lsd-kicker">Ready to explore?</span><h2>Find your ' + esc(c.name) + " home</h2>" +
+      "<p>Get a curated shortlist from Inchbrick lifestyle advisors.</p></div>" +
+      '<div class="lsd-cta-actions">' +
+      '<a href="/listings" class="lsd-btn lsd-btn--fill">Browse Properties</a>' +
+      '<a href="/contact#contactForm" class="lsd-btn lsd-btn--ghost">Talk to Expert</a>' +
+      "</div></div></section>"
+    );
+  }
+
+  function render(c, idx) {
+    return (
+      renderHero(c) +
+      renderBenefits(c) +
+      renderLocations(c) +
+      renderProperties() +
+      renderNearby(c) +
+      renderGallery(c, Math.max(idx, 0)) +
+      renderFaq(c) +
+      renderCta(c)
+    );
   }
 
   function init() {
     const root = document.getElementById("ls-detail-root");
     if (!root) return;
-
     const slug = getSlug();
     const c = COLLECTIONS[slug];
     const idx = Object.keys(COLLECTIONS).indexOf(slug);
-
     document.body.style.setProperty("--ls-accent", c.accent);
     document.title = c.name + " | Lifestyle Collections | Inchbrick Realty";
-    document.querySelector('meta[name="description"]').setAttribute("content", c.tagline);
-
-    root.innerHTML = renderCollection(c, idx);
-    initInteractivity(root);
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", c.tagline);
+    root.innerHTML = render(c, idx);
   }
 
   if (document.readyState === "loading") {

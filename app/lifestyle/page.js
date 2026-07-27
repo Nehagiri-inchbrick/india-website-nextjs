@@ -12,7 +12,7 @@ export default function Page() {
     <HtmlBodyPage
       html={html}
       bodyClass={bodyClass}
-      scripts={["/js/lifestyle.js"]}
+      scripts={[]}
     />
   );
 }

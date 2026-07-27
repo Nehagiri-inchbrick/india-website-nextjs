@@ -135,6 +135,12 @@ const NAV_ITEMS = [
         desc: 'Styles, floor plans & interiors',
         icon: 'fa-compass-drafting',
       },
+      {
+        label: 'Lifestyle Collections',
+        href: '/lifestyle',
+        desc: 'Spiritual, luxury, wellness & more',
+        icon: 'fa-compass',
+      },
     ],
   },
 ];
