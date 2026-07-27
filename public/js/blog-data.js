@@ -252,5 +252,31 @@ window.BLOG_DATA = [
       "Plan for storage, safety, and multigenerational access early",
       "Sample flats reveal real proportions better than brochures"
     ]
+  },
+  {
+    id: 11,
+    slug: "global-nri-property-expo-2026",
+    title: "Global NRI Property Expo 2026 | Exclusive Overseas Buyer Events",
+    category: "investment",
+    categoryLabel: "Investment",
+    tagClass: "gold",
+    featured: true,
+    date: "Jul 26, 2026",
+    readTime: "12 min",
+    author: "Inchbrick Editorial",
+    authorRole: "Editorial Team",
+    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+    excerpt: "Explore global expo cities, curated project shortlists, NRI offers, and the full 2026 schedule with Inchbrick Realty.",
+    content: [
+      "Overseas buyers often struggle with fragmented information — city guides, project claims, and financing rules spread across dozens of websites. The Global NRI Property Expo series brings verified developers, advisory desks, and documentation support under one roof.",
+      "In 2026, Inchbrick is hosting curated editions across key diaspora hubs. Visitors can compare RERA-verified projects, book one-on-one meetings, and clarify FEMA, remittance, and home-loan pathways with on-site experts.",
+      "Expect live project presentations, payment-plan walkthroughs, and exclusive launch offers for pre-registered guests. Priority access is free with online VIP registration — seats are limited per city.",
+      "Whether you are buying a primary home for family in India or evaluating a second-home investment, the expo format compresses weeks of research into a single focused day. Shortlist cities early and arrive with your budget and preferred BHK range ready."
+    ],
+    takeaways: [
+      "Free VIP registration unlocks priority meetings and curated shortlists",
+      "Focus on RERA verification, payment plans, and possession timelines",
+      "Use on-site NRI desks for FEMA, remittance, and loan questions"
+    ]
   }
 ];
