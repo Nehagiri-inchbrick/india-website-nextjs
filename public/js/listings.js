@@ -22,13 +22,13 @@
   const tagsEl = document.getElementById("listingsActiveTags");
 
   let filters = {
-    city: "",
+    city: params.get("city") || "",
     type: "",
     bhk: "",
     priceMax: "",
     status: "",
     mood: params.get("mood") || "",
-    q: ""
+    q: (params.get("q") || "").trim().toLowerCase()
   };
 
   function initCityOptions() {
@@ -291,7 +291,7 @@
     filters = { city: "", type: "", bhk: "", priceMax: "", status: "", mood: "", q: "" };
     applyFormToUI();
     if (sortSelect) sortSelect.value = "featured";
-    history.replaceState(null, "", "listings.html");
+    history.replaceState(null, "", "/listings");
     render();
   }
 

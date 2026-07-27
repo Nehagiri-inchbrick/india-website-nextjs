@@ -370,6 +370,7 @@
   visibility: visible;
   pointer-events: auto;
   z-index: 1;
+  cursor: pointer;
 }
 
 .hpd-cards .hpd-feature-deal .hpd-card-img img {

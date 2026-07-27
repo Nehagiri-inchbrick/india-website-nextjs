@@ -168,11 +168,11 @@
       '<div class="city-sec-head city-sec-head--center">' +
       '<span class="city-sec-kicker"><i class="fas fa-city"></i> Popular destinations</span>' +
       "<h2>Explore All Cities</h2>" +
-      "<p>Tap any city card to view market trends, localities, projects, and investment insights.</p>" +
+      "<p>Tap any city card to open listings with that city already selected.</p>" +
       "</div>" +
       '<div class="city-hub-grid">' +
       cities.map((c) =>
-        '<a href="city.html?city=' + c.slug + '" class="city-hub-card" style="--hub-img:url(' + c.heroImg + ')">' +
+        '<a href="' + cityListingsHref(c.name) + '" class="city-hub-card" style="--hub-img:url(' + c.heroImg + ')">' +
         '<div class="city-hub-card-bg"></div>' +
         '<div class="city-hub-card-body">' +
         '<span class="city-hub-card-tag"><i class="fas ' + c.icon + '"></i> ' + esc(c.tag) + "</span>" +
@@ -182,7 +182,7 @@
         "<strong>" + esc(c.startingPrice) + "</strong>" +
         "<span>" + esc(c.listings) + " listings</span>" +
         "</div>" +
-        '<span class="city-hub-card-link">View guide <i class="fas fa-arrow-right"></i></span>' +
+        '<span class="city-hub-card-link">View listings <i class="fas fa-arrow-right"></i></span>' +
         "</div></a>"
       ).join("") +
       "</div></div></section>";
@@ -212,6 +212,10 @@
       const slug = window.CitySearch?.resolveCity(input?.value || "");
       if (slug) window.CitySearch.navigateToCity(slug);
     });
+  }
+
+  function cityListingsHref(cityName) {
+    return "/listings?city=" + encodeURIComponent(cityName);
   }
 
   function renderJump() {
@@ -298,7 +302,7 @@
         ).join("") +
         "</div></div>"
       ).join("") +
-      '<a href="listings.html" class="city-link-btn">View all projects <i class="fas fa-arrow-right"></i></a>' +
+      '<a href="' + cityListingsHref(c.name) + '" class="city-link-btn">View all projects <i class="fas fa-arrow-right"></i></a>' +
       "</div></section>"
     );
   }
@@ -312,7 +316,7 @@
       c.localities.map((loc) => {
         const href = (window.LOCATIONS_DATA && window.LOCATIONS_DATA[loc.slug])
           ? "location-detail.html?location=" + loc.slug
-          : "listings.html?q=" + encodeURIComponent(loc.name);
+          : cityListingsHref(c.name) + "&q=" + encodeURIComponent(loc.name);
         return (
           '<a href="' + href + '" class="city-loc-card">' +
           '<img src="' + loc.img + '" alt="' + esc(loc.name) + '">' +
@@ -454,7 +458,7 @@
       "<div><h2>Ready to invest in " + esc(c.name) + "?</h2>" +
       "<p>Get curated shortlists, locality comparisons, and expert guidance from Inchbrick Realty.</p></div>" +
       '<div class="city-cta-actions">' +
-      '<a href="listings.html" class="city-btn city-btn--primary">Browse Listings</a>' +
+      '<a href="' + cityListingsHref(c.name) + '" class="city-btn city-btn--primary">Browse Listings</a>' +
       '<a href="contact.html#contactForm" class="city-btn city-btn--outline">Talk to Expert</a>' +
       '<a href="investment-opportunities.html" class="city-btn city-btn--gold">Investment Advisory</a>' +
       "</div></div></section>"

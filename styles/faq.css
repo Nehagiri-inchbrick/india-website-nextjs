@@ -1,0 +1,319 @@
+/* FAQ page */
+.faq-page {
+  --fq-navy: #0f2339;
+  --fq-gold: #c29a63;
+  --fq-gold-soft: #f2d6a2;
+  --fq-red: #c9242b;
+  --fq-muted: #64748b;
+  --fq-border: #e2e8f0;
+  background:
+    radial-gradient(ellipse 70% 35% at 90% 0%, rgba(194, 154, 99, 0.08), transparent 50%),
+    linear-gradient(180deg, #f5f6f8 0%, #eef1f4 100%);
+  color: var(--fq-navy);
+}
+
+.faq-page #site-header {
+  margin-bottom: 0;
+}
+
+.fq-container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+/* Short banner */
+.fq-hero {
+  background:
+    linear-gradient(115deg, rgba(15, 35, 57, 0.96), rgba(12, 26, 46, 0.88)),
+    url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80") center / cover no-repeat;
+  padding: 1.35rem 0 1.6rem;
+  border-bottom: 3px solid var(--fq-gold);
+  color: #fff;
+}
+
+.fq-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.fq-back:hover {
+  color: #fff;
+}
+
+.fq-hero-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.fq-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fq-gold);
+}
+
+.fq-hero h1 {
+  margin: 0 0 0.35rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.65rem, 3.8vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.fq-hero h1 span {
+  color: var(--fq-gold-soft);
+}
+
+.fq-hero-copy p {
+  margin: 0;
+  max-width: 34rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.fq-hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.fq-hero-pills span {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Main */
+.fq-main {
+  padding: 2rem 0 3.5rem;
+}
+
+.fq-layout {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.fq-nav {
+  position: sticky;
+  top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem;
+  background: #fff;
+  border: 1px solid var(--fq-border);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(15, 35, 57, 0.04);
+}
+
+.fq-nav a {
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--fq-muted);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.fq-nav a:hover {
+  background: rgba(194, 154, 99, 0.1);
+  color: var(--fq-navy);
+}
+
+.fq-group {
+  margin-bottom: 1.75rem;
+}
+
+.fq-group h2 {
+  margin: 0 0 0.75rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--fq-navy);
+}
+
+.fq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.fq-item {
+  background: #fff;
+  border: 1px solid var(--fq-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.fq-item:hover,
+.fq-item[open] {
+  border-color: rgba(194, 154, 99, 0.45);
+  box-shadow: 0 10px 28px rgba(15, 35, 57, 0.06);
+}
+
+.fq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--fq-navy);
+  line-height: 1.4;
+}
+
+.fq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.fq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(194, 154, 99, 0.12);
+  color: var(--fq-gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.2s, background 0.2s, color 0.2s;
+}
+
+.fq-item[open] summary::after {
+  content: "–";
+  background: var(--fq-navy);
+  color: #fff;
+}
+
+.fq-item p {
+  margin: 0;
+  padding: 0 1.1rem 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--fq-muted);
+}
+
+.fq-cta {
+  margin-top: 2rem;
+  padding: clamp(1.6rem, 3vw, 2.1rem);
+  text-align: center;
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(15, 35, 57, 0.97), rgba(19, 40, 63, 0.94));
+  border: 1px solid rgba(194, 154, 99, 0.28);
+  color: #fff;
+}
+
+.fq-cta h2 {
+  margin: 0 0 0.45rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  color: #fff;
+}
+
+.fq-cta p {
+  margin: 0 auto 1.15rem;
+  max-width: 28rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.fq-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.fq-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.3rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.fq-btn--primary {
+  background: var(--fq-red);
+  color: #fff;
+}
+
+.fq-btn--primary:hover {
+  background: #a71d22;
+  color: #fff;
+}
+
+.fq-btn--ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(242, 214, 162, 0.5);
+}
+
+.fq-btn--ghost:hover {
+  background: rgba(194, 154, 99, 0.15);
+  color: #fff;
+}
+
+@media (max-width: 860px) {
+  .fq-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .fq-nav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .fq-nav a {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.65rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .fq-hero-pills {
+    width: 100%;
+  }
+
+  .fq-item summary {
+    font-size: 0.9rem;
+  }
+}

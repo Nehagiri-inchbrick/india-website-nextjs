@@ -10157,6 +10157,12 @@
       gap: 0.9rem;
     }
 
+    .developers-projects a.project-card {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
     .developers-projects .project-card {
       flex: 0 0 calc(25% - 0.7rem);
       aspect-ratio: unset;

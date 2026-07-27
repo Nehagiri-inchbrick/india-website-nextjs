@@ -72,6 +72,15 @@
       .replace(/"/g, "&quot;");
   }
 
+  function listingIdForProject(brandIndex, projectIndex, project) {
+    if (project && project.listingId) return project.listingId;
+    return ((brandIndex * 7 + projectIndex) % 28) + 1;
+  }
+
+  function detailHrefForProject(brandIndex, projectIndex, project) {
+    return "/listing-detail?id=" + listingIdForProject(brandIndex, projectIndex, project);
+  }
+
   function updateBrandShowcase(index) {
     const tabsRoot = document.getElementById("brandTabs");
     if (!tabsRoot || !brandShowcaseData.length) return false;
@@ -90,9 +99,10 @@
       projectTrack.style.transform = "translateX(0)";
       currentProjectSlide = 0;
       projectTrack.innerHTML = brandProjects
-        .map(function (project) {
+        .map(function (project, projectIndex) {
+          const detailHref = detailHrefForProject(currentBrandIndex, projectIndex, project);
           return (
-            '<article class="project-card">' +
+            '<a href="' + detailHref + '" class="project-card" aria-label="View ' + escapeHtml(project.name) + '">' +
             '<div class="project-card-image-wrap">' +
             '<div class="project-dev-badge">' +
             '<img src="' + escapeHtml(active.logo) + '" alt="' + escapeHtml(active.brand) + ' logo">' +
@@ -109,7 +119,7 @@
             "</div>" +
             '<div class="project-card-tag">' + escapeHtml(project.status) + "</div>" +
             "</div>" +
-            "</article>"
+            "</a>"
           );
         })
         .join("");

@@ -4,7 +4,7 @@ import '@/styles/about.css';
 
 export const metadata = {
   title: "About Us | Inchbrick Realty",
-  description: "About Inchbrick Realty.",
+  description: "Meet Inchbrick Realty — India-focused property advisory for clear, verified home buying.",
 };
 
 export default function Page() {
