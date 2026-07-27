@@ -8,7 +8,7 @@
   const id = parseInt(params.get("id"), 10);
 
   if (id) {
-    window.location.replace("developer-detail.html");
+    window.location.replace("/developer-detail");
     return;
   }
 
@@ -51,7 +51,7 @@
       devs
         .map(
           (d) =>
-            '<a href="developer-detail.html" class="dev-card">' +
+            '<a href="/developer-detail?id=' + encodeURIComponent(d.id) + '" class="dev-card">' +
             '<span class="dev-card-logo">' +
             esc(d.short.slice(0, 2).toUpperCase()) +
             "</span>" +

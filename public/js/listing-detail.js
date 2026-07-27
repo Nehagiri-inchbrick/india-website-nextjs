@@ -343,7 +343,7 @@
       '<div><strong>' +
       b.rating +
       '/5</strong><span>Rating</span></div></div>' +
-      '<a href="developer-detail.html?id=' +
+      '<a href="/developer-detail?id=' +
       ((prop.id % 6) + 1) +
       '" class="ld-builder-link"><i class="fas fa-arrow-right"></i> View Developer Profile</a></div></div>'
     );
