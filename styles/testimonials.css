@@ -622,9 +622,86 @@
 }
 
 @media (max-width: 900px) {
+  .ts-container {
+    width: min(1100px, 100%);
+    padding-inline: 1rem;
+    box-sizing: border-box;
+  }
+
+  .ts-hero {
+    padding: 1.15rem 0 1.35rem;
+  }
+
+  .ts-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    align-items: start;
+  }
+
+  .ts-hero-copy {
+    max-width: none;
+  }
+
+  .ts-hero-copy p {
+    max-width: none;
+    font-size: 0.84rem;
+  }
+
+  .ts-hero-mini-stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-content: stretch;
+    gap: 0.45rem;
+  }
+
+  .ts-hero-mini-stats span {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.15rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0.55rem 0.55rem;
+    border-radius: 12px;
+    white-space: normal;
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+
+  .ts-hero-mini-stats strong {
+    font-size: 0.95rem;
+  }
+
+  .ts-section:first-child {
+    margin-top: -0.45rem;
+  }
+
+  .ts-google-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1rem;
+  }
+
+  .ts-google-meta {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .ts-google-meta span {
+    padding: 0.45rem 0.65rem;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid var(--ts-border);
+  }
+
   .ts-review-grid,
   .ts-video-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .ts-story {
@@ -645,6 +722,58 @@
 }
 
 @media (max-width: 540px) {
+  .ts-container {
+    padding-inline: 0.9rem;
+  }
+
+  .ts-hero h1 {
+    font-size: clamp(1.4rem, 7vw, 1.75rem);
+  }
+
+  .ts-back {
+    font-size: 0.78rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .ts-hero-mini-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .ts-hero-mini-stats span {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.12rem;
+    padding: 0.5rem 0.4rem;
+    font-size: 0.62rem;
+    line-height: 1.25;
+  }
+
+  .ts-hero-mini-stats strong {
+    font-size: 0.88rem;
+  }
+
+  .ts-google-score strong {
+    font-size: 1.7rem;
+  }
+
+  .ts-section {
+    padding: 1.85rem 0;
+  }
+
+  .ts-sec-head {
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+
+  .ts-sec-head h2 {
+    font-size: 1.3rem;
+  }
+
+  .ts-sec-head p {
+    font-size: 0.84rem;
+  }
+
   .ts-review-grid,
   .ts-video-grid {
     grid-template-columns: 1fr;

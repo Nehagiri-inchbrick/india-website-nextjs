@@ -81,6 +81,78 @@
     return "/listing-detail?id=" + listingIdForProject(brandIndex, projectIndex, project);
   }
 
+  function centerActiveDeveloper(tabsRoot) {
+    if (!tabsRoot || window.innerWidth > 768) return;
+    var active = tabsRoot.querySelector(".developer-card.active");
+    if (!active) return;
+
+    var left =
+      active.offsetLeft - (tabsRoot.clientWidth / 2 - active.offsetWidth / 2);
+    var max = Math.max(0, tabsRoot.scrollWidth - tabsRoot.clientWidth);
+    var target = Math.max(0, Math.min(left, max));
+
+    if (typeof tabsRoot.scrollTo === "function") {
+      tabsRoot.scrollTo({ left: target, behavior: "smooth" });
+    } else {
+      tabsRoot.scrollLeft = target;
+    }
+  }
+
+  function bindDeveloperTabs(tabsRoot) {
+    if (!tabsRoot || tabsRoot.dataset.tabsReady === "1") return;
+    tabsRoot.dataset.tabsReady = "1";
+
+    tabsRoot.addEventListener("click", function (e) {
+      var card = e.target.closest(".developer-card");
+      if (!card || !tabsRoot.contains(card)) return;
+      if (tabsRoot.dataset.dragMoved === "1") {
+        tabsRoot.dataset.dragMoved = "0";
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      var index = parseInt(card.getAttribute("data-brand-index"), 10);
+      if (Number.isNaN(index)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      updateBrandShowcase(index);
+    });
+
+    // Native overflow scroll handles mobile swipe; only add light mouse-drag.
+    var isDown = false;
+    var startX = 0;
+    var startScroll = 0;
+    var moved = false;
+
+    tabsRoot.addEventListener("mousedown", function (e) {
+      if (window.innerWidth > 768 || e.button !== 0) return;
+      isDown = true;
+      moved = false;
+      startX = e.clientX;
+      startScroll = tabsRoot.scrollLeft;
+    });
+
+    window.addEventListener("mousemove", function (e) {
+      if (!isDown) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 6) {
+        moved = true;
+        tabsRoot.classList.add("is-dragging");
+        tabsRoot.dataset.dragMoved = "1";
+      }
+      if (!moved) return;
+      tabsRoot.scrollLeft = startScroll - dx;
+      e.preventDefault();
+    });
+
+    window.addEventListener("mouseup", function () {
+      if (!isDown) return;
+      isDown = false;
+      tabsRoot.classList.remove("is-dragging");
+      if (!moved) tabsRoot.dataset.dragMoved = "0";
+    });
+  }
+
   function updateBrandShowcase(index) {
     const tabsRoot = document.getElementById("brandTabs");
     if (!tabsRoot || !brandShowcaseData.length) return false;
@@ -93,6 +165,8 @@
     tabsRoot.querySelectorAll(".developer-card").forEach(function (card, i) {
       card.classList.toggle("active", i === currentBrandIndex);
     });
+
+    centerActiveDeveloper(tabsRoot);
 
     const projectTrack = document.getElementById("brandProjectTrack");
     if (projectTrack) {
@@ -191,6 +265,8 @@
   function initBrandShowcase() {
     const tabsRoot = document.getElementById("brandTabs");
     if (!tabsRoot) return false;
+
+    bindDeveloperTabs(tabsRoot);
 
     if (!bound) {
       document.addEventListener("click", onDocClick);
