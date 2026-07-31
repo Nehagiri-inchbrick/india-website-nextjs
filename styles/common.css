@@ -34,6 +34,8 @@ body {
   background: var(--page-bg);
   color: #1e293b;
   line-height: 1.5;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 a {

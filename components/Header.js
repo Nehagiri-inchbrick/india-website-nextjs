@@ -358,7 +358,11 @@ export default function Header() {
 
         {/* Actions */}
         <div className="nav-actions">
-          <div className="header-actions-group"></div>
+          <div className="header-actions-group">
+            <Link href="/auth#login" className="header-login-link">
+              Login
+            </Link>
+          </div>
 
           <Link href="/contact" className="header-cta-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -391,7 +395,8 @@ export default function Header() {
           <div className={`header-more-menu${moreOpen ? ' open' : ''}`} id="headerMoreMenu">
             <a href="tel:+919876543210">+91 98765 43210</a>
             <a href="mailto:support@inchbrickrealty.com">support@inchbrickrealty.com</a>
-            <Link href="/auth">Login</Link>
+            <Link href="/auth#login">Login</Link>
+            <Link href="/auth#register">Register</Link>
             <Link href="/contact#contactForm" className="header-menu-callback">Get Callback</Link>
           </div>
         </div>

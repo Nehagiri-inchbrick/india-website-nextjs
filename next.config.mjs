@@ -15,6 +15,9 @@ const nextConfig = {
       { source: "/events-expo.html", destination: "/events-expo" },
       { source: "/terms.html", destination: "/terms" },
       { source: "/privacy-policy.html", destination: "/privacy-policy" },
+      { source: "/auth.html", destination: "/auth" },
+      { source: "/login.html", destination: "/login" },
+      { source: "/register.html", destination: "/register" },
     ];
   },
 };

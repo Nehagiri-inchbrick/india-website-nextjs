@@ -3,8 +3,7 @@ import './globals.css';
 import '@/styles/common.css';
 import '@/styles/theme.css';
 import '@/styles/layout.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import AppShell from '@/components/AppShell';
 import '../hero-banner.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -39,11 +38,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${plusJakarta.variable} ${playfair.variable}`}>
-        <Header />
-        <main id="main-content">
-          {children}
-        </main>
-        <Footer />
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
