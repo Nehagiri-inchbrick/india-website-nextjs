@@ -196,6 +196,174 @@
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
+  z-index: 2;
+}
+
+/* Hub — responsive categories */
+@media (max-width: 980px) {
+  .lifestyle-page .ls-hero {
+    padding: 2rem 0 1.75rem;
+  }
+
+  .lifestyle-page .ls-hero-inner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .lifestyle-page .ls-hero-stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .lifestyle-page .ls-hero-stat {
+    min-width: 0;
+    padding: 0.7rem 0.5rem;
+  }
+
+  .lifestyle-page .ls-hero-stat strong {
+    font-size: 1.15rem;
+  }
+
+  .lifestyle-page .ls-hub {
+    padding: 1.75rem 0 2.5rem;
+  }
+
+  .lifestyle-page .ls-hub-head {
+    margin-bottom: 1.1rem;
+  }
+
+  .lifestyle-page .ls-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .lifestyle-page .ls-card {
+    min-height: 200px;
+  }
+
+  .lifestyle-page .ls-card img {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lifestyle-page .ls-container {
+    width: min(1240px, 100%);
+    padding-inline: 0.9rem;
+    box-sizing: border-box;
+  }
+
+  .lifestyle-page .ls-hero h1 {
+    font-size: clamp(1.45rem, 7vw, 1.85rem);
+  }
+
+  .lifestyle-page .ls-hero p {
+    font-size: 0.86rem;
+  }
+
+  .lifestyle-page .ls-hero-stats {
+    gap: 0.4rem;
+  }
+
+  .lifestyle-page .ls-hero-stat {
+    padding: 0.6rem 0.35rem;
+    border-radius: 10px;
+  }
+
+  .lifestyle-page .ls-hero-stat strong {
+    font-size: 1.05rem;
+  }
+
+  .lifestyle-page .ls-hero-stat span {
+    font-size: 0.65rem;
+    line-height: 1.25;
+  }
+
+  .lifestyle-page .ls-hub-head h2 {
+    font-size: 1.25rem;
+  }
+
+  .lifestyle-page .ls-hub-head p {
+    font-size: 0.84rem;
+  }
+
+  .lifestyle-page .ls-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    margin-inline: -0.9rem;
+    padding: 0.1rem 0.9rem 0.55rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.9rem;
+    scrollbar-width: none;
+    touch-action: pan-x;
+  }
+
+  .lifestyle-page .ls-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lifestyle-page .ls-card {
+    position: relative;
+    flex: 0 0 min(78vw, 280px);
+    width: min(78vw, 280px);
+    max-width: min(78vw, 280px);
+    min-height: 0;
+    aspect-ratio: 3 / 4;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .lifestyle-page .ls-card:hover {
+    transform: none;
+  }
+
+  .lifestyle-page .ls-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .lifestyle-page .ls-card-overlay {
+    padding: 0.95rem 0.9rem;
+  }
+
+  .lifestyle-page .ls-card-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.82rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lifestyle-page .ls-card h3 {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .lifestyle-page .ls-card p {
+    font-size: 0.74rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .lifestyle-page .ls-card-arrow {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
 }
 
 /* ===== Lifestyle detail page — compact premium ===== */

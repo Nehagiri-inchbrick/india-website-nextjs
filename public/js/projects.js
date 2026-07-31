@@ -48,40 +48,70 @@
     return Array.isArray(window.PROJECTS_DATA) ? window.PROJECTS_DATA : [];
   }
 
-  function cardHtml(p) {
+  function titleLine(p) {
+    var type = String(p.bhk || p.type || "Apartment");
+    if (/plot/i.test(type)) return "Residential Plot";
+    if (/office|retail|commercial/i.test(type + " " + (p.categories || []).join(" "))) {
+      return type.indexOf("BHK") !== -1 ? type : "Commercial Space";
+    }
+    if (/villa/i.test(type)) return type.replace(/villa/i, "Villa") + (/,/.test(type) ? "" : ", Premium");
+    if (/4|5/.test(type)) return type + (/,/.test(type) ? "" : ", 4 Baths");
+    if (/2/.test(type)) return type + (/,/.test(type) ? "" : ", 2 Baths");
+    if (/3/.test(type)) return type + (/,/.test(type) ? "" : ", 3 Baths");
+    return type + " Apartment";
+  }
+
+  function cardHref(p) {
+    if (p.listingId) return "/listing-detail?id=" + encodeURIComponent(p.listingId);
+    if (p.city) return "/listings?city=" + encodeURIComponent(p.city);
+    return "/listings?q=" + encodeURIComponent(p.name || "");
+  }
+
+  function cardHtml(p, i) {
+    var postedBy = ["Dealer", "Builder", "Owner", "Agent"];
+    var dates = ["07th Jul, 2026", "12th Jun, 2026", "28th May, 2026", "03rd Jul, 2026"];
+    var idx = typeof i === "number" ? i : 0;
     return (
-      '<a class="pj-card" href="/listings">' +
+      '<a class="pj-card" href="' +
+      cardHref(p) +
+      '" aria-label="View ' +
+      esc(p.name) +
+      '">' +
       '<div class="pj-card-media">' +
       '<img src="' +
       esc(p.img) +
       '" alt="' +
       esc(p.name) +
       '" loading="lazy">' +
-      (p.tag ? '<span class="pj-card-badge">' + esc(p.tag) + "</span>" : "") +
+      '<span class="pj-card-verified"><i class="fas fa-circle-check"></i> Verified <i class="fas fa-circle-info"></i></span>' +
+      '<button type="button" class="pj-card-wish" aria-label="Save project"><i class="far fa-heart"></i></button>' +
+      '<span class="pj-card-media-ico" aria-hidden="true"><i class="fas fa-video"></i></span>' +
+      '<span class="pj-card-price pj-card-price--media">' +
+      esc(p.price) +
+      "</span>" +
       "</div>" +
       '<div class="pj-card-body">' +
-      '<span class="pj-card-dev">' +
-      esc(p.developer) +
-      "</span>" +
-      "<h3>" +
-      esc(p.name) +
+      '<div class="pj-card-title-row">' +
+      '<h3 class="pj-card-title">' +
+      esc(titleLine(p)) +
       "</h3>" +
-      '<p class="pj-card-loc"><i class="fas fa-location-dot" aria-hidden="true"></i> ' +
-      esc(p.location) +
-      "</p>" +
-      '<div class="pj-card-meta">' +
-      "<strong>" +
+      '<span class="pj-card-price pj-card-price--inline">' +
       esc(p.price) +
-      "</strong>" +
-      "<span>" +
-      esc(p.bhk) +
       "</span>" +
       "</div>" +
-      '<span class="pj-card-status">' +
-      esc(p.status) +
+      '<p class="pj-card-loc">In <strong>' +
+      esc(p.name) +
+      "</strong>, " +
+      esc(p.location) +
+      "</p>" +
+      '<div class="pj-card-foot">' +
+      "<span>Posted by " +
+      postedBy[idx % postedBy.length] +
       "</span>" +
-      '<span class="pj-card-cta">View details <i class="fas fa-arrow-right" aria-hidden="true"></i></span>' +
-      "</div></a>"
+      "<span>" +
+      dates[idx % dates.length] +
+      "</span>" +
+      "</div></div></a>"
     );
   }
 
@@ -174,6 +204,18 @@
       return;
     }
     grid.innerHTML = items.map(cardHtml).join("");
+    grid.querySelectorAll(".pj-card-wish").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        btn.classList.toggle("is-active");
+        var icon = btn.querySelector("i");
+        if (icon) {
+          icon.classList.toggle("far");
+          icon.classList.toggle("fas");
+        }
+      });
+    });
   }
 
   function populateCities() {
@@ -197,6 +239,60 @@
       });
   }
 
+  function updateFilterDots() {
+    var filters = getFilters();
+    var cityDot = document.querySelector('[data-pj-dot="city"]');
+    var statusDot = document.querySelector('[data-pj-dot="status"]');
+    if (cityDot) cityDot.hidden = !filters.city;
+    if (statusDot) statusDot.hidden = !filters.status;
+  }
+
+  function openFilterSheet(type) {
+    var sheet = document.querySelector("[data-pj-sheet]");
+    var title = document.querySelector("[data-pj-sheet-title]");
+    if (!sheet) return;
+
+    var titles = {
+      search: "Search projects",
+      city: "Filter by city",
+      status: "Filter by status",
+    };
+
+    sheet.classList.add("is-open");
+    if (title) title.textContent = titles[type] || "Filters";
+
+    document.querySelectorAll("[data-pj-panel]").forEach(function (el) {
+      el.classList.toggle("is-shown", el.getAttribute("data-pj-panel") === type);
+    });
+
+    document.querySelectorAll("[data-pj-open]").forEach(function (btn) {
+      btn.classList.toggle("is-active", btn.getAttribute("data-pj-open") === type);
+    });
+
+    if (type === "search") {
+      var input = document.querySelector("[data-pj-search]");
+      if (input) setTimeout(function () { input.focus(); }, 180);
+    }
+  }
+
+  function closeFilterSheet() {
+    var sheet = document.querySelector("[data-pj-sheet]");
+    if (sheet) sheet.classList.remove("is-open");
+    document.querySelectorAll("[data-pj-open]").forEach(function (btn) {
+      btn.classList.remove("is-active");
+    });
+  }
+
+  function resetFilters(form) {
+    if (!form) return;
+    form.reset();
+    render();
+    updateFilterDots();
+    closeFilterSheet();
+    var search = form.querySelector("[data-pj-search]");
+    if (search) search.focus();
+  }
+
   function bind() {
     var form = document.querySelector("[data-pj-search-form]");
     if (form && form.dataset.pjBound !== "true") {
@@ -204,18 +300,42 @@
       form.addEventListener("submit", function (event) {
         event.preventDefault();
         render();
+        updateFilterDots();
       });
-      form.addEventListener("input", render);
-      form.addEventListener("change", render);
+      form.addEventListener("input", function () {
+        render();
+        updateFilterDots();
+      });
+      form.addEventListener("change", function () {
+        render();
+        updateFilterDots();
+      });
 
-      var clear = form.querySelector("[data-pj-clear]");
-      if (clear) {
+      form.querySelectorAll("[data-pj-clear], [data-pj-clear-desk]").forEach(function (clear) {
         clear.addEventListener("click", function () {
-          form.reset();
-          render();
-          var search = form.querySelector("[data-pj-search]");
-          if (search) search.focus();
+          resetFilters(form);
         });
+      });
+
+      form.querySelectorAll("[data-pj-open]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var type = btn.getAttribute("data-pj-open");
+          var sheet = document.querySelector("[data-pj-sheet]");
+          if (
+            sheet &&
+            sheet.classList.contains("is-open") &&
+            btn.classList.contains("is-active")
+          ) {
+            closeFilterSheet();
+            return;
+          }
+          openFilterSheet(type);
+        });
+      });
+
+      var closeBtn = form.querySelector("[data-pj-sheet-close]");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", closeFilterSheet);
       }
     }
 
@@ -239,6 +359,7 @@
     populateCities();
     bind();
     render();
+    updateFilterDots();
   }
 
   window.__inchbrickInitProjects = init;

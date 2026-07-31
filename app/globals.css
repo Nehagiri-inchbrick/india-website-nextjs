@@ -595,28 +595,6 @@ ul {
     padding: 0 1rem;
   }
 
-  .header .nav-dropdown {
-    position: static;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    display: none;
-    padding-top: 0;
-  }
-
-  .header .nav-item.open .nav-dropdown { display: block; }
-
-  .header .nav-dropdown-inner {
-    border-radius: 10px;
-    margin: 0.25rem 0 0.5rem 0.5rem;
-  }
-
-  .header .nav-dropdown-inner a {
-    opacity: 1;
-    transform: none;
-  }
-
   .header .nav-dropdown--mega {
     min-width: unset;
   }

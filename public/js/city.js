@@ -130,7 +130,7 @@
       '<div class="city-hero-banner-bg" aria-hidden="true"></div>' +
       '<div class="city-hero-banner-pattern" aria-hidden="true"></div>' +
       '<div class="city-container city-hero-simple-inner">' +
-      '<a href="city.html" class="city-back"><i class="fas fa-arrow-left"></i> All Cities</a>' +
+      '<a href="/city" class="city-back"><i class="fas fa-arrow-left"></i> All Cities</a>' +
       '<div class="city-hero-banner-card">' +
       '<span class="city-hero-label"><i class="fas ' + c.icon + '"></i> Real Estate Guide</span>' +
       "<h1>" + esc(c.name) + "</h1>" +
@@ -168,11 +168,11 @@
       '<div class="city-sec-head city-sec-head--center">' +
       '<span class="city-sec-kicker"><i class="fas fa-city"></i> Popular destinations</span>' +
       "<h2>Explore All Cities</h2>" +
-      "<p>Tap any city card to open listings with that city already selected.</p>" +
+      "<p>Tap any city card to open that city's guide with market trends, localities, and projects.</p>" +
       "</div>" +
       '<div class="city-hub-grid">' +
       cities.map((c) =>
-        '<a href="' + cityListingsHref(c.name) + '" class="city-hub-card" style="--hub-img:url(' + c.heroImg + ')">' +
+        '<a href="' + cityDetailHref(c.slug) + '" class="city-hub-card" style="--hub-img:url(' + c.heroImg + ')">' +
         '<div class="city-hub-card-bg"></div>' +
         '<div class="city-hub-card-body">' +
         '<span class="city-hub-card-tag"><i class="fas ' + c.icon + '"></i> ' + esc(c.tag) + "</span>" +
@@ -182,7 +182,7 @@
         "<strong>" + esc(c.startingPrice) + "</strong>" +
         "<span>" + esc(c.listings) + " listings</span>" +
         "</div>" +
-        '<span class="city-hub-card-link">View listings <i class="fas fa-arrow-right"></i></span>' +
+        '<span class="city-hub-card-link">View city guide <i class="fas fa-arrow-right"></i></span>' +
         "</div></a>"
       ).join("") +
       "</div></div></section>";
@@ -214,6 +214,10 @@
     });
   }
 
+  function cityDetailHref(slug) {
+    return "/city?city=" + encodeURIComponent(slug);
+  }
+
   function cityListingsHref(cityName) {
     return "/listings?city=" + encodeURIComponent(cityName);
   }
@@ -224,7 +228,7 @@
       '<div class="city-container city-jump-inner">' +
       '<a href="#city-why">Why Invest</a>' +
       '<a href="#city-market">Market</a>' +
-      '<a href="#city-projects">Projects</a>' +
+      '<a href="#city-projects">Recommended</a>' +
       '<a href="#city-localities">Localities</a>' +
       '<a href="#city-trends">Price Trends</a>' +
       '<a href="#city-lifestyle">Lifestyle</a>' +
@@ -273,62 +277,114 @@
   }
 
   function renderProjects(c) {
-    const tabs = [
-      { id: "new", label: "New Launches", items: c.featuredProjects.newLaunches },
-      { id: "ready", label: "Ready to Move", items: c.featuredProjects.readyToMove },
-      { id: "luxury", label: "Luxury Projects", items: c.featuredProjects.luxury },
-      { id: "commercial", label: "Commercial", items: c.featuredProjects.commercial }
-    ];
+    const postedBy = ["Dealer", "Owner", "Builder", "Agent"];
+    const dates = ["07th Jul, 2026", "12th Jun, 2026", "28th May, 2026", "03rd Jul, 2026", "19th Jun, 2026", "01st Jul, 2026"];
+
+    const items = []
+      .concat(c.featuredProjects.newLaunches || [])
+      .concat(c.featuredProjects.readyToMove || [])
+      .concat(c.featuredProjects.luxury || [])
+      .concat(c.featuredProjects.commercial || []);
+
+    const seen = {};
+    const unique = items.filter((p) => {
+      const key = p.name + "|" + p.area;
+      if (seen[key]) return false;
+      seen[key] = true;
+      return true;
+    }).slice(0, 8);
+
+    function titleLine(p) {
+      const type = p.type || "Apartment";
+      if (/plot/i.test(type)) return "Residential Plot";
+      if (/office|retail|commercial/i.test(type)) return type;
+      if (/villa/i.test(type)) return "3 BHK Villa, 3 Baths";
+      if (/2/.test(p.bhk || "")) return "2 BHK Apartment, 2 Baths";
+      if (/4|5/.test(p.bhk || "")) return "4 BHK Apartment, 4 Baths";
+      return "3 BHK Apartment, 3 Baths";
+    }
+
+    function listingHref(p, i) {
+      if (p.listingId) return "/listing-detail?id=" + encodeURIComponent(p.listingId);
+      return "/listings?city=" + encodeURIComponent(c.name) + "&q=" + encodeURIComponent(p.name || "");
+    }
+
     return (
-      '<section class="city-section" id="city-projects">' +
+      '<section class="city-section city-rec-section" id="city-projects">' +
       '<div class="city-container">' +
-      secHead('<i class="fas fa-building"></i> Curated picks', "Featured Projects", "Handpicked developments across segments — from new launches to ready homes.") +
-      '<div class="city-proj-tabs" role="tablist">' +
-      tabs.map((t, i) =>
-        '<button type="button" class="city-proj-tab' + (i === 0 ? " is-active" : "") + '" data-tab="' + t.id + '" role="tab">' + t.label + "</button>"
+      '<div class="city-rec-head">' +
+      "<h2>Recommended Properties</h2>" +
+      "<p>Curated specially for you based on popular searches in " + esc(c.name) + ".</p>" +
+      "</div>" +
+      '<div class="city-rec-wrap">' +
+      '<div class="city-rec-track" id="cityRecTrack" tabindex="0" aria-label="Recommended properties">' +
+      unique.map((p, i) =>
+        '<a href="' + listingHref(p, i) + '" class="city-rec-card">' +
+        '<div class="city-rec-media">' +
+        '<img src="' + p.img + '" alt="' + esc(p.name) + '" loading="lazy">' +
+        '<span class="city-rec-verified"><i class="fas fa-circle-check"></i> Verified <i class="fas fa-circle-info"></i></span>' +
+        '<button type="button" class="city-rec-wish" aria-label="Save property"><i class="far fa-heart"></i></button>' +
+        '<span class="city-rec-media-ico" aria-hidden="true"><i class="fas fa-video"></i></span>' +
+        '<span class="city-rec-price">' + esc(p.price) + "</span>" +
+        "</div>" +
+        '<div class="city-rec-body">' +
+        '<h3 class="city-rec-title">' + esc(titleLine(p)) + "</h3>" +
+        '<p class="city-rec-loc">In <strong>' + esc(p.name) + "</strong>, " + esc(p.area) + ", " + esc(c.name) + "</p>" +
+        '<div class="city-rec-foot">' +
+        "<span>Posted by " + postedBy[i % postedBy.length] + "</span>" +
+        "<span>" + dates[i % dates.length] + "</span>" +
+        "</div></div></a>"
       ).join("") +
       "</div>" +
-      tabs.map((t, i) =>
-        '<div class="city-proj-panel' + (i === 0 ? " is-active" : "") + '" data-panel="' + t.id + '">' +
-        '<div class="city-projects-grid">' +
-        t.items.slice(0, 3).map((p) =>
-          '<a href="/listing-detail" class="city-project-card">' +
-          '<img src="' + p.img + '" alt="' + esc(p.name) + '">' +
-          '<div class="city-project-body">' +
-          '<span class="city-project-badge">' + esc(p.status || "Available") + "</span>" +
-          "<strong>" + esc(p.name) + "</strong>" +
-          '<span class="city-project-meta">' + esc(p.area) + " · " + esc(p.type) + "</span>" +
-          '<em>' + esc(p.price) + "</em></div></a>"
-        ).join("") +
-        "</div></div>"
-      ).join("") +
-      '<a href="' + cityListingsHref(c.name) + '" class="city-link-btn">View all projects <i class="fas fa-arrow-right"></i></a>' +
+      '<button type="button" class="city-rec-nav city-rec-prev" id="cityRecPrev" aria-label="Previous properties"><i class="fas fa-chevron-left"></i></button>' +
+      '<button type="button" class="city-rec-nav city-rec-next" id="cityRecNext" aria-label="Next properties"><i class="fas fa-chevron-right"></i></button>' +
+      "</div>" +
+      '<a href="' + cityListingsHref(c.name) + '" class="city-link-btn city-rec-all">View all in ' + esc(c.name) + ' <i class="fas fa-arrow-right"></i></a>' +
       "</div></section>"
     );
   }
 
   function renderLocalities(c) {
+    const postedHints = ["High demand zone", "Family favourite", "Investor pick", "Metro corridor", "Lifestyle hub", "Growth pocket"];
+    const updated = ["Updated Jul 2026", "Updated Jun 2026", "Updated May 2026", "Updated Jul 2026"];
+
     return (
-      '<section class="city-section city-section--alt" id="city-localities">' +
+      '<section class="city-section city-section--alt city-rec-section" id="city-localities">' +
       '<div class="city-container">' +
-      secHead('<i class="fas fa-map-location-dot"></i> Neighbourhoods', "Popular Localities", "Explore micro-markets within " + esc(c.name) + " — each with distinct price points and buyer profiles.") +
-      '<div class="city-loc-grid">' +
-      c.localities.map((loc) => {
+      '<div class="city-rec-head">' +
+      "<h2>Popular Localities</h2>" +
+      "<p>Explore micro-markets in " + esc(c.name) + " with distinct price points and buyer profiles.</p>" +
+      "</div>" +
+      '<div class="city-rec-wrap">' +
+      '<div class="city-rec-track" id="cityLocTrack" tabindex="0" aria-label="Popular localities">' +
+      (c.localities || []).map((loc, i) => {
         const href = (window.LOCATIONS_DATA && window.LOCATIONS_DATA[loc.slug])
-          ? "location-detail.html?location=" + loc.slug
+          ? "/location-detail?location=" + encodeURIComponent(loc.slug)
           : cityListingsHref(c.name) + "&q=" + encodeURIComponent(loc.name);
         return (
-          '<a href="' + href + '" class="city-loc-card">' +
-          '<img src="' + loc.img + '" alt="' + esc(loc.name) + '">' +
-          '<div class="city-loc-overlay">' +
-          '<span class="city-loc-tag">' + esc(loc.tag) + "</span>" +
-          "<h3>" + esc(loc.name) + "</h3>" +
-          '<span class="city-loc-meta">' + esc(loc.price) + " · " + esc(loc.listings) + " listings</span>" +
-          '<span class="city-loc-arrow"><i class="fas fa-arrow-right"></i></span>' +
-          "</div></a>"
+          '<a href="' + href + '" class="city-rec-card">' +
+          '<div class="city-rec-media">' +
+          '<img src="' + loc.img + '" alt="' + esc(loc.name) + '" loading="lazy">' +
+          '<span class="city-rec-verified"><i class="fas fa-circle-check"></i> ' + esc(loc.tag || "Popular") + ' <i class="fas fa-circle-info"></i></span>' +
+          '<button type="button" class="city-rec-wish" aria-label="Save locality"><i class="far fa-heart"></i></button>' +
+          '<span class="city-rec-media-ico" aria-hidden="true"><i class="fas fa-location-dot"></i></span>' +
+          '<span class="city-rec-price">' + esc(loc.price) + "</span>" +
+          "</div>" +
+          '<div class="city-rec-body">' +
+          '<h3 class="city-rec-title">' + esc(loc.name) + ", " + esc(c.name) + "</h3>" +
+          '<p class="city-rec-loc">In <strong>' + esc(c.name) + "</strong> · " + esc(loc.listings || "50+") + " active listings · " + esc(postedHints[i % postedHints.length]) + "</p>" +
+          '<div class="city-rec-foot">' +
+          "<span>" + esc(loc.tag || "Locality") + " micro-market</span>" +
+          "<span>" + updated[i % updated.length] + "</span>" +
+          "</div></div></a>"
         );
       }).join("") +
-      "</div></div></section>"
+      "</div>" +
+      '<button type="button" class="city-rec-nav city-rec-prev" id="cityLocPrev" aria-label="Previous localities"><i class="fas fa-chevron-left"></i></button>' +
+      '<button type="button" class="city-rec-nav city-rec-next" id="cityLocNext" aria-label="Next localities"><i class="fas fa-chevron-right"></i></button>' +
+      "</div>" +
+      '<a href="' + cityListingsHref(c.name) + '" class="city-link-btn city-rec-all">Browse listings in ' + esc(c.name) + ' <i class="fas fa-arrow-right"></i></a>' +
+      "</div></section>"
     );
   }
 
@@ -465,16 +521,38 @@
     );
   }
 
-  function bindTabs() {
-    root.querySelectorAll(".city-proj-tab").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = btn.dataset.tab;
-        root.querySelectorAll(".city-proj-tab").forEach((b) => b.classList.remove("is-active"));
-        root.querySelectorAll(".city-proj-panel").forEach((p) => p.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        root.querySelector('[data-panel="' + id + '"]')?.classList.add("is-active");
+  function bindCarousel(trackId, prevId, nextId) {
+    const track = document.getElementById(trackId);
+    const prev = document.getElementById(prevId);
+    const next = document.getElementById(nextId);
+    if (!track) return;
+
+    function scrollByCard(dir) {
+      const card = track.querySelector(".city-rec-card");
+      const amount = card ? card.offsetWidth + 16 : 280;
+      track.scrollBy({ left: dir * amount, behavior: "smooth" });
+    }
+
+    prev?.addEventListener("click", () => scrollByCard(-1));
+    next?.addEventListener("click", () => scrollByCard(1));
+
+    track.querySelectorAll(".city-rec-wish").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        btn.classList.toggle("is-active");
+        const icon = btn.querySelector("i");
+        if (icon) {
+          icon.classList.toggle("far");
+          icon.classList.toggle("fas");
+        }
       });
     });
+  }
+
+  function bindRecommendedCarousel() {
+    bindCarousel("cityRecTrack", "cityRecPrev", "cityRecNext");
+    bindCarousel("cityLocTrack", "cityLocPrev", "cityLocNext");
   }
 
   function bindMapLayers() {
@@ -506,7 +584,7 @@
   function renderNotFound() {
     document.title = "City Not Found | Inchbrick Realty";
     root.innerHTML =
-      '<div class="city-not-found"><h1>City not found</h1><p>Try Mumbai, Goa, Dubai, or Bangalore.</p><a href="city.html">Explore all cities</a></div>';
+      '<div class="city-not-found"><h1>City not found</h1><p>Try Mumbai, Goa, Dubai, or Bangalore.</p><a href="/city">Explore all cities</a></div>';
   }
 
   function render(c) {
@@ -527,7 +605,7 @@
       renderInsights(c) +
       renderCta(c);
 
-    bindTabs();
+    bindRecommendedCarousel();
     bindMapLayers();
     bindTrendDots();
     bindCitySearch();

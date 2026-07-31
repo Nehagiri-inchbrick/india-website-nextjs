@@ -381,9 +381,11 @@ export default function Header() {
             aria-controls="navLinks"
             onClick={toggleMenuBtn}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
+            <span className="menu-btn-icon" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
           </button>
 
           <div className={`header-more-menu${moreOpen ? ' open' : ''}`} id="headerMoreMenu">

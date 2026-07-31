@@ -3,6 +3,7 @@ import { html, bodyClass } from '@/lib/html-bodies/home';
 import '@/styles/home-inline.css';
 import '@/styles/homes-deals.css';
 import '@/styles/nri-section.css';
+import '@/styles/client-video-mobile.css';
 
 export const metadata = {
   title: 'Inchbrick Realty - Find Your Dream Home in India',

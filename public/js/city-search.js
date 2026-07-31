@@ -67,8 +67,7 @@
   }
 
   function cityUrl(slug) {
-    const base = window.location.pathname.includes("/") ? "city.html" : "city.html";
-    return base + "?city=" + encodeURIComponent(slug);
+    return "/city?city=" + encodeURIComponent(slug);
   }
 
   function navigateToCity(slug) {

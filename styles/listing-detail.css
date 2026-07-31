@@ -421,18 +421,23 @@
   font-weight: 800;
   color: var(--ld-dark);
 }
+
 .ld-plan-steps {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.65rem;
 }
 
 .ld-plan-step {
   display: flex;
-  gap: 0.85rem;
+  gap: 0.75rem;
   align-items: flex-start;
+  flex: 1 1 160px;
+  min-width: 0;
   padding: 0.85rem;
   background: #f8fafc;
-  border-radius: 6px;
+  border-radius: 10px;
+  border: 1px solid var(--ld-border);
   border-left: 3px solid var(--ld-gold);
 }
 
@@ -450,21 +455,31 @@
   flex-shrink: 0;
 }
 
+.ld-plan-step > div {
+  min-width: 0;
+  flex: 1;
+}
+
 .ld-plan-step strong {
+  display: block;
   font-size: 0.88rem;
   color: var(--ld-dark);
+  line-height: 1.35;
+  word-break: break-word;
 }
 
 .ld-plan-step strong em {
   font-style: normal;
   color: var(--ld-red);
   margin-left: 0.25rem;
+  white-space: nowrap;
 }
 
 .ld-plan-step p {
-  margin: 0.2rem 0 0;
+  margin: 0.25rem 0 0;
   font-size: 0.78rem;
   color: var(--ld-muted);
+  line-height: 1.45;
 }
 
 /* Highlights */
@@ -1425,6 +1440,10 @@
 }
 
 /* Responsive */
+.ld-mobile-bar {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .ld-layout {
     grid-template-columns: 1fr;
@@ -1432,49 +1451,221 @@
 
   .ld-sidebar {
     position: static;
-    order: -1;
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ld-main {
+    order: 1;
+    min-width: 0;
   }
 
   .ld-sidebar-news {
-    margin-top: 0;
+    margin-top: 1rem;
   }
 }
 
 @media (max-width: 768px) {
+  .detail-page {
+    overflow-x: hidden;
+  }
+
+  .ld-page {
+    padding-bottom: 5.5rem;
+  }
+
+  .ld-container {
+    width: min(1240px, 100%);
+    padding-inline: 0.9rem;
+    box-sizing: border-box;
+  }
+
+  .ld-topbar {
+    padding: 0.75rem 0 0.35rem;
+  }
+
+  .ld-back {
+    font-size: 0.82rem;
+  }
+
   .ld-jump-sticky {
-    display: none;
+    display: block;
+    top: 0;
+    z-index: 100;
+    padding: 0.45rem 0;
+    margin-bottom: 0.55rem;
+  }
+
+  .ld-jump-nav {
+    gap: 0.3rem;
+    margin-inline: -0.15rem;
+    padding-inline: 0.15rem;
+  }
+
+  .ld-jump-nav a {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.7rem;
+  }
+
+  .ld-layout {
+    gap: 0.9rem;
+  }
+
+  .ld-main {
+    gap: 0.9rem;
+  }
+
+  .ld-section {
+    border-radius: 14px;
+    scroll-margin-top: 52px;
+  }
+
+  .ld-section-head {
+    padding: 0.85rem 0.95rem;
+    gap: 0.5rem;
+  }
+
+  .ld-section-head i {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+  }
+
+  .ld-section-head h2 {
+    font-size: 0.95rem;
+  }
+
+  .ld-section-body {
+    padding: 0.95rem;
   }
 
   .ld-gallery {
     grid-template-columns: 1fr;
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
 
   .ld-gallery-main {
-    max-height: 280px;
+    max-height: none;
+    aspect-ratio: 16 / 11;
+    border-radius: 10px;
+  }
+
+  .ld-video-btn {
+    bottom: 0.7rem;
+    left: 0.7rem;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.75rem;
   }
 
   .ld-gallery-grid {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    max-height: 64px;
-    gap: 0.25rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: none;
+    max-height: none;
+    height: auto;
+    gap: 0.3rem;
+  }
+
+  .ld-gallery-thumb,
+  .ld-gallery-more {
+    aspect-ratio: 1;
+    height: auto;
+    min-height: 0;
+    border-radius: 8px;
   }
 
   .ld-gallery-more {
     grid-column: span 1;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
+    gap: 0.15rem;
   }
 
   .ld-gallery-more i {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+  }
+
+  .ld-overview-main h1,
+  .ld-project-name {
+    font-size: 1.25rem;
+  }
+
+  .ld-location {
+    font-size: 0.82rem;
+  }
+
+  .ld-overview-text {
+    font-size: 0.86rem;
+    line-height: 1.65;
   }
 
   .ld-overview-meta {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
-  .ld-price-grid,
+  .ld-meta-item {
+    padding: 0.7rem 0.4rem;
+  }
+
+  .ld-meta-item span {
+    font-size: 0.72rem;
+    word-break: break-word;
+  }
+
+  .ld-price-main {
+    padding: 0.9rem 1rem;
+  }
+
+  .ld-price-main strong {
+    font-size: 1.45rem;
+  }
+
+  .ld-price-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ld-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .ld-price-row span {
+    margin-bottom: 0;
+  }
+
+  .ld-price-row strong {
+    text-align: right;
+    font-size: 0.84rem;
+  }
+
+  .ld-payment-plan {
+    margin-top: 0.15rem;
+  }
+
+  .ld-plan-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .ld-plan-step {
+    flex: none;
+    width: 100%;
+    padding: 0.75rem 0.8rem;
+  }
+
+  .ld-plan-step strong {
+    font-size: 0.84rem;
+  }
+
+  .ld-plan-step p {
+    font-size: 0.74rem;
+  }
+
   .ld-highlight-grid,
   .ld-amenities-grid,
   .ld-plans-tabs,
@@ -1485,8 +1676,17 @@
     grid-template-columns: 1fr;
   }
 
+  .ld-amenities-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .ld-progress-phases {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ld-phase {
+    font-size: 0.72rem;
+    padding: 0.5rem 0.55rem;
   }
 
   .ld-builder-card {
@@ -1496,10 +1696,160 @@
   .ld-brochure {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.85rem;
   }
 
   .ld-brochure .ld-btn {
     margin-left: 0;
     width: 100%;
+  }
+
+  .ld-plan-single img {
+    height: 200px;
+  }
+
+  .ld-map-wrap {
+    min-height: 220px;
+  }
+
+  .ld-sidebar-card {
+    border-radius: 14px;
+  }
+
+  .ld-sidebar-hero {
+    padding: 1.1rem 1rem 1rem;
+  }
+
+  .ld-sidebar-price {
+    font-size: 1.55rem;
+    word-break: break-word;
+  }
+
+  .ld-sidebar-body {
+    padding: 1rem;
+  }
+
+  .ld-sidebar-action-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ld-news-item img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .ld-similar-card {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .ld-similar-card img {
+    width: 96px;
+    height: 100%;
+    min-height: 96px;
+  }
+
+  .ld-similar-card div {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .ld-inquiry input,
+  .ld-inquiry select,
+  .ld-inquiry textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ld-mobile-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1200;
+    padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid var(--ld-border);
+    box-shadow: 0 -8px 28px rgba(15, 35, 57, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .ld-mobile-bar-price {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ld-mobile-bar-price span {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ld-muted);
+  }
+
+  .ld-mobile-bar-price strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--ld-red);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ld-mobile-bar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    flex: 0 0 auto;
+    min-height: 42px;
+    padding: 0.55rem 0.85rem;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .ld-mobile-bar-call {
+    background: #f1f5f9;
+    color: var(--ld-dark);
+    border: 1px solid var(--ld-border);
+  }
+
+  .ld-mobile-bar-cta {
+    background: var(--ld-red);
+    color: #fff;
+  }
+}
+
+@media (max-width: 480px) {
+  .ld-amenities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ld-progress-phases {
+    grid-template-columns: 1fr;
+  }
+
+  .ld-mobile-bar {
+    gap: 0.4rem;
+    padding-inline: 0.7rem;
+  }
+
+  .ld-mobile-bar-btn {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.74rem;
+  }
+
+  .ld-mobile-bar-price strong {
+    font-size: 0.88rem;
   }
 }

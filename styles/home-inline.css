@@ -43,29 +43,6 @@
       margin: 0 auto;
     }
 
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.7);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-      transition: background 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .header.scrolled {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    }
-
-    .nav {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
     .logo {
       font-size: 1.45rem;
       font-weight: 700;
@@ -76,24 +53,6 @@
 
     .logo span {
       color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.35rem;
-      color: #e2e8f0;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
     }
 
     .header-contact {
@@ -153,7 +112,7 @@
       transform: translateY(-1px);
     }
 
-    .menu-btn {
+    .home-legacy-menu-btn {
       display: none;
       width: 44px;
       height: 44px;
@@ -5574,42 +5533,6 @@
     }
 
     @media (max-width: 900px) {
-      .nav-links {
-        position: absolute;
-        top: 78px;
-        right: 4%;
-        width: min(320px, 92%);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.35rem;
-        padding: 0.9rem;
-        background: rgba(2, 6, 23, 0.98);
-        border: 1px solid var(--border-soft);
-        border-radius: 14px;
-        transform: translateY(-12px);
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.22s ease;
-      }
-
-      .nav-links.open {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 0.45rem 0.4rem;
-      }
-
-      .menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
       .btn-callback {
         display: none;
       }
@@ -5887,34 +5810,12 @@
       color: #1e293b;
     }
 
-    .header,
-    .header.scrolled {
-      background: rgba(255, 255, 255, 0.92);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 4px 24px rgba(15, 35, 57, 0.05);
-    }
-
-    .nav-links {
-      color: #64748b;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #c9242b;
-    }
-
     .logo-title {
       color: #0f172a;
     }
 
     .logo-subtitle {
       color: #c9242b;
-    }
-
-    .menu-btn {
-      background: #fff;
-      color: #1e293b;
-      border-color: rgba(0, 0, 0, 0.1);
     }
 
     .header-contact a {
@@ -7387,18 +7288,6 @@
     .community-cta-wrap {
       text-align: center;
       margin-top: 2rem;
-    }
-
-    @media (max-width: 900px) {
-      .nav-links {
-        background: rgba(255, 255, 255, 0.98) !important;
-        border-color: rgba(0, 0, 0, 0.08) !important;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      }
-
-      .nav-links a {
-        color: #334155;
-      }
     }
 
     /* Specialty Living Section */
@@ -13308,7 +13197,22 @@
 
     @media (max-width: 768px) {
       .loc-city-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: flex;
+        gap: 0.85rem;
+        overflow-x: auto;
+        padding: 0.2rem 0.1rem 0.8rem;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .loc-city-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .loc-city-card {
+        flex: 0 0 min(74vw, 242px);
+        scroll-snap-align: start;
       }
     }
 
@@ -13322,7 +13226,7 @@
       }
 
       .loc-city-grid {
-        grid-template-columns: 1fr;
+        gap: 0.75rem;
       }
 
       .loc-city-card {

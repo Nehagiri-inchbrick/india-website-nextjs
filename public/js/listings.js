@@ -177,7 +177,11 @@
           "</a>" +
           '<div class="prop-list-main">' +
           '<div class="prop-list-details">' +
+          '<div class="prop-list-title-row">' +
           '<h3><a href="' + detailHref + '">' + p.name + "</a></h3>" +
+          '<div class="prop-list-price-block prop-list-price--mobile">' +
+          '<p class="prop-list-price">' + p.price + "</p>" +
+          "</div></div>" +
           '<p class="prop-list-loc"><i class="fas fa-map-marker-alt"></i> ' + p.location + ", " + p.city + "</p>" +
           '<div class="prop-list-specs">' +
           '<span><i class="fas fa-bed"></i> ' + p.bhk + "</span>" +
@@ -197,13 +201,16 @@
           '<button type="button" class="prop-list-opt" data-action="compare"><i class="fas fa-scale-balanced"></i> Compare</button>' +
           "</div></div>" +
           '<div class="prop-list-aside">' +
-          '<div class="prop-list-price-block">' +
+          '<div class="prop-list-price-block prop-list-price--desk">' +
           '<p class="prop-list-price">' + p.price + "</p>" +
           '<p class="prop-list-price-note">All inclusive*</p></div>' +
           '<div class="prop-list-actions">' +
-          '<a href="contact.html#contactForm" class="prop-list-btn prop-list-btn-primary">Book site visit</a>' +
-          '<a href="' + detailHref + '" class="prop-list-btn prop-list-btn-outline">View details</a>' +
-          '<button type="button" class="prop-list-btn prop-list-btn-outline" data-action="callback">Request callback</button>' +
+          '<a href="/contact#contactForm" class="prop-list-btn prop-list-btn-primary" aria-label="Book site visit" title="Book site visit">' +
+          '<i class="fas fa-calendar-check" aria-hidden="true"></i><span>Book site visit</span></a>' +
+          '<a href="' + detailHref + '" class="prop-list-btn prop-list-btn-outline" aria-label="View details" title="View details">' +
+          '<i class="fas fa-eye" aria-hidden="true"></i><span>View details</span></a>' +
+          '<button type="button" class="prop-list-btn prop-list-btn-outline" data-action="callback" aria-label="Request callback" title="Request callback">' +
+          '<i class="fas fa-phone" aria-hidden="true"></i><span>Request callback</span></button>' +
           "</div></div></article>"
         );
       })
@@ -279,12 +286,66 @@
     });
   }
 
+  function updateFilterDot() {
+    const dot = document.querySelector("[data-ls-dot]");
+    if (!dot) return;
+    const active =
+      Boolean(filters.city) ||
+      Boolean(filters.type) ||
+      filters.bhk !== "" ||
+      Boolean(filters.priceMax) ||
+      Boolean(filters.status) ||
+      Boolean(filters.mood) ||
+      Boolean(filters.q);
+    dot.hidden = !active;
+  }
+
+  function openListingsSheet(mode) {
+    const sheet = document.querySelector("[data-ls-sheet]");
+    const title = document.querySelector("[data-ls-sheet-title]");
+    if (!sheet) return;
+
+    sheet.classList.add("is-open");
+    sheet.setAttribute("data-mode", mode);
+
+    if (title) {
+      title.innerHTML =
+        mode === "search"
+          ? '<i class="fas fa-magnifying-glass"></i> Search'
+          : '<i class="fas fa-sliders"></i> Filters';
+    }
+
+    document.querySelectorAll("[data-ls-panel]").forEach((el) => {
+      el.classList.toggle("is-shown", el.getAttribute("data-ls-panel") === mode);
+    });
+
+    document.querySelectorAll("[data-ls-open]").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.getAttribute("data-ls-open") === mode);
+    });
+
+    if (mode === "search" && filterSearch) {
+      setTimeout(() => filterSearch.focus(), 180);
+    }
+  }
+
+  function closeListingsSheet() {
+    const sheet = document.querySelector("[data-ls-sheet]");
+    if (sheet) {
+      sheet.classList.remove("is-open");
+      sheet.removeAttribute("data-mode");
+    }
+    document.querySelectorAll("[data-ls-open]").forEach((btn) => {
+      btn.classList.remove("is-active");
+    });
+  }
+
   function render() {
     readForm();
     const filtered = sortList(filterProperties());
     if (countEl) countEl.innerHTML = "<strong>" + filtered.length + "</strong> properties found";
     renderActiveTags();
     renderList(filtered);
+    updateFilterDot();
   }
 
   function resetFilters() {
@@ -292,6 +353,7 @@
     applyFormToUI();
     if (sortSelect) sortSelect.value = "featured";
     history.replaceState(null, "", "/listings");
+    closeListingsSheet();
     render();
   }
 
@@ -302,6 +364,7 @@
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
     render();
+    closeListingsSheet();
   });
 
   [filterCity, filterType, filterBhk, filterPrice, filterStatus, filterMood].forEach((el) => {
@@ -315,6 +378,21 @@
 
   sortSelect?.addEventListener("change", render);
   filterReset?.addEventListener("click", resetFilters);
+  document.getElementById("filterResetDesk")?.addEventListener("click", resetFilters);
+
+  document.querySelectorAll("[data-ls-open]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const mode = btn.getAttribute("data-ls-open");
+      const sheet = document.querySelector("[data-ls-sheet]");
+      if (sheet?.classList.contains("is-open") && btn.classList.contains("is-active")) {
+        closeListingsSheet();
+        return;
+      }
+      openListingsSheet(mode);
+    });
+  });
+
+  document.querySelector("[data-ls-sheet-close]")?.addEventListener("click", closeListingsSheet);
 
   render();
 })();

@@ -522,7 +522,7 @@
       '<div class="ld-sidebar-news">' +
       '<div class="ld-sidebar-news-head">' +
       '<h3><i class="fas fa-newspaper"></i> News &amp; Articles</h3>' +
-      '<a href="blog.html">View all</a>' +
+      '<a href="/blog">View all</a>' +
       "</div>" +
       '<div class="ld-news-list">' +
       items
@@ -600,7 +600,7 @@
     root.innerHTML =
       '<div class="ld-page">' +
       '<div class="ld-topbar ld-container">' +
-      '<a href="listings.html" class="ld-back"><i class="fas fa-arrow-left"></i> Back to Listings</a>' +
+      '<a href="/listings" class="ld-back"><i class="fas fa-arrow-left"></i> Back to Listings</a>' +
       "</div>" +
       '<div class="ld-jump-sticky">' +
       '<div class="ld-container">' +
@@ -625,6 +625,13 @@
       section("ld-inquiry", "Inquiry Form", "fa-envelope", renderInquiry(prop)) +
       "</div>" +
       renderSidebar(prop) +
+      "</div>" +
+      '<div class="ld-mobile-bar" aria-label="Quick actions">' +
+      '<div class="ld-mobile-bar-price"><span>Price</span><strong>' +
+      esc(prop.price) +
+      "</strong></div>" +
+      '<a href="tel:+919876543210" class="ld-mobile-bar-btn ld-mobile-bar-call"><i class="fas fa-phone"></i> Call</a>' +
+      '<a href="#ld-inquiry" class="ld-mobile-bar-btn ld-mobile-bar-cta"><i class="fas fa-calendar-check"></i> Visit</a>' +
       "</div></div>";
 
     bindEvents(prop);
@@ -692,7 +699,7 @@
 
     document.getElementById("detailContactForm")?.addEventListener("submit", (e) => {
       e.preventDefault();
-      window.location.href = "contact.html#contactForm";
+      window.location.href = "/contact#contactForm";
     });
 
     document.querySelectorAll(".ld-jump-nav a").forEach((link) => {

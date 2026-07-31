@@ -390,10 +390,64 @@
   .sp-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 900px) {
+  .sp-features {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    margin-inline: -3vw;
+    padding: 0.15rem 3vw 0.55rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 3vw;
+    scrollbar-width: none;
+    cursor: grab;
+    touch-action: pan-x;
+  }
+
+  .sp-features::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sp-features.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  .sp-features.is-dragging * {
+    pointer-events: none;
+  }
+
+  .sp-feature {
+    flex: 0 0 min(78vw, 280px);
+    width: min(78vw, 280px);
+    max-width: min(78vw, 280px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 @media (max-width: 640px) {
-  .sp-features { grid-template-columns: 1fr; }
   .sp-grid { grid-template-columns: 1fr; }
   .sp-toolbar { align-items: stretch; }
   .sp-toolbar-actions { width: 100%; }
   .sp-toolbar-actions .sp-btn { flex: 1; justify-content: center; }
+
+  .sp-feature {
+    flex-basis: min(82vw, 260px);
+    width: min(82vw, 260px);
+    max-width: min(82vw, 260px);
+    padding: 1rem 0.9rem;
+  }
+
+  .sp-feature h2 {
+    font-size: 0.9rem;
+  }
+
+  .sp-feature p {
+    font-size: 0.78rem;
+  }
 }
