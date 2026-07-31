@@ -4,6 +4,7 @@ import '@/styles/home-inline.css';
 import '@/styles/homes-deals.css';
 import '@/styles/nri-section.css';
 import '@/styles/client-video-mobile.css';
+import '@/styles/home-mobile-align.css';
 
 export const metadata = {
   title: 'Inchbrick Realty - Find Your Dream Home in India',

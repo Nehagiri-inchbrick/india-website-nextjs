@@ -726,8 +726,9 @@ a.hpd-card-img {
   .hpd-cards { grid-template-columns: 1fr; border-radius: 16px; min-height: 340px; }
   .hpd-section { padding: 3.5rem 0; }
   .hpd-section.dark { padding: 2.5rem 0; }
-  .hpd-inner { padding: 0 1rem; }
+  .hpd-inner { padding: 0; }
   .hpd-section.dark .hpd-inner { padding: 0; }
+  .hpd-section-head { padding-inline: 0; }
   .hpd-card-img { height: 340px; }
   .hpd-feature-deal .hpd-card-body {
     left: 0.75rem;

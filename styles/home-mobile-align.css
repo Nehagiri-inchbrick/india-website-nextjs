@@ -1,0 +1,91 @@
+/* Home — unified mobile alignment */
+@media (max-width: 768px) {
+  :root {
+    --home-gutter: max(0.9rem, 4vw);
+  }
+
+  /* Match page container (92%) — cancel parent inset for full-bleed carousels */
+  .mood-slider-wrap,
+  .developers-projects .developer-grid,
+  .developers-projects .project-track-container,
+  .wtrust-grid,
+  .compact-review-list,
+  .rv-video-grid,
+  .loc-city-grid,
+  .home-blog-row {
+    margin-inline: calc(50% - 50vw) !important;
+    padding-inline: max(0.9rem, 4vw) !important;
+    scroll-padding-inline: max(0.9rem, 4vw);
+    box-sizing: border-box;
+  }
+
+  .mood-slider-wrap {
+    margin-inline: calc(50% - 50vw) !important;
+    padding-inline: 0 !important;
+  }
+
+  .mood-slider-viewport {
+    padding-inline: max(0.9rem, 4vw) !important;
+  }
+
+  .developers-projects .developer-grid {
+    scroll-padding-inline: calc(50% - 70px);
+  }
+
+  .investment-journey-shell {
+    padding-inline: 0;
+  }
+
+  .hpd-section-head {
+    width: min(1180px, 92%);
+    max-width: none;
+    margin-inline: auto;
+    padding-inline: 0;
+    box-sizing: border-box;
+  }
+
+  .hpd-section.dark .hpd-section-head {
+    width: min(1180px, 92%);
+  }
+
+  .hpd-inner {
+    padding-inline: 0;
+  }
+
+  .hpd-section.dark .hpd-inner {
+    padding-inline: 0;
+  }
+
+  .rv-score-row {
+    margin-inline: 0;
+  }
+
+  .compact-reviews-head,
+  .loc-compact-head,
+  .home-blog-head,
+  .brand-showcase-head,
+  .wtrust-head,
+  .mood-header {
+    padding-inline: 0;
+  }
+
+  .footer-top {
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-cinema-center {
+    width: 92% !important;
+  }
+
+  .wtrust-grid {
+    margin-inline: calc(50% - 50vw) !important;
+    padding-inline: max(0.9rem, 4vw) !important;
+  }
+
+  .developers-projects .developer-grid {
+    margin-inline: calc(50% - 50vw) !important;
+    padding-inline: max(0.9rem, 4vw) !important;
+  }
+}
