@@ -118,7 +118,7 @@
       updateBrandShowcase(index);
     });
 
-    // Native overflow scroll handles mobile swipe; only add light mouse-drag.
+    // Native overflow scroll handles mobile swipe; only add light mouse-drag on fine pointers.
     var isDown = false;
     var startX = 0;
     var startScroll = 0;
@@ -126,6 +126,7 @@
 
     tabsRoot.addEventListener("mousedown", function (e) {
       if (window.innerWidth > 768 || e.button !== 0) return;
+      if (window.matchMedia("(pointer: coarse)").matches) return;
       isDown = true;
       moved = false;
       startX = e.clientX;

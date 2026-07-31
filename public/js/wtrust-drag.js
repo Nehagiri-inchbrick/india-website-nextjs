@@ -1,6 +1,6 @@
 (function () {
-  function initWtrustDrag() {
-    var track = document.querySelector(".wtrust-grid");
+  /** Mouse-only drag helper. Touch uses native overflow scroll. */
+  function enableMouseDrag(track) {
     if (!track || track.dataset.dragReady === "1") return;
     track.dataset.dragReady = "1";
 
@@ -9,78 +9,60 @@
     var startScroll = 0;
     var moved = false;
 
-    function onDown(clientX) {
-      isDown = true;
-      moved = false;
-      startX = clientX;
-      startScroll = track.scrollLeft;
-      track.classList.add("is-dragging");
-    }
-
-    function onMove(clientX, e) {
-      if (!isDown) return;
-      var dx = clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      track.scrollLeft = startScroll - dx;
-      if (e && e.cancelable && moved) e.preventDefault();
-    }
-
-    function onUp() {
-      if (!isDown) return;
-      isDown = false;
-      track.classList.remove("is-dragging");
-    }
-
     track.addEventListener("mousedown", function (e) {
       if (e.button !== 0) return;
-      onDown(e.clientX);
+      // Touch devices already scroll natively — skip custom drag there.
+      if (window.matchMedia("(pointer: coarse)").matches) return;
+      isDown = true;
+      moved = false;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
     });
 
     window.addEventListener("mousemove", function (e) {
-      onMove(e.clientX, e);
+      if (!isDown) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 6) {
+        moved = true;
+        track.classList.add("is-dragging");
+      }
+      if (!moved) return;
+      track.scrollLeft = startScroll - dx;
+      e.preventDefault();
     });
 
-    window.addEventListener("mouseup", onUp);
-
-    track.addEventListener(
-      "touchstart",
-      function (e) {
-        if (!e.touches || !e.touches.length) return;
-        onDown(e.touches[0].clientX);
-      },
-      { passive: true }
-    );
-
-    track.addEventListener(
-      "touchmove",
-      function (e) {
-        if (!e.touches || !e.touches.length) return;
-        onMove(e.touches[0].clientX, e);
-      },
-      { passive: false }
-    );
-
-    track.addEventListener("touchend", onUp);
-    track.addEventListener("touchcancel", onUp);
+    window.addEventListener("mouseup", function () {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove("is-dragging");
+    });
 
     track.addEventListener(
       "click",
       function (e) {
-        if (moved) {
-          e.preventDefault();
-          e.stopPropagation();
-          moved = false;
-        }
+        if (!moved) return;
+        e.preventDefault();
+        e.stopPropagation();
+        moved = false;
       },
       true
     );
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initWtrustDrag);
-  } else {
-    initWtrustDrag();
+  function init() {
+    document
+      .querySelectorAll(
+        ".wtrust-grid, .sp-features, .ls-grid, .developers-projects .developer-grid, .compact-review-list, .rv-video-grid, .mood-slider-viewport, .client-carousel-viewport"
+      )
+      .forEach(enableMouseDrag);
   }
 
-  window.addEventListener("html-page-scripts-ready", initWtrustDrag);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  window.addEventListener("html-page-scripts-ready", init);
+  window.__inchbrickInitHorizontalDrag = init;
 })();

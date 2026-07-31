@@ -404,7 +404,7 @@
     scroll-padding-inline: 3vw;
     scrollbar-width: none;
     cursor: grab;
-    touch-action: pan-x;
+    overscroll-behavior-x: contain;
   }
 
   .sp-features::-webkit-scrollbar {
@@ -415,10 +415,6 @@
     cursor: grabbing;
     scroll-snap-type: none;
     user-select: none;
-  }
-
-  .sp-features.is-dragging * {
-    pointer-events: none;
   }
 
   .sp-feature {

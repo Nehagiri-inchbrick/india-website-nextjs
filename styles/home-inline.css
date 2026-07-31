@@ -10230,8 +10230,8 @@
         scroll-snap-type: x mandatory;
         scroll-padding-inline: calc(50% - 70px);
         scrollbar-width: none;
-        touch-action: pan-x;
         cursor: grab;
+        overscroll-behavior-x: contain;
       }
 
       .developers-projects .developer-grid::-webkit-scrollbar {
@@ -13922,8 +13922,8 @@
             scroll-snap-type: x mandatory;
             scroll-padding-inline: 4vw;
             scrollbar-width: none;
-            touch-action: pan-x;
             cursor: grab;
+            overscroll-behavior-x: contain;
           }
 
           .wtrust-grid::-webkit-scrollbar {
@@ -13934,10 +13934,6 @@
             cursor: grabbing;
             scroll-snap-type: none;
             user-select: none;
-          }
-
-          .wtrust-grid.is-dragging * {
-            pointer-events: none;
           }
 
           .wtrust-item {
