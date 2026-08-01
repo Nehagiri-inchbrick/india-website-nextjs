@@ -67,10 +67,26 @@
     return "/listings?q=" + encodeURIComponent(p.name || "");
   }
 
-  function cardHtml(p, i) {
-    var postedBy = ["Dealer", "Builder", "Owner", "Agent"];
-    var dates = ["07th Jul, 2026", "12th Jun, 2026", "28th May, 2026", "03rd Jul, 2026"];
-    var idx = typeof i === "number" ? i : 0;
+  function statusClass(status) {
+    var s = String(status || "").toLowerCase();
+    if (s.indexOf("ready") !== -1) return "is-ready";
+    if (s.indexOf("new") !== -1) return "is-new";
+    if (s.indexOf("under") !== -1) return "is-uc";
+    return "";
+  }
+
+  function cardHtml(p) {
+    var amenities = Array.isArray(p.amenities) ? p.amenities.slice(0, 3) : [];
+    var amenityHtml = amenities.length
+      ? '<ul class="pj-card-amenities">' +
+        amenities
+          .map(function (a) {
+            return "<li>" + esc(a) + "</li>";
+          })
+          .join("") +
+        "</ul>"
+      : "";
+
     return (
       '<a class="pj-card" href="' +
       cardHref(p) +
@@ -83,34 +99,49 @@
       '" alt="' +
       esc(p.name) +
       '" loading="lazy">' +
-      '<span class="pj-card-verified"><i class="fas fa-circle-check"></i> Verified <i class="fas fa-circle-info"></i></span>' +
+      (p.tag
+        ? '<span class="pj-card-tag">' + esc(p.tag) + "</span>"
+        : "") +
+      '<span class="pj-card-verified"><i class="fas fa-circle-check"></i> RERA guided</span>' +
       '<button type="button" class="pj-card-wish" aria-label="Save project"><i class="far fa-heart"></i></button>' +
-      '<span class="pj-card-media-ico" aria-hidden="true"><i class="fas fa-video"></i></span>' +
       '<span class="pj-card-price pj-card-price--media">' +
       esc(p.price) +
       "</span>" +
       "</div>" +
       '<div class="pj-card-body">' +
+      '<div class="pj-card-top">' +
+      '<span class="pj-card-dev">' +
+      esc(p.developer || "Developer") +
+      "</span>" +
+      '<span class="pj-card-status ' +
+      statusClass(p.status) +
+      '">' +
+      esc(p.status || "") +
+      "</span>" +
+      "</div>" +
       '<div class="pj-card-title-row">' +
       '<h3 class="pj-card-title">' +
-      esc(titleLine(p)) +
+      esc(p.name) +
       "</h3>" +
       '<span class="pj-card-price pj-card-price--inline">' +
       esc(p.price) +
       "</span>" +
       "</div>" +
-      '<p class="pj-card-loc">In <strong>' +
-      esc(p.name) +
-      "</strong>, " +
-      esc(p.location) +
+      '<p class="pj-card-loc"><i class="fas fa-location-dot" aria-hidden="true"></i> ' +
+      esc(p.location || p.city) +
       "</p>" +
+      '<ul class="pj-card-meta">' +
+      (p.bhk ? "<li><strong>Config</strong><span>" + esc(p.bhk) + "</span></li>" : "") +
+      (p.size ? "<li><strong>Size</strong><span>" + esc(p.size) + "</span></li>" : "") +
+      "</ul>" +
+      amenityHtml +
       '<div class="pj-card-foot">' +
-      "<span>Posted by " +
-      postedBy[idx % postedBy.length] +
-      "</span>" +
-      "<span>" +
-      dates[idx % dates.length] +
-      "</span>" +
+      (p.rera
+        ? '<span class="pj-card-rera"><i class="fas fa-shield-halved" aria-hidden="true"></i> RERA ' +
+          esc(p.rera) +
+          "</span>"
+        : "<span>Curated project</span>") +
+      '<span class="pj-card-cta">View details <i class="fas fa-arrow-right" aria-hidden="true"></i></span>' +
       "</div></div></a>"
     );
   }
@@ -136,6 +167,10 @@
       p.bhk,
       p.status,
       p.tag,
+      p.rera,
+      p.possession,
+      p.size,
+      Array.isArray(p.amenities) ? p.amenities.join(" ") : "",
     ]
       .join(" ")
       .toLowerCase();
@@ -355,8 +390,37 @@
     }
   }
 
+  function populateStats() {
+    var data = getData();
+    var total = document.querySelector('[data-pj-stat="total"]');
+    var cities = document.querySelector('[data-pj-stat="cities"]');
+    var devs = document.querySelector('[data-pj-stat="devs"]');
+    if (total) total.textContent = data.length + "+";
+    if (cities) {
+      cities.textContent =
+        Array.from(
+          new Set(
+            data.map(function (p) {
+              return p.city;
+            })
+          )
+        ).filter(Boolean).length + "+";
+    }
+    if (devs) {
+      devs.textContent =
+        Array.from(
+          new Set(
+            data.map(function (p) {
+              return p.developer;
+            })
+          )
+        ).filter(Boolean).length + "+";
+    }
+  }
+
   function init() {
     populateCities();
+    populateStats();
     bind();
     render();
     updateFilterDots();

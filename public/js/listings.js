@@ -42,6 +42,22 @@
     });
   }
 
+  function populateSideStats() {
+    const total = document.querySelector('[data-ls-stat="total"]');
+    const cities = document.querySelector('[data-ls-stat="cities"]');
+    const types = document.querySelector('[data-ls-stat="types"]');
+    if (total) total.textContent = allProperties.length + "+";
+    if (cities) {
+      cities.textContent =
+        [...new Set(allProperties.map((p) => p.city).filter(Boolean))].length + "+";
+    }
+    if (types) {
+      types.textContent = String(
+        [...new Set(allProperties.map((p) => p.type).filter(Boolean))].length
+      );
+    }
+  }
+
   function readForm() {
     filters.city = filterCity?.value || "";
     filters.type = filterType?.value || "";
@@ -358,6 +374,7 @@
   }
 
   initCityOptions();
+  populateSideStats();
   applyFormToUI();
   if (filters.mood && filterMood) filterMood.value = filters.mood;
 
