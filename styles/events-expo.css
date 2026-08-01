@@ -2160,53 +2160,293 @@ body.ex-page .html-body-page {
 }
 
 /* ── TESTIMONIALS ── */
-.ex-quote-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.15rem;
+.ex-stories {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 45% 35% at 100% 0%, rgba(194, 154, 99, 0.12), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 0% 100%, rgba(15, 35, 57, 0.04), transparent 50%),
+    linear-gradient(180deg, #f7f5f1 0%, #f0eee9 100%);
 }
 
-#ex-stories {
-  background: #eef1f5;
+.ex-stories-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(15, 35, 57, 0.12) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
 }
+
+.ex-stories > .ex-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.ex-stories-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+
+.ex-stories-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.55rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ex-stories-kicker-line {
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.ex-stories-kicker-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.ex-stories-head h2 {
+  margin: 0 0 0.5rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.85rem, 3.6vw, 2.55rem);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.ex-stories-head h2 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.ex-stories-head p {
+  margin: 0 auto;
+  max-width: 32rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--slate);
+}
+
+.ex-quote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
 .ex-quote {
+  position: relative;
   margin: 0;
   background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1.5rem 1.35rem;
-  box-shadow: 0 10px 28px rgba(15, 35, 57, 0.05);
+  border: 1px solid rgba(15, 35, 57, 0.06);
+  border-radius: 22px;
+  padding: 1.45rem 1.35rem 1.25rem;
+  box-shadow: 0 14px 36px rgba(15, 35, 57, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1rem;
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
+
+.ex-quote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), transparent 85%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.ex-quote:hover {
+  transform: translateY(-5px);
+  border-color: rgba(194, 154, 99, 0.35);
+  box-shadow: 0 22px 44px rgba(15, 35, 57, 0.1);
+}
+
+.ex-quote:hover::before { opacity: 1; }
+
+.ex-quote.is-featured {
+  background: linear-gradient(165deg, #0f2339 0%, #16304a 100%);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 18px 42px rgba(15, 35, 57, 0.22);
+}
+
+.ex-quote.is-featured::before {
+  opacity: 1;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+}
+
+.ex-quote.is-featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px rgba(15, 35, 57, 0.28);
+}
+
+.ex-quote-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ex-quote-mark {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 3.4rem;
+  font-weight: 700;
+  line-height: 0.7;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.ex-quote.is-featured .ex-quote-mark {
+  color: var(--gold-soft);
+}
+
+.ex-quote-stars {
+  display: inline-flex;
+  gap: 0.18rem;
+  color: var(--gold);
+  font-size: 0.68rem;
+  padding-top: 0.2rem;
+}
+
+.ex-quote.is-featured .ex-quote-stars {
+  color: var(--gold-soft);
+}
+
 .ex-quote p {
   margin: 0;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.05rem;
+  font-size: clamp(1.02rem, 1.5vw, 1.12rem);
   font-style: italic;
   line-height: 1.55;
   color: var(--navy);
+  flex: 1;
 }
+
+.ex-quote.is-featured p {
+  color: rgba(255, 255, 255, 0.92);
+}
+
 .ex-quote footer {
   display: grid;
-  gap: 0.15rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
   margin-top: auto;
-  padding-top: 0.85rem;
+  padding-top: 1rem;
   border-top: 1px solid #eef2f7;
 }
+
+.ex-quote.is-featured footer {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.ex-quote-avatar {
+  width: 2.45rem;
+  height: 2.45rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(194, 154, 99, 0.14);
+  color: var(--navy);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.ex-quote.is-featured .ex-quote-avatar {
+  background: rgba(194, 154, 99, 0.22);
+  color: var(--gold-soft);
+}
+
+.ex-quote footer > div {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+
 .ex-quote strong {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 800;
   color: var(--navy);
   font-style: normal;
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.ex-quote span {
-  font-size: 0.78rem;
+
+.ex-quote.is-featured strong {
+  color: #fff;
+}
+
+.ex-quote footer span:not(.ex-quote-avatar):not(.ex-quote-city) {
+  font-size: 0.72rem;
   color: var(--slate);
   font-style: normal;
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ex-quote.is-featured footer span:not(.ex-quote-avatar):not(.ex-quote-city) {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.ex-quote-city {
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(194, 154, 99, 0.12);
+  color: var(--gold);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ex-quote.is-featured .ex-quote-city {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gold-soft);
+}
+
+@media (max-width: 900px) {
+  .ex-quote-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .ex-quote.is-featured {
+    order: -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ex-quote { transition: none; }
+  .ex-quote:hover,
+  .ex-quote.is-featured:hover { transform: none; }
 }
 
 /* ── FAQ ── */
@@ -2771,14 +3011,12 @@ body.ex-page .html-body-page {
 
 @media (max-width: 900px) {
   .ex-why-grid,
-  .ex-steps,
-  .ex-quote-grid { grid-template-columns: 1fr 1fr; }
+  .ex-steps { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 560px) {
   .ex-why-grid,
-  .ex-steps,
-  .ex-quote-grid { grid-template-columns: 1fr; }
+  .ex-steps { grid-template-columns: 1fr; }
 }
 
 /* ── MODAL ── */
