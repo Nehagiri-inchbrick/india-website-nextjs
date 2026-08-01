@@ -219,7 +219,7 @@ window.EVENTS_DATA = [
     time: "10:00 AM – 8:00 PM",
     venue: "Jio World Convention Centre",
     address: "Bandra Kurla Complex, Mumbai, Maharashtra 400051",
-    img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=90",
+    img: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=1200&q=90",
     excerpt: "India's flagship domestic expo — 150+ projects, 20+ developers, and live launch events across Mumbai & Pune corridors.",
     description: [
       "The Mumbai edition is Inchbrick's largest domestic expo. End-users and investors can compare projects across MMR, Pune, and Goa in a single venue.",

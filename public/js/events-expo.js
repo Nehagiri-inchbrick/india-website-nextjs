@@ -46,18 +46,27 @@
     return '<span>' + escapeHtml(city) + '</span> ' + escapeHtml(rest);
   }
 
+  function shortBannerSub(event) {
+    var text = String(event.excerpt || event.description || '').trim();
+    if (Array.isArray(event.description) && event.description[0]) {
+      text = String(event.description[0]).trim();
+    }
+    if (!text) return 'Meet top developers live at India\'s flagship overseas property expo.';
+    var cut = text.split(/[.!?]/)[0].trim();
+    if (cut.length > 110) cut = cut.slice(0, 107).trim() + '…';
+    return cut + (/[.!?]$/.test(cut) ? '' : '.');
+  }
+
   function renderBanner(event) {
     var img = document.getElementById('exBannerImg');
     var kicker = document.getElementById('exBannerKicker');
     var title = document.getElementById('exBannerTitle');
     var sub = document.getElementById('exBannerSub');
     var meta = document.getElementById('exBannerMeta');
-    var stats = document.getElementById('exBannerStats');
     var registerBtn = document.getElementById('exBannerRegister');
     var detailLink = document.getElementById('exBannerDetail');
 
     if (!event) {
-      // Fallback: next upcoming becomes the banner focus
       event = upcoming[0] || past[0];
       if (!event) return;
       if (kicker) {
@@ -70,7 +79,7 @@
       kicker.classList.remove('is-upcoming');
       kicker.innerHTML =
         '<span class="ex-dot-live"></span> ' +
-        escapeHtml((event.city || 'Live') + ' · ' + (event.statusLabel || 'Live Now'));
+        escapeHtml(event.statusLabel || 'Live Now');
     }
 
     if (img) {
@@ -79,21 +88,12 @@
     }
     setBannerVideo(event);
     if (title) title.innerHTML = formatBannerTitle(event);
-    if (sub) sub.textContent = event.excerpt || '';
+    if (sub) sub.textContent = shortBannerSub(event);
 
     if (meta) {
       meta.innerHTML =
         '<li><i class="far fa-calendar" aria-hidden="true"></i> <span>' + escapeHtml(event.dateLabel || '') + '</span></li>' +
-        '<li><i class="far fa-clock" aria-hidden="true"></i> <span>' + escapeHtml(event.time || '') + '</span></li>' +
-        '<li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>' + escapeHtml(event.venue || '') + '</span></li>';
-    }
-
-    if (stats && event.stats) {
-      var labels = { projects: 'Projects', developers: 'Developers', visitors: 'Visitors', booths: 'Booths' };
-      stats.innerHTML = Object.keys(labels).map(function (key) {
-        if (!event.stats[key]) return '';
-        return '<div class="ex-banner-stat"><strong>' + escapeHtml(event.stats[key]) + '</strong><span>' + labels[key] + '</span></div>';
-      }).join('');
+        '<li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>' + escapeHtml(event.venue || event.city || '') + '</span></li>';
     }
 
     if (registerBtn) registerBtn.setAttribute('data-event', event.slug);
@@ -246,6 +246,28 @@
     return rest || 'Property Expo';
   }
 
+  var MONTH_ICONS = {
+    all: 'fa-calendar-alt',
+    '01': 'fa-snowflake',
+    '02': 'fa-heart',
+    '03': 'fa-seedling',
+    '04': 'fa-cloud-sun',
+    '05': 'fa-spa',
+    '06': 'fa-sun',
+    '07': 'fa-umbrella-beach',
+    '08': 'fa-ship',
+    '09': 'fa-leaf',
+    '10': 'fa-tree',
+    '11': 'fa-wind',
+    '12': 'fa-star'
+  };
+
+  function monthIconOf(key) {
+    if (!key || key === 'all') return MONTH_ICONS.all;
+    var mm = String(key).split('-')[1] || '';
+    return MONTH_ICONS[mm] || 'fa-calendar-day';
+  }
+
   function buildMonthTabs() {
     var counts = {};
     upcoming.forEach(function (e) {
@@ -253,7 +275,7 @@
       counts[key] = (counts[key] || 0) + 1;
     });
     var keys = Object.keys(counts).filter(function (k) { return k !== 'unknown'; }).sort();
-    if (!keys.length) return [{ key: 'all', label: 'All', count: upcoming.length }];
+    if (!keys.length) return [{ key: 'all', label: 'All Months', count: upcoming.length }];
 
     return [{ key: 'all', label: 'All Months', count: upcoming.length }].concat(keys.map(function (key) {
       return {
@@ -271,31 +293,35 @@
 
   function timelineCard(e, i) {
     var isLive = e.status === 'live';
+    var isNext = i === 0;
     var region = getRegion(e);
     var regionShort = REGION_SHORT[region] || 'GLOBAL';
     var parts = parseDateParts(e);
     var titleRest = eventTitleRest(e);
+    var ctaLabel = isLive || isNext ? 'Register Now' : 'VIP Pass';
 
     return (
-      '<li class="ex-cal-card' + (isLive ? ' is-live' : '') + (i === 0 ? ' is-next' : '') + '">' +
+      '<li class="ex-cal-card' + (isLive ? ' is-live' : '') + (isNext ? ' is-next' : '') + '">' +
         '<a class="ex-cal-link" href="' + DETAIL_URL(e.slug) + '">' +
           '<div class="ex-cal-date" aria-hidden="true">' +
             '<strong>' + escapeHtml(parts.days || '—') + '</strong>' +
             '<span>' + escapeHtml(parts.month || '') + '</span>' +
           '</div>' +
-          '<div class="ex-cal-info">' +
+          '<div class="ex-cal-body">' +
+            '<span class="ex-cal-mark" aria-hidden="true"></span>' +
             '<div class="ex-cal-top">' +
               '<span class="ex-cal-region">' + escapeHtml(regionShort) + '</span>' +
               (isLive ? '<span class="ex-cal-live">Live</span>' : '') +
             '</div>' +
             '<h3>' + escapeHtml(e.city || e.name || 'Expo') + '</h3>' +
             '<p class="ex-cal-name">' + escapeHtml(titleRest) + '</p>' +
-            '<span class="ex-cal-country">' + escapeHtml(e.country || '') + '</span>' +
+            '<span class="ex-cal-country"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>' +
+              escapeHtml(String(e.country || '').toUpperCase()) +
+            '</span>' +
           '</div>' +
-          '<span class="ex-cal-go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>' +
         '</a>' +
-        '<button type="button" class="ex-cal-pass openRegisterModalBtn" data-event="' + escapeHtml(e.slug) + '">' +
-          (isLive ? 'Register' : 'VIP Pass') +
+        '<button type="button" class="ex-cal-pass' + ((isLive || isNext) ? ' is-primary' : '') + ' openRegisterModalBtn" data-event="' + escapeHtml(e.slug) + '">' +
+          escapeHtml(ctaLabel) +
         '</button>' +
       '</li>'
     );
@@ -309,10 +335,15 @@
       ui.monthKey = 'all';
     }
     wrap.innerHTML = tabs.map(function (tab) {
+      var icon = monthIconOf(tab.key);
+      var countLabel = String(tab.count).padStart(2, '0') + ' ' + (tab.count === 1 ? 'city' : 'cities');
       return (
         '<button type="button" class="ex-cal-month' + (tab.key === ui.monthKey ? ' is-active' : '') + '" data-month="' + tab.key + '" role="tab" aria-selected="' + (tab.key === ui.monthKey) + '">' +
-          '<strong>' + escapeHtml(tab.label) + '</strong>' +
-          '<span>' + String(tab.count).padStart(2, '0') + ' ' + (tab.count === 1 ? 'city' : 'cities') + '</span>' +
+          '<i class="fas ' + icon + '" aria-hidden="true"></i>' +
+          '<span class="ex-cal-month-txt">' +
+            '<strong>' + escapeHtml(tab.label) + '</strong>' +
+            '<span>' + countLabel + '</span>' +
+          '</span>' +
         '</button>'
       );
     }).join('');
@@ -324,11 +355,16 @@
     var hint = document.getElementById('exTlHint');
     var sub = document.getElementById('exUpcomingSub');
     var reserve = document.getElementById('exCalReserve');
+    var citiesStat = document.getElementById('exStatCities');
 
     if (sub) {
       sub.textContent = upcoming.length
         ? 'Plan your city stop. Switch months to explore ' + upcoming.length + ' investor expos worldwide.'
         : 'Follow our global calendar — register early for priority VIP access.';
+    }
+
+    if (citiesStat) {
+      citiesStat.textContent = upcoming.length + (upcoming.length === 1 ? ' City' : ' Cities');
     }
 
     if (!root) return;
@@ -360,100 +396,90 @@
     renderUpcoming();
   }
 
-  /* ── Past events (featured journey) ── */
+  /* ── Past events (journey cards carousel) ── */
   var pastList = [];
-  var pastActive = 0;
 
-  function yearOf(e) {
-    var match = String(e.dateLabel || '').match(/\d{4}/);
-    return match ? match[0] : (e.dateLabel || '');
-  }
-
-  function renderPastYears() {
-    var years = document.getElementById('exPastYears');
-    if (!years) return;
-    years.innerHTML = pastList.map(function (e, i) {
-      return (
-        '<li class="ex-past-year-item">' +
-          '<button type="button" class="ex-past-year-btn' + (i === pastActive ? ' is-active' : '') + '" data-idx="' + i + '">' +
-            '<span class="ex-past-year-label">' + escapeHtml(yearOf(e)) + '</span>' +
-            '<span class="ex-past-year-dot" aria-hidden="true"></span>' +
-          '</button>' +
-        '</li>'
-      );
-    }).join('');
-  }
-
-  function pastStatCell(icon, value, label) {
-    if (!value) return '';
-    return (
-      '<div class="ex-pf-stat">' +
-        '<span class="ex-pf-stat-ico" aria-hidden="true"><i class="fas ' + icon + '"></i></span>' +
-        '<div><strong>' + escapeHtml(value) + '</strong><span>' + escapeHtml(label) + '</span></div>' +
-      '</div>'
-    );
-  }
-
-  function renderPastFeature() {
-    var wrap = document.getElementById('exPastFeature');
-    if (!wrap) return;
-
-    if (!pastList.length) {
-      wrap.innerHTML = '<p class="ex-past-empty">Past expo highlights will appear here soon.</p>';
-      return;
+  function pastDateBadge(e) {
+    var label = String(e.dateLabel || '');
+    var monthMatch = label.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*/i);
+    var yearMatch = label.match(/\d{4}/);
+    if (monthMatch && yearMatch) {
+      return monthMatch[1].slice(0, 3).toUpperCase() + ' ' + yearMatch[0];
     }
-
-    var e = pastList[pastActive] || pastList[0];
-    var location = (e.city || '') + (e.country ? ', ' + e.country : '');
-    var stats = e.stats || {};
-    var highlights = Array.isArray(e.highlights) ? e.highlights.slice(0, 3) : [];
-    var isLatest = pastActive === 0;
-
-    wrap.innerHTML =
-      '<article class="ex-pf-card">' +
-        '<div class="ex-pf-media">' +
-          '<img src="' + escapeHtml(e.img) + '" alt="' + escapeHtml(e.name || e.city || 'Past expo') + '" loading="lazy">' +
-          (isLatest ? '<span class="ex-pf-latest"><i class="fas fa-star" aria-hidden="true"></i> Latest</span>' : '') +
-          '<div class="ex-pf-statbar">' +
-            pastStatCell('fa-users', stats.visitors, 'Visitors') +
-            pastStatCell('fa-building', stats.developers, 'Developers') +
-            pastStatCell('fa-globe', stats.projects, 'Projects Showcased') +
-          '</div>' +
-        '</div>' +
-        '<div class="ex-pf-body">' +
-          '<div class="ex-pf-meta">' +
-            '<span><i class="far fa-calendar" aria-hidden="true"></i> ' + escapeHtml(e.dateLabel || '') + '</span>' +
-            '<span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ' + escapeHtml(location) + '</span>' +
-          '</div>' +
-          '<h3>' + escapeHtml(e.name || (e.city + ' Property Expo')) + '</h3>' +
-          '<p class="ex-pf-venue"><i class="fas fa-location-dot" aria-hidden="true"></i> ' + escapeHtml(e.venue || '') + '</p>' +
-          '<p class="ex-pf-desc">' + escapeHtml(e.description || e.excerpt || '') + '</p>' +
-          (highlights.length
-            ? '<span class="ex-pf-hl-label">Highlights</span>' +
-              '<ul class="ex-pf-hl">' +
-                highlights.map(function (h) {
-                  return '<li><i class="fas fa-circle-check" aria-hidden="true"></i> ' + escapeHtml(h) + '</li>';
-                }).join('') +
-              '</ul>'
-            : '') +
-          '<a class="ex-pf-cta" href="' + DETAIL_URL(e.slug) + '">View Recap <i class="fas fa-arrow-right" aria-hidden="true"></i></a>' +
-        '</div>' +
-      '</article>';
+    if (e.dateStart) {
+      var d = new Date(e.dateStart + 'T12:00:00');
+      if (!isNaN(d.getTime())) {
+        var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        return months[d.getMonth()] + ' ' + d.getFullYear();
+      }
+    }
+    return label.toUpperCase();
   }
 
-  function setPastActive(index) {
-    if (!pastList.length) return;
-    var n = pastList.length;
-    pastActive = ((index % n) + n) % n;
-    renderPastYears();
-    renderPastFeature();
+  function pastLocation(e) {
+    var parts = [];
+    if (e.city) parts.push(String(e.city).toUpperCase());
+    if (e.country) parts.push(String(e.country).toUpperCase());
+    return parts.join(', ');
+  }
+
+  function pastCard(e, i) {
+    var tone = i % 2 === 0 ? 'navy' : 'gold';
+    var num = String(i + 1).padStart(2, '0');
+    var title = e.name || ((e.city || 'City') + ' Property Expo');
+    return (
+      '<article class="ex-past-card tone-' + tone + '">' +
+        '<a class="ex-past-card-link" href="' + DETAIL_URL(e.slug) + '">' +
+          '<div class="ex-past-card-media">' +
+            '<img src="' + escapeHtml(e.img || '') + '" alt="' + escapeHtml(title) + '" loading="lazy" decoding="async">' +
+            '<span class="ex-past-card-tag">' +
+              '<strong>' + num + '</strong>' +
+              '<em>' + escapeHtml(pastDateBadge(e)) + '</em>' +
+            '</span>' +
+            '<span class="ex-past-card-dots" aria-hidden="true"><i></i><i></i><i></i></span>' +
+            '<span class="ex-past-card-loc"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>' +
+              escapeHtml(pastLocation(e)) +
+            '</span>' +
+          '</div>' +
+          '<div class="ex-past-card-body">' +
+            '<h3>' + escapeHtml(title) + '</h3>' +
+            (e.venue
+              ? '<p class="ex-past-card-venue"><i class="fas fa-building" aria-hidden="true"></i>' + escapeHtml(e.venue) + '</p>'
+              : '') +
+            '<span class="ex-past-card-go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>' +
+          '</div>' +
+        '</a>' +
+      '</article>'
+    );
   }
 
   function renderPast(list) {
     pastList = Array.isArray(list) ? list : [];
-    if (pastActive >= pastList.length) pastActive = 0;
-    renderPastYears();
-    renderPastFeature();
+    var wrap = document.getElementById('exPastFeature');
+    var track = document.getElementById('exPastTrack');
+    if (!wrap) return;
+
+    if (!track) {
+      wrap.innerHTML = '<div class="ex-past-track" id="exPastTrack"></div>';
+      track = document.getElementById('exPastTrack');
+    }
+    if (!track) return;
+
+    if (!pastList.length) {
+      track.innerHTML = '<p class="ex-past-empty">Past expo highlights will appear here soon.</p>';
+      return;
+    }
+
+    track.innerHTML = pastList.map(pastCard).join('');
+  }
+
+  function scrollPast(dir) {
+    var track = document.getElementById('exPastTrack');
+    if (!track) return;
+    var card = track.querySelector('.ex-past-card');
+    var gap = 20;
+    var step = card ? card.getBoundingClientRect().width + gap : 280;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
   }
 
   /* ── Modal event select ── */
@@ -501,26 +527,18 @@
     }
   }, 500);
 
-  /* Past events journey navigation */
+  /* Past events carousel navigation */
   var pastPrev = document.getElementById('exPastPrev');
   var pastNext = document.getElementById('exPastNext');
-  var pastYears = document.getElementById('exPastYears');
 
   if (pastPrev) {
     pastPrev.addEventListener('click', function () {
-      setPastActive(pastActive - 1);
+      scrollPast(-1);
     });
   }
   if (pastNext) {
     pastNext.addEventListener('click', function () {
-      setPastActive(pastActive + 1);
-    });
-  }
-  if (pastYears) {
-    pastYears.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-idx]');
-      if (!btn) return;
-      setPastActive(parseInt(btn.getAttribute('data-idx'), 10) || 0);
+      scrollPast(1);
     });
   }
 
@@ -624,6 +642,8 @@
     var track = document.getElementById('exGalTrack');
     var counter = document.getElementById('exGalCounter');
     var label = document.getElementById('exGalLabel');
+    var placeEl = document.getElementById('exGalPlace');
+    var giant = document.getElementById('exGalGiant');
     var thumbs = document.getElementById('exGalThumbs');
     var btnPrev = document.getElementById('exGalPrev');
     var btnNext = document.getElementById('exGalNext');
@@ -717,22 +737,31 @@
       stopAuto();
     };
 
-    function sceneLabel(slide) {
-      var title = slide.getAttribute('data-title') || '';
-      var place = slide.getAttribute('data-place') || '';
-      return place ? title + ' · ' + place : title;
+    function sceneTitle(slide) {
+      return slide.getAttribute('data-title') || '';
+    }
+
+    function scenePlace(slide) {
+      return slide.getAttribute('data-place') || '';
     }
 
     function buildThumbs() {
       if (!thumbs) return;
       thumbs.innerHTML = slides.map(function (slide, i) {
         var img = slide.querySelector('img');
-        var title = slide.getAttribute('data-title') || ('Scene ' + (i + 1));
+        var title = sceneTitle(slide) || ('Scene ' + (i + 1));
+        var place = scenePlace(slide);
         var src = img ? img.getAttribute('src') : '';
         return (
-          '<button type="button" data-i="' + i + '" data-num="' + pad(i + 1) + '" data-title="' + title.replace(/"/g, '&quot;') + '" aria-label="' + title + '"' +
-          (i === 0 ? ' class="is-active"' : '') + '>' +
-            '<img src="' + src + '" alt="">' +
+          '<button type="button" class="ex-gal-thumb' + (i === 0 ? ' is-active' : '') + '" data-i="' + i + '" role="tab" aria-selected="' + (i === 0) + '" aria-label="' + title.replace(/"/g, '&quot;') + '">' +
+            '<span class="ex-gal-thumb-num">' + pad(i + 1) + '</span>' +
+            '<span class="ex-gal-thumb-media">' +
+              '<img src="' + src + '" alt="">' +
+            '</span>' +
+            '<span class="ex-gal-thumb-copy">' +
+              '<strong>' + title.replace(/</g, '&lt;') + '</strong>' +
+              (place ? '<em>' + place.replace(/</g, '&lt;') + '</em>' : '') +
+            '</span>' +
           '</button>'
         );
       }).join('');
@@ -740,30 +769,53 @@
 
     function scrollThumbIntoView(btn) {
       if (!thumbs || !btn) return;
-      var left = btn.offsetLeft;
-      var right = left + btn.offsetWidth;
-      var viewLeft = thumbs.scrollLeft;
-      var viewRight = viewLeft + thumbs.clientWidth;
-      if (left < viewLeft) {
-        thumbs.scrollLeft = left - 8;
-      } else if (right > viewRight) {
-        thumbs.scrollLeft = right - thumbs.clientWidth + 8;
+      var isRow = window.matchMedia('(max-width: 960px)').matches;
+      if (isRow) {
+        var left = btn.offsetLeft;
+        var right = left + btn.offsetWidth;
+        var viewLeft = thumbs.scrollLeft;
+        var viewRight = viewLeft + thumbs.clientWidth;
+        if (left < viewLeft) thumbs.scrollLeft = left - 8;
+        else if (right > viewRight) thumbs.scrollLeft = right - thumbs.clientWidth + 8;
+      } else {
+        var top = btn.offsetTop;
+        var bottom = top + btn.offsetHeight;
+        var viewTop = thumbs.scrollTop;
+        var viewBottom = viewTop + thumbs.clientHeight;
+        if (top < viewTop) thumbs.scrollTop = top - 8;
+        else if (bottom > viewBottom) thumbs.scrollTop = bottom - thumbs.clientHeight + 8;
       }
     }
 
     function updateMeta(nextIndex) {
       if (counter) counter.textContent = pad(nextIndex + 1) + ' / ' + pad(total);
+      if (giant) {
+        giant.classList.add('is-flip');
+        window.setTimeout(function () {
+          giant.textContent = pad(nextIndex + 1);
+          giant.classList.remove('is-flip');
+        }, reducedMotion.matches ? 0 : 160);
+      }
       if (thumbs) {
         Array.prototype.forEach.call(thumbs.children, function (btn, i) {
-          btn.classList.toggle('is-active', i === nextIndex);
-          if (i === nextIndex && inView) scrollThumbIntoView(btn);
+          var on = i === nextIndex;
+          btn.classList.toggle('is-active', on);
+          btn.setAttribute('aria-selected', on ? 'true' : 'false');
+          if (on && inView) scrollThumbIntoView(btn);
         });
       }
       if (label) {
         label.classList.add('is-changing');
         window.setTimeout(function () {
-          label.textContent = sceneLabel(slides[nextIndex]);
+          label.textContent = sceneTitle(slides[nextIndex]);
           label.classList.remove('is-changing');
+        }, reducedMotion.matches ? 0 : 180);
+      }
+      if (placeEl) {
+        placeEl.classList.add('is-changing');
+        window.setTimeout(function () {
+          placeEl.textContent = scenePlace(slides[nextIndex]);
+          placeEl.classList.remove('is-changing');
         }, reducedMotion.matches ? 0 : 180);
       }
     }
@@ -824,7 +876,7 @@
 
     if (thumbs) {
       thumbs.addEventListener('click', function (e) {
-        var btn = e.target.closest('button[data-i]');
+        var btn = e.target.closest('.ex-gal-thumb, button[data-i]');
         if (!btn) return;
         goTo(parseInt(btn.getAttribute('data-i'), 10) || 0);
         resetAuto();
