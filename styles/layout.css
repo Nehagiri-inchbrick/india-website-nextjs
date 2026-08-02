@@ -641,6 +641,10 @@
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .header .header-login-link:hover {
@@ -902,19 +906,27 @@
   display: flex;
 }
 
-.header .header-more-menu a {
+.header .header-more-menu a,
+.header .header-more-menu button {
   display: flex;
   align-items: center;
+  width: 100%;
   min-height: 40px;
   padding: 0.55rem 0.75rem;
   border-radius: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
   color: #475569;
   font-size: 0.86rem;
   font-weight: 700;
   text-decoration: none;
 }
 
-.header .header-more-menu a:hover {
+.header .header-more-menu a:hover,
+.header .header-more-menu button:hover {
   background: #f8fafc;
   color: var(--layout-red);
 }
@@ -1094,6 +1106,84 @@
   font-size: 0.8rem;
   color: #64748b;
   padding-top: 1rem;
+}
+
+/* Mobile guest quick nav — app-style fixed bar (pre-login only) */
+.mobile-quick-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-quick-nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1200;
+    height: calc(58px + env(safe-area-inset-bottom, 0px));
+    padding: 0.35rem 0.4rem calc(0.35rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(15, 35, 57, 0.08);
+    box-shadow: 0 -8px 28px rgba(15, 35, 57, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  body.has-mobile-quick-nav {
+    padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.has-mobile-quick-nav .site-footer {
+    padding-bottom: 1.5rem;
+  }
+
+  .mobile-quick-nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.22rem;
+    min-width: 0;
+    padding: 0.2rem 0.15rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #64748b;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    transition: color 0.18s ease, background 0.18s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-quick-nav__link i {
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  .mobile-quick-nav__link span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-quick-nav__link.is-active {
+    color: var(--layout-red);
+    background: rgba(201, 36, 43, 0.06);
+  }
+
+  .mobile-quick-nav__link:active {
+    transform: scale(0.96);
+  }
+
+  body.header-nav-open .mobile-quick-nav {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 @media (max-width: 1280px) {

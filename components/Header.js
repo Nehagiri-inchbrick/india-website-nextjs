@@ -151,6 +151,34 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openNav, setOpenNav] = useState(null);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const syncAuth = () => {
+      try {
+        setLoggedIn(Boolean(localStorage.getItem('inchbrick-auth')));
+      } catch {
+        setLoggedIn(false);
+      }
+    };
+    syncAuth();
+    window.addEventListener('storage', syncAuth);
+    window.addEventListener('inchbrick-auth-change', syncAuth);
+    return () => {
+      window.removeEventListener('storage', syncAuth);
+      window.removeEventListener('inchbrick-auth-change', syncAuth);
+    };
+  }, []);
+
+  function handleLogout(e) {
+    e.preventDefault();
+    try {
+      localStorage.removeItem('inchbrick-auth');
+      window.dispatchEvent(new Event('inchbrick-auth-change'));
+    } catch {}
+    setMoreOpen(false);
+    setMenuOpen(false);
+  }
 
   // Active page mapping
   function getActiveKey() {
@@ -359,9 +387,15 @@ export default function Header() {
         {/* Actions */}
         <div className="nav-actions">
           <div className="header-actions-group">
-            <Link href="/auth#login" className="header-login-link">
-              Login
-            </Link>
+            {loggedIn ? (
+              <button type="button" className="header-login-link" onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
+              <Link href="/auth#login" className="header-login-link">
+                Login
+              </Link>
+            )}
           </div>
 
           <Link href="/contact" className="header-cta-btn">
@@ -395,8 +429,14 @@ export default function Header() {
           <div className={`header-more-menu${moreOpen ? ' open' : ''}`} id="headerMoreMenu">
             <a href="tel:+919876543210">+91 98765 43210</a>
             <a href="mailto:support@inchbrickrealty.com">support@inchbrickrealty.com</a>
-            <Link href="/auth#login">Login</Link>
-            <Link href="/auth#register">Register</Link>
+            {loggedIn ? (
+              <button type="button" onClick={handleLogout}>Logout</button>
+            ) : (
+              <>
+                <Link href="/auth#login">Login</Link>
+                <Link href="/auth#register">Register</Link>
+              </>
+            )}
             <Link href="/contact#contactForm" className="header-menu-callback">Get Callback</Link>
           </div>
         </div>

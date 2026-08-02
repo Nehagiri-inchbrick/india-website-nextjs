@@ -214,14 +214,24 @@
           btn.innerHTML = label;
           btn.disabled = false;
         }
-        const msg =
-          form.id === "forgotForm"
-            ? "If this email is registered, you will receive a reset link shortly. (Demo)"
-            : form.id === "registerForm"
-              ? "Account created (demo). Connect your backend to enable real signup."
-              : "This is a demo form. Connect your backend to enable this action.";
-        alert(msg);
-        if (form.id === "forgotForm") showView("login");
+        if (form.id === "forgotForm") {
+          alert("If this email is registered, you will receive a reset link shortly. (Demo)");
+          showView("login");
+          return;
+        }
+        try {
+          const emailInput =
+            form.querySelector("#loginEmail") ||
+            form.querySelector("#regEmail") ||
+            form.querySelector('input[type="email"]');
+          const payload = {
+            email: emailInput && emailInput.value ? emailInput.value.trim() : "demo@inchbrick.com",
+            at: Date.now(),
+          };
+          localStorage.setItem("inchbrick-auth", JSON.stringify(payload));
+          window.dispatchEvent(new Event("inchbrick-auth-change"));
+        } catch (_) {}
+        window.location.href = "/";
       }, 1000);
     });
   });
