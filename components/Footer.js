@@ -146,10 +146,18 @@ export default function Footer() {
                   <p><a href="mailto:support@inchbrickrealty.com">support@inchbrickrealty.com</a></p>
                 </div>
                 <div className="footer-social">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">yt</a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i className="fab fa-facebook-f" aria-hidden="true" />
+                  </a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i className="fab fa-instagram" aria-hidden="true" />
+                  </a>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <i className="fab fa-youtube" aria-hidden="true" />
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i className="fab fa-linkedin-in" aria-hidden="true" />
+                  </a>
                 </div>
               </div>
             </div>

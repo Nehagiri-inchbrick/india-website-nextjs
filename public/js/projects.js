@@ -418,12 +418,30 @@
     }
   }
 
+  function syncStickyOffsets() {
+    if (!window.matchMedia("(max-width: 900px)").matches) return;
+    var page = document.querySelector(".pj-page");
+    var side = document.querySelector(".pj-side");
+    var header = document.getElementById("header");
+    if (!page || !side) return;
+    var headerH = header ? Math.round(header.getBoundingClientRect().height) : 76;
+    var catsH = Math.round(side.getBoundingClientRect().height);
+    page.style.setProperty("--pj-sticky-header", headerH + "px");
+    page.style.setProperty("--pj-sticky-cats", catsH + "px");
+  }
+
   function init() {
     populateCities();
     populateStats();
     bind();
     render();
     updateFilterDots();
+    syncStickyOffsets();
+    if (!window.__pjStickyBound) {
+      window.__pjStickyBound = true;
+      window.addEventListener("resize", syncStickyOffsets);
+      window.addEventListener("orientationchange", syncStickyOffsets);
+    }
   }
 
   window.__inchbrickInitProjects = init;
