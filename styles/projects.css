@@ -1039,7 +1039,7 @@ body.pj-page .html-body-page {
 
   .pj-side {
     position: sticky;
-    top: var(--pj-sticky-header);
+    top: 0;
     z-index: 55;
     order: 1;
     gap: 0.7rem;
@@ -1656,7 +1656,7 @@ body.pj-page .html-body-page {
 @media (max-width: 640px) {
   .pj-page {
     --pj-sticky-header: 64px;
-    --pj-sticky-cats: 8.1rem;
+    --pj-sticky-cats: 4rem;
   }
 
   .pj-container {
