@@ -329,15 +329,12 @@ ul {
 .header .nav-dropdown--mega {
   min-width: min(897px, calc(100vw - 2rem));
   left: 50%;
+  transform: translateX(-42%) translateY(10px) scale(0.97);
 }
 
 .header .nav-item--mega:hover .nav-dropdown--mega,
 .header .nav-item--mega.open .nav-dropdown--mega {
   transform: translateX(-42%) translateY(0) scale(1);
-}
-
-.header .nav-item--mega .nav-dropdown--mega {
-  transform: translateX(-42%) translateY(10px) scale(0.97);
 }
 
 .header .nav-mega {

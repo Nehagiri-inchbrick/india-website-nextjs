@@ -14,7 +14,7 @@
 
 /* Header */
 .header {
-  /* position: sticky; */
+  position: relative;
   top: 0;
   z-index: 1100;
   background: rgba(255, 255, 255, 0.88);
@@ -361,15 +361,12 @@
 .header .nav-dropdown--mega {
   min-width: min(897px, calc(100vw - 2rem));
   left: 50%;
+  transform: translateX(-42%) translateY(10px) scale(0.97);
 }
 
 .header .nav-item--mega:hover .nav-dropdown--mega,
 .header .nav-item--mega.open .nav-dropdown--mega {
   transform: translateX(-42%) translateY(0) scale(1);
-}
-
-.header .nav-item--mega .nav-dropdown--mega {
-  transform: translateX(-42%) translateY(10px) scale(0.97);
 }
 
 .header .nav-mega {
@@ -454,15 +451,12 @@
 .header .nav-dropdown--services {
   min-width: min(720px, calc(100vw - 2rem));
   left: 50%;
+  transform: translateX(-55%) translateY(10px) scale(0.97);
 }
 
 .header .nav-item--services:hover .nav-dropdown--services,
 .header .nav-item--services.open .nav-dropdown--services {
   transform: translateX(-55%) translateY(0) scale(1);
-}
-
-.header .nav-item--services .nav-dropdown--services {
-  transform: translateX(-55%) translateY(10px) scale(0.97);
 }
 
 .header .nav-services {

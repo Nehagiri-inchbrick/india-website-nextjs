@@ -203,16 +203,27 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) return;
-    const close = (e) => {
-      if (!headerRef.current?.contains(e.target)) {
+    const handleOutsideClick = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) {
         setMenuOpen(false);
+        setOpenNav(null);
         setMoreOpen(false);
       }
     };
-    document.addEventListener('click', close);
-    return () => document.removeEventListener('click', close);
-  }, [menuOpen]);
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        setOpenNav(null);
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   function toggleMenuBtn(e) {
     e.stopPropagation();
@@ -236,11 +247,11 @@ export default function Header() {
   }
 
   function handleNavClick(key, e) {
-    if (!isMobile()) return;
-    const item = NAV_ITEMS.find(n => n.key === key);
+    const item = NAV_ITEMS.find((n) => n.key === key);
     if (!item?.dropdown && !item?.hasMega && !item?.hasServices) return;
     e.preventDefault();
-    setOpenNav(prev => prev === key ? null : key);
+    e.stopPropagation();
+    setOpenNav((prev) => (prev === key ? null : key));
   }
 
   return (
@@ -265,6 +276,11 @@ export default function Header() {
           className={`nav-links${menuOpen ? ' open' : ''}`}
           id="navLinks"
           aria-label="Main navigation"
+          onMouseLeave={() => {
+            if (!isMobile()) {
+              setOpenNav(null);
+            }
+          }}
           onClick={(e) => {
             if (e.target.closest('a[href]')) {
               setMenuOpen(false);
@@ -275,7 +291,7 @@ export default function Header() {
           {NAV_ITEMS.map((item) => {
             const isActive = activeKey === item.key;
             const isOpen = openNav === item.key;
-            const hasDropdown = item.dropdown || item.hasMega;
+            const hasDropdown = Boolean(item.dropdown || item.hasMega || item.hasServices);
             const isServices = item.hasServices;
 
             return (
@@ -283,6 +299,16 @@ export default function Header() {
                 key={item.key}
                 className={`nav-item${item.hasMega ? ' nav-item--mega' : ''}${isServices ? ' nav-item--services' : ''}${item.highlight ? ' nav-item--highlight' : ''}${isActive ? ' active' : ''}${isOpen ? ' open' : ''}`}
                 data-nav={item.key}
+                onMouseEnter={() => {
+                  if (!isMobile() && hasDropdown) {
+                    setOpenNav(item.key);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (!isMobile() && hasDropdown) {
+                    setOpenNav(null);
+                  }
+                }}
               >
                 {hasDropdown ? (
                   <button
