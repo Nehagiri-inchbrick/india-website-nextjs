@@ -1,0 +1,2259 @@
+
+  <div class="voice-tour-panel" id="voiceTourPanel">
+    <div class="voice-tour-actions">
+      <select id="voiceLangSelect" class="voice-lang-select" aria-label="Voice over language">
+        <option value="en">English</option>
+        <option value="hi">Ã Â¤Â¹Ã Â¤Â¿Ã Â¤Â¨Ã Â¥ÂÃ Â¤Â¦Ã Â¥â‚¬</option>
+        <option value="mr">Ã Â¤Â®Ã Â¤Â°Ã Â¤Â¾Ã Â¤Â Ã Â¥â‚¬</option>
+        <option value="gu">Ã Âªâ€”Ã Â«ÂÃ ÂªÅ“Ã ÂªÂ°Ã ÂªÂ¾Ã ÂªÂ¤Ã Â«â‚¬</option>
+        <option value="ta">Ã Â®Â¤Ã Â®Â®Ã Â®Â¿Ã Â®Â´Ã Â¯Â</option>
+        <option value="te">Ã Â°Â¤Ã Â±â€ Ã Â°Â²Ã Â±ÂÃ Â°â€”Ã Â±Â</option>
+        <option value="kn">Ã Â²â€¢Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â²Â¡</option>
+        <option value="bn">Ã Â¦Â¬Ã Â¦Â¾Ã Â¦â€šÃ Â¦Â²Ã Â¦Â¾</option>
+      </select>
+      <button type="button" class="voice-tour-btn" id="voicePlayBtn" aria-pressed="false" aria-label="Start voice tour">
+        <i class="fas fa-play" id="voicePlayIcon" aria-hidden="true"></i>
+        <span id="voicePlayLabel">Voice Tour</span>
+      </button>
+    </div>
+    <p class="voiceover-status" id="voiceoverStatus">Voice tour off · scroll to explore sections</p>
+  </div>
+
+  <div id="homeMain" data-html-main>
+    <section class="hero-cinema hero-housing" id="heroBanner" data-voice-label="Hero"
+      data-voice-text="Welcome to Inchbrick Realty. Discover India's finest properties. Buy, rent or invest in the best properties across top cities in India.">
+      <div class="hero-cinema-media" aria-hidden="true">
+        <video class="hero-cinema-video" id="heroBannerVideo" muted loop playsinline autoplay preload="auto"
+          poster="https://images.pexels.com/videos/3280311/pictures/preview-0.jpg">
+          <source src="https://cdn.pixabay.com/video/2022/03/16/110923-689949643_large.mp4"
+            type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-cinema-shade" aria-hidden="true"></div>
+
+      <div class="hero-cinema-center" id="heroSearchSection" data-voice-label="Search"
+        data-voice-text="Search properties to buy, rent, or invest. Enter a city, locality, or project name.">
+        <div class="hero-banner-brand">
+          <p class="hero-banner-tagline">Your Home. Your World. Your Way.</p>
+          <span class="hero-banner-divider" aria-hidden="true"></span>
+        </div>
+
+        <h1 class="hero-cinema-title">Discover India's<br><span>Finest Properties</span></h1>
+        <p class="hero-banner-subtitle">Buy, Rent or Invest in the best properties across top cities in India.</p>
+
+        <div class="hero-cinema-tabs" role="tablist" aria-label="Property search type">
+          <button class="hero-cinema-tab" type="button" role="tab" aria-selected="false" data-hero-tab="rent">
+            <i class="fas fa-building" aria-hidden="true"></i> Rent
+          </button>
+          <button class="hero-cinema-tab active" type="button" role="tab" aria-selected="true" data-hero-tab="buy">
+            <i class="fas fa-clipboard-list" aria-hidden="true"></i> Buy
+          </button>
+          <button class="hero-cinema-tab" type="button" role="tab" aria-selected="false" data-hero-tab="new">
+            <i class="fas fa-house-chimney" aria-hidden="true"></i> New Projects
+          </button>
+          <button class="hero-cinema-tab" type="button" role="tab" aria-selected="false" data-hero-tab="invest">
+            <i class="fas fa-chart-line" aria-hidden="true"></i> Invest
+          </button>
+        </div>
+
+        <form class="hero-cinema-search" onsubmit="event.preventDefault(); performPremiumSearch();">
+          <label class="visually-hidden" for="hero-search-input">City, locality, or project</label>
+          <div class="hero-search-combo">
+            <div class="hero-search-field">
+              <div class="hero-search-input-wrap city-search-wrap">
+                <i class="fas fa-location-dot" aria-hidden="true"></i>
+                <input class="hero-cinema-input" id="hero-search-input" type="text"
+                  placeholder="Try Mumbai, Dubai, Goa..." autocomplete="off">
+              </div>
+            </div>
+            <button class="hero-cinema-search-btn" type="submit">
+              <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+              <span>Search</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="hero-cinema-meta">
+          <div class="hero-housing-popular hero-cinema-trending">
+            <span>Trending</span>
+            <a href="/city?city=mumbai">Mumbai</a>
+            <a href="/city?city=bangalore">Bangalore</a>
+            <a href="/city?city=pune">Pune</a>
+            <a href="/city?city=hyderabad">Hyderabad</a>
+            <a href="/listings">Gurgaon</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mood-lifestyle-section" data-voice-label="Lifestyle" id="moodLifestyleSection"
+      data-voice-text="Find property by mood and lifestyle. Choose from family living, city life, beachside homes, peaceful retreats, work from home spaces, or smart investment options that match your vibe.">
+      <div class="container">
+        <div class="mood-header">
+          <p class="mood-kicker">Find Property By</p>
+          <h2>Curated Lifestyle Collections</h2>
+          <p>Everyone has a different idea of the perfect home. Tell us your vibe, and we will show you what fits.</p>
+          <a href="/lifestyle" class="mood-view-all">View all listings <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+
+        <!-- Slider wrapper -->
+        <div class="mood-slider-wrap">
+          <button class="mood-slider-btn mood-prev" id="moodPrev" aria-label="Previous">&#8249;</button>
+          <div class="mood-slider-viewport" id="moodViewport">
+            <div class="mood-cards-container" id="moodCards">
+              <a href="/lifestyle-detail?slug=spiritual" class="mood-card"
+                style="--mood-color: #5c9e5c; --mood-bg: #e6f0e6;" data-mood="spiritual">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=80"
+                  alt="Spiritual Living" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-om"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Spiritual Living</h3>
+                      <p>Peaceful spaces for inner harmony.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+              <a href="/lifestyle-detail?slug=second-home" class="mood-card"
+                style="--mood-color: #c99b5b; --mood-bg: #faeedd;" data-mood="second-home">
+                <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=700&q=80"
+                  alt="Second Home Seekers" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-house-user"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Second Home Seekers</h3>
+                      <p>Your perfect weekend getaway.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+              <a href="/lifestyle-detail?slug=luxury" class="mood-card"
+                style="--mood-color: #b9893f; --mood-bg: #f9f4ed;" data-mood="luxury">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=700&q=80"
+                  alt="Luxury Living" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-gem"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Luxury Living</h3>
+                      <p>Experience unparalleled elegance.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+              <a href="/lifestyle-detail?slug=waterfront" class="mood-card"
+                style="--mood-color: #4a8bcf; --mood-bg: #e6f0f9;" data-mood="waterfront">
+                <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=700&q=80"
+                  alt="Waterfront Living" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-water"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Waterfront Living</h3>
+                      <p>Sea-facing homes with coastal charm.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+              <a href="/lifestyle-detail?slug=family" class="mood-card"
+                style="--mood-color: #c89868; --mood-bg: #faeedd;" data-mood="family">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=700&q=80"
+                  alt="Family Living" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-users"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Family Living</h3>
+                      <p>Spacious homes for growing memories.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+              <a href="/lifestyle-detail?slug=wellness" class="mood-card"
+                style="--mood-color: #3d9970; --mood-bg: #e6f0e6;" data-mood="wellness">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=700&q=80"
+                  alt="Wellness Living" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-spa"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Wellness Living</h3>
+                      <p>Health-focused green townships.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+              <a href="/lifestyle-detail?slug=golf" class="mood-card"
+                style="--mood-color: #2d6a4f; --mood-bg: #e6f0e6;" data-mood="golf">
+                <img src="https://images.unsplash.com/photo-1587174485991-947173e6d088?auto=format&fit=crop&w=700&q=80"
+                  alt="Golf Communities" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-golf-ball-tee"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Golf Communities</h3>
+                      <p>Premier golf course estates.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+              <a href="/lifestyle-detail?slug=retirement" class="mood-card"
+                style="--mood-color: #8b68c8; --mood-bg: #ede6f9;" data-mood="retirement">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80"
+                  alt="Retirement Living" class="mood-image">
+                <div class="mood-card-overlay">
+                  <span class="mood-badge-icon"><i class="fas fa-person-cane"></i></span>
+                  <div class="mood-card-meta">
+                    <div class="mood-info">
+                      <h3>Retirement Living</h3>
+                      <p>Serene communities for golden years.</p>
+                    </div>
+                    <span class="mood-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <button class="mood-slider-btn mood-next" id="moodNext" aria-label="Next">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Top Cities -->
+    <section class="location-slider-section loc-compact" id="localities" data-voice-label="Top Cities"
+      data-voice-text="Explore prime areas across India's top cities including Mumbai, Bangalore, Pune, Delhi NCR, Hyderabad, and Chennai.">
+      <div class="container">
+        <div class="loc-compact-head">
+          <div class="loc-compact-head-copy">
+            <span class="loc-compact-kicker">Top Cities</span>
+            <h2 class="loc-compact-title">Explore <span>Prime Areas</span></h2>
+            <p class="loc-compact-sub">India's most sought-after property destinations.</p>
+          </div>
+          <a href="/city" class="loc-compact-link">View all cities <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="loc-city-grid">
+          <a href="/city?city=mumbai" class="loc-city-card">
+            <span class="loc-city-tag">Popular</span>
+            <div class="loc-city-icon loc-city-icon--mumbai"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c0 0-6 7.2-6 11a6 6 0 0 0 12 0c0-3.8-6-11-6-11z"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Mumbai</h4>
+              <p>Maharashtra</p>
+              <div class="loc-city-meta"><strong>₹ 1.2 Cr+</strong><span>1,240+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=bangalore" class="loc-city-card">
+            <span class="loc-city-tag">IT Hub</span>
+            <div class="loc-city-icon loc-city-icon--bangalore"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/><path d="M8 10l2 2-2 2"/><path d="M16 10l-2 2 2 2"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Bangalore</h4>
+              <p>Karnataka</p>
+              <div class="loc-city-meta"><strong>₹ 85 L+</strong><span>980+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=pune" class="loc-city-card">
+            <span class="loc-city-tag">Growth</span>
+            <div class="loc-city-icon loc-city-icon--pune"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/><path d="M22 10v6"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Pune</h4>
+              <p>Maharashtra</p>
+              <div class="loc-city-meta"><strong>₹ 65 L+</strong><span>720+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=delhi" class="loc-city-card">
+            <span class="loc-city-tag">Premium</span>
+            <div class="loc-city-icon loc-city-icon--delhi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/><path d="M10 10h4"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Delhi NCR</h4>
+              <p>Delhi · Noida · Gurgaon</p>
+              <div class="loc-city-meta"><strong>₹ 95 L+</strong><span>1,100+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=hyderabad" class="loc-city-card">
+            <span class="loc-city-tag">Hot</span>
+            <div class="loc-city-icon loc-city-icon--hyderabad"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 7-10 11L2 10l4-7z"/><path d="M2 10h20"/><path d="M12 3v7"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Hyderabad</h4>
+              <p>Telangana</p>
+              <div class="loc-city-meta"><strong>₹ 78 L+</strong><span>640+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=chennai" class="loc-city-card">
+            <span class="loc-city-tag">Coastal</span>
+            <div class="loc-city-icon loc-city-icon--chennai"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20c1.5-1 3.5-1 5 0s3.5 1 5 0 3.5-1 5 0 3.5 1 5 0"/><path d="M4 16l8-3 8 3"/><path d="M12 4v9"/><path d="M8 8h8"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Chennai</h4>
+              <p>Tamil Nadu</p>
+              <div class="loc-city-meta"><strong>₹ 72 L+</strong><span>580+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=kolkata" class="loc-city-card">
+            <span class="loc-city-tag">Heritage</span>
+            <div class="loc-city-icon loc-city-icon--kolkata"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18"/><path d="M5 18V9"/><path d="M19 18V9"/><path d="M5 12h14"/><path d="M5 9c2.5 3 4.5 3 7 0 2.5 3 4.5 3 7 0"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Kolkata</h4>
+              <p>West Bengal</p>
+              <div class="loc-city-meta"><strong>₹ 55 L+</strong><span>420+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=ahmedabad" class="loc-city-card">
+            <span class="loc-city-tag">Value</span>
+            <div class="loc-city-icon loc-city-icon--ahmedabad"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l6 4V10l6 4V5h2v16"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Ahmedabad</h4>
+              <p>Gujarat</p>
+              <div class="loc-city-meta"><strong>₹ 48 L+</strong><span>390+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=goa" class="loc-city-card">
+            <span class="loc-city-tag">Coastal</span>
+            <div class="loc-city-icon loc-city-icon--goa"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12L7 22"/><path d="M12 12c5 0 8-3 8-7H4c0 4 3 7 8 7z"/><path d="M5 22h6"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Goa</h4>
+              <p>Goa</p>
+              <div class="loc-city-meta"><strong>₹ 88 L+</strong><span>320+</span></div>
+            </div>
+          </a>
+          <a href="/city?city=dubai" class="loc-city-card">
+            <span class="loc-city-tag">Global</span>
+            <div class="loc-city-icon loc-city-icon--dubai"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M11 21v-3"/></svg></div>
+            <div class="loc-city-body">
+              <h4>Dubai</h4>
+              <p>UAE</p>
+              <div class="loc-city-meta"><strong>AED 1.2M+</strong><span>180+</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Hot Deals -->
+    <section class="hpd-section dark" id="liveDealsSection" data-voice-label="Live Hot Deals"
+      data-voice-text="Live hot deals. Grab flash discounts on premium properties with verified prices and no hidden charges. Limited time offers on prime homes across top cities.">
+      <div class="hpd-section-head">
+        <div class="hpd-section-kicker"><span></span> Limited Time Offers <span></span></div>
+        <h2>Exclusive Hot Deals</h2>
+        <p>Premium properties at special prices.</p>
+      </div>
+      <div class="hpd-inner">
+        <div class="hpd-cards">
+
+          <article class="hpd-card hpd-feature-deal active" data-listing-id="5">
+            <a href="/listing-detail?id=5" class="hpd-card-img" aria-label="View Skyline Towers">
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2400&q=80"
+                alt="Skyline Towers">
+              <span class="hpd-card-badge deal">Exclusive</span>
+              <span class="hpd-discount">-12%</span>
+            </a>
+            <div class="hpd-card-body">
+              <div class="hpd-card-info">
+                <p class="hpd-card-name">Skyline Towers</p>
+                <p class="hpd-card-meta">Bandra West, Mumbai · <strong>₹ 2.85 Cr*</strong></p>
+              </div>
+              <a href="/listing-detail?id=5" class="hpd-card-cta">View <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+
+          <article class="hpd-card hpd-feature-deal" data-listing-id="3">
+            <a href="/listing-detail?id=3" class="hpd-card-img" aria-label="View Sunrise Park Villas">
+              <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=2400&q=80"
+                alt="Sunrise Park Villas">
+              <span class="hpd-card-badge hot">Limited</span>
+              <span class="hpd-discount">-8%</span>
+            </a>
+            <div class="hpd-card-body">
+              <div class="hpd-card-info">
+                <p class="hpd-card-name">Sunrise Park Villas</p>
+                <p class="hpd-card-meta">Hinjewadi, Pune · <strong>₹ 1.42 Cr*</strong></p>
+              </div>
+              <a href="/listing-detail?id=3" class="hpd-card-cta">View <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+
+          <article class="hpd-card hpd-feature-deal" data-listing-id="18">
+            <a href="/listing-detail?id=18" class="hpd-card-img" aria-label="View Flex Space Apartments">
+              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2400&q=80"
+                alt="Flex Space Apartments">
+              <span class="hpd-card-badge deal">Exclusive</span>
+              <span class="hpd-discount">-15%</span>
+            </a>
+            <div class="hpd-card-body">
+              <div class="hpd-card-info">
+                <p class="hpd-card-name">Flex Space Apartments</p>
+                <p class="hpd-card-meta">Indiranagar, Bangalore · <strong>₹ 1.08 Cr*</strong></p>
+              </div>
+              <a href="/listing-detail?id=18" class="hpd-card-cta">View <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+
+          <button class="hpd-slider-nav hpd-slider-prev" id="hotDealPrev" type="button"
+            aria-label="Previous hot deal"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="hpd-slider-nav hpd-slider-next" id="hotDealNext" type="button" aria-label="Next hot deal"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          <div class="hpd-slider-dots">
+            <button class="hpd-slider-dot active" type="button" data-hot-deal="0" aria-label="Show hot deal 1"></button>
+            <button class="hpd-slider-dot" type="button" data-hot-deal="1" aria-label="Show hot deal 2"></button>
+            <button class="hpd-slider-dot" type="button" data-hot-deal="2" aria-label="Show hot deal 3"></button>
+          </div>
+
+        </div>
+        <div class="hpd-deals-foot">
+          <span>Verified listings</span><span>·</span><span>Best price guarantee</span><span>·</span><span>Limited
+            availability</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="emi-modal" id="emiModal" aria-hidden="true">
+      <div class="emi-dialog" role="dialog" aria-modal="true" aria-labelledby="emiModalTitle">
+        <div class="emi-head">
+          <h3 id="emiModalTitle">EMI Calculator</h3>
+          <button class="emi-close" id="closeEmiModalBtn" type="button" aria-label="Close EMI calculator">✕</button>
+        </div>
+
+        <div class="emi-form">
+          <div class="emi-field">
+            <label for="loanAmountInput">Loan Amount (INR)</label>
+            <input id="loanAmountInput" type="number" min="100000" step="10000" value="8000000" />
+          </div>
+
+          <div class="emi-field">
+            <label for="interestRateInput">Interest Rate (% per year)</label>
+            <input id="interestRateInput" type="number" min="1" max="20" step="0.1" value="8.5" />
+          </div>
+
+          <div class="emi-field">
+            <label for="loanTenureInput">Loan Tenure (Years)</label>
+            <input id="loanTenureInput" type="number" min="1" max="40" step="1" value="20" />
+          </div>
+        </div>
+
+        <div class="emi-result">
+          <p class="emi-result-label">Estimated Monthly EMI</p>
+          <p class="emi-result-value" id="emiResultValue">₹ 0</p>
+          <p class="emi-result-meta" id="emiResultMeta">Total repayment: ₹ 0 | Interest payable: ₹ 0</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="developers-projects" id="developersProjects" data-voice-label="Top Developers"
+      data-voice-text="Trusted brands and iconic projects. We partner with India's leading developers like D L F, Lodha, Godrej, and Prestige to bring you landmark residential spaces you can trust.">
+      <div class="container">
+        <div class="brand-showcase-container">
+          <!-- Main Header -->
+          <div class="brand-showcase-head">
+            <span class="brand-showcase-kicker">Top Developers</span>
+            <h2 class="brand-showcase-title">Trusted Brands. <span> Iconic Projects.</span></h2>
+            <p class="brand-showcase-sub">We partner with the most trusted names in real estate to bring you iconic
+              spaces.</p>
+            <a href="/developers" class="brand-showcase-cta">View All Developers <i
+                class="fas fa-arrow-right"></i></a>
+          </div>
+
+          <!-- Developer Grid -->
+          <div class="developer-grid" id="brandTabs">
+            <article class="developer-card active" data-brand-index="0">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/DLF_logo.svg/1280px-DLF_logo.svg.png"
+                alt="DLF" class="dev-card-logo">
+              <p class="dev-card-tagline">Building India Since 1946</p>
+              <div class="dev-card-count">25+ Projects</div>
+            </article>
+            <article class="developer-card" data-brand-index="1">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Lodha---New-LOgo.png" alt="LODHA"
+                class="dev-card-logo">
+              <p class="dev-card-tagline">Redefining Luxury Living</p>
+              <div class="dev-card-count">18+ Projects</div>
+            </article>
+            <article class="developer-card" data-brand-index="2">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Godrej_Logo.svg/1280px-Godrej_Logo.svg.png"
+                alt="GODREJ" class="dev-card-logo">
+              <p class="dev-card-tagline">Innovation. Sustainability.</p>
+              <div class="dev-card-count">20+ Projects</div>
+            </article>
+            <article class="developer-card" data-brand-index="3">
+              <img src="https://companieslogo.com/img/orig/PRESTIGE.NS_BIG-52e09255.png?t=1720244493" alt="PRESTIGE"
+                class="dev-card-logo">
+              <p class="dev-card-tagline">Add Prestige to Life</p>
+              <div class="dev-card-count">15+ Projects</div>
+            </article>
+            <article class="developer-card" data-brand-index="4">
+              <img src="https://www.freelogovectors.net/wp-content/uploads/2020/09/oberoi_realty_logo.png" alt="OBEROI"
+                class="dev-card-logo">
+              <p class="dev-card-tagline">Crafting Landmarks</p>
+              <div class="dev-card-count">12+ Projects</div>
+            </article>
+            <article class="developer-card" data-brand-index="5">
+              <img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Brigade_Group.svg" alt="BRIGADE"
+                class="dev-card-logo">
+              <p class="dev-card-tagline">Building Positive Experiences</p>
+              <div class="dev-card-count">14+ Projects</div>
+            </article>
+          </div>
+
+          <!-- Iconic Projects Carousel -->
+          <div class="iconic-projects-wrapper">
+
+
+            <div class="project-track-container">
+              <div class="project-track" id="brandProjectTrack">
+                <!-- Project cards injected by JS -->
+              </div>
+            </div>
+
+            <!-- Controls (Moved outside overflow container) -->
+            <div class="slider-controls">
+              <button class="slider-nav slider-prev" id="brandPrev"><i class="fas fa-chevron-left"></i></button>
+              <button class="slider-nav slider-next" id="brandNext"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Dots -->
+            <div class="slider-dots" id="brandSliderDots">
+              <div class="slider-dot active"></div>
+              <div class="slider-dot"></div>
+              <div class="slider-dot"></div>
+              <div class="slider-dot"></div>
+              <div class="slider-dot"></div>
+              <div class="slider-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ===== WHY CHOOSE US SECTION ===== -->
+    <section class="wtrust-section" id="why-choose" data-voice-label="Why Choose Us"
+      data-voice-text="Why choose Inchbrick Realty. Building trust and delivering results with verified properties, best price guarantee, home loan assistance, legal support, site visits, and NRI assistance. Trusted by over ten thousand home buyers across India.">
+      
+
+      <div class="container">
+        <div class="wtrust-head">
+          <div class="wtrust-kicker">Why Choose Us</div>
+          <h2>Building Trust. Delivering Results.</h2>
+          <p>Everything you need  —  from search to handover  —  in one trusted partner.</p>
+        </div>
+
+        <div class="wtrust-stage">
+          <aside class="wtrust-intro-card">
+            <div>
+              <h3>Your journey, <em>our commitment</em></h3>
+              <p class="wtrust-intro-copy">We combine verified listings, transparent pricing, and end-to-end support so
+                you buy with confidence  —  whether you're in India or abroad.</p>
+            </div>
+            <div class="wtrust-stats">
+              <div class="wtrust-stat">
+                <i class="fas fa-users"></i>
+                <div><strong>10,000+</strong><span>Happy Home Buyers</span></div>
+              </div>
+              <div class="wtrust-stat">
+                <i class="fas fa-building"></i>
+                <div><strong>500+</strong><span>Verified Properties</span></div>
+              </div>
+              <div class="wtrust-stat">
+                <i class="fas fa-map-marked-alt"></i>
+                <div><strong>15+</strong><span>Cities Covered</span></div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="wtrust-grid">
+            <article class="wtrust-item">
+              <div class="wtrust-item-top">
+                <span class="wtrust-icon green"><i class="fas fa-shield-halved"></i></span>
+                <span class="wtrust-check"><i class="fas fa-check"></i></span>
+              </div>
+              <h4>Verified Properties</h4>
+              <p>Every listing is RERA-checked and personally verified before it reaches you.</p>
+            </article>
+
+            <article class="wtrust-item">
+              <div class="wtrust-item-top">
+                <span class="wtrust-icon gold"><i class="fas fa-tags"></i></span>
+                <span class="wtrust-check"><i class="fas fa-check"></i></span>
+              </div>
+              <h4>Best Price Guarantee</h4>
+              <p>Transparent pricing with no hidden costs  —  you get the best deal, guaranteed.</p>
+            </article>
+
+            <article class="wtrust-item">
+              <div class="wtrust-item-top">
+                <span class="wtrust-icon blue"><i class="fas fa-landmark"></i></span>
+                <span class="wtrust-check"><i class="fas fa-check"></i></span>
+              </div>
+              <h4>Home Loan Assistance</h4>
+              <p>Expert guidance on bank tie-ups, documentation, and the fastest loan approvals.</p>
+            </article>
+
+            <article class="wtrust-item">
+              <div class="wtrust-item-top">
+                <span class="wtrust-icon purple"><i class="fas fa-scale-balanced"></i></span>
+                <span class="wtrust-check"><i class="fas fa-check"></i></span>
+              </div>
+              <h4>Legal Support</h4>
+              <p>End-to-end legal review, agreement vetting, and registration assistance.</p>
+            </article>
+
+            <article class="wtrust-item">
+              <div class="wtrust-item-top">
+                <span class="wtrust-icon rose"><i class="fas fa-car-side"></i></span>
+                <span class="wtrust-check"><i class="fas fa-check"></i></span>
+              </div>
+              <h4>Site Visit</h4>
+              <p>Free guided site visits with local experts  —  see the property before you decide.</p>
+            </article>
+
+            <article class="wtrust-item">
+              <div class="wtrust-item-top">
+                <span class="wtrust-icon teal"><i class="fas fa-globe"></i></span>
+                <span class="wtrust-check"><i class="fas fa-check"></i></span>
+              </div>
+              <h4>NRI Assistance</h4>
+              <p>Dedicated NRI desk for virtual tours, POA support, and remote buying made easy.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="wtrust-emi-wrap">
+          <div class="wcu-emi-hero">
+            <div class="wcu-emi-content">
+              <h3>Plan Your Home. We will Help You <span>Calculate EMI</span> in Seconds!</h3>
+              <div class="wcu-hero-points">
+                <span><i class="fas fa-calculator"></i> Quick &amp; Easy</span>
+                <span><i class="fas fa-lock"></i> 100% Secure</span>
+                <span><i class="fas fa-bullseye"></i> Accurate Results</span>
+              </div>
+              <a href="/emi-calculator" class="btn emi-btn">Calculate EMI Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="wcu-trust-circle">
+              <div>
+                <i class="fas fa-shield-alt"></i>
+                <span>Trusted by</span>
+                <strong>10,000+</strong>
+                <span>Home Buyers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== END WHY CHOOSE US SECTION ===== -->
+
+    <!-- <section class="social-proof" id="socialProofSection" data-voice-label="Social Proof"
+      data-voice-text="Luxury homes on screen. See how our premium properties have been featured and celebrated, building confidence through real visibility and trusted buyer experiences.">
+      <div class="container">
+        <div class="social-header-top">
+          <span class="star-icon" aria-hidden="true"><i class="fas fa-star"></i></span> SOCIAL PROOF <span class="star-icon" aria-hidden="true"><i class="fas fa-star"></i></span>
+        </div>
+
+        <div class="social-header-main">
+          <div class="header-line"></div>
+          <h2>Ã°Å¸â€Â¥ Luxury Homes on Screen</h2>
+          <div class="header-line"></div>
+        </div>
+
+        <div class="video-grid">
+      
+          <article class="video-card">
+            <div class="video-thumb-container">
+              <div class="platform-badge youtube">
+                <i class="fab fa-youtube"></i> YouTube
+              </div>
+              <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1000&q=80"
+                alt="Explore Homes in Mumbai">
+              <div class="play-overlay">
+                <div class="play-circle">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <span class="video-duration">5:42</span>
+            </div>
+            <div class="video-info">
+              <h3>Explore Homes in Mumbai</h3>
+              <div class="video-stats-row">
+                <span class="platform-name"><i class="fab fa-youtube"></i> YouTube</span>
+                <span class="stat-count"><i class="far fa-eye"></i> 120K Views</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-thumb-container">
+              <div class="platform-badge youtube">
+                <i class="fab fa-youtube"></i> YouTube
+              </div>
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80"
+                alt="Luxury Flats Tour">
+              <div class="play-overlay">
+                <div class="play-circle">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <span class="video-duration">8:15</span>
+            </div>
+            <div class="video-info">
+              <h3>Luxury Flats Tour</h3>
+              <div class="video-stats-row">
+                <span class="platform-name"><i class="fab fa-youtube"></i> YouTube</span>
+                <span class="stat-count"><i class="far fa-eye"></i> 85K Views</span>
+              </div>
+            </div>
+          </article>
+
+  
+          <article class="video-card">
+            <div class="video-thumb-container">
+              <div class="platform-badge instagram">
+                <i class="fab fa-instagram"></i> Instagram
+              </div>
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
+                alt="Dream Home Walkthrough">
+              <div class="play-overlay">
+                <div class="play-circle">
+                  <i class="fas fa-play"></i>
+                </div>
+              </div>
+              <span class="video-duration">4:30</span>
+            </div>
+            <div class="video-info">
+              <h3>Dream Home Walkthrough</h3>
+              <div class="video-stats-row">
+                <span class="platform-name"><i class="fab fa-instagram"></i> Instagram</span>
+                <span class="stat-count"><i class="far fa-heart"></i> 65K Likes</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="watch-more-wrap">
+          <button class="btn-watch-more" type="button">
+            <span class="play-icon-mini"><i class="fas fa-play"></i></span> Watch More Videos
+          </button>
+        </div>
+      </div>
+    </section> -->
+    <section class="investment-journey-section">
+      <div class="container">
+        <div class="investment-journey-shell">
+          <div class="investment-journey-head">
+            <p>Before to Future Value</p>
+            <h2>Invest Smart Today and See Your Property Value Grow in 3 Years</h2>
+          </div>
+
+          <div class="investment-journey-slider">
+            <div class="investment-journey-track" id="investmentJourneyTrack">
+
+              <article class="investment-journey-slide">
+                <div class="investment-stage-grid">
+                  <div class="stage-card">
+                    <span class="stage-badge before">Before</span>
+                    <img
+                      src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80"
+                      alt="Palm Ridge Heights before growth">
+                    <div class="stage-ribbon before">Buy at ₹ 80L</div>
+                    <p class="stage-value-caption">Entry Price</p>
+                    <div class="stage-property">
+                      <strong>Palm Ridge Heights, Noida</strong>
+                      <span>Developer: ABC Realty</span>
+                    </div>
+                  </div>
+
+                  <div class="stage-arrow-wrap">
+                    <span>In 3 Years</span>
+                    <div class="stage-arrow"><i class="fas fa-arrow-right"></i></div>
+                  </div>
+
+                  <div class="stage-card">
+                    <span class="stage-badge after">After</span>
+                    <img
+                      src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=80"
+                      alt="Palm Ridge Heights projected value">
+                    <div class="stage-ribbon after">Estimated ₹ 1.2Cr</div>
+                    <p class="stage-value-caption">Future Value</p>
+                    <div class="stage-property">
+                      <strong>Palm Ridge Heights, Noida</strong>
+                      <span>Developer: ABC Realty</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="investment-bottom-line">
+                  Invest <span>₹ 80L</span> and target <span>₹ 1.2Cr</span> value in 3 years.
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+
+          <div class="investment-journey-controls">
+            <button class="investment-nav" id="investmentPrev" type="button" aria-label="Previous investment slide"><i
+                class="fas fa-chevron-left"></i></button>
+            <div class="investment-dots">
+              <button class="investment-dot active" type="button" data-investment-slide="0"
+                aria-label="Investment slide 1"></button>
+              <button class="investment-dot" type="button" data-investment-slide="1"
+                aria-label="Investment slide 2"></button>
+              <button class="investment-dot" type="button" data-investment-slide="2"
+                aria-label="Investment slide 3"></button>
+            </div>
+            <button class="investment-nav" id="investmentNext" type="button" aria-label="Next investment slide"><i
+                class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-video-section compact-reviews-section home-social-proof" id="reviewsVideoSection"
+      data-voice-label="Client Reviews"
+      data-voice-text="Google reviews and client stories from verified home buyers.">
+      <div class="container">
+        <div class="home-sp-head">
+          <span class="home-sp-star-icon" aria-hidden="true"><i class="fas fa-star"></i></span>
+          <h2 class="home-sp-title">Google Reviews</h2>
+          <p class="home-sp-lead">Real feedback from happy clients</p>
+          <div class="home-sp-rating" aria-label="4.9 out of 5 from 2.5 thousand Google reviews">
+            <span class="home-sp-google" aria-hidden="true"><svg viewBox="0 0 48 48" width="20" height="20" focusable="false"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+            <strong>4.9</strong>
+            <span class="home-sp-stars" aria-hidden="true"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            <span>2.5K+ reviews</span>
+          </div>
+        </div>
+
+        <div class="home-sp-slider" data-sp-slider="reviews">
+          <div class="home-sp-rail">
+            <button type="button" class="home-sp-nav-btn home-sp-nav-btn--side" data-sp-prev aria-label="Previous reviews"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+            <div class="home-sp-viewport">
+              <div class="home-sp-track home-sp-reviews" data-sp-track aria-label="Recent Google reviews">
+                <article class="home-sp-review home-sp-slide">
+                  <div class="home-sp-review-top">
+                    <img class="home-sp-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt="" loading="lazy" />
+                    <div class="home-sp-who"><strong>Josh M.</strong><span>2 weeks ago</span></div>
+                    <span class="home-sp-g" aria-hidden="true"><svg viewBox="0 0 48 48" width="18" height="18" focusable="false"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+                  </div>
+                  <div class="home-sp-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                  <p>Professional team and smooth property shortlisting. Clear options without pressure.</p>
+                  <span class="home-sp-quote" aria-hidden="true">&rdquo;</span>
+                </article>
+                <article class="home-sp-review home-sp-slide">
+                  <div class="home-sp-review-top">
+                    <img class="home-sp-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt="" loading="lazy" />
+                    <div class="home-sp-who"><strong>Sarah T.</strong><span>Verified Buyer</span></div>
+                    <span class="home-sp-g" aria-hidden="true"><svg viewBox="0 0 48 48" width="18" height="18" focusable="false"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+                  </div>
+                  <div class="home-sp-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                  <p>Transparent service from first call to site visit. Pricing matched what we were told.</p>
+                  <span class="home-sp-quote" aria-hidden="true">&rdquo;</span>
+                </article>
+                <article class="home-sp-review home-sp-slide">
+                  <div class="home-sp-review-top">
+                    <img class="home-sp-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt="" loading="lazy" />
+                    <div class="home-sp-who"><strong>Neha K.</strong><span>Mumbai</span></div>
+                    <span class="home-sp-g" aria-hidden="true"><svg viewBox="0 0 48 48" width="18" height="18" focusable="false"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+                  </div>
+                  <div class="home-sp-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                  <p>Honest advice &mdash; we shortlisted in two days and closed with confidence.</p>
+                  <span class="home-sp-quote" aria-hidden="true">&rdquo;</span>
+                </article>
+                <article class="home-sp-review home-sp-slide">
+                  <div class="home-sp-review-top">
+                    <img class="home-sp-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt="" loading="lazy" />
+                    <div class="home-sp-who"><strong>Rahul P.</strong><span>Bengaluru</span></div>
+                    <span class="home-sp-g" aria-hidden="true"><svg viewBox="0 0 48 48" width="18" height="18" focusable="false"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+                  </div>
+                  <div class="home-sp-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                  <p>Great NRI support &mdash; virtual tours and paperwork guidance made remote buying easy.</p>
+                  <span class="home-sp-quote" aria-hidden="true">&rdquo;</span>
+                </article>
+                <article class="home-sp-review home-sp-slide">
+                  <div class="home-sp-review-top">
+                    <img class="home-sp-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt="" loading="lazy" />
+                    <div class="home-sp-who"><strong>Ananya S.</strong><span>NRI Buyer</span></div>
+                    <span class="home-sp-g" aria-hidden="true"><svg viewBox="0 0 48 48" width="18" height="18" focusable="false"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+                  </div>
+                  <div class="home-sp-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                  <p>Clear communication and no pushy sales. Felt guided at every step.</p>
+                  <span class="home-sp-quote" aria-hidden="true">&rdquo;</span>
+                </article>
+                <article class="home-sp-review home-sp-slide">
+                  <div class="home-sp-review-top">
+                    <img class="home-sp-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=120&amp;q=80" alt="" loading="lazy" />
+                    <div class="home-sp-who"><strong>Vikram D.</strong><span>Pune</span></div>
+                    <span class="home-sp-g" aria-hidden="true"><svg viewBox="0 0 48 48" width="18" height="18" focusable="false"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.8 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4.1 5.5l.1.1 6.2 5.2C39.2 36.3 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+                  </div>
+                  <div class="home-sp-stars" aria-label="5 stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                  <p>RERA-checked options and site visits were well organised. Highly recommend.</p>
+                  <span class="home-sp-quote" aria-hidden="true">&rdquo;</span>
+                </article>
+              </div>
+            </div>
+            <button type="button" class="home-sp-nav-btn home-sp-nav-btn--side" data-sp-next aria-label="Next reviews"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+
+        <div class="home-sp-stories">
+          <h3 class="home-sp-stories-title">Client Stories</h3>
+          <div class="home-sp-story-grid" aria-label="Client video stories">
+            <a class="home-sp-story" href="/reviews" aria-label="Client story 1">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy" />
+              <span class="home-sp-story-menu" aria-hidden="true"><i class="fas fa-ellipsis-v"></i></span>
+              <span class="home-sp-story-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+              <span class="home-sp-story-time">0:34</span>
+            </a>
+            <a class="home-sp-story" href="/reviews" aria-label="Client story 2">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy" />
+              <span class="home-sp-story-menu" aria-hidden="true"><i class="fas fa-ellipsis-v"></i></span>
+              <span class="home-sp-story-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+              <span class="home-sp-story-time">0:42</span>
+            </a>
+            <a class="home-sp-story" href="/reviews" aria-label="Client story 3">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy" />
+              <span class="home-sp-story-menu" aria-hidden="true"><i class="fas fa-ellipsis-v"></i></span>
+              <span class="home-sp-story-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+              <span class="home-sp-story-time">0:28</span>
+            </a>
+            <a class="home-sp-story" href="/reviews" aria-label="Client story 4">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy" />
+              <span class="home-sp-story-menu" aria-hidden="true"><i class="fas fa-ellipsis-v"></i></span>
+              <span class="home-sp-story-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+              <span class="home-sp-story-time">0:51</span>
+            </a>
+            <a class="home-sp-story" href="/reviews" aria-label="Client story 5">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy" />
+              <span class="home-sp-story-menu" aria-hidden="true"><i class="fas fa-ellipsis-v"></i></span>
+              <span class="home-sp-story-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+              <span class="home-sp-story-time">0:37</span>
+            </a>
+            <a class="home-sp-story" href="/reviews" aria-label="Client story 6">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="" loading="lazy" />
+              <span class="home-sp-story-menu" aria-hidden="true"><i class="fas fa-ellipsis-v"></i></span>
+              <span class="home-sp-story-play" aria-hidden="true"><i class="fas fa-play"></i></span>
+              <span class="home-sp-story-time">0:45</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="blog-section home-blog" id="blog" data-voice-label="Latest Blogs"
+      data-voice-text="Latest blogs and insights. Read expert tips on investing, luxury buying, and home loans to make smarter property decisions with Inchbrick Realty.">
+      <div class="container">
+        <header class="hb-head">
+          <div class="hb-kicker">
+            <i class="fas fa-book-open" aria-hidden="true"></i>
+            <span>Blog</span>
+          </div>
+          <h2 class="hb-title">Insights &amp; Property Tips</h2>
+          <p class="hb-sub">Helpful guides and advice to help you make smarter real estate decisions.</p>
+        </header>
+
+        <div class="hb-grid">
+          <article class="hb-card">
+            <a href="/blog" aria-label="Read: 10 Things to Check Before Buying a Home">
+              <div class="hb-card-media">
+                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Modern luxury home exterior" loading="lazy" />
+                <span class="hb-badge">Buying Guide</span>
+              </div>
+              <div class="hb-card-body">
+                <div class="hb-meta">
+                  <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                  <span>May 14, 2024</span>
+                  <span class="hb-meta-dot">•</span>
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>5 min read</span>
+                </div>
+                <h3>10 Things to Check Before Buying a Home</h3>
+                <p class="hb-excerpt">A practical checklist to help you evaluate a property and avoid costly mistakes.</p>
+                <span class="hb-read">Read more →</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="hb-card">
+            <a href="/blog" aria-label="Read: First-Time Home Buyer? Here's What You Should Know">
+              <div class="hb-card-media">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Bright living room interior" loading="lazy" />
+                <span class="hb-badge">Home Ownership</span>
+              </div>
+              <div class="hb-card-body">
+                <div class="hb-meta">
+                  <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                  <span>May 07, 2024</span>
+                  <span class="hb-meta-dot">•</span>
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>4 min read</span>
+                </div>
+                <h3>First-Time Home Buyer? Here's What You Should Know</h3>
+                <p class="hb-excerpt">Everything you need to know before buying your first home with confidence.</p>
+                <span class="hb-read">Read more →</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="hb-card">
+            <a href="/blog" aria-label="Read: Real Estate Market Trends in 2024">
+              <div class="hb-card-media">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="City skyline at dusk" loading="lazy" />
+                <span class="hb-badge">Market Trends</span>
+              </div>
+              <div class="hb-card-body">
+                <div class="hb-meta">
+                  <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                  <span>Apr 30, 2024</span>
+                  <span class="hb-meta-dot">•</span>
+                  <i class="far fa-clock" aria-hidden="true"></i>
+                  <span>6 min read</span>
+                </div>
+                <h3>Real Estate Market Trends in 2024</h3>
+                <p class="hb-excerpt">Key insights and trends shaping the real estate market this year.</p>
+                <span class="hb-read">Read more →</span>
+              </div>
+            </a>
+          </article>
+        </div>
+
+        <div class="hb-all">
+          <a href="/blog" class="hb-all-btn">View all blogs →</a>
+        </div>
+      </div>
+    </section>
+    </div>
+
+  <script>
+    // --- Global Selectors ---
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const locationInput = document.getElementById("locationInput");
+    const suggestionsBox = document.getElementById("suggestions");
+    const searchBtn = document.getElementById("searchBtn");
+    const resultText = document.getElementById("resultText");
+    const popularLinks = Array.from(document.querySelectorAll(".popular a"));
+    const heroBannerVideo = document.getElementById("heroBannerVideo");
+    const hotDealSlides = Array.from(document.querySelectorAll(".hpd-feature-deal"));
+    const hotDealDots = Array.from(document.querySelectorAll(".hpd-slider-dot"));
+    const hotDealPrev = document.getElementById("hotDealPrev");
+    const hotDealNext = document.getElementById("hotDealNext");
+
+    const moodCards = document.querySelectorAll('.mood-card');
+    const selectionTitle = document.getElementById('selectionTitle');
+    const selectionDesc = document.querySelector('.selection-title-wrap p');
+    const propertySliderTrack = document.getElementById('propertySliderTrack');
+    const benefitsList = document.getElementById('benefitsList');
+    const localitiesList = document.getElementById('localitiesList');
+    const exploreMoodBtn = document.getElementById('exploreMoodBtn');
+    const moodResults = document.querySelector('.mood-selection-results');
+
+    const locationTrack = document.getElementById("locationTrack");
+    const locationSlides = document.querySelectorAll(".location-slide");
+    const locationDots = document.querySelectorAll(".location-dot");
+    const locationPrev = document.getElementById("locationPrev");
+    const locationNext = document.getElementById("locationNext");
+    const locationSliderTitle = document.querySelector(".location-slider-title .ls-city-name");
+    const locationNextStateLabel = document.getElementById("locationNextStateLabel");
+    const locationNextStateText = document.getElementById("locationNextStateText");
+    const locationNextStateBtn = document.getElementById("locationNextStateBtn");
+    const brandTabs = Array.from(document.querySelectorAll(".brand-tab"));
+    const brandPrev = document.getElementById("brandPrev");
+    const brandNext = document.getElementById("brandNext");
+    const brandHeroImage = document.getElementById("brandHeroImage");
+    const brandHeroLogo = document.getElementById("brandHeroLogo");
+    const brandHeroName = document.getElementById("brandHeroName");
+    const brandHeroLocation = document.getElementById("brandHeroLocation");
+    const brandHeroCopy = document.getElementById("brandHeroCopy");
+    const brandHeroProjects = document.getElementById("brandHeroProjects");
+    const brandHeroYears = document.getElementById("brandHeroYears");
+    const brandSideTiles = Array.from(document.querySelectorAll(".brand-tile"));
+    const brandStageCenter = document.querySelector(".brand-stage-center");
+
+    const nearbyList = document.getElementById("nearbyList");
+    const mapFilterButtons = Array.from(document.querySelectorAll(".map-filter-btn"));
+    const mapPins = Array.from(document.querySelectorAll(".map-pin"));
+
+    const openEmiModalBtn = document.getElementById("openEmiModalBtn");
+    const emiModal = document.getElementById("emiModal");
+    const closeEmiModalBtn = document.getElementById("closeEmiModalBtn");
+    const loanAmountInput = document.getElementById("loanAmountInput");
+    const interestRateInput = document.getElementById("interestRateInput");
+    const loanTenureInput = document.getElementById("loanTenureInput");
+    const emiResultValue = document.getElementById("emiResultValue");
+    const emiResultMeta = document.getElementById("emiResultMeta");
+
+    const reviewsTrack = document.getElementById("reviewsTrack");
+    const reviewDots = Array.from(document.querySelectorAll(".review-dot"));
+
+    const voiceTourPanel = document.getElementById("voiceTourPanel");
+    const voicePlayBtn = document.getElementById("voicePlayBtn");
+    const voiceoverStatus = document.getElementById("voiceoverStatus");
+
+    const communityCityButtons = Array.from(document.querySelectorAll(".community-city-btn"));
+    const communityCityPanels = Array.from(document.querySelectorAll(".community-city-panel"));
+    const communityLivingSection = document.getElementById("communityLivingSection");
+
+    const virtualTrack = document.getElementById("virtualTrack");
+    const virtualPrev = document.getElementById("virtualPrev");
+    const virtualNext = document.getElementById("virtualNext");
+    const virtualDots = Array.from(document.querySelectorAll(".virtual-dot"));
+    const investmentJourneyTrack = document.getElementById("investmentJourneyTrack");
+    const investmentDots = Array.from(document.querySelectorAll(".investment-dot"));
+    const investmentPrev = document.getElementById("investmentPrev");
+    const investmentNext = document.getElementById("investmentNext");
+
+    const luxuryPlayButtons = document.querySelectorAll(".luxury-play-btn");
+
+    // --- State Variables ---
+    let activePropertyType = "Buy";
+    let currentPlaceholderIndex = 0;
+    let placeholderTimer = null;
+    let currentReviewSlide = 0;
+    let reviewAutoTimer = null;
+    let currentVirtualSlide = 0;
+    let virtualAutoTimer = null;
+    let currentInvestmentSlide = 0;
+    let currentPropSlide = 0;
+    let currentHotDealSlide = 0;
+    let hotDealTimer = null;
+    let locIndex = 0;
+    let currentBrandIndex = 0;
+
+    // --- Core UI Logic ---
+    function mountVoiceTourInHeader() {
+      const headerVoiceSlot = document.getElementById("headerVoiceSlot");
+      if (!voiceTourPanel || !headerVoiceSlot || headerVoiceSlot.contains(voiceTourPanel)) return;
+      headerVoiceSlot.appendChild(voiceTourPanel);
+      voiceTourPanel.classList.add("is-in-header");
+    }
+
+    mountVoiceTourInHeader();
+    document.addEventListener("layout-ready", mountVoiceTourInHeader);
+
+    // Intersection Observer for animations
+    const revealTargets = document.querySelectorAll("section, .mood-card, .brand-card, .impact-card, .home-blog-card");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealTargets.forEach(el => { el.classList.add("reveal"); revealObserver.observe(el); });
+
+    function initHeroBannerVideo() {
+      if (!heroBannerVideo) return;
+      const playPromise = heroBannerVideo.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    }
+
+    function updateHotDealSlider(index = 0) {
+      if (!hotDealSlides.length) return;
+      currentHotDealSlide = (index + hotDealSlides.length) % hotDealSlides.length;
+      hotDealSlides.forEach((slide, i) => slide.classList.toggle("active", i === currentHotDealSlide));
+      hotDealDots.forEach((dot, i) => dot.classList.toggle("active", i === currentHotDealSlide));
+    }
+
+    function startHotDealSlider() {
+      if (!hotDealSlides.length) return;
+      clearInterval(hotDealTimer);
+      hotDealTimer = setInterval(() => updateHotDealSlider(currentHotDealSlide + 1), 4800);
+    }
+
+    hotDealPrev?.addEventListener("click", () => {
+      updateHotDealSlider(currentHotDealSlide - 1);
+      startHotDealSlider();
+    });
+
+    hotDealNext?.addEventListener("click", () => {
+      updateHotDealSlider(currentHotDealSlide + 1);
+      startHotDealSlider();
+    });
+
+    hotDealDots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        updateHotDealSlider(i);
+        startHotDealSlider();
+      });
+    });
+
+    // Tabs & Search
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        activePropertyType = tab.dataset.type;
+        if (locationInput) locationInput.value = "";
+        hideSuggestions();
+        if (resultText) resultText.textContent = "Showing " + activePropertyType + " properties.";
+      });
+    });
+
+    const locationsData = {
+      Buy: ["Mumbai", "Pune", "Bangalore", "Dubai", "Hyderabad", "Noida", "Gurgaon", "Goa"],
+      Rent: ["Mumbai", "Pune", "Bangalore", "Chennai", "Delhi", "Kolkata", "Jaipur", "Ahmedabad"],
+      Commercial: ["Mumbai BKC", "Pune Hinjewadi", "Bangalore Whitefield", "Dubai Marina", "Noida Sector 62"]
+    };
+    const placeholderSuggestions = ["Mumbai", "Pune", "Bangalore", "Delhi", "Dubai", "Goa"];
+
+    function startPlaceholderSuggestions() {
+      if (!locationInput || placeholderSuggestions.length === 0) return;
+      clearInterval(placeholderTimer);
+      placeholderTimer = setInterval(() => {
+        if (document.activeElement === locationInput || locationInput.value.trim()) return;
+        currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholderSuggestions.length;
+        locationInput.setAttribute("placeholder", "Search " + placeholderSuggestions[currentPlaceholderIndex]);
+      }, 2200);
+    }
+    startPlaceholderSuggestions();
+
+    function hideSuggestions() {
+      if (suggestionsBox) {
+        suggestionsBox.classList.remove("visible");
+        suggestionsBox.innerHTML = "";
+      }
+    }
+
+    if (locationInput) {
+      locationInput.addEventListener("input", () => {
+        const query = locationInput.value.trim().toLowerCase();
+        if (!query) { hideSuggestions(); return; }
+        const filtered = locationsData[activePropertyType].filter(city => city.toLowerCase().includes(query));
+        if (suggestionsBox) {
+          suggestionsBox.innerHTML = "";
+          filtered.forEach(item => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = item;
+            btn.onclick = () => { locationInput.value = item; hideSuggestions(); };
+            suggestionsBox.appendChild(btn);
+          });
+          suggestionsBox.classList.toggle("visible", filtered.length > 0);
+        }
+      });
+    }
+
+    function performSearch() {
+      if (!locationInput || !resultText) return;
+      const location = locationInput.value.trim();
+      resultText.textContent = location ? `Searching ${activePropertyType} properties in ${location}...` : "Please enter a location.";
+    }
+    searchBtn?.addEventListener("click", performSearch);
+
+    // --- Slider 1: Mood Finder ---
+    const moodData = {
+      cozy: {
+        title: "Cozy Living", icon: "fa-couch", color: "#c89868",
+        desc: "Warmth and comfort defined. Perfect homes for those who value intimacy and curated interior experiences.",
+        benefits: ["Smart space utilization", "Premium interior finishes", "Energy efficient lighting", "Integrated home automation"],
+        localities: ["Koramangala", "Indiranagar", "Jayanagar", "HSR Layout"],
+        properties: [
+          { name: "Urban Nest", location: "HSR Layout", price: "₹ 85 L", bhk: "2 BHK", area: "1100 sq ft", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" },
+          { name: "Willow Creek", location: "Koramangala", price: "₹ 1.2 Cr", bhk: "3 BHK", area: "1450 sq ft", img: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80" }
+        ]
+      },
+      nature: {
+        title: "Nature's Edge", icon: "fa-tree", color: "#22c55e",
+        desc: "Curated properties and locations that bring you closer to nature and tranquility.",
+        benefits: ["Cleaner air & greener surroundings", "Lower stress & healthier lifestyle", "Perfect for families & senior living", "High livability & long-term value"],
+        localities: ["Sarjapur Road", "Devanahalli", "Kanakapura Road", "Hennur Road"],
+        properties: [
+          { name: "Greenwoods Residency", location: "Sarjapur Road", price: "₹ 62 L", bhk: "2 BHK", area: "980 sq ft", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+          { name: "Nature's Edge", location: "Devanahalli", price: "₹ 78 L", bhk: "3 BHK", area: "1250 sq ft", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" }
+        ]
+      },
+      urban: {
+        title: "Urban Pulse", icon: "fa-city", color: "#4a8bcf",
+        desc: "Vibrant urban areas where everything you need is just a heartbeat away.",
+        benefits: ["Proximity to IT hubs", "Rich nightlife & culture", "Public transport connectivity", "Modern luxury amenities"],
+        localities: ["Whitefield", "Outer Ring Road", "Electronic City", "Thanisandra"],
+        properties: [
+          { name: "Skyline Towers", location: "Whitefield", price: "₹ 85 L", bhk: "2 BHK", area: "1100 sq ft", img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" },
+          { name: "Urban Pulse", location: "ORR Bangalore", price: "₹ 1.2 Cr", bhk: "3 BHK", area: "1600 sq ft", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" }
+        ]
+      },
+      beachside: {
+        title: "Beachside Bliss", icon: "fa-umbrella-beach", color: "#0ea5e9",
+        desc: "Holiday homes and villas that offer the perfect escape with breathtaking water views.",
+        benefits: ["Ocean views & fresh breeze", "Passive rental income", "Dedicated concierge", "Private sanctuary"],
+        localities: ["Goa North", "Goa South", "Alibaug", "Vizag"],
+        properties: [
+          { name: "Azure Bay", location: "North Goa", price: "₹ 1.1 Cr", bhk: "3 BHK Villa", area: "1800 sq ft", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" },
+          { name: "The Retreat", location: "South Goa", price: "₹ 88 L", bhk: "2 BHK", area: "1200 sq ft", img: "https://images.unsplash.com/photo-1512915922686-57c11ff9b6b9?auto=format&fit=crop&w=800&q=80" }
+        ]
+      },
+      luxury: {
+        title: "Elite Luxury", icon: "fa-gem", color: "#8b68c8",
+        desc: "The pinnacle of real estate. Exclusive addresses for those who have arrived.",
+        benefits: ["Ultra-premium concierge", "Private elevator access", "Signature architecture", "Global standard amenities"],
+        localities: ["Lavelle Road", "Benson Town", "Sadashivanagar", "Dollar's Colony"],
+        properties: [
+          { name: "The Grand Royal", location: "Lavelle Road", price: "₹ 12 Cr", bhk: "4 BHK Penthouse", area: "5400 sq ft", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" },
+          { name: "Heritage Estate", location: "Benson Town", price: "₹ 6.8 Cr", bhk: "3 BHK", area: "3200 sq ft", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80" }
+        ]
+      }
+    };
+
+    function updatePropSlider() {
+      if (!propertySliderTrack) return;
+      const slides = propertySliderTrack.querySelectorAll('.property-card-mood');
+      if (!slides.length) return;
+      const sliderGap = parseFloat(getComputedStyle(propertySliderTrack).gap || "0");
+      const slideWidth = slides[0].offsetWidth + sliderGap;
+      const visibleSlides = window.innerWidth <= 768 ? 1 : 2;
+      const maxSlides = Math.max(0, slides.length - visibleSlides);
+      currentPropSlide = Math.min(Math.max(currentPropSlide, 0), maxSlides);
+      propertySliderTrack.style.transform = `translateX(-${currentPropSlide * slideWidth}px)`;
+      document.getElementById('propPrev')?.classList.toggle('disabled', currentPropSlide === 0);
+      document.getElementById('propNext')?.classList.toggle('disabled', currentPropSlide === maxSlides);
+    }
+
+    document.getElementById('propPrev')?.addEventListener('click', () => { currentPropSlide--; updatePropSlider(); });
+    document.getElementById('propNext')?.addEventListener('click', () => { currentPropSlide++; updatePropSlider(); });
+
+    moodCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const mood = card.dataset.mood;
+        if (!mood) return;
+        window.location.href = 'listings.html?mood=' + encodeURIComponent(mood);
+      });
+    });
+
+    // --- Slider 3: Popular Locations ---
+    function updateLocationSlider(index) {
+      if (!locationTrack || !locationSlides.length) return;
+      locIndex = index;
+      locationTrack.style.transform = `translateX(-${locIndex * 100}%)`;
+      const activeSlide = locationSlides[locIndex];
+      if (locationSliderTitle) locationSliderTitle.textContent = activeSlide.dataset.locationName;
+      const nextState = activeSlide.dataset.nextState || "Kerala";
+      if (locationNextStateLabel) locationNextStateLabel.textContent = nextState;
+      if (locationNextStateText) {
+        const nextStateLines = {
+          Bangalore: "IT corridors, premium apartments and strong rental demand.",
+          Pune: "Fast-growing hubs with affordable luxury and great connectivity.",
+          Mumbai: "Prime west-side addresses with premium homes and sea views."
+        };
+        locationNextStateText.textContent = nextStateLines[nextState] || "Explore premium projects and curated investment opportunities.";
+      }
+      if (locationNextStateBtn) locationNextStateBtn.innerHTML = `View ${nextState} Homes <i class="fas fa-arrow-right"></i>`;
+      locationDots.forEach((dot, i) => dot.classList.toggle('active', i === locIndex));
+    }
+    locationNext?.addEventListener("click", () => { locIndex = (locIndex + 1) % locationSlides.length; updateLocationSlider(locIndex); });
+    locationPrev?.addEventListener("click", () => { locIndex = (locIndex - 1 + locationSlides.length) % locationSlides.length; updateLocationSlider(locIndex); });
+    locationDots.forEach((dot, i) => dot.addEventListener('click', () => updateLocationSlider(i)));
+
+    // --- Trusted Brands Interactive Slider ---
+    const createBrandLogoDataUri = (brand) => {
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='220' height='56' viewBox='0 0 220 56'><rect x='1' y='1' width='218' height='54' rx='10' fill='rgba(15,23,42,0.75)' stroke='rgba(248,250,252,0.35)'/><text x='110' y='35' fill='white' font-size='23' font-family='Segoe UI, Arial, sans-serif' font-weight='700' text-anchor='middle'>${brand}</text></svg>`;
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+    };
+
+    const brandShowcaseData = [
+      {
+        brand: "DLF",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/DLF_logo.svg/1280px-DLF_logo.svg.png",
+        name: "The Camellias",
+        location: "Gurugram, Haryana",
+        copy: "India's most luxurious residential address with world-class amenities and impeccable design.",
+        projects: "15+",
+        years: "75+",
+        heroImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        brand: "LODHA",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Lodha---New-LOgo.png",
+        name: "Lodha Park",
+        location: "Worli, Mumbai",
+        copy: "Premium skyline residences with landscaped decks, elite clubs, and excellent city connectivity.",
+        projects: "22+",
+        years: "43+",
+        heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        brand: "GODREJ",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Godrej_Logo.svg/1280px-Godrej_Logo.svg.png",
+        name: "Godrej Riverhills",
+        location: "Mahalunge, Pune",
+        copy: "A wellness-focused township offering open green spaces, future-ready infrastructure, and smart amenities.",
+        projects: "30+",
+        years: "126+",
+        heroImage: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        brand: "PRESTIGE",
+        logo: "https://companieslogo.com/img/orig/PRESTIGE.NS_BIG-52e09255.png?t=1720244493",
+        name: "Prestige Lakeside",
+        location: "Whitefield, Bangalore",
+        copy: "A landmark waterfront community blending premium apartments and villas in an expansive master plan.",
+        projects: "50+",
+        years: "38+",
+        heroImage: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        brand: "OBEROI",
+        logo: "https://www.freelogovectors.net/wp-content/uploads/2020/09/oberoi_realty_logo.png",
+        name: "Oberoi Sky City",
+        location: "Borivali, Mumbai",
+        copy: "High-rise luxury towers with curated lifestyle zones, retail boulevards, and exceptional transit access.",
+        projects: "12+",
+        years: "40+",
+        heroImage: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        brand: "BRIGADE",
+        logo: "https://upload.wikimedia.org/wikipedia/en/8/8e/Brigade_Group.svg",
+        name: "Brigade Exotica",
+        location: "Old Madras Road, Bangalore",
+        copy: "Spacious premium homes crafted with global architecture standards and panoramic urban views.",
+        projects: "28+",
+        years: "37+",
+        heroImage: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80"
+      }
+    ];
+
+    const brandProjectCatalog = {
+      DLF: [
+        { name: "The Camellias", location: "Gurugram", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80", status: "Ready to move", price: "₹ 18 Cr onwards", bhk: "4–5 BHK", sqft: "7,500–16,000 sq.ft" },
+        { name: "The Crest", location: "Gurugram", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80", status: "Premium tower", price: "₹ 4.2 Cr onwards", bhk: "3–4 BHK", sqft: "2,600–4,100 sq.ft" },
+        { name: "Capital Greens", location: "Delhi", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80", status: "Delivered", price: "₹ 2.8 Cr onwards", bhk: "3–4 BHK", sqft: "1,850–3,200 sq.ft" },
+        { name: "Ultima", location: "Gurugram", image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80", status: "Luxury segment", price: "₹ 3.5 Cr onwards", bhk: "3–4 BHK", sqft: "2,200–3,800 sq.ft" },
+        { name: "Skycourt", location: "Gurugram", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80", status: "Modern Living", price: "₹ 1.9 Cr onwards", bhk: "2–3 BHK", sqft: "1,350–2,100 sq.ft" },
+        { name: "Regency Park", location: "Gurugram", image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=900&q=80", status: "Premium Park", price: "₹ 3.1 Cr onwards", bhk: "3–4 BHK", sqft: "2,000–3,400 sq.ft" },
+        { name: "Hamilton Court", location: "Gurugram", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80", status: "Classic Tower", price: "₹ 2.4 Cr onwards", bhk: "3 BHK", sqft: "1,750–2,650 sq.ft" }
+      ],
+      LODHA: [
+        { name: "Lodha Park", location: "Worli, Mumbai", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80", status: "Flagship", price: "₹ 8.5 Cr onwards", bhk: "3–4 BHK", sqft: "1,900–3,600 sq.ft" },
+        { name: "Lodha Marq", location: "Mumbai", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80", status: "Under construction", price: "₹ 12 Cr onwards", bhk: "4–5 BHK", sqft: "2,800–5,200 sq.ft" },
+        { name: "Lodha Bellagio", location: "Pune", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80", status: "New launch", price: "₹ 1.6 Cr onwards", bhk: "2–3 BHK", sqft: "950–1,650 sq.ft" },
+        { name: "Lodha World View", location: "Mumbai", image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80", status: "Ultra luxury", price: "₹ 15 Cr onwards", bhk: "4–5 BHK", sqft: "3,200–6,800 sq.ft" },
+        { name: "Lodha World Towers", location: "Mumbai", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80", status: "Iconic Skyline", price: "₹ 10 Cr onwards", bhk: "3–4 BHK", sqft: "2,400–4,500 sq.ft" },
+        { name: "Lodha Solitaire", location: "Mumbai", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80", status: "Premium Living", price: "₹ 6.2 Cr onwards", bhk: "3 BHK", sqft: "1,650–2,400 sq.ft" }
+      ],
+      GODREJ: [
+        { name: "Godrej Riverhills", location: "Pune", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80", status: "Township", price: "₹ 95 L onwards", bhk: "2–3 BHK", sqft: "780–1,420 sq.ft" },
+        { name: "Godrej Woods", location: "Noida", image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=900&q=80", status: "Green project", price: "₹ 1.4 Cr onwards", bhk: "2–3 BHK", sqft: "1,100–1,850 sq.ft" },
+        { name: "Godrej Horizon", location: "Mumbai", image: "https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=900&q=80", status: "Ongoing", price: "₹ 2.2 Cr onwards", bhk: "2–3 BHK", sqft: "850–1,550 sq.ft" },
+        { name: "Godrej Park Retreat", location: "Bangalore", image: "https://images.unsplash.com/photo-1512915922686-57c11ff9b6b9?auto=format&fit=crop&w=900&q=80", status: "Top seller", price: "₹ 1.1 Cr onwards", bhk: "2–3 BHK", sqft: "950–1,600 sq.ft" },
+        { name: "Godrej Golf Links", location: "Greater Noida", image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80", status: "Golf View", price: "₹ 1.8 Cr onwards", bhk: "3–4 BHK", sqft: "1,400–2,800 sq.ft" },
+        { name: "Godrej Emerald", location: "Thane", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80", status: "Premium", price: "₹ 1.3 Cr onwards", bhk: "2–3 BHK", sqft: "720–1,280 sq.ft" }
+      ],
+      PRESTIGE: [
+        { name: "Prestige Lakeside", location: "Bangalore", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80", status: "Delivered", price: "₹ 2.5 Cr onwards", bhk: "3–4 BHK", sqft: "1,800–3,500 sq.ft" },
+        { name: "Prestige City", location: "Hyderabad", image: "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=900&q=80", status: "Mega township", price: "₹ 85 L onwards", bhk: "2–3 BHK", sqft: "1,050–1,750 sq.ft" },
+        { name: "Prestige Falcon", location: "Bangalore", image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80", status: "Luxury", price: "₹ 3.8 Cr onwards", bhk: "3–4 BHK", sqft: "2,100–3,900 sq.ft" },
+        { name: "Prestige Sunrise", location: "Kochi", image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=900&q=80", status: "Ready homes", price: "₹ 72 L onwards", bhk: "2–3 BHK", sqft: "980–1,520 sq.ft" },
+        { name: "Prestige Kingfisher", location: "Bangalore", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80", status: "Ultra Luxury", price: "₹ 5.5 Cr onwards", bhk: "4 BHK", sqft: "3,400–5,100 sq.ft" }
+      ],
+      OBEROI: [
+        { name: "Oberoi Sky City", location: "Mumbai", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80", status: "Luxury towers", price: "₹ 2.8 Cr onwards", bhk: "2–3 BHK", sqft: "850–1,450 sq.ft" },
+        { name: "Oberoi Esquire", location: "Mumbai", image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80", status: "Delivered", price: "₹ 4.5 Cr onwards", bhk: "3–4 BHK", sqft: "1,650–2,900 sq.ft" },
+        { name: "Oberoi Garden City", location: "Thane", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80", status: "Planned phase", price: "₹ 1.9 Cr onwards", bhk: "2–3 BHK", sqft: "950–1,680 sq.ft" },
+        { name: "Oberoi Eternia", location: "Mulund", image: "https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&w=900&q=80", status: "Top rated", price: "₹ 2.1 Cr onwards", bhk: "2–3 BHK", sqft: "880–1,420 sq.ft" },
+        { name: "Oberoi Elysian", location: "Mumbai", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80", status: "Flagship", price: "₹ 5.8 Cr onwards", bhk: "3–4 BHK", sqft: "1,900–3,200 sq.ft" }
+      ],
+      BRIGADE: [
+        { name: "Brigade Exotica", location: "Bangalore", image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80", status: "Completed", price: "₹ 1.7 Cr onwards", bhk: "3 BHK", sqft: "1,550–2,350 sq.ft" },
+        { name: "Brigade Cornerstone", location: "Bangalore", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80", status: "Mixed use", price: "₹ 1.2 Cr onwards", bhk: "2–3 BHK", sqft: "1,050–1,750 sq.ft" },
+        { name: "Brigade Utopia", location: "Bangalore", image: "https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=900&q=80", status: "New launch", price: "₹ 98 L onwards", bhk: "2–3 BHK", sqft: "920–1,480 sq.ft" },
+        { name: "Brigade Lakefront", location: "Chennai", image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=900&q=80", status: "Waterfront", price: "₹ 1.5 Cr onwards", bhk: "3 BHK", sqft: "1,350–2,100 sq.ft" },
+        { name: "Brigade Atmosphere", location: "Bangalore", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80", status: "Villas", price: "₹ 3.2 Cr onwards", bhk: "4 BHK Villa", sqft: "2,800–4,200 sq.ft" }
+      ]
+    };
+
+    let currentProjectSlide = 0;
+
+    function updateBrandShowcase(index) {
+      if (!brandShowcaseData.length) return;
+      currentBrandIndex = (index + brandShowcaseData.length) % brandShowcaseData.length;
+      const active = brandShowcaseData[currentBrandIndex];
+      const brandProjects = brandProjectCatalog[active.brand] || [];
+
+      // Update Developer Cards
+      const developerCards = document.querySelectorAll(".developer-card");
+      developerCards.forEach((card, i) => {
+        card.classList.toggle("active", i === currentBrandIndex);
+      });
+
+      // Update Projects Grid/Slider
+      const projectTrack = document.getElementById("brandProjectTrack");
+      if (projectTrack) {
+        const isFirstLoad = !projectTrack._initialized;
+        projectTrack._initialized = true;
+        projectTrack.style.transform = "translateX(0)";
+        currentProjectSlide = 0; // Reset slide position
+
+        const renderCards = () => {
+          projectTrack.innerHTML = brandProjects.map(project => `
+            <article class="project-card">
+              <div class="project-card-image-wrap">
+                <div class="project-dev-badge">
+                  <img src="${active.logo}" alt="${active.brand} logo">
+                </div>
+                <img src="${project.image}" alt="${project.name}">
+              </div>
+              <div class="project-card-body">
+                <h4 class="project-card-name">${project.name}</h4>
+                <p class="project-card-loc"><i class="fas fa-location-dot"></i> ${project.location}</p>
+                <p class="project-card-price">${project.price}</p>
+                <div class="project-card-specs">
+                  <span><i class="fas fa-bed"></i> ${project.bhk}</span>
+                  <span><i class="fas fa-vector-square"></i> ${project.sqft}</span>
+                </div>
+                <div class="project-card-tag">${project.status}</div>
+              </div>
+            </article>
+          `).join('');
+          projectTrack.style.opacity = "1";
+        };
+
+        if (isFirstLoad) {
+          // Render immediately on first load – no fade delay
+          renderCards();
+        } else {
+          projectTrack.style.opacity = "0";
+          setTimeout(renderCards, 300);
+        }
+      }
+
+      // Update Dots
+      const dots = document.querySelectorAll(".slider-dot");
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentBrandIndex);
+      });
+    }
+
+    function slideProjects(direction) {
+      const track = document.getElementById("brandProjectTrack");
+      if (!track) return;
+      const card = track.querySelector(".project-card");
+      if (!card) return;
+
+      const cardWidth = card.offsetWidth + 24; // 24px is the 1.5rem gap
+      const totalProjects = track.children.length;
+      const visibleCount = window.innerWidth <= 768 ? 1 : (window.innerWidth <= 1024 ? 3 : 5);
+      const maxSlides = Math.max(0, totalProjects - visibleCount);
+
+      currentProjectSlide = Math.min(Math.max(currentProjectSlide + direction, 0), maxSlides);
+      track.style.transform = `translateX(-${currentProjectSlide * cardWidth}px)`;
+    }
+
+    // Initialize Developer Grid Listeners
+    const brandTabsEl = document.getElementById("brandTabs");
+    if (brandTabsEl) {
+      brandTabsEl.addEventListener("click", (e) => {
+        const card = e.target.closest(".developer-card");
+        if (card) {
+          const index = parseInt(card.dataset.brandIndex);
+          updateBrandShowcase(index);
+        }
+      });
+    }
+
+    document.getElementById("brandPrev")?.addEventListener("click", () => slideProjects(-1));
+    document.getElementById("brandNext")?.addEventListener("click", () => slideProjects(1));
+
+    // --- EMI Calculator ---
+    function calculateEmi() {
+      const p = Number(loanAmountInput?.value), r = Number(interestRateInput?.value) / 1200, n = Number(loanTenureInput?.value) * 12;
+      if (!p || !r || !n) return;
+      const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      if (emiResultValue) emiResultValue.textContent = "₹ " + new Intl.NumberFormat("en-IN").format(emi.toFixed(0));
+    }
+    [loanAmountInput, interestRateInput, loanTenureInput].forEach(i => i?.addEventListener("input", calculateEmi));
+    openEmiModalBtn?.addEventListener("click", () => { emiModal?.classList.add("open"); calculateEmi(); });
+    closeEmiModalBtn?.addEventListener("click", () => emiModal?.classList.remove("open"));
+
+    // --- Scroll Voice Tour ---
+    const voiceLangSelect = document.getElementById("voiceLangSelect");
+    const voiceSections = Array.from(document.querySelectorAll("[data-voice-text]"));
+    const voicePlayLabel = document.getElementById("voicePlayLabel");
+    const voicePlayIcon = document.getElementById("voicePlayIcon");
+    let voiceTourActive = false;
+    let voiceTourPaused = false;
+    let voicePlaybackId = 0;
+    let lastSpokenSection = null;
+    let activeVoiceSection = null;
+    let cachedVoices = [];
+    const sectionVisibility = new Map();
+
+    const VOICE_LANG_CODES = {
+      en: "en-IN", hi: "hi-IN", mr: "mr-IN", gu: "gu-IN",
+      ta: "ta-IN", te: "te-IN", kn: "kn-IN", bn: "bn-IN"
+    };
+
+    const GOOGLE_TTS_CODES = {
+      en: "en", hi: "hi", mr: "mr", gu: "gu", ta: "ta", te: "te", kn: "kn", bn: "bn"
+    };
+
+    const CLOUD_TTS_LANGS = new Set(["mr", "gu", "ta", "te", "kn", "bn"]);
+
+    let voiceAudio = null;
+    let voiceAudioChunks = [];
+
+    const VOICE_UI = {
+      en: { start: "Voice Tour", pause: "Pause", resume: "Resume", on: "Voice Tour On", off: "Voice tour off · pick a language & scroll", playing: "Playing", nowAt: "On · now at" },
+      hi: { start: "Ã Â¤ÂµÃ Â¥â€°Ã Â¤Â¯Ã Â¤Â¸ Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â°", pause: "Ã Â¤Â°Ã Â¥â€¹Ã Â¤â€¢Ã Â¥â€¡Ã Â¤â€š", resume: "Ã Â¤Å“Ã Â¤Â¾Ã Â¤Â°Ã Â¥â‚¬ Ã Â¤Â°Ã Â¤â€“Ã Â¥â€¡Ã Â¤â€š", on: "Ã Â¤ÂµÃ Â¥â€°Ã Â¤Â¯Ã Â¤Â¸ Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â° Ã Â¤Å¡Ã Â¤Â¾Ã Â¤Â²Ã Â¥â€š", off: "Ã Â¤ÂµÃ Â¥â€°Ã Â¤Â¯Ã Â¤Â¸ Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â° Ã Â¤Â¬Ã Â¤â€šÃ Â¤Â¦ · Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â·Ã Â¤Â¾ Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¨Ã Â¥â€¡Ã Â¤â€š Ã Â¤â€Ã Â¤Â° Ã Â¤Â¸Ã Â¥ÂÃ Â¤â€¢Ã Â¥ÂÃ Â¤Â°Ã Â¥â€°Ã Â¤Â² Ã Â¤â€¢Ã Â¤Â°Ã Â¥â€¡Ã Â¤â€š", playing: "Ã Â¤Å¡Ã Â¤Â² Ã Â¤Â°Ã Â¤Â¹Ã Â¤Â¾ Ã Â¤Â¹Ã Â¥Ë†", nowAt: "Ã Â¤Å¡Ã Â¤Â¾Ã Â¤Â²Ã Â¥â€š · Ã Â¤â€¦Ã Â¤Â­Ã Â¥â‚¬" },
+      mr: { start: "Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¥â€°Ã Â¤Ë†Ã Â¤Â¸ Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â°", pause: "Ã Â¤Â¥Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â¬Ã Â¤ÂµÃ Â¤Â¾", resume: "Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â¨Ã Â¥ÂÃ Â¤Â¹Ã Â¤Â¾ Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â°Ã Â¥â€š", on: "Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¥â€°Ã Â¤Ë†Ã Â¤Â¸ Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â° Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â°Ã Â¥â€š", off: "Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¥â€°Ã Â¤Ë†Ã Â¤Â¸ Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â° Ã Â¤Â¬Ã Â¤â€šÃ Â¤Â¦ · Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â·Ã Â¤Â¾ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¤Â¡Ã Â¤Â¾ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Â¸Ã Â¥ÂÃ Â¤â€¢Ã Â¥ÂÃ Â¤Â°Ã Â¥â€¹Ã Â¤Â² Ã Â¤â€¢Ã Â¤Â°Ã Â¤Â¾", playing: "Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â°Ã Â¥â€š Ã Â¤â€ Ã Â¤Â¹Ã Â¥â€¡", nowAt: "Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â°Ã Â¥â€š · Ã Â¤â€ Ã Â¤Â¤Ã Â¤Â¾" },
+      gu: { start: "Ã ÂªÂµÃ Â«â€°Ã Âªâ€¡Ã ÂªÂ¸ Ã ÂªÅ¸Ã Â«â€šÃ ÂªÂ°", pause: "Ã Âªâ€¦Ã ÂªÅ¸Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂµÃ Â«â€¹", resume: "Ã ÂªÂ«Ã ÂªÂ°Ã Â«â‚¬ Ã ÂªÂ¶Ã ÂªÂ°Ã Â«â€š", on: "Ã ÂªÂµÃ Â«â€°Ã Âªâ€¡Ã ÂªÂ¸ Ã ÂªÅ¸Ã Â«â€šÃ ÂªÂ° Ã ÂªÅ¡Ã ÂªÂ¾Ã ÂªÂ²Ã Â«Â", off: "Ã ÂªÂµÃ Â«â€°Ã Âªâ€¡Ã ÂªÂ¸ Ã ÂªÅ¸Ã Â«â€šÃ ÂªÂ° Ã ÂªÂ¬Ã Âªâ€šÃ ÂªÂ§ · Ã ÂªÂ­Ã ÂªÂ¾Ã ÂªÂ·Ã ÂªÂ¾ Ã ÂªÂªÃ ÂªÂ¸Ã Âªâ€šÃ ÂªÂ¦ Ã Âªâ€¢Ã ÂªÂ°Ã Â«â€¹", playing: "Ã ÂªÅ¡Ã ÂªÂ¾Ã ÂªÂ²Ã Â«â‚¬ Ã ÂªÂ°Ã ÂªÂ¹Ã Â«ÂÃ ÂªÂ¯Ã Â«ÂÃ Âªâ€š Ã Âªâ€ºÃ Â«â€¡", nowAt: "Ã ÂªÅ¡Ã ÂªÂ¾Ã ÂªÂ²Ã Â«Â · Ã ÂªÂ¹Ã ÂªÂµÃ Â«â€¡" },
+      ta: { start: "Ã Â®â€¢Ã Â¯ÂÃ Â®Â°Ã Â®Â²Ã Â¯Â Ã Â®Å¡Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯Â", pause: "Ã Â®â€¡Ã Â®Å¸Ã Â¯Ë†Ã Â®Â¨Ã Â®Â¿Ã Â®Â±Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯Â", resume: "Ã Â®Â¤Ã Â¯Å Ã Â®Å¸Ã Â®Â°Ã Â®ÂµÃ Â¯ÂÃ Â®Â®Ã Â¯Â", on: "Ã Â®â€¢Ã Â¯ÂÃ Â®Â°Ã Â®Â²Ã Â¯Â Ã Â®Å¡Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯Â Ã Â®â€¡Ã Â®Â¯Ã Â®Â²Ã Â¯ÂÃ Â®ÂªÃ Â®Â¿Ã Â®Â²Ã Â¯Â", off: "Ã Â®â€¢Ã Â¯ÂÃ Â®Â°Ã Â®Â²Ã Â¯Â Ã Â®Å¡Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯Â Ã Â®Â¨Ã Â®Â¿Ã Â®Â±Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â®Â¤Ã Â¯Â", playing: "Ã Â®â€¡Ã Â®Â¯Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â¿Ã Â®Â±Ã Â®Â¤Ã Â¯Â", nowAt: "Ã Â®â€¡Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â¯â€¹Ã Â®Â¤Ã Â¯Â" },
+      te: { start: "Ã Â°ÂµÃ Â°Â¾Ã Â°Â¯Ã Â°Â¿Ã Â°Â¸Ã Â±Â Ã Â°Å¸Ã Â±â€šÃ Â°Â°Ã Â±Â", pause: "Ã Â°ÂªÃ Â°Â¾Ã Â°Å“Ã Â±Â", resume: "Ã Â°â€¢Ã Â±Å Ã Â°Â¨Ã Â°Â¸Ã Â°Â¾Ã Â°â€”Ã Â°Â¿Ã Â°â€šÃ Â°Å¡Ã Â±Â", on: "Ã Â°ÂµÃ Â°Â¾Ã Â°Â¯Ã Â°Â¿Ã Â°Â¸Ã Â±Â Ã Â°Å¸Ã Â±â€šÃ Â°Â°Ã Â±Â Ã Â°â€ Ã Â°Â¨Ã Â±Â", off: "Ã Â°ÂµÃ Â°Â¾Ã Â°Â¯Ã Â°Â¿Ã Â°Â¸Ã Â±Â Ã Â°Å¸Ã Â±â€šÃ Â°Â°Ã Â±Â Ã Â°â€ Ã Â°Â«Ã Â±Â", playing: "Ã Â°ÂªÃ Â±ÂÃ Â°Â²Ã Â±â€¡ Ã Â°â€¦Ã Â°ÂµÃ Â±ÂÃ Â°Â¤Ã Â±â€¹Ã Â°â€šÃ Â°Â¦Ã Â°Â¿", nowAt: "Ã Â°â€¡Ã Â°ÂªÃ Â±ÂÃ Â°ÂªÃ Â±ÂÃ Â°Â¡Ã Â±Â" },
+      kn: { start: "Ã Â²ÂµÃ Â²Â¾Ã Â²Â¯Ã Â³ÂÃ Â²Â¸Ã Â³Â Ã Â²Å¸Ã Â³â€šÃ Â²Â°Ã Â³Â", pause: "Ã Â²ÂµÃ Â²Â¿Ã Â²Â°Ã Â²Â¾Ã Â²Â®", resume: "Ã Â²Â®Ã Â³ÂÃ Â²â€šÃ Â²Â¦Ã Â³ÂÃ Â²ÂµÃ Â²Â°Ã Â²Â¿Ã Â²Â¸Ã Â²Â¿", on: "Ã Â²ÂµÃ Â²Â¾Ã Â²Â¯Ã Â³ÂÃ Â²Â¸Ã Â³Â Ã Â²Å¸Ã Â³â€šÃ Â²Â°Ã Â³Â Ã Â²â€ Ã Â²Â¨Ã Â³Â", off: "Ã Â²ÂµÃ Â²Â¾Ã Â²Â¯Ã Â³ÂÃ Â²Â¸Ã Â³Â Ã Â²Å¸Ã Â³â€šÃ Â²Â°Ã Â³Â Ã Â²â€ Ã Â²Â«Ã Â³Â", playing: "Ã Â²ÂªÃ Â³ÂÃ Â²Â²Ã Â³â€¡ Ã Â²â€ Ã Â²â€”Ã Â³ÂÃ Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â²Â¿Ã Â²Â¦Ã Â³â€ ", nowAt: "Ã Â²Ë†Ã Â²â€”" },
+      bn: { start: "Ã Â¦Â­Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â¸ Ã Â¦Å¸Ã Â§ÂÃ Â¦Â¯Ã Â§ÂÃ Â¦Â°", pause: "Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â°Ã Â¦Â¤Ã Â¦Â¿", resume: "Ã Â¦â€ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦Â° Ã Â¦Å¡Ã Â¦Â¾Ã Â¦Â²Ã Â§Â", on: "Ã Â¦Â­Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â¸ Ã Â¦Å¸Ã Â§ÂÃ Â¦Â¯Ã Â§ÂÃ Â¦Â° Ã Â¦Å¡Ã Â¦Â¾Ã Â¦Â²Ã Â§Â", off: "Ã Â¦Â­Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â¸ Ã Â¦Å¸Ã Â§ÂÃ Â¦Â¯Ã Â§ÂÃ Â¦Â° Ã Â¦Â¬Ã Â¦Â¨Ã Â§ÂÃ Â¦Â§", playing: "Ã Â¦Å¡Ã Â¦Â²Ã Â¦â€ºÃ Â§â€¡", nowAt: "Ã Â¦ÂÃ Â¦â€“Ã Â¦Â¨" }
+    };
+
+    const VOICE_LABELS = {
+      en: { heroBanner: "Hero", heroSearchSection: "Search", moodLifestyleSection: "Lifestyle", localities: "Destinations", liveDealsSection: "Hot Deals", nriPremiumSection: "NRI Services", developersProjects: "Developers", investmentOppsSection: "Investments", socialProofSection: "Social Proof", reviewsVideoSection: "Client Stories", "why-choose": "Why Choose Us", blog: "Blogs" },
+      hi: { heroBanner: "Ã Â¤Â¹Ã Â¥â€¹Ã Â¤Â®", heroSearchSection: "Ã Â¤â€“Ã Â¥â€¹Ã Â¤Å“", moodLifestyleSection: "Ã Â¤Â²Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Â«Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Â²", localities: "Ã Â¤â€”Ã Â¤â€šÃ Â¤Â¤Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¯", liveDealsSection: "Ã Â¤Â¹Ã Â¥â€°Ã Â¤Å¸ Ã Â¤Â¡Ã Â¥â‚¬Ã Â¤Â²", nriPremiumSection: "Ã Â¤ÂÃ Â¤Â¨Ã Â¤â€ Ã Â¤Â°Ã Â¤â€ Ã Â¤Ë† Ã Â¤Â¸Ã Â¥â€¡Ã Â¤ÂµÃ Â¤Â¾Ã Â¤ÂÃ Â¤â€š", developersProjects: "Ã Â¤Â¡Ã Â¥â€¡Ã Â¤ÂµÃ Â¤Â²Ã Â¤ÂªÃ Â¤Â°Ã Â¥ÂÃ Â¤Â¸", investmentOppsSection: "Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¥â€¡Ã Â¤Â¶", socialProofSection: "Ã Â¤Â¸Ã Â¥â€¹Ã Â¤Â¶Ã Â¤Â² Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â€šÃ Â¤Â«", reviewsVideoSection: "Ã Â¤â€¢Ã Â¥ÂÃ Â¤Â²Ã Â¤Â¾Ã Â¤â€¡Ã Â¤â€šÃ Â¤Å¸ Ã Â¤â€¢Ã Â¤Â¹Ã Â¤Â¾Ã Â¤Â¨Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â¾Ã Â¤â€š", "why-choose": "Ã Â¤â€¢Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€¹Ã Â¤â€š Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¨Ã Â¥â€¡Ã Â¤â€š", blog: "Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â²Ã Â¥â€°Ã Â¤â€”" },
+      mr: { heroBanner: "Ã Â¤Â¹Ã Â¥â€¹Ã Â¤Â®", heroSearchSection: "Ã Â¤Â¶Ã Â¥â€¹Ã Â¤Â§", moodLifestyleSection: "Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨Ã Â¤Â¶Ã Â¥Ë†Ã Â¤Â²Ã Â¥â‚¬", localities: "Ã Â¤Â Ã Â¤Â¿Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â£Ã Â¥â€¡", liveDealsSection: "Ã Â¤Â¹Ã Â¥â€°Ã Â¤Å¸ Ã Â¤Â¡Ã Â¥â‚¬Ã Â¤Â²", nriPremiumSection: "Ã Â¤ÂÃ Â¤Â¨Ã Â¤â€ Ã Â¤Â°Ã Â¤â€ Ã Â¤Â¯ Ã Â¤Â¸Ã Â¥â€¡Ã Â¤ÂµÃ Â¤Â¾", developersProjects: "Ã Â¤Â¡Ã Â¥â€¡Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¤Â²Ã Â¤ÂªÃ Â¤Â°Ã Â¥ÂÃ Â¤Â¸", investmentOppsSection: "Ã Â¤â€”Ã Â¥ÂÃ Â¤â€šÃ Â¤Â¤Ã Â¤ÂµÃ Â¤Â£Ã Â¥â€šÃ Â¤â€¢", socialProofSection: "Ã Â¤Â¸Ã Â¥â€¹Ã Â¤Â¶Ã Â¤Â² Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â€šÃ Â¤Â«", reviewsVideoSection: "Ã Â¤â€¢Ã Â¥ÂÃ Â¤Â²Ã Â¤Â¾Ã Â¤Â¯Ã Â¤â€šÃ Â¤Å¸ Ã Â¤â€¢Ã Â¤Â¥Ã Â¤Â¾", "why-choose": "Ã Â¤â€¢Ã Â¤Â¾ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¤Â¡Ã Â¤Â¾Ã Â¤ÂµÃ Â¥â€¡", blog: "Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â²Ã Â¥â€°Ã Â¤â€”" },
+      gu: { heroBanner: "Ã ÂªÂ¹Ã Â«â€¹Ã ÂªÂ®", heroSearchSection: "Ã ÂªÂ¶Ã Â«â€¹Ã ÂªÂ§", moodLifestyleSection: "Ã ÂªÂ²Ã ÂªÂ¾Ã Âªâ€¡Ã ÂªÂ«Ã ÂªÂ¸Ã Â«ÂÃ ÂªÅ¸Ã ÂªÂ¾Ã Âªâ€¡Ã ÂªÂ²", localities: "Ã Âªâ€”Ã Âªâ€šÃ ÂªÂ¤Ã ÂªÂµÃ Â«ÂÃ ÂªÂ¯Ã Â«â€¹", liveDealsSection: "Ã ÂªÂ¹Ã Â«â€¹Ã ÂªÅ¸ Ã ÂªÂ¡Ã Â«â‚¬Ã ÂªÂ²", nriPremiumSection: "Ã ÂªÂÃ ÂªÂ¨Ã Âªâ€ Ã ÂªÂ°Ã Âªâ€ Ã ÂªË† Ã ÂªÂ¸Ã Â«â€¡Ã ÂªÂµÃ ÂªÂ¾Ã Âªâ€œ", developersProjects: "Ã ÂªÂ¡Ã Â«â€¡Ã ÂªÂµÃ ÂªÂ²Ã ÂªÂªÃ ÂªÂ°Ã Â«ÂÃ ÂªÂ¸", investmentOppsSection: "Ã ÂªÂ°Ã Â«â€¹Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ£", socialProofSection: "Ã ÂªÂ¸Ã Â«â€¹Ã ÂªÂ¶Ã ÂªÂ¿Ã ÂªÂ¯Ã ÂªÂ² Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Â«â€šÃ ÂªÂ«", reviewsVideoSection: "Ã Âªâ€¢Ã Â«ÂÃ ÂªÂ²Ã ÂªÂ¾Ã ÂªÂ¯Ã Âªâ€šÃ ÂªÅ¸ Ã ÂªÂµÃ ÂªÂ¾Ã ÂªÂ°Ã Â«ÂÃ ÂªÂ¤Ã ÂªÂ¾Ã Âªâ€œ", "why-choose": "Ã ÂªÂ¶Ã ÂªÂ¾ Ã ÂªÂ®Ã ÂªÂ¾Ã ÂªÅ¸Ã Â«â€¡ Ã Âªâ€¦Ã ÂªÂ®Ã ÂªÂ¨Ã Â«â€¡", blog: "Ã ÂªÂ¬Ã Â«ÂÃ ÂªÂ²Ã Â«â€¹Ã Âªâ€”" },
+      ta: { heroBanner: "Ã Â®Â®Ã Â¯ÂÃ Â®â€¢Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â¯Â", heroSearchSection: "Ã Â®Â¤Ã Â¯â€¡Ã Â®Å¸Ã Â®Â²Ã Â¯Â", moodLifestyleSection: "Ã Â®ÂµÃ Â®Â¾Ã Â®Â´Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†Ã Â®Â®Ã Â¯ÂÃ Â®Â±Ã Â¯Ë†", localities: "Ã Â®â€¡Ã Â®Å¸Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â", liveDealsSection: "Ã Â®Â¹Ã Â®Â¾Ã Â®Å¸Ã Â¯Â Ã Â®Å¸Ã Â¯â‚¬Ã Â®Â²Ã Â¯ÂÃ Â®Â¸Ã Â¯Â", nriPremiumSection: "Ã Â®Å½Ã Â®Â©Ã Â¯ÂÃ Â®â€ Ã Â®Â°Ã Â¯ÂÃ Â®Â Ã Â®Å¡Ã Â¯â€¡Ã Â®ÂµÃ Â¯Ë†Ã Â®â€¢Ã Â®Â³Ã Â¯Â", developersProjects: "Ã Â®Å¸Ã Â¯â€ Ã Â®ÂµÃ Â®Â²Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Â°Ã Â¯ÂÃ Â®Â¸Ã Â¯Â", investmentOppsSection: "Ã Â®Â®Ã Â¯ÂÃ Â®Â¤Ã Â®Â²Ã Â¯â‚¬Ã Â®Å¸Ã Â¯Â", socialProofSection: "Ã Â®Å¡Ã Â®Â®Ã Â¯â€šÃ Â®â€¢ Ã Â®Â¨Ã Â®Â®Ã Â¯ÂÃ Â®ÂªÃ Â®Â¿Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†", reviewsVideoSection: "Ã Â®ÂµÃ Â®Â¾Ã Â®Å¸Ã Â®Â¿Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†Ã Â®Â¯Ã Â®Â¾Ã Â®Â³Ã Â®Â°Ã Â¯Â Ã Â®â€¢Ã Â®Â¤Ã Â¯Ë†Ã Â®â€¢Ã Â®Â³Ã Â¯Â", "why-choose": "Ã Â®ÂÃ Â®Â©Ã Â¯Â Ã Â®Â¨Ã Â®Â¾Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â", blog: "Ã Â®ÂµÃ Â®Â²Ã Â¯Ë†Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Â¤Ã Â®Â¿Ã Â®ÂµÃ Â¯Â" },
+      te: { heroBanner: "Ã Â°Â¹Ã Â±â€¹Ã Â°Â®Ã Â±Â", heroSearchSection: "Ã Â°Â¶Ã Â±â€¹Ã Â°Â§Ã Â°Â¨", moodLifestyleSection: "Ã Â°Å“Ã Â±â‚¬Ã Â°ÂµÃ Â°Â¨Ã Â°Â¶Ã Â±Ë†Ã Â°Â²Ã Â°Â¿", localities: "Ã Â°â€”Ã Â°Â®Ã Â±ÂÃ Â°Â¯Ã Â°Â¸Ã Â±ÂÃ Â°Â¥Ã Â°Â¾Ã Â°Â¨Ã Â°Â¾Ã Â°Â²Ã Â±Â", liveDealsSection: "Ã Â°Â¹Ã Â°Â¾Ã Â°Å¸Ã Â±Â Ã Â°Â¡Ã Â±â‚¬Ã Â°Â²Ã Â±ÂÃ Â°Â¸Ã Â±Â", nriPremiumSection: "Ã Â°Å½Ã Â°Â¨Ã Â±ÂÃ Â°â€ Ã Â°Â°Ã Â±ÂÃ Â°Â Ã Â°Â¸Ã Â±â€¡Ã Â°ÂµÃ Â°Â²Ã Â±Â", developersProjects: "Ã Â°Â¡Ã Â±â€ Ã Â°ÂµÃ Â°Â²Ã Â°ÂªÃ Â°Â°Ã Â±ÂÃ Â°Â¸Ã Â±Â", investmentOppsSection: "Ã Â°ÂªÃ Â±â€ Ã Â°Å¸Ã Â±ÂÃ Â°Å¸Ã Â±ÂÃ Â°Â¬Ã Â°Â¡Ã Â±ÂÃ Â°Â²Ã Â±Â", socialProofSection: "Ã Â°Â¸Ã Â±â€¹Ã Â°Â·Ã Â°Â²Ã Â±Â Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â±â€šÃ Â°Â«Ã Â±Â", reviewsVideoSection: "Ã Â°â€¢Ã Â±ÂÃ Â°Â²Ã Â°Â¯Ã Â°Â¿Ã Â°â€šÃ Â°Å¸Ã Â±Â Ã Â°â€¢Ã Â°Â¥Ã Â°Â²Ã Â±Â", "why-choose": "Ã Â°Å½Ã Â°â€šÃ Â°Â¦Ã Â±ÂÃ Â°â€¢Ã Â±Â Ã Â°Â®Ã Â°Â®Ã Â±ÂÃ Â°Â®Ã Â°Â²Ã Â±ÂÃ Â°Â¨Ã Â°Â¿", blog: "Ã Â°Â¬Ã Â±ÂÃ Â°Â²Ã Â°Â¾Ã Â°â€”Ã Â±Â" },
+      kn: { heroBanner: "Ã Â²Â¹Ã Â³â€¹Ã Â²Â®Ã Â³Â", heroSearchSection: "Ã Â²Â¹Ã Â³ÂÃ Â²Â¡Ã Â³ÂÃ Â²â€¢Ã Â²Â¾Ã Â²Å¸", moodLifestyleSection: "Ã Â²Å“Ã Â³â‚¬Ã Â²ÂµÃ Â²Â¨Ã Â²Â¶Ã Â³Ë†Ã Â²Â²Ã Â²Â¿", localities: "Ã Â²â€”Ã Â²Â®Ã Â³ÂÃ Â²Â¯Ã Â²Â¸Ã Â³ÂÃ Â²Â¥Ã Â²Â¾Ã Â²Â¨Ã Â²â€”Ã Â²Â³Ã Â³Â", liveDealsSection: "Ã Â²Â¹Ã Â²Â¾Ã Â²Å¸Ã Â³Â Ã Â²Â¡Ã Â³â‚¬Ã Â²Â²Ã Â³ÂÃ Â²Â¸Ã Â³Â", nriPremiumSection: "Ã Â²Å½Ã Â²Â¨Ã Â³ÂÃ Â²â€ Ã Â²Â°Ã Â³ÂÃ Â²Â Ã Â²Â¸Ã Â³â€¡Ã Â²ÂµÃ Â³â€ Ã Â²â€”Ã Â²Â³Ã Â³Â", developersProjects: "Ã Â²Â¡Ã Â³â€ Ã Â²ÂµÃ Â²Â²Ã Â²ÂªÃ Â²Â°Ã Â³ÂÃ Â²Â¸Ã Â³Â", investmentOppsSection: "Ã Â²Â¹Ã Â³â€šÃ Â²Â¡Ã Â²Â¿Ã Â²â€¢Ã Â³â€ ", socialProofSection: "Ã Â²Â¸Ã Â²Â¾Ã Â²Â®Ã Â²Â¾Ã Â²Å“Ã Â²Â¿Ã Â²â€¢ Ã Â²Â¨Ã Â²â€šÃ Â²Â¬Ã Â²Â¿Ã Â²â€¢Ã Â³â€ ", reviewsVideoSection: "Ã Â²â€¢Ã Â³ÂÃ Â²Â²Ã Â³Ë†Ã Â²â€šÃ Â²Å¸Ã Â³Â Ã Â²â€¢Ã Â²Â¥Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â³Â", "why-choose": "Ã Â²ÂÃ Â²â€¢Ã Â³â€  Ã Â²Â¨Ã Â²Â®Ã Â³ÂÃ Â²Â®Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â", blog: "Ã Â²Â¬Ã Â³ÂÃ Â²Â²Ã Â²Â¾Ã Â²â€”Ã Â³Â" },
+      bn: { heroBanner: "Ã Â¦Â¹Ã Â§â€¹Ã Â¦Â®", heroSearchSection: "Ã Â¦â€¦Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¸Ã Â¦Â¨Ã Â§ÂÃ Â¦Â§Ã Â¦Â¾Ã Â¦Â¨", moodLifestyleSection: "Ã Â¦Å“Ã Â§â‚¬Ã Â¦Â¬Ã Â¦Â¨Ã Â¦Â§Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¾", localities: "Ã Â¦â€”Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¬Ã Â§ÂÃ Â¦Â¯", liveDealsSection: "Ã Â¦Â¹Ã Â¦Å¸ Ã Â¦Â¡Ã Â¦Â¿Ã Â¦Â²", nriPremiumSection: "Ã Â¦ÂÃ Â¦Â¨Ã Â¦â€ Ã Â¦Â°Ã Â¦â€ Ã Â¦â€¡ Ã Â¦Â¸Ã Â§â€¡Ã Â¦Â¬Ã Â¦Â¾", developersProjects: "Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â­Ã Â§â€¡Ã Â¦Â²Ã Â¦ÂªÃ Â¦Â¾Ã Â¦Â°", investmentOppsSection: "Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¹Ã Â¦â€”", socialProofSection: "Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â®Ã Â¦Â¾Ã Â¦Å“Ã Â¦Â¿Ã Â¦â€¢ Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â£", reviewsVideoSection: "Ã Â¦â€¢Ã Â§ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â¨Ã Â§ÂÃ Â¦Å¸ Ã Â¦â€”Ã Â¦Â²Ã Â§ÂÃ Â¦Âª", "why-choose": "Ã Â¦â€¢Ã Â§â€¡Ã Â¦Â¨ Ã Â¦â€ Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â°", blog: "Ã Â¦Â¬Ã Â§ÂÃ Â¦Â²Ã Â¦â€”" }
+    };
+
+    const VOICE_I18N = {
+      en: {
+        heroBanner: "Welcome to Inchbrick Realty. Trusted place to find a home with verified listings across India's top cities.",
+        heroSearchSection: "Use the search bar to find properties by location, type, price range, and bedrooms. Over two thousand five hundred happy buyers trust our verified listings across fifty plus cities.",
+        moodLifestyleSection: "Find property by mood and lifestyle. Choose from family living, city life, beachside homes, peaceful retreats, work from home spaces, or smart investment options that match your vibe.",
+        localities: "Explore prime localities in Mumbai, Bangalore, and Pune with verified listings and starting prices.",
+        liveDealsSection: "Live hot deals. Grab flash discounts on premium properties with verified prices and no hidden charges. Limited time offers on prime homes across top cities.",
+        nriPremiumSection: "Invest in India from anywhere in the world. Our NRI services offer dedicated support for overseas buyers, from virtual tours to documentation and end to end property assistance.",
+        developersProjects: "Trusted brands and iconic projects. We partner with India's leading developers like D L F, Lodha, Godrej, and Prestige to bring you landmark residential spaces you can trust.",
+        socialProofSection: "Luxury homes on screen. See how our premium properties have been featured and celebrated, building confidence through real visibility and trusted buyer experiences.",
+        reviewsVideoSection: "Google reviews and short client video stories from verified home buyers.",
+        "why-choose": "Why choose Inchbrick Realty. Enjoy verified listings, best price assurance, and full support from search to handover. Trusted by over ten thousand home buyers across India.",
+        blog: "Latest blogs and insights. Read expert tips on investing, luxury buying, and home loans to make smarter property decisions with Inchbrick Realty."
+      },
+      hi: {
+        heroBanner: "Ã Â¤â€¡Ã Â¤â€šÃ Â¤Å¡Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤Â°Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â²Ã Â¥ÂÃ Â¤Å¸Ã Â¥â‚¬ Ã Â¤Â®Ã Â¥â€¡Ã Â¤â€š Ã Â¤â€ Ã Â¤ÂªÃ Â¤â€¢Ã Â¤Â¾ Ã Â¤Â¸Ã Â¥ÂÃ Â¤ÂµÃ Â¤Â¾Ã Â¤â€”Ã Â¤Â¤ Ã Â¤Â¹Ã Â¥Ë†Ã Â¥Â¤ Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¤ Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤Â¬Ã Â¥â€¡Ã Â¤Â¹Ã Â¤Â¤Ã Â¤Â°Ã Â¥â‚¬Ã Â¤Â¨ Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â¥Ã Â¤Â¾Ã Â¤Â¨Ã Â¥â€¹Ã Â¤â€š Ã Â¤Â®Ã Â¥â€¡Ã Â¤â€š Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¿Ã Â¤Â¯Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤Â¸Ã Â¤Â¾Ã Â¤Â¥ Ã Â¤â€¦Ã Â¤Â¸Ã Â¤Â¾Ã Â¤Â§Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â£ Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨ Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤Â²Ã Â¤Â¿Ã Â¤Â Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¨Ã Â¥â€¡ Ã Â¤â€”Ã Â¤Â Ã Â¤ËœÃ Â¤Â° Ã Â¤â€“Ã Â¥â€¹Ã Â¤Å“Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤",
+        heroSearchSection: "Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â¥Ã Â¤Â¾Ã Â¤Â¨, Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â°, Ã Â¤â€¢Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¤ Ã Â¤â€Ã Â¤Â° Ã Â¤Â¬Ã Â¥â€¡Ã Â¤Â¡Ã Â¤Â°Ã Â¥â€šÃ Â¤Â® Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤â€¦Ã Â¤Â¨Ã Â¥ÂÃ Â¤Â¸Ã Â¤Â¾Ã Â¤Â° Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¿ Ã Â¤â€“Ã Â¥â€¹Ã Â¤Å“Ã Â¤Â¨Ã Â¥â€¡ Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤Â²Ã Â¤Â¿Ã Â¤Â Ã Â¤Â¸Ã Â¤Â°Ã Â¥ÂÃ Â¤Å¡ Ã Â¤Â¬Ã Â¤Â¾Ã Â¤Â° Ã Â¤â€¢Ã Â¤Â¾ Ã Â¤â€°Ã Â¤ÂªÃ Â¤Â¯Ã Â¥â€¹Ã Â¤â€” Ã Â¤â€¢Ã Â¤Â°Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤ Ã Â¤Â¦Ã Â¥â€¹ Ã Â¤Â¹Ã Â¤Å“Ã Â¤Â¾Ã Â¤Â° Ã Â¤ÂªÃ Â¤Â¾Ã Â¤â€šÃ Â¤Å¡ Ã Â¤Â¸Ã Â¥Å’ Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤â€¦Ã Â¤Â§Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤â€“Ã Â¥ÂÃ Â¤Â¶ Ã Â¤â€“Ã Â¤Â°Ã Â¥â‚¬Ã Â¤Â¦Ã Â¤Â¾Ã Â¤Â° Ã Â¤ÂªÃ Â¤Å¡Ã Â¤Â¾Ã Â¤Â¸ Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤â€¦Ã Â¤Â§Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤Â¶Ã Â¤Â¹Ã Â¤Â°Ã Â¥â€¹Ã Â¤â€š Ã Â¤Â®Ã Â¥â€¡Ã Â¤â€š Ã Â¤Â¹Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â°Ã Â¥â‚¬ Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤Â²Ã Â¤Â¿Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¿Ã Â¤â€šÃ Â¤â€” Ã Â¤ÂªÃ Â¤Â° Ã Â¤Â­Ã Â¤Â°Ã Â¥â€¹Ã Â¤Â¸Ã Â¤Â¾ Ã Â¤â€¢Ã Â¤Â°Ã Â¤Â¤Ã Â¥â€¡ Ã Â¤Â¹Ã Â¥Ë†Ã Â¤â€šÃ Â¥Â¤",
+        moodLifestyleSection: "Ã Â¤Â®Ã Â¥â€šÃ Â¤Â¡ Ã Â¤â€Ã Â¤Â° Ã Â¤Â²Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Â«Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Â² Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤â€¦Ã Â¤Â¨Ã Â¥ÂÃ Â¤Â¸Ã Â¤Â¾Ã Â¤Â° Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¿ Ã Â¤â€“Ã Â¥â€¹Ã Â¤Å“Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤ Ã Â¤Â«Ã Â¥Ë†Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â²Ã Â¥â‚¬ Ã Â¤Â²Ã Â¤Â¿Ã Â¤ÂµÃ Â¤Â¿Ã Â¤â€šÃ Â¤â€”, Ã Â¤Â¸Ã Â¤Â¿Ã Â¤Å¸Ã Â¥â‚¬ Ã Â¤Â²Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Â«, Ã Â¤Â¬Ã Â¥â‚¬Ã Â¤Å¡Ã Â¤Â¸Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Â¡ Ã Â¤ËœÃ Â¤Â°, Ã Â¤Â¶Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â¤ Ã Â¤Å“Ã Â¤â€”Ã Â¤Â¹, Ã Â¤ÂµÃ Â¤Â°Ã Â¥ÂÃ Â¤â€¢ Ã Â¤Â«Ã Â¥ÂÃ Â¤Â°Ã Â¥â€°Ã Â¤Â® Ã Â¤Â¹Ã Â¥â€¹Ã Â¤Â® Ã Â¤Â¯Ã Â¤Â¾ Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â®Ã Â¤Â¾Ã Â¤Â°Ã Â¥ÂÃ Â¤Å¸ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¥â€¡Ã Â¤Â¶ Ã Â¤ÂµÃ Â¤Â¿Ã Â¤â€¢Ã Â¤Â²Ã Â¥ÂÃ Â¤Âª Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¨Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤",
+        localities: "Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¤ Ã Â¤Â­Ã Â¤Â° Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤Â¶Ã Â¥â‚¬Ã Â¤Â°Ã Â¥ÂÃ Â¤Â· Ã Â¤â€”Ã Â¤â€šÃ Â¤Â¤Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¯Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¥â€¹ Ã Â¤ÂÃ Â¤â€¢Ã Â¥ÂÃ Â¤Â¸Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â²Ã Â¥â€¹Ã Â¤Â° Ã Â¤â€¢Ã Â¤Â°Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤ Ã Â¤Â«Ã Â¥â‚¬Ã Â¤Å¡Ã Â¤Â°Ã Â¥ÂÃ Â¤Â¡ Ã Â¤â€¡Ã Â¤Â²Ã Â¤Â¾Ã Â¤â€¢Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¥â€¹ Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¾Ã Â¤â€°Ã Â¤Å“Ã Â¤Â¼ Ã Â¤â€¢Ã Â¤Â°Ã Â¥â€¡Ã Â¤â€š Ã Â¤â€Ã Â¤Â° Ã Â¤â€¦Ã Â¤ÂªÃ Â¤Â¨Ã Â¥â‚¬ Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨Ã Â¤Â¶Ã Â¥Ë†Ã Â¤Â²Ã Â¥â‚¬ Ã Â¤Âµ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¥â€¡Ã Â¤Â¶ Ã Â¤Â²Ã Â¤â€¢Ã Â¥ÂÃ Â¤Â·Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤â€¦Ã Â¤Â¨Ã Â¥ÂÃ Â¤Â¸Ã Â¤Â¾Ã Â¤Â° Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤ËœÃ Â¤Â° Ã Â¤â€“Ã Â¥â€¹Ã Â¤Å“Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤",
+        liveDealsSection: "Ã Â¤Â²Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Âµ Ã Â¤Â¹Ã Â¥â€°Ã Â¤Å¸ Ã Â¤Â¡Ã Â¥â‚¬Ã Â¤Â²Ã Â¥ÂÃ Â¤Â¸Ã Â¥Â¤ Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤â€¢Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¤Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€Ã Â¤Â° Ã Â¤Â¬Ã Â¤Â¿Ã Â¤Â¨Ã Â¤Â¾ Ã Â¤â€ºÃ Â¥ÂÃ Â¤ÂªÃ Â¥â€¡ Ã Â¤Â¶Ã Â¥ÂÃ Â¤Â²Ã Â¥ÂÃ Â¤â€¢ Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¿Ã Â¤Â¯Ã Â¥â€¹Ã Â¤â€š Ã Â¤ÂªÃ Â¤Â° Ã Â¤Â«Ã Â¥ÂÃ Â¤Â²Ã Â¥Ë†Ã Â¤Â¶ Ã Â¤â€ºÃ Â¥â€šÃ Â¤Å¸ Ã Â¤ÂªÃ Â¤Â¾Ã Â¤ÂÃ Â¤â€šÃ Â¥Â¤ Ã Â¤Â¶Ã Â¥â‚¬Ã Â¤Â°Ã Â¥ÂÃ Â¤Â· Ã Â¤Â¶Ã Â¤Â¹Ã Â¤Â°Ã Â¥â€¹Ã Â¤â€š Ã Â¤Â®Ã Â¥â€¡Ã Â¤â€š Ã Â¤Â¸Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¤ Ã Â¤Â¸Ã Â¤Â®Ã Â¤Â¯ Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤â€˜Ã Â¤Â«Ã Â¤Â°Ã Â¥Â¤",
+        nriPremiumSection: "Ã Â¤Â¦Ã Â¥ÂÃ Â¤Â¨Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â¾ Ã Â¤Â®Ã Â¥â€¡Ã Â¤â€š Ã Â¤â€¢Ã Â¤Â¹Ã Â¥â‚¬Ã Â¤â€š Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤Â­Ã Â¥â‚¬ Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¤ Ã Â¤Â®Ã Â¥â€¡Ã Â¤â€š Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¥â€¡Ã Â¤Â¶ Ã Â¤â€¢Ã Â¤Â°Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤ Ã Â¤ÂÃ Â¤Â¨Ã Â¤â€ Ã Â¤Â°Ã Â¤â€ Ã Â¤Ë† Ã Â¤Â¸Ã Â¥â€¡Ã Â¤ÂµÃ Â¤Â¾Ã Â¤â€œÃ Â¤â€š Ã Â¤Â®Ã Â¥â€¡Ã Â¤â€š Ã Â¤ÂµÃ Â¤Â°Ã Â¥ÂÃ Â¤Å¡Ã Â¥ÂÃ Â¤â€¦Ã Â¤Â² Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â° Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤Â²Ã Â¥â€¡Ã Â¤â€¢Ã Â¤Â° Ã Â¤Â¦Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¾Ã Â¤ÂµÃ Â¥â€¡Ã Â¤Å“Ã Â¤Â¼ Ã Â¤â€Ã Â¤Â° Ã Â¤ÂªÃ Â¥â€šÃ Â¤Â°Ã Â¥â‚¬ Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¿ Ã Â¤Â¸Ã Â¤Â¹Ã Â¤Â¾Ã Â¤Â¯Ã Â¤Â¤Ã Â¤Â¾ Ã Â¤Â¤Ã Â¤â€¢ Ã Â¤Â¸Ã Â¤Â®Ã Â¤Â°Ã Â¥ÂÃ Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤Â¸Ã Â¤ÂªÃ Â¥â€¹Ã Â¤Â°Ã Â¥ÂÃ Â¤Å¸ Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â²Ã Â¤Â¤Ã Â¤Â¾ Ã Â¤Â¹Ã Â¥Ë†Ã Â¥Â¤",
+        developersProjects: "Ã Â¤ÂµÃ Â¤Â¿Ã Â¤Â¶Ã Â¥ÂÃ Â¤ÂµÃ Â¤Â¸Ã Â¤Â¨Ã Â¥â‚¬Ã Â¤Â¯ Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â¡ Ã Â¤â€Ã Â¤Â° Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¤Â¤Ã Â¤Â¿Ã Â¤Â·Ã Â¥ÂÃ Â¤Â Ã Â¤Â¿Ã Â¤Â¤ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â€¹Ã Â¤Å“Ã Â¥â€¡Ã Â¤â€¢Ã Â¥ÂÃ Â¤Å¸Ã Â¥Â¤ Ã Â¤Â¡Ã Â¥â‚¬Ã Â¤ÂÃ Â¤Â²Ã Â¤ÂÃ Â¤Â«, Ã Â¤Â²Ã Â¥â€¹Ã Â¤Â§Ã Â¤Â¾, Ã Â¤â€”Ã Â¥â€¹Ã Â¤Â¦Ã Â¤Â°Ã Â¥â€¡Ã Â¤Å“ Ã Â¤â€Ã Â¤Â° Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â€¡Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¿Ã Â¤Å“ Ã Â¤Å“Ã Â¥Ë†Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤â€¦Ã Â¤â€”Ã Â¥ÂÃ Â¤Â°Ã Â¤Â£Ã Â¥â‚¬ Ã Â¤Â¡Ã Â¥â€¡Ã Â¤ÂµÃ Â¤Â²Ã Â¤ÂªÃ Â¤Â°Ã Â¥ÂÃ Â¤Â¸ Ã Â¤â€¢Ã Â¥â€¡ Ã Â¤Â¸Ã Â¤Â¾Ã Â¤Â¥ Ã Â¤Â¹Ã Â¤Â® Ã Â¤â€ Ã Â¤ÂªÃ Â¤â€¢Ã Â¥â€¹ Ã Â¤Â­Ã Â¤Â°Ã Â¥â€¹Ã Â¤Â¸Ã Â¥â€¡Ã Â¤Â®Ã Â¤â€šÃ Â¤Â¦ Ã Â¤â€ Ã Â¤ÂµÃ Â¤Â¾Ã Â¤Â¸ Ã Â¤Â²Ã Â¤Â¾Ã Â¤Â¤Ã Â¥â€¡ Ã Â¤Â¹Ã Â¥Ë†Ã Â¤â€šÃ Â¥Â¤",
+        socialProofSection: "Ã Â¤Â¸Ã Â¥ÂÃ Â¤â€¢Ã Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â¨ Ã Â¤ÂªÃ Â¤Â° Ã Â¤Â²Ã Â¤â€¢Ã Â¥ÂÃ Â¤Å“Ã Â¤Â¼Ã Â¤Â°Ã Â¥â‚¬ Ã Â¤Â¹Ã Â¥â€¹Ã Â¤Â®Ã Â¥ÂÃ Â¤Â¸Ã Â¥Â¤ Ã Â¤Â¦Ã Â¥â€¡Ã Â¤â€“Ã Â¥â€¡Ã Â¤â€š Ã Â¤â€¢Ã Â¥Ë†Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤Â¹Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â°Ã Â¥â‚¬ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â¾Ã Â¤â€š Ã Â¤Â«Ã Â¥â‚¬Ã Â¤Å¡Ã Â¤Â°Ã Â¥ÂÃ Â¤Â¡ Ã Â¤Â¹Ã Â¥ÂÃ Â¤Ë†Ã Â¤â€š Ã Â¤â€Ã Â¤Â° Ã Â¤â€“Ã Â¤Â°Ã Â¥â‚¬Ã Â¤Â¦Ã Â¤Â¾Ã Â¤Â°Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¤Â¾ Ã Â¤Â­Ã Â¤Â°Ã Â¥â€¹Ã Â¤Â¸Ã Â¤Â¾ Ã Â¤Â¬Ã Â¤Â¢Ã Â¤Â¼Ã Â¤Â¾Ã Â¤Â¯Ã Â¤Â¾Ã Â¥Â¤",
+        reviewsVideoSection: "Ã Â¤Â¹Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â°Ã Â¥â€¡ Ã Â¤â€“Ã Â¥ÂÃ Â¤Â¶ Ã Â¤â€”Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¾Ã Â¤Â¹Ã Â¤â€¢Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¥â‚¬ Ã Â¤â€¢Ã Â¤Â¹Ã Â¤Â¾Ã Â¤Â¨Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â¾Ã Â¤â€š Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â¨Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤ Ã Â¤â€¦Ã Â¤Â¸Ã Â¤Â²Ã Â¥â‚¬ Google Ã Â¤Â°Ã Â¤Â¿Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¯Ã Â¥â€š Ã Â¤â€Ã Â¤Â° Ã Â¤ÂµÃ Â¥â‚¬Ã Â¤Â¡Ã Â¤Â¿Ã Â¤Â¯Ã Â¥â€¹ Ã Â¤Â¦Ã Â¥â€¡Ã Â¤â€“Ã Â¥â€¡Ã Â¤â€š Ã Â¤â€¢Ã Â¤Â¿ Ã Â¤Â¹Ã Â¤Â®Ã Â¤Â¨Ã Â¥â€¡ Ã Â¤â€“Ã Â¤Â°Ã Â¥â‚¬Ã Â¤Â¦Ã Â¤Â¾Ã Â¤Â°Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¥â€¹ Ã Â¤Â¸Ã Â¤Â«Ã Â¤Â²Ã Â¤Â¤Ã Â¤Â¾ Ã Â¤â€¢Ã Â¥Ë†Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤Â¦Ã Â¤Â¿Ã Â¤Â²Ã Â¤Â¾Ã Â¤Ë†Ã Â¥Â¤",
+        "why-choose": "Ã Â¤â€¡Ã Â¤â€šÃ Â¤Å¡Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤Â°Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â²Ã Â¥ÂÃ Â¤Å¸Ã Â¥â‚¬ Ã Â¤â€¢Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€¹Ã Â¤â€š Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¨Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤ Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤Â²Ã Â¤Â¿Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¿Ã Â¤â€šÃ Â¤â€”, Ã Â¤Â¬Ã Â¥â€¡Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¤Â¾Ã Â¤â€¡Ã Â¤Â¸ Ã Â¤â€Ã Â¤Â° Ã Â¤â€“Ã Â¥â€¹Ã Â¤Å“ Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤Â¹Ã Â¥Ë†Ã Â¤â€šÃ Â¤Â¡Ã Â¤â€œÃ Â¤ÂµÃ Â¤Â° Ã Â¤Â¤Ã Â¤â€¢ Ã Â¤ÂªÃ Â¥â€šÃ Â¤Â°Ã Â¥ÂÃ Â¤Â£ Ã Â¤Â¸Ã Â¤Â¹Ã Â¤Â¾Ã Â¤Â¯Ã Â¤Â¤Ã Â¤Â¾Ã Â¥Â¤ Ã Â¤Â¦Ã Â¤Â¸ Ã Â¤Â¹Ã Â¤Å“Ã Â¤Â¾Ã Â¤Â° Ã Â¤Â¸Ã Â¥â€¡ Ã Â¤â€¦Ã Â¤Â§Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤â€“Ã Â¤Â°Ã Â¥â‚¬Ã Â¤Â¦Ã Â¤Â¾Ã Â¤Â°Ã Â¥â€¹Ã Â¤â€š Ã Â¤â€¢Ã Â¤Â¾ Ã Â¤Â­Ã Â¤Â°Ã Â¥â€¹Ã Â¤Â¸Ã Â¤Â¾Ã Â¥Â¤",
+        blog: "Ã Â¤Â¨Ã Â¤ÂµÃ Â¥â‚¬Ã Â¤Â¨Ã Â¤Â¤Ã Â¤Â® Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â²Ã Â¥â€°Ã Â¤â€” Ã Â¤â€Ã Â¤Â° Ã Â¤Å“Ã Â¤Â¾Ã Â¤Â¨Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â°Ã Â¥â‚¬Ã Â¥Â¤ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¥â€¡Ã Â¤Â¶, Ã Â¤Â²Ã Â¤â€¢Ã Â¥ÂÃ Â¤Å“Ã Â¤Â¼Ã Â¤Â°Ã Â¥â‚¬ Ã Â¤â€“Ã Â¤Â°Ã Â¥â‚¬Ã Â¤Â¦ Ã Â¤â€Ã Â¤Â° Ã Â¤Â¹Ã Â¥â€¹Ã Â¤Â® Ã Â¤Â²Ã Â¥â€¹Ã Â¤Â¨ Ã Â¤ÂªÃ Â¤Â° Ã Â¤ÂµÃ Â¤Â¿Ã Â¤Â¶Ã Â¥â€¡Ã Â¤Â·Ã Â¤Å“Ã Â¥ÂÃ Â¤Å¾ Ã Â¤Â¸Ã Â¥ÂÃ Â¤ÂÃ Â¤Â¾Ã Â¤Âµ Ã Â¤ÂªÃ Â¤Â¢Ã Â¤Â¼Ã Â¥â€¡Ã Â¤â€šÃ Â¥Â¤"
+      },
+      mr: {
+        heroBanner: "Ã Â¤â€¡Ã Â¤â€šÃ Â¤Å¡Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤Â°Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â²Ã Â¥ÂÃ Â¤Å¸Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â§Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€¡ Ã Â¤â€ Ã Â¤ÂªÃ Â¤Â²Ã Â¥â€¡ Ã Â¤Â¸Ã Â¥ÂÃ Â¤ÂµÃ Â¤Â¾Ã Â¤â€”Ã Â¤Â¤ Ã Â¤â€ Ã Â¤Â¹Ã Â¥â€¡. Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¤Ã Â¤Â¾Ã Â¤Â¤Ã Â¥â‚¬Ã Â¤Â² Ã Â¤â€°Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â® Ã Â¤Â Ã Â¤Â¿Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â£Ã Â¥â‚¬ Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â²Ã Â¤Â®Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â¸Ã Â¤Â¹ Ã Â¤â€¦Ã Â¤Â¦Ã Â¥ÂÃ Â¤ÂµÃ Â¤Â¿Ã Â¤Â¤Ã Â¥â‚¬Ã Â¤Â¯ Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨Ã Â¤Â¾Ã Â¤Â¸Ã Â¤Â¾Ã Â¤Â Ã Â¥â‚¬ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¤Â¡Ã Â¤â€¢ Ã Â¤ËœÃ Â¤Â°Ã Â¥â€¡ Ã Â¤Â¶Ã Â¥â€¹Ã Â¤Â§Ã Â¤Â¾.",
+        heroSearchSection: "Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â¥Ã Â¤Â¾Ã Â¤Â¨, Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â°, Ã Â¤â€¢Ã Â¤Â¿Ã Â¤â€šÃ Â¤Â®Ã Â¤Â¤ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Â¬Ã Â¥â€¡Ã Â¤Â¡Ã Â¤Â°Ã Â¥â€šÃ Â¤Â®Ã Â¤Â¨Ã Â¥ÂÃ Â¤Â¸Ã Â¤Â¾Ã Â¤Â° Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â²Ã Â¤Â®Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¾ Ã Â¤Â¶Ã Â¥â€¹Ã Â¤Â§Ã Â¤Â£Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤Â¸Ã Â¤Â¾Ã Â¤Â Ã Â¥â‚¬ Ã Â¤Â¸Ã Â¤Â°Ã Â¥ÂÃ Â¤Å¡ Ã Â¤Â¬Ã Â¤Â¾Ã Â¤Â° Ã Â¤ÂµÃ Â¤Â¾Ã Â¤ÂªÃ Â¤Â°Ã Â¤Â¾. Ã Â¤Â¦Ã Â¥â€¹Ã Â¤Â¨ Ã Â¤Â¹Ã Â¤Å“Ã Â¤Â¾Ã Â¤Â° Ã Â¤ÂªÃ Â¤Â¾Ã Â¤Å¡Ã Â¤Â¶Ã Â¥â€¡Ã Â¤Â¹Ã Â¥â€šÃ Â¤Â¨ Ã Â¤â€¦Ã Â¤Â§Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤â€ Ã Â¤Â¨Ã Â¤â€šÃ Â¤Â¦Ã Â¥â‚¬ Ã Â¤â€“Ã Â¤Â°Ã Â¥â€¡Ã Â¤Â¦Ã Â¥â‚¬Ã Â¤Â¦Ã Â¤Â¾Ã Â¤Â° Ã Â¤â€ Ã Â¤Â®Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾ Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤Â²Ã Â¤Â¿Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¿Ã Â¤â€šÃ Â¤â€”Ã Â¤ÂµÃ Â¤Â° Ã Â¤ÂµÃ Â¤Â¿Ã Â¤Â¶Ã Â¥ÂÃ Â¤ÂµÃ Â¤Â¾Ã Â¤Â¸ Ã Â¤Â Ã Â¥â€¡Ã Â¤ÂµÃ Â¤Â¤Ã Â¤Â¾Ã Â¤Â¤.",
+        moodLifestyleSection: "Ã Â¤Â®Ã Â¥â€šÃ Â¤Â¡ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨Ã Â¤Â¶Ã Â¥Ë†Ã Â¤Â²Ã Â¥â‚¬Ã Â¤Â¨Ã Â¥ÂÃ Â¤Â¸Ã Â¤Â¾Ã Â¤Â° Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â²Ã Â¤Â®Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¾ Ã Â¤Â¶Ã Â¥â€¹Ã Â¤Â§Ã Â¤Â¾. Ã Â¤â€¢Ã Â¥ÂÃ Â¤Å¸Ã Â¥ÂÃ Â¤â€šÃ Â¤Â¬ Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨, Ã Â¤Â¶Ã Â¤Â¹Ã Â¤Â° Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨, Ã Â¤Â¸Ã Â¤Â®Ã Â¥ÂÃ Â¤Â¦Ã Â¥ÂÃ Â¤Â°Ã Â¤â€¢Ã Â¤Â¿Ã Â¤Â¨Ã Â¤Â¾Ã Â¤Â°Ã Â¥â‚¬ Ã Â¤ËœÃ Â¤Â°Ã Â¥â€¡, Ã Â¤Â¶Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â¤ Ã Â¤Â Ã Â¤Â¿Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â£Ã Â¥â€¡ Ã Â¤â€¢Ã Â¤Â¿Ã Â¤â€šÃ Â¤ÂµÃ Â¤Â¾ Ã Â¤â€”Ã Â¥ÂÃ Â¤â€šÃ Â¤Â¤Ã Â¤ÂµÃ Â¤Â£Ã Â¥â€šÃ Â¤â€¢ Ã Â¤ÂªÃ Â¤Â°Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤Â¯ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¤Â¡Ã Â¤Â¾.",
+        localities: "Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¤Ã Â¤Â­Ã Â¤Â°Ã Â¤Â¾Ã Â¤Â¤Ã Â¥â‚¬Ã Â¤Â² Ã Â¤Â¶Ã Â¥â‚¬Ã Â¤Â°Ã Â¥ÂÃ Â¤Â· Ã Â¤â€”Ã Â¤â€šÃ Â¤Â¤Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¯Ã Â¥â€¡ Ã Â¤ÂÃ Â¤â€¢Ã Â¥ÂÃ Â¤Â¸Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â²Ã Â¥â€¹Ã Â¤Â° Ã Â¤â€¢Ã Â¤Â°Ã Â¤Â¾. Ã Â¤ÂµÃ Â¥Ë†Ã Â¤Â¶Ã Â¤Â¿Ã Â¤Â·Ã Â¥ÂÃ Â¤Å¸Ã Â¥ÂÃ Â¤Â¯Ã Â¥â‚¬Ã Â¤â€¢Ã Â¥Æ’Ã Â¤Â¤ Ã Â¤ÂªÃ Â¤Â°Ã Â¤Â¿Ã Â¤Â¸Ã Â¤Â° Ã Â¤ÂªÃ Â¤Â¹Ã Â¤Â¾ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â®Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾ Ã Â¤Å“Ã Â¥â‚¬Ã Â¤ÂµÃ Â¤Â¨Ã Â¤Â¶Ã Â¥Ë†Ã Â¤Â²Ã Â¥â‚¬Ã Â¤Â¨Ã Â¥ÂÃ Â¤Â¸Ã Â¤Â¾Ã Â¤Â° Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤ËœÃ Â¤Â°Ã Â¥â€¡ Ã Â¤Â¶Ã Â¥â€¹Ã Â¤Â§Ã Â¤Â¾.",
+        liveDealsSection: "Ã Â¤Â²Ã Â¤Â¾Ã Â¤â€¡Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹ Ã Â¤Â¹Ã Â¥â€°Ã Â¤Å¸ Ã Â¤Â¡Ã Â¥â‚¬Ã Â¤Â²Ã Â¥ÂÃ Â¤Â¸. Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤â€¢Ã Â¤Â¿Ã Â¤â€šÃ Â¤Â®Ã Â¤Â¤Ã Â¥â‚¬Ã Â¤â€šÃ Â¤ÂµÃ Â¤Â° Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â²Ã Â¤Â®Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¾Ã Â¤â€šÃ Â¤ÂµÃ Â¤Â° Ã Â¤Â«Ã Â¥ÂÃ Â¤Â²Ã Â¥â€¦Ã Â¤Â¶ Ã Â¤Â¸Ã Â¤ÂµÃ Â¤Â²Ã Â¤Â¤Ã Â¥â‚¬ Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â³Ã Â¤ÂµÃ Â¤Â¾. Ã Â¤Â¶Ã Â¥â‚¬Ã Â¤Â°Ã Â¥ÂÃ Â¤Â· Ã Â¤Â¶Ã Â¤Â¹Ã Â¤Â°Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â®Ã Â¤Â§Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€¡ Ã Â¤Â®Ã Â¤Â°Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤Â¦Ã Â¤Â¿Ã Â¤Â¤ Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â³ Ã Â¤â€˜Ã Â¤Â«Ã Â¤Â°.",
+        nriPremiumSection: "Ã Â¤Å“Ã Â¤â€”Ã Â¤Â¾Ã Â¤Â¤ Ã Â¤â€¢Ã Â¥ÂÃ Â¤Â Ã Â¥â€šÃ Â¤Â¨Ã Â¤Â¹Ã Â¥â‚¬ Ã Â¤Â­Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¤Ã Â¤Â¾Ã Â¤Â¤ Ã Â¤â€”Ã Â¥ÂÃ Â¤â€šÃ Â¤Â¤Ã Â¤ÂµÃ Â¤Â£Ã Â¥â€šÃ Â¤â€¢ Ã Â¤â€¢Ã Â¤Â°Ã Â¤Â¾. Ã Â¤ÂÃ Â¤Â¨Ã Â¤â€ Ã Â¤Â°Ã Â¤â€ Ã Â¤Â¯ Ã Â¤Â¸Ã Â¥â€¡Ã Â¤ÂµÃ Â¤Â¾Ã Â¤â€šÃ Â¤Â®Ã Â¤Â§Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€¡ Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¤Â°Ã Â¥ÂÃ Â¤Å¡Ã Â¥ÂÃ Â¤â€¦Ã Â¤Â² Ã Â¤Å¸Ã Â¥â€šÃ Â¤Â° Ã Â¤Â¤Ã Â¥â€¡ Ã Â¤â€¢Ã Â¤Â¾Ã Â¤â€”Ã Â¤Â¦Ã Â¤ÂªÃ Â¤Â¤Ã Â¥ÂÃ Â¤Â°Ã Â¥â€¡ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Â¸Ã Â¤â€šÃ Â¤ÂªÃ Â¥â€šÃ Â¤Â°Ã Â¥ÂÃ Â¤Â£ Ã Â¤Â¸Ã Â¤Â¹Ã Â¤Â¾Ã Â¤Â¯Ã Â¥ÂÃ Â¤Â¯ Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â³Ã Â¤Â¤Ã Â¥â€¡.",
+        developersProjects: "Ã Â¤ÂµÃ Â¤Â¿Ã Â¤Â¶Ã Â¥ÂÃ Â¤ÂµÃ Â¤Â¾Ã Â¤Â¸Ã Â¤Â¾Ã Â¤Â°Ã Â¥ÂÃ Â¤Â¹ Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â°Ã Â¤ÂÃ Â¤Â¡ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¤Â¤Ã Â¤Â¿Ã Â¤Â·Ã Â¥ÂÃ Â¤Â Ã Â¤Â¿Ã Â¤Â¤ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¤â€¢Ã Â¤Â²Ã Â¥ÂÃ Â¤Âª. Ã Â¤Â¡Ã Â¥â‚¬Ã Â¤ÂÃ Â¤Â²Ã Â¤ÂÃ Â¤Â«, Ã Â¤Â²Ã Â¥â€¹Ã Â¤Â§Ã Â¤Â¾, Ã Â¤â€”Ã Â¥â€¹Ã Â¤Â¦Ã Â¤Â°Ã Â¥â€¡Ã Â¤Å“ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â€¡Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¿Ã Â¤Å“Ã Â¤Â¸Ã Â¤Â¾Ã Â¤Â°Ã Â¤â€“Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾ Ã Â¤â€¦Ã Â¤â€”Ã Â¥ÂÃ Â¤Â°Ã Â¤â€”Ã Â¤Â£Ã Â¥ÂÃ Â¤Â¯ Ã Â¤Â¡Ã Â¥â€¡Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¤Â²Ã Â¤ÂªÃ Â¤Â°Ã Â¥ÂÃ Â¤Â¸Ã Â¤Â¸Ã Â¥â€¹Ã Â¤Â¬Ã Â¤Â¤ Ã Â¤â€ Ã Â¤Â®Ã Â¥ÂÃ Â¤Â¹Ã Â¥â‚¬ Ã Â¤â€¢Ã Â¤Â¾Ã Â¤Â® Ã Â¤â€¢Ã Â¤Â°Ã Â¤Â¤Ã Â¥â€¹.",
+        socialProofSection: "Ã Â¤Â¸Ã Â¥ÂÃ Â¤â€¢Ã Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â¨Ã Â¤ÂµÃ Â¤Â° Ã Â¤Â²Ã Â¤â€¢Ã Â¥ÂÃ Â¤ÂÃ Â¤Â°Ã Â¥â‚¬ Ã Â¤Â¹Ã Â¥â€¹Ã Â¤Â®Ã Â¥ÂÃ Â¤Â¸. Ã Â¤â€ Ã Â¤Â®Ã Â¤Å¡Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾ Ã Â¤ÂªÃ Â¥ÂÃ Â¤Â°Ã Â¥â‚¬Ã Â¤Â®Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â® Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â²Ã Â¤Â®Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¾ Ã Â¤â€¢Ã Â¤Â¶Ã Â¤Â¾ Ã Â¤Â«Ã Â¥â‚¬Ã Â¤Å¡Ã Â¤Â° Ã Â¤ÂÃ Â¤Â¾Ã Â¤Â²Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾ Ã Â¤Â¤Ã Â¥â€¡ Ã Â¤ÂªÃ Â¤Â¹Ã Â¤Â¾ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤â€“Ã Â¤Â°Ã Â¥â€¡Ã Â¤Â¦Ã Â¥â‚¬Ã Â¤Â¦Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¾Ã Â¤â€šÃ Â¤Å¡Ã Â¤Â¾ Ã Â¤ÂµÃ Â¤Â¿Ã Â¤Â¶Ã Â¥ÂÃ Â¤ÂµÃ Â¤Â¾Ã Â¤Â¸ Ã Â¤ÂµÃ Â¤Â¾Ã Â¤Â¢Ã Â¤ÂµÃ Â¤Â¾.",
+        reviewsVideoSection: "Ã Â¤â€ Ã Â¤Â¨Ã Â¤â€šÃ Â¤Â¦Ã Â¥â‚¬ Ã Â¤â€”Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¾Ã Â¤Â¹Ã Â¤â€¢Ã Â¤Â¾Ã Â¤â€šÃ Â¤Å¡Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾ Ã Â¤â€¢Ã Â¤Â¥Ã Â¤Â¾ Ã Â¤ÂÃ Â¤â€¢Ã Â¤Â¾. Ã Â¤â€“Ã Â¤Â°Ã Â¥â€¡ Google Ã Â¤Â°Ã Â¤Â¿Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¥ÂÃ Â¤Â¯Ã Â¥â€š Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤ÂµÃ Â¥ÂÃ Â¤Â¹Ã Â¤Â¿Ã Â¤Â¡Ã Â¤Â¿Ã Â¤â€œ Ã Â¤ÂªÃ Â¤Â¹Ã Â¤Â¾ Ã Â¤â€¢Ã Â¥â‚¬ Ã Â¤â€ Ã Â¤Â®Ã Â¥ÂÃ Â¤Â¹Ã Â¥â‚¬ Ã Â¤â€“Ã Â¤Â°Ã Â¥â€¡Ã Â¤Â¦Ã Â¥â‚¬Ã Â¤Â¦Ã Â¤Â¾Ã Â¤Â°Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â¨Ã Â¤Â¾ Ã Â¤â€¢Ã Â¤Â¶Ã Â¥â‚¬ Ã Â¤Â®Ã Â¤Â¦Ã Â¤Â¤ Ã Â¤â€¢Ã Â¥â€¡Ã Â¤Â²Ã Â¥â‚¬.",
+        "why-choose": "Ã Â¤â€¡Ã Â¤â€šÃ Â¤Å¡Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â°Ã Â¤Â¿Ã Â¤â€¢ Ã Â¤Â°Ã Â¤Â¿Ã Â¤Â¯Ã Â¤Â²Ã Â¥ÂÃ Â¤Å¸Ã Â¥â‚¬ Ã Â¤â€¢Ã Â¤Â¾ Ã Â¤Â¨Ã Â¤Â¿Ã Â¤ÂµÃ Â¤Â¡Ã Â¤Â¾Ã Â¤ÂµÃ Â¥â€¡. Ã Â¤Â¸Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¯Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â¿Ã Â¤Â¤ Ã Â¤Â²Ã Â¤Â¿Ã Â¤Â¸Ã Â¥ÂÃ Â¤Å¸Ã Â¤Â¿Ã Â¤â€šÃ Â¤â€”, Ã Â¤â€°Ã Â¤Â¤Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â® Ã Â¤â€¢Ã Â¤Â¿Ã Â¤â€šÃ Â¤Â®Ã Â¤Â¤ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Â¶Ã Â¥â€¹Ã Â¤Â§ Ã Â¤Â¤Ã Â¥â€¡ Ã Â¤Â¹Ã Â¤Â¸Ã Â¥ÂÃ Â¤Â¤Ã Â¤Â¾Ã Â¤â€šÃ Â¤Â¤Ã Â¤Â°Ã Â¤Â£Ã Â¤Â¾Ã Â¤ÂªÃ Â¤Â°Ã Â¥ÂÃ Â¤Â¯Ã Â¤â€šÃ Â¤Â¤ Ã Â¤ÂªÃ Â¥â€šÃ Â¤Â°Ã Â¥ÂÃ Â¤Â£ Ã Â¤Â¸Ã Â¤Â¹Ã Â¤Â¾Ã Â¤Â¯Ã Â¥ÂÃ Â¤Â¯.",
+        blog: "Ã Â¤Â¨Ã Â¤ÂµÃ Â¥â‚¬Ã Â¤Â¨Ã Â¤Â¤Ã Â¤Â® Ã Â¤Â¬Ã Â¥ÂÃ Â¤Â²Ã Â¥â€°Ã Â¤â€” Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Â®Ã Â¤Â¾Ã Â¤Â¹Ã Â¤Â¿Ã Â¤Â¤Ã Â¥â‚¬. Ã Â¤â€”Ã Â¥ÂÃ Â¤â€šÃ Â¤Â¤Ã Â¤ÂµÃ Â¤Â£Ã Â¥â€šÃ Â¤â€¢, Ã Â¤Â²Ã Â¤â€¢Ã Â¥ÂÃ Â¤ÂÃ Â¤Â°Ã Â¥â‚¬ Ã Â¤â€“Ã Â¤Â°Ã Â¥â€¡Ã Â¤Â¦Ã Â¥â‚¬ Ã Â¤â€ Ã Â¤Â£Ã Â¤Â¿ Ã Â¤Â¹Ã Â¥â€¹Ã Â¤Â® Ã Â¤Â²Ã Â¥â€¹Ã Â¤Â¨Ã Â¤ÂµÃ Â¤Â° Ã Â¤Â¤Ã Â¤Å“Ã Â¥ÂÃ Â¤Å“Ã Â¥ÂÃ Â¤Å¾ Ã Â¤Â¸Ã Â¤Â²Ã Â¥ÂÃ Â¤Â²Ã Â¥â€¡ Ã Â¤ÂµÃ Â¤Â¾Ã Â¤Å¡Ã Â¤Â¾."
+      },
+      gu: {
+        heroBanner: "Ã Âªâ€¡Ã Âªâ€šÃ ÂªÅ¡Ã ÂªÂ¬Ã Â«ÂÃ ÂªÂ°Ã ÂªÂ¿Ã Âªâ€¢ Ã ÂªÂ°Ã ÂªÂ¿Ã ÂªÂ¯Ã ÂªÂ²Ã Â«ÂÃ ÂªÅ¸Ã Â«â‚¬Ã ÂªÂ®Ã ÂªÂ¾Ã Âªâ€š Ã Âªâ€ Ã ÂªÂªÃ ÂªÂ¨Ã Â«ÂÃ Âªâ€š Ã ÂªÂ¸Ã Â«ÂÃ ÂªÂµÃ ÂªÂ¾Ã Âªâ€”Ã ÂªÂ¤ Ã Âªâ€ºÃ Â«â€¡. Ã ÂªÂ­Ã ÂªÂ¾Ã ÂªÂ°Ã ÂªÂ¤Ã ÂªÂ¨Ã ÂªÂ¾ Ã ÂªÂ¶Ã Â«ÂÃ ÂªÂ°Ã Â«â€¡Ã ÂªÂ·Ã Â«ÂÃ ÂªÂ  Ã ÂªÂ¸Ã Â«ÂÃ ÂªÂ¥Ã ÂªÂ³Ã Â«â€¹Ã ÂªÂ Ã ÂªÅ¡Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ¸Ã ÂªÂ¾Ã ÂªÂ¯Ã Â«â€¡Ã ÂªÂ²Ã Â«â‚¬ Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Â«â‚¬Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ¯Ã ÂªÂ® Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ²Ã Âªâ€¢Ã ÂªÂ¤Ã Â«â€¹ Ã ÂªÂ¸Ã ÂªÂ¾Ã ÂªÂ¥Ã Â«â€¡ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¹Ã Âªâ€“Ã ÂªÂ¾ Ã ÂªÅ“Ã Â«â‚¬Ã ÂªÂµÃ ÂªÂ¨ Ã ÂªÂ®Ã ÂªÂ¾Ã ÂªÅ¸Ã Â«â€¡ Ã ÂªËœÃ ÂªÂ°Ã Â«â€¹ Ã ÂªÂ¶Ã Â«â€¹Ã ÂªÂ§Ã Â«â€¹.",
+        heroSearchSection: "Ã ÂªÂ¸Ã Â«ÂÃ ÂªÂ¥Ã ÂªÂ¾Ã ÂªÂ¨, Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ°, Ã Âªâ€¢Ã ÂªÂ¿Ã Âªâ€šÃ ÂªÂ®Ã ÂªÂ¤ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÂ¬Ã Â«â€¡Ã ÂªÂ¡Ã ÂªÂ°Ã Â«â€šÃ ÂªÂ® Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã ÂªÂ®Ã ÂªÂ¾Ã ÂªÂ£Ã Â«â€¡ Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ²Ã Âªâ€¢Ã ÂªÂ¤ Ã ÂªÂ¶Ã Â«â€¹Ã ÂªÂ§Ã ÂªÂµÃ ÂªÂ¾ Ã ÂªÂ¸Ã ÂªÂ°Ã Â«ÂÃ ÂªÅ¡ Ã ÂªÂ¬Ã ÂªÂ¾Ã ÂªÂ° Ã ÂªÂµÃ ÂªÂ¾Ã ÂªÂªÃ ÂªÂ°Ã Â«â€¹. Ã ÂªÂ¬Ã Â«â€¡ Ã ÂªÂ¹Ã ÂªÅ“Ã ÂªÂ¾Ã ÂªÂ° Ã ÂªÂªÃ ÂªÂ¾Ã Âªâ€šÃ ÂªÅ¡ Ã ÂªÂ¸Ã Â«â€¹ Ã ÂªÂ¥Ã Â«â‚¬ Ã ÂªÂµÃ ÂªÂ§Ã Â«Â Ã Âªâ€“Ã Â«ÂÃ ÂªÂ¶ Ã Âªâ€“Ã ÂªÂ°Ã Â«â‚¬Ã ÂªÂ¦Ã ÂªÂ¦Ã ÂªÂ¾Ã ÂªÂ°Ã Â«â€¹ Ã Âªâ€¦Ã ÂªÂ®Ã ÂªÂ¾Ã ÂªÂ°Ã Â«â‚¬ Ã ÂªÂ²Ã ÂªÂ¿Ã ÂªÂ¸Ã Â«ÂÃ ÂªÅ¸Ã ÂªÂ¿Ã Âªâ€šÃ Âªâ€” Ã ÂªÂªÃ ÂªÂ° Ã ÂªÂµÃ ÂªÂ¿Ã ÂªÂ¶Ã Â«ÂÃ ÂªÂµÃ ÂªÂ¾Ã ÂªÂ¸ Ã Âªâ€¢Ã ÂªÂ°Ã Â«â€¡ Ã Âªâ€ºÃ Â«â€¡.",
+        moodLifestyleSection: "Ã ÂªÂ®Ã Â«â€šÃ ÂªÂ¡ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÅ“Ã Â«â‚¬Ã ÂªÂµÃ ÂªÂ¨Ã ÂªÂ¶Ã Â«Ë†Ã ÂªÂ²Ã Â«â‚¬ Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã ÂªÂ®Ã ÂªÂ¾Ã ÂªÂ£Ã Â«â€¡ Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ²Ã Âªâ€¢Ã ÂªÂ¤ Ã ÂªÂ¶Ã Â«â€¹Ã ÂªÂ§Ã Â«â€¹. Ã ÂªÂ«Ã Â«â€¡Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ²Ã Â«â‚¬ Ã ÂªÂ²Ã ÂªÂ¿Ã ÂªÂµÃ ÂªÂ¿Ã Âªâ€šÃ Âªâ€”, Ã ÂªÂ¸Ã ÂªÂ¿Ã ÂªÅ¸Ã Â«â‚¬ Ã ÂªÂ²Ã ÂªÂ¾Ã Âªâ€¡Ã ÂªÂ«, Ã ÂªÂ¬Ã Â«â‚¬Ã ÂªÅ¡Ã ÂªÂ¸Ã ÂªÂ¾Ã Âªâ€¡Ã ÂªÂ¡ Ã ÂªËœÃ ÂªÂ°Ã Â«â€¹ Ã Âªâ€¦Ã ÂªÂ¥Ã ÂªÂµÃ ÂªÂ¾ Ã ÂªÂ°Ã Â«â€¹Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ£ Ã ÂªÂµÃ ÂªÂ¿Ã Âªâ€¢Ã ÂªÂ²Ã Â«ÂÃ ÂªÂªÃ Â«â€¹ Ã ÂªÂªÃ ÂªÂ¸Ã Âªâ€šÃ ÂªÂ¦ Ã Âªâ€¢Ã ÂªÂ°Ã Â«â€¹.",
+        localities: "Ã ÂªÂ­Ã ÂªÂ¾Ã ÂªÂ°Ã ÂªÂ¤ Ã ÂªÂ­Ã ÂªÂ°Ã ÂªÂ¨Ã ÂªÂ¾ Ã ÂªÅ¸Ã Â«â€¹Ã ÂªÅ¡Ã ÂªÂ¨Ã ÂªÂ¾ Ã Âªâ€”Ã Âªâ€šÃ ÂªÂ¤Ã ÂªÂµÃ Â«ÂÃ ÂªÂ¯Ã Â«â€¹ Ã ÂªÂÃ Âªâ€¢Ã Â«ÂÃ ÂªÂ¸Ã ÂªÂªÃ Â«ÂÃ ÂªÂ²Ã Â«â€¹Ã ÂªÂ° Ã Âªâ€¢Ã ÂªÂ°Ã Â«â€¹. Ã ÂªÂ«Ã Â«â‚¬Ã ÂªÅ¡Ã ÂªÂ°Ã Â«ÂÃ ÂªÂ¡ Ã ÂªÂµÃ ÂªÂ¿Ã ÂªÂ¸Ã Â«ÂÃ ÂªÂ¤Ã ÂªÂ¾Ã ÂªÂ°Ã Â«â€¹ Ã ÂªÂ¬Ã Â«ÂÃ ÂªÂ°Ã ÂªÂ¾Ã Âªâ€°Ã ÂªÂ Ã Âªâ€¢Ã ÂªÂ°Ã Â«â€¹ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Â«â‚¬Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ¯Ã ÂªÂ® Ã ÂªËœÃ ÂªÂ°Ã Â«â€¹ Ã ÂªÂ¶Ã Â«â€¹Ã ÂªÂ§Ã Â«â€¹.",
+        liveDealsSection: "Ã ÂªÂ²Ã ÂªÂ¾Ã Âªâ€¡Ã ÂªÂµ Ã ÂªÂ¹Ã Â«â€¹Ã ÂªÅ¸ Ã ÂªÂ¡Ã Â«â‚¬Ã ÂªÂ²Ã Â«ÂÃ ÂªÂ¸. Ã ÂªÅ¡Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ¸Ã ÂªÂ¾Ã ÂªÂ¯Ã Â«â€¡Ã ÂªÂ²Ã Â«â‚¬ Ã Âªâ€¢Ã ÂªÂ¿Ã Âªâ€šÃ ÂªÂ®Ã ÂªÂ¤Ã Â«â€¹ Ã ÂªÂªÃ ÂªÂ° Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Â«â‚¬Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ¯Ã ÂªÂ® Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ²Ã Âªâ€¢Ã ÂªÂ¤Ã Â«â€¹ Ã ÂªÂªÃ ÂªÂ° Ã ÂªÂ«Ã Â«ÂÃ ÂªÂ²Ã Â«â€¡Ã ÂªÂ¶ Ã ÂªÂ¡Ã ÂªÂ¿Ã ÂªÂ¸Ã Â«ÂÃ Âªâ€¢Ã ÂªÂ¾Ã Âªâ€°Ã ÂªÂ¨Ã Â«ÂÃ ÂªÅ¸ Ã ÂªÂ®Ã Â«â€¡Ã ÂªÂ³Ã ÂªÂµÃ Â«â€¹.",
+        nriPremiumSection: "Ã ÂªÂµÃ ÂªÂ¿Ã ÂªÂ¶Ã Â«ÂÃ ÂªÂµÃ ÂªÂ®Ã ÂªÂ¾Ã Âªâ€š Ã Âªâ€¢Ã Â«ÂÃ ÂªÂ¯Ã ÂªÂ¾Ã Âªâ€šÃ ÂªÂ¯Ã ÂªÂ¥Ã Â«â‚¬ Ã ÂªÂªÃ ÂªÂ£ Ã ÂªÂ­Ã ÂªÂ¾Ã ÂªÂ°Ã ÂªÂ¤Ã ÂªÂ®Ã ÂªÂ¾Ã Âªâ€š Ã ÂªÂ°Ã Â«â€¹Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ£ Ã Âªâ€¢Ã ÂªÂ°Ã Â«â€¹. Ã ÂªÂÃ ÂªÂ¨Ã Âªâ€ Ã ÂªÂ°Ã Âªâ€ Ã ÂªË† Ã ÂªÂ¸Ã Â«â€¡Ã ÂªÂµÃ ÂªÂ¾Ã Âªâ€œÃ ÂªÂ®Ã ÂªÂ¾Ã Âªâ€š Ã ÂªÂµÃ ÂªÂ°Ã Â«ÂÃ ÂªÅ¡Ã Â«ÂÃ ÂªÂ¯Ã Â«ÂÃ Âªâ€¦Ã ÂªÂ² Ã ÂªÅ¸Ã Â«â€šÃ ÂªÂ°Ã ÂªÂ¥Ã Â«â‚¬ Ã ÂªÂ¦Ã ÂªÂ¸Ã Â«ÂÃ ÂªÂ¤Ã ÂªÂ¾Ã ÂªÂµÃ Â«â€¡Ã ÂªÅ“ Ã ÂªÂ¸Ã Â«ÂÃ ÂªÂ§Ã Â«â‚¬ Ã ÂªÂ¸Ã Âªâ€šÃ ÂªÂªÃ Â«â€šÃ ÂªÂ°Ã Â«ÂÃ ÂªÂ£ Ã ÂªÂ¸Ã ÂªÂ¹Ã ÂªÂ¾Ã ÂªÂ¯.",
+        developersProjects: "Ã ÂªÂµÃ ÂªÂ¿Ã ÂªÂ¶Ã Â«ÂÃ ÂªÂµÃ ÂªÂ¸Ã ÂªÂ¨Ã Â«â‚¬Ã ÂªÂ¯ Ã ÂªÂ¬Ã Â«ÂÃ ÂªÂ°Ã ÂªÂ¾Ã ÂªÂ¨Ã Â«ÂÃ ÂªÂ¡Ã Â«ÂÃ ÂªÂ¸ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã Âªâ€ Ã Âªâ€¡Ã Âªâ€¢Ã Â«â€¹Ã ÂªÂ¨Ã ÂªÂ¿Ã Âªâ€¢ Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Â«â€¹Ã ÂªÅ“Ã Â«â€¡Ã Âªâ€¢Ã Â«ÂÃ ÂªÅ¸Ã Â«ÂÃ ÂªÂ¸. Ã ÂªÂ¡Ã Â«â‚¬Ã ÂªÂÃ ÂªÂ²Ã ÂªÂÃ ÂªÂ«, Ã ÂªÂ²Ã Â«â€¹Ã ÂªÂ§Ã ÂªÂ¾, Ã Âªâ€”Ã Â«â€¹Ã ÂªÂ¦Ã ÂªÂ°Ã Â«â€¡Ã ÂªÅ“ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Â«â€¡Ã ÂªÂ¸Ã Â«ÂÃ ÂªÅ¸Ã ÂªÂ¿Ã ÂªÅ“ Ã ÂªÂ¸Ã ÂªÂ¾Ã ÂªÂ¥Ã Â«â€¡ Ã Âªâ€¦Ã ÂªÂ®Ã Â«â€¡ Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ® Ã Âªâ€¢Ã ÂªÂ°Ã Â«â‚¬Ã ÂªÂ Ã Âªâ€ºÃ Â«â‚¬Ã ÂªÂ.",
+        socialProofSection: "Ã ÂªÂ¸Ã Â«ÂÃ Âªâ€¢Ã Â«ÂÃ ÂªÂ°Ã Â«â‚¬Ã ÂªÂ¨ Ã ÂªÂªÃ ÂªÂ° Ã ÂªÂ²Ã Âªâ€¢Ã Â«ÂÃ ÂªÂÃ ÂªÂ°Ã Â«â‚¬ Ã ÂªÂ¹Ã Â«â€¹Ã ÂªÂ®Ã Â«ÂÃ ÂªÂ¸. Ã Âªâ€¦Ã ÂªÂ®Ã ÂªÂ¾Ã ÂªÂ°Ã Â«â‚¬ Ã ÂªÂªÃ Â«ÂÃ ÂªÂ°Ã Â«â‚¬Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ¯Ã ÂªÂ® Ã ÂªÂ®Ã ÂªÂ¿Ã ÂªÂ²Ã Âªâ€¢Ã ÂªÂ¤Ã Â«â€¹ Ã Âªâ€¢Ã Â«â€¡Ã ÂªÂµÃ Â«â‚¬ Ã ÂªÂ°Ã Â«â‚¬Ã ÂªÂ¤Ã Â«â€¡ Ã ÂªÂ«Ã Â«â‚¬Ã ÂªÅ¡Ã ÂªÂ° Ã ÂªÂ¥Ã ÂªË† Ã ÂªÂ¤Ã Â«â€¡ Ã ÂªÅ“Ã Â«ÂÃ Âªâ€œ.",
+        reviewsVideoSection: "Ã Âªâ€“Ã Â«ÂÃ ÂªÂ¶ Ã Âªâ€”Ã Â«ÂÃ ÂªÂ°Ã ÂªÂ¾Ã ÂªÂ¹Ã Âªâ€¢Ã Â«â€¹Ã ÂªÂ¨Ã Â«â‚¬ Ã ÂªÂµÃ ÂªÂ¾Ã ÂªÂ°Ã Â«ÂÃ ÂªÂ¤Ã ÂªÂ¾Ã Âªâ€œ Ã ÂªÂ¸Ã ÂªÂ¾Ã Âªâ€šÃ ÂªÂ­Ã ÂªÂ³Ã Â«â€¹. Ã Âªâ€¦Ã ÂªÂ¸Ã ÂªÂ² Google Ã ÂªÂ°Ã ÂªÂ¿Ã ÂªÂµÃ Â«ÂÃ ÂªÂ¯Ã Â«â€š Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÂµÃ ÂªÂ¿Ã ÂªÂ¡Ã ÂªÂ¿Ã ÂªÂ¯Ã Â«â€¹ Ã ÂªÅ“Ã Â«ÂÃ Âªâ€œ.",
+        "why-choose": "Ã Âªâ€¡Ã Âªâ€šÃ ÂªÅ¡Ã ÂªÂ¬Ã Â«ÂÃ ÂªÂ°Ã ÂªÂ¿Ã Âªâ€¢ Ã ÂªÂ°Ã ÂªÂ¿Ã ÂªÂ¯Ã ÂªÂ²Ã Â«ÂÃ ÂªÅ¸Ã Â«â‚¬ Ã Âªâ€¢Ã Â«â€¡Ã ÂªÂ® Ã ÂªÂªÃ ÂªÂ¸Ã Âªâ€šÃ ÂªÂ¦ Ã Âªâ€¢Ã ÂªÂ°Ã Â«â€¹. Ã ÂªÅ¡Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ¸Ã ÂªÂ¾Ã ÂªÂ¯Ã Â«â€¡Ã ÂªÂ²Ã Â«â‚¬ Ã ÂªÂ²Ã ÂªÂ¿Ã ÂªÂ¸Ã Â«ÂÃ ÂªÅ¸Ã ÂªÂ¿Ã Âªâ€šÃ Âªâ€”, Ã ÂªÂ¶Ã Â«ÂÃ ÂªÂ°Ã Â«â€¡Ã ÂªÂ·Ã Â«ÂÃ ÂªÂ  Ã Âªâ€¢Ã ÂªÂ¿Ã Âªâ€šÃ ÂªÂ®Ã ÂªÂ¤ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÂªÃ Â«â€šÃ ÂªÂ°Ã Â«ÂÃ ÂªÂ£ Ã ÂªÂ¸Ã ÂªÂ¹Ã ÂªÂ¾Ã ÂªÂ¯.",
+        blog: "Ã ÂªÂ¨Ã ÂªÂµÃ Â«â‚¬Ã ÂªÂ¨Ã ÂªÂ¤Ã ÂªÂ® Ã ÂªÂ¬Ã Â«ÂÃ ÂªÂ²Ã Â«â€¹Ã Âªâ€” Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÂ®Ã ÂªÂ¾Ã ÂªÂ¹Ã ÂªÂ¿Ã ÂªÂ¤Ã Â«â‚¬. Ã ÂªÂ°Ã Â«â€¹Ã Âªâ€¢Ã ÂªÂ¾Ã ÂªÂ£, Ã ÂªÂ²Ã Âªâ€¢Ã Â«ÂÃ ÂªÂÃ ÂªÂ°Ã Â«â‚¬ Ã Âªâ€“Ã ÂªÂ°Ã Â«â‚¬Ã ÂªÂ¦Ã Â«â‚¬ Ã Âªâ€¦Ã ÂªÂ¨Ã Â«â€¡ Ã ÂªÂ¹Ã Â«â€¹Ã ÂªÂ® Ã ÂªÂ²Ã Â«â€¹Ã ÂªÂ¨ Ã ÂªÂªÃ ÂªÂ° Ã ÂªÂ¨Ã ÂªÂ¿Ã ÂªÂ·Ã Â«ÂÃ ÂªÂ£Ã ÂªÂ¾Ã ÂªÂ¤ Ã ÂªÂ¸Ã ÂªÂ²Ã ÂªÂ¾Ã ÂªÂ¹ Ã ÂªÂµÃ ÂªÂ¾Ã Âªâ€šÃ ÂªÅ¡Ã Â«â€¹."
+      },
+      ta: {
+        heroBanner: "Ã Â®â€¡Ã Â®Â©Ã Â¯ÂÃ Â®Å¡Ã Â¯ÂÃ Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â®Â¿Ã Â®â€¢Ã Â¯Â Ã Â®Â°Ã Â®Â¿Ã Â®Â¯Ã Â®Â²Ã Â¯ÂÃ Â®Å¸Ã Â®Â¿Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Â Ã Â®ÂµÃ Â®Â°Ã Â®ÂµÃ Â¯â€¡Ã Â®Â±Ã Â¯ÂÃ Â®â€¢Ã Â®Â¿Ã Â®Â±Ã Â¯â€¹Ã Â®Â®Ã Â¯Â. Ã Â®â€¡Ã Â®Â¨Ã Â¯ÂÃ Â®Â¤Ã Â®Â¿Ã Â®Â¯Ã Â®Â¾Ã Â®ÂµÃ Â®Â¿Ã Â®Â©Ã Â¯Â Ã Â®Å¡Ã Â®Â¿Ã Â®Â±Ã Â®Â¨Ã Â¯ÂÃ Â®Â¤ Ã Â®â€¡Ã Â®Å¸Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Å¡Ã Â®Â°Ã Â®Â¿Ã Â®ÂªÃ Â®Â¾Ã Â®Â°Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸ Ã Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â¯â‚¬Ã Â®Â®Ã Â®Â¿Ã Â®Â¯Ã Â®Â®Ã Â¯Â Ã Â®Å¡Ã Â¯Å Ã Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯ÂÃ Â®Å¸Ã Â®Â©Ã Â¯Â Ã Â®Å¡Ã Â®Â¿Ã Â®Â±Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Â¾Ã Â®Â© Ã Â®ÂµÃ Â®Â¾Ã Â®Â´Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â¾Ã Â®Â© Ã Â®ÂµÃ Â¯â‚¬Ã Â®Å¸Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®â€¢Ã Â¯Â Ã Â®â€¢Ã Â®Â£Ã Â¯ÂÃ Â®Å¸Ã Â®Â±Ã Â®Â¿Ã Â®Â¯Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â.",
+        heroSearchSection: "Ã Â®â€¡Ã Â®Å¸Ã Â®Â®Ã Â¯Â, Ã Â®ÂµÃ Â®â€¢Ã Â¯Ë†, Ã Â®ÂµÃ Â®Â¿Ã Â®Â²Ã Â¯Ë† Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†Ã Â®Â¯Ã Â®Â±Ã Â¯Ë†Ã Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®â€¦Ã Â®Å¸Ã Â®Â¿Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯Ë†Ã Â®Â¯Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Å¡Ã Â¯Å Ã Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®Â¤Ã Â¯Â Ã Â®Â¤Ã Â¯â€¡Ã Â®Å¸ Ã Â®Â¤Ã Â¯â€¡Ã Â®Å¸Ã Â®Â²Ã Â¯Â Ã Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â®Â¿Ã Â®Â¯Ã Â¯Ë†Ã Â®ÂªÃ Â¯Â Ã Â®ÂªÃ Â®Â¯Ã Â®Â©Ã Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â. Ã Â®â€ Ã Â®Â¯Ã Â®Â¿Ã Â®Â°Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â£Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â¾Ã Â®Â© Ã Â®Â®Ã Â®â€¢Ã Â®Â¿Ã Â®Â´Ã Â¯ÂÃ Â®Å¡Ã Â¯ÂÃ Â®Å¡Ã Â®Â¿Ã Â®Â¯Ã Â®Â¾Ã Â®Â© Ã Â®ÂµÃ Â®Â¾Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®ÂªÃ Â®ÂµÃ Â®Â°Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®Å½Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â®Â¿Ã Â®Â¯Ã Â®Â²Ã Â¯Ë† Ã Â®Â¨Ã Â®Â®Ã Â¯ÂÃ Â®ÂªÃ Â¯ÂÃ Â®â€¢Ã Â®Â¿Ã Â®Â±Ã Â®Â¾Ã Â®Â°Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â.",
+        moodLifestyleSection: "Ã Â®Â®Ã Â®Â©Ã Â®Â¨Ã Â®Â¿Ã Â®Â²Ã Â¯Ë† Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®ÂµÃ Â®Â¾Ã Â®Â´Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†Ã Â®Â®Ã Â¯ÂÃ Â®Â±Ã Â¯Ë† Ã Â®â€¦Ã Â®Å¸Ã Â®Â¿Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯Ë†Ã Â®Â¯Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Å¡Ã Â¯Å Ã Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯Â Ã Â®Â¤Ã Â¯â€¡Ã Â®Å¸Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â. Ã Â®â€¢Ã Â¯ÂÃ Â®Å¸Ã Â¯ÂÃ Â®Â®Ã Â¯ÂÃ Â®Âª Ã Â®ÂµÃ Â®Â¾Ã Â®Â´Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†, Ã Â®Â¨Ã Â®â€¢Ã Â®Â° Ã Â®ÂµÃ Â®Â¾Ã Â®Â´Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†, Ã Â®â€¢Ã Â®Å¸Ã Â®Â±Ã Â¯ÂÃ Â®â€¢Ã Â®Â°Ã Â¯Ë† Ã Â®ÂµÃ Â¯â‚¬Ã Â®Å¸Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®â€¦Ã Â®Â²Ã Â¯ÂÃ Â®Â²Ã Â®Â¤Ã Â¯Â Ã Â®Â®Ã Â¯ÂÃ Â®Â¤Ã Â®Â²Ã Â¯â‚¬Ã Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â¯Â Ã Â®ÂµÃ Â®Â¿Ã Â®Â°Ã Â¯ÂÃ Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®Â¤Ã Â¯Â Ã Â®Â¤Ã Â¯â€¡Ã Â®Â°Ã Â¯ÂÃ Â®ÂµÃ Â¯Â Ã Â®Å¡Ã Â¯â€ Ã Â®Â¯Ã Â¯ÂÃ Â®Â¯Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â.",
+        localities: "Ã Â®â€¡Ã Â®Â¨Ã Â¯ÂÃ Â®Â¤Ã Â®Â¿Ã Â®Â¯Ã Â®Â¾ Ã Â®Â®Ã Â¯ÂÃ Â®Â´Ã Â¯ÂÃ Â®ÂµÃ Â®Â¤Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®Â®Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â¿Ã Â®Â¯ Ã Â®â€¡Ã Â®Å¸Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Ë† Ã Â®â€ Ã Â®Â°Ã Â®Â¾Ã Â®Â¯Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â. Ã Â®Å¡Ã Â®Â¿Ã Â®Â±Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â¯Â Ã Â®ÂªÃ Â®â€¢Ã Â¯ÂÃ Â®Â¤Ã Â®Â¿Ã Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®ÂªÃ Â¯Â Ã Â®ÂªÃ Â®Â¾Ã Â®Â°Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯Â Ã Â®â€°Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®ÂµÃ Â®Â¾Ã Â®Â´Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Â Ã Â®ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â± Ã Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â¯â‚¬Ã Â®Â®Ã Â®Â¿Ã Â®Â¯Ã Â®Â®Ã Â¯Â Ã Â®ÂµÃ Â¯â‚¬Ã Â®Å¸Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®â€¢Ã Â¯Â Ã Â®â€¢Ã Â®Â£Ã Â¯ÂÃ Â®Å¸Ã Â®Â±Ã Â®Â¿Ã Â®Â¯Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â.",
+        liveDealsSection: "Ã Â®Â¨Ã Â¯â€¡Ã Â®Â°Ã Â®Å¸Ã Â®Â¿ Ã Â®Â¹Ã Â®Â¾Ã Â®Å¸Ã Â¯Â Ã Â®Å¸Ã Â¯â‚¬Ã Â®Â²Ã Â¯ÂÃ Â®Â¸Ã Â¯Â. Ã Â®Å¡Ã Â®Â°Ã Â®Â¿Ã Â®ÂªÃ Â®Â¾Ã Â®Â°Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸ Ã Â®ÂµÃ Â®Â¿Ã Â®Â²Ã Â¯Ë†Ã Â®Â¯Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â¯â‚¬Ã Â®Â®Ã Â®Â¿Ã Â®Â¯Ã Â®Â®Ã Â¯Â Ã Â®Å¡Ã Â¯Å Ã Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Â¤Ã Â®Â³Ã Â¯ÂÃ Â®Â³Ã Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â®Â¿Ã Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®ÂªÃ Â¯Â Ã Â®ÂªÃ Â¯â€ Ã Â®Â±Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â.",
+        nriPremiumSection: "Ã Â®â€°Ã Â®Â²Ã Â®â€¢Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Å½Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â¿Ã Â®Â°Ã Â¯ÂÃ Â®Â¨Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®â€¡Ã Â®Â¨Ã Â¯ÂÃ Â®Â¤Ã Â®Â¿Ã Â®Â¯Ã Â®Â¾Ã Â®ÂµÃ Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Â®Ã Â¯ÂÃ Â®Â¤Ã Â®Â²Ã Â¯â‚¬Ã Â®Å¸Ã Â¯Â Ã Â®Å¡Ã Â¯â€ Ã Â®Â¯Ã Â¯ÂÃ Â®Â¯Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â. Ã Â®Å½Ã Â®Â©Ã Â¯ÂÃ Â®â€ Ã Â®Â°Ã Â¯ÂÃ Â®Â Ã Â®Å¡Ã Â¯â€¡Ã Â®ÂµÃ Â¯Ë†Ã Â®â€¢Ã Â®Â³Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Â®Ã Â¯â€ Ã Â®Â¯Ã Â¯ÂÃ Â®Â¨Ã Â®Â¿Ã Â®â€¢Ã Â®Â°Ã Â¯Â Ã Â®Å¡Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Â¯Ã Â®Â£Ã Â®Â®Ã Â¯Â Ã Â®Â®Ã Â¯ÂÃ Â®Â¤Ã Â®Â²Ã Â¯Â Ã Â®â€ Ã Â®ÂµÃ Â®Â£Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®ÂµÃ Â®Â°Ã Â¯Ë† Ã Â®Â®Ã Â¯ÂÃ Â®Â´Ã Â¯Â Ã Â®â€°Ã Â®Â¤Ã Â®ÂµÃ Â®Â¿.",
+        developersProjects: "Ã Â®Â¨Ã Â®Â®Ã Â¯ÂÃ Â®ÂªÃ Â®â€¢Ã Â®Â®Ã Â®Â¾Ã Â®Â© Ã Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â®Â¾Ã Â®Â£Ã Â¯ÂÃ Â®Å¸Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®Å¡Ã Â®Â¿Ã Â®Â±Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â¯Â Ã Â®Â¤Ã Â®Â¿Ã Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â. Ã Â®Å¸Ã Â®Â¿Ã Â®Å½Ã Â®Â²Ã Â¯ÂÃ Â®Å½Ã Â®Æ’Ã Â®ÂªÃ Â¯Â, Ã Â®Â²Ã Â¯â€¹Ã Â®Â¤Ã Â®Â¾, Ã Â®â€¢Ã Â¯â€¹Ã Â®Â¤Ã Â¯ÂÃ Â®Â°Ã Â¯â€¡Ã Â®Å“Ã Â¯Â Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â¯â€ Ã Â®Â¸Ã Â¯ÂÃ Â®Å¸Ã Â¯â‚¬Ã Â®Å“Ã Â¯Â Ã Â®ÂªÃ Â¯â€¹Ã Â®Â©Ã Â¯ÂÃ Â®Â± Ã Â®Â®Ã Â¯ÂÃ Â®Â©Ã Â¯ÂÃ Â®Â©Ã Â®Â£Ã Â®Â¿ Ã Â®Å¸Ã Â¯â€ Ã Â®ÂµÃ Â®Â²Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Â°Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯ÂÃ Â®Å¸Ã Â®Â©Ã Â¯Â Ã Â®Â¨Ã Â®Â¾Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®ÂªÃ Â®Â£Ã Â®Â¿Ã Â®Â¯Ã Â®Â¾Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®â€¢Ã Â®Â¿Ã Â®Â±Ã Â¯â€¹Ã Â®Â®Ã Â¯Â.",
+        socialProofSection: "Ã Â®Â¤Ã Â®Â¿Ã Â®Â°Ã Â¯Ë†Ã Â®Â¯Ã Â®Â¿Ã Â®Â²Ã Â¯Â Ã Â®Â²Ã Â®â€¢Ã Â¯ÂÃ Â®Â·Ã Â®Â°Ã Â®Â¿ Ã Â®Â¹Ã Â¯â€¹Ã Â®Â®Ã Â¯ÂÃ Â®Â¸Ã Â¯Â. Ã Â®Å½Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â¯â‚¬Ã Â®Â®Ã Â®Â¿Ã Â®Â¯Ã Â®Â®Ã Â¯Â Ã Â®Å¡Ã Â¯Å Ã Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®Å½Ã Â®ÂµÃ Â¯ÂÃ Â®ÂµÃ Â®Â¾Ã Â®Â±Ã Â¯Â Ã Â®Å¡Ã Â®Â¿Ã Â®Â±Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Â¿Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â®Â© Ã Â®Å½Ã Â®Â©Ã Â¯ÂÃ Â®ÂªÃ Â®Â¤Ã Â¯Ë†Ã Â®ÂªÃ Â¯Â Ã Â®ÂªÃ Â®Â¾Ã Â®Â°Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â.",
+        reviewsVideoSection: "Ã Â®Â®Ã Â®â€¢Ã Â®Â¿Ã Â®Â´Ã Â¯ÂÃ Â®Å¡Ã Â¯ÂÃ Â®Å¡Ã Â®Â¿Ã Â®Â¯Ã Â®Â¾Ã Â®Â© Ã Â®ÂµÃ Â®Â¾Ã Â®Å¸Ã Â®Â¿Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â¯Ë†Ã Â®Â¯Ã Â®Â¾Ã Â®Â³Ã Â®Â°Ã Â¯Â Ã Â®â€¢Ã Â®Â¤Ã Â¯Ë†Ã Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®â€¢Ã Â¯Â Ã Â®â€¢Ã Â¯â€¡Ã Â®Â³Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â. Ã Â®â€°Ã Â®Â£Ã Â¯ÂÃ Â®Â®Ã Â¯Ë†Ã Â®Â¯Ã Â®Â¾Ã Â®Â© Google Ã Â®ÂµÃ Â®Â¿Ã Â®Â®Ã Â®Â°Ã Â¯ÂÃ Â®Å¡Ã Â®Â©Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®ÂµÃ Â¯â‚¬Ã Â®Å¸Ã Â®Â¿Ã Â®Â¯Ã Â¯â€¹Ã Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®ÂªÃ Â¯Â Ã Â®ÂªÃ Â®Â¾Ã Â®Â°Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â.",
+        "why-choose": "Ã Â®ÂÃ Â®Â©Ã Â¯Â Ã Â®â€¡Ã Â®Â©Ã Â¯ÂÃ Â®Å¡Ã Â¯ÂÃ Â®ÂªÃ Â®Â¿Ã Â®Â°Ã Â®Â¿Ã Â®â€¢Ã Â¯Â Ã Â®Â°Ã Â®Â¿Ã Â®Â¯Ã Â®Â²Ã Â¯ÂÃ Â®Å¸Ã Â®Â¿Ã Â®Â¯Ã Â¯Ë†Ã Â®Â¤Ã Â¯Â Ã Â®Â¤Ã Â¯â€¡Ã Â®Â°Ã Â¯ÂÃ Â®ÂµÃ Â¯Â Ã Â®Å¡Ã Â¯â€ Ã Â®Â¯Ã Â¯ÂÃ Â®Â¯ Ã Â®ÂµÃ Â¯â€¡Ã Â®Â£Ã Â¯ÂÃ Â®Å¸Ã Â¯ÂÃ Â®Â®Ã Â¯Â. Ã Â®Å¡Ã Â®Â°Ã Â®Â¿Ã Â®ÂªÃ Â®Â¾Ã Â®Â°Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®â€¢Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸ Ã Â®ÂªÃ Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â®Â¿Ã Â®Â¯Ã Â®Â²Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â, Ã Â®Å¡Ã Â®Â¿Ã Â®Â±Ã Â®Â¨Ã Â¯ÂÃ Â®Â¤ Ã Â®ÂµÃ Â®Â¿Ã Â®Â²Ã Â¯Ë† Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®Â®Ã Â¯ÂÃ Â®Â´Ã Â¯Â Ã Â®â€ Ã Â®Â¤Ã Â®Â°Ã Â®ÂµÃ Â¯Â.",
+        blog: "Ã Â®Å¡Ã Â®Â®Ã Â¯â‚¬Ã Â®ÂªÃ Â®Â¤Ã Â¯ÂÃ Â®Â¤Ã Â®Â¿Ã Â®Â¯ Ã Â®ÂµÃ Â®Â²Ã Â¯Ë†Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â®Â¤Ã Â®Â¿Ã Â®ÂµÃ Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®Â¨Ã Â¯ÂÃ Â®Â£Ã Â¯ÂÃ Â®Â£Ã Â®Â±Ã Â®Â¿Ã Â®ÂµÃ Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â. Ã Â®Â®Ã Â¯ÂÃ Â®Â¤Ã Â®Â²Ã Â¯â‚¬Ã Â®Å¸Ã Â¯Â, Ã Â®Â²Ã Â®â€¢Ã Â¯ÂÃ Â®Â·Ã Â®Â°Ã Â®Â¿ Ã Â®ÂµÃ Â®Â¾Ã Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â¯ÂÃ Â®Â¤Ã Â®Â²Ã Â¯Â Ã Â®Â®Ã Â®Â±Ã Â¯ÂÃ Â®Â±Ã Â¯ÂÃ Â®Â®Ã Â¯Â Ã Â®ÂµÃ Â¯â‚¬Ã Â®Å¸Ã Â¯ÂÃ Â®Å¸Ã Â¯ÂÃ Â®â€¢Ã Â¯Â Ã Â®â€¢Ã Â®Å¸Ã Â®Â©Ã Â¯Â Ã Â®â€¢Ã Â¯ÂÃ Â®Â±Ã Â®Â¿Ã Â®Â¤Ã Â¯ÂÃ Â®Â¤ Ã Â®Â¨Ã Â®Â¿Ã Â®ÂªÃ Â¯ÂÃ Â®Â£Ã Â®Â°Ã Â¯Â Ã Â®â€¢Ã Â¯ÂÃ Â®Â±Ã Â®Â¿Ã Â®ÂªÃ Â¯ÂÃ Â®ÂªÃ Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Ë†Ã Â®ÂªÃ Â¯Â Ã Â®ÂªÃ Â®Å¸Ã Â®Â¿Ã Â®Â¯Ã Â¯ÂÃ Â®â„¢Ã Â¯ÂÃ Â®â€¢Ã Â®Â³Ã Â¯Â."
+      },
+      te: {
+        heroBanner: "Ã Â°â€¡Ã Â°â€šÃ Â°Å¡Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â¬Ã Â±ÂÃ Â°Â°Ã Â°Â¿Ã Â°â€¢Ã Â±Â Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â°Â²Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°â€¢Ã Â°Â¿ Ã Â°Â¸Ã Â±ÂÃ Â°ÂµÃ Â°Â¾Ã Â°â€”Ã Â°Â¤Ã Â°â€š. Ã Â°Â­Ã Â°Â¾Ã Â°Â°Ã Â°Â¤Ã Â°Â¦Ã Â±â€¡Ã Â°Â¶Ã Â°â€šÃ Â°Â²Ã Â±â€¹Ã Â°Â¨Ã Â°Â¿ Ã Â°â€°Ã Â°Â¤Ã Â±ÂÃ Â°Â¤Ã Â°Â® Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°â€šÃ Â°Â¤Ã Â°Â¾Ã Â°Â²Ã Â°Â²Ã Â±â€¹ Ã Â°Â§Ã Â±Æ’Ã Â°ÂµÃ Â±â‚¬Ã Â°â€¢Ã Â°Â°Ã Â°Â¿Ã Â°â€šÃ Â°Å¡Ã Â°Â¬Ã Â°Â¡Ã Â°Â¿Ã Â°Â¨ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â±â‚¬Ã Â°Â®Ã Â°Â¿Ã Â°Â¯Ã Â°â€š Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°ÂªÃ Â°Â°Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°Â²Ã Â°Â¤Ã Â±â€¹ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¤Ã Â±ÂÃ Â°Â¯Ã Â±â€¡Ã Â°â€¢Ã Â°Â®Ã Â±Ë†Ã Â°Â¨ Ã Â°Å“Ã Â±â‚¬Ã Â°ÂµÃ Â°Â¨Ã Â°Â¾Ã Â°Â¨Ã Â°Â¿Ã Â°â€¢Ã Â°Â¿ Ã Â°â€¡Ã Â°Â³Ã Â±ÂÃ Â°Â²Ã Â°Â¨Ã Â±Â Ã Â°â€¢Ã Â°Â¨Ã Â±ÂÃ Â°â€”Ã Â±Å Ã Â°Â¨Ã Â°â€šÃ Â°Â¡Ã Â°Â¿.",
+        heroSearchSection: "Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°â€šÃ Â°Â¤Ã Â°â€š, Ã Â°Â°Ã Â°â€¢Ã Â°â€š, Ã Â°Â§Ã Â°Â° Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°Â¬Ã Â±â€ Ã Â°Â¡Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â°Ã Â±â€šÃ Â°Â®Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â² Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°â€¢Ã Â°Â¾Ã Â°Â°Ã Â°â€š Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°ÂªÃ Â°Â°Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°Â²Ã Â±Â Ã Â°ÂµÃ Â±â€ Ã Â°Â¤Ã Â°â€¢Ã Â°Â¡Ã Â°Â¾Ã Â°Â¨Ã Â°Â¿Ã Â°â€¢Ã Â°Â¿ Ã Â°Â¸Ã Â±â€ Ã Â°Â°Ã Â±ÂÃ Â°Å¡Ã Â±Â Ã Â°Â¬Ã Â°Â¾Ã Â°Â°Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â¨Ã Â±Â Ã Â°â€°Ã Â°ÂªÃ Â°Â¯Ã Â±â€¹Ã Â°â€”Ã Â°Â¿Ã Â°â€šÃ Â°Å¡Ã Â°â€šÃ Â°Â¡Ã Â°Â¿. Ã Â°ÂµÃ Â±â€¡Ã Â°Â²Ã Â°Â¾Ã Â°Â¦Ã Â°Â¿ Ã Â°Â¸Ã Â°â€šÃ Â°Â¤Ã Â±â€¹Ã Â°Â·Ã Â°â€¢Ã Â°Â°Ã Â°Â®Ã Â±Ë†Ã Â°Â¨ Ã Â°â€¢Ã Â±Å Ã Â°Â¨Ã Â±ÂÃ Â°â€”Ã Â±â€¹Ã Â°Â²Ã Â±ÂÃ Â°Â¦Ã Â°Â¾Ã Â°Â°Ã Â±ÂÃ Â°Â²Ã Â±Â Ã Â°Â®Ã Â°Â¾ Ã Â°Â²Ã Â°Â¿Ã Â°Â¸Ã Â±ÂÃ Â°Å¸Ã Â°Â¿Ã Â°â€šÃ Â°â€”Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â²Ã Â°Â¨Ã Â±Â Ã Â°Â¨Ã Â°Â®Ã Â±ÂÃ Â°Â®Ã Â±ÂÃ Â°Â¤Ã Â°Â¾Ã Â°Â°Ã Â±Â.",
+        moodLifestyleSection: "Ã Â°Â®Ã Â±â€šÃ Â°Â¡Ã Â±Â Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°Å“Ã Â±â‚¬Ã Â°ÂµÃ Â°Â¨Ã Â°Â¶Ã Â±Ë†Ã Â°Â²Ã Â°Â¿ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°â€¢Ã Â°Â¾Ã Â°Â°Ã Â°â€š Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°ÂªÃ Â°Â°Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°Â²Ã Â±Â Ã Â°ÂµÃ Â±â€ Ã Â°Â¤Ã Â°â€¢Ã Â°â€šÃ Â°Â¡Ã Â°Â¿. Ã Â°Â«Ã Â±ÂÃ Â°Â¯Ã Â°Â¾Ã Â°Â®Ã Â°Â¿Ã Â°Â²Ã Â±â‚¬ Ã Â°Â²Ã Â°Â¿Ã Â°ÂµÃ Â°Â¿Ã Â°â€šÃ Â°â€”Ã Â±Â, Ã Â°Â¸Ã Â°Â¿Ã Â°Å¸Ã Â±â‚¬ Ã Â°Â²Ã Â±Ë†Ã Â°Â«Ã Â±Â, Ã Â°Â¬Ã Â±â‚¬Ã Â°Å¡Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â¸Ã Â±Ë†Ã Â°Â¡Ã Â±Â Ã Â°â€¡Ã Â°Â³Ã Â±ÂÃ Â°Â²Ã Â±Â Ã Â°Â²Ã Â±â€¡Ã Â°Â¦Ã Â°Â¾ Ã Â°ÂªÃ Â±â€ Ã Â°Å¸Ã Â±ÂÃ Â°Å¸Ã Â±ÂÃ Â°Â¬Ã Â°Â¡Ã Â°Â¿ Ã Â°Å½Ã Â°â€šÃ Â°ÂªÃ Â°Â¿Ã Â°â€¢Ã Â°Â²Ã Â°Â¨Ã Â±Â Ã Â°Å½Ã Â°â€šÃ Â°Å¡Ã Â±ÂÃ Â°â€¢Ã Â±â€¹Ã Â°â€šÃ Â°Â¡Ã Â°Â¿.",
+        localities: "Ã Â°Â­Ã Â°Â¾Ã Â°Â°Ã Â°Â¤Ã Â°Â¦Ã Â±â€¡Ã Â°Â¶Ã Â°â€š Ã Â°â€¦Ã Â°â€šÃ Â°Â¤Ã Â°Å¸Ã Â°Â¾ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â®Ã Â±ÂÃ Â°â€“ Ã Â°â€”Ã Â°Â®Ã Â±ÂÃ Â°Â¯Ã Â°Â¸Ã Â±ÂÃ Â°Â¥Ã Â°Â¾Ã Â°Â¨Ã Â°Â¾Ã Â°Â²Ã Â°Â¨Ã Â±Â Ã Â°â€¦Ã Â°Â¨Ã Â±ÂÃ Â°ÂµÃ Â±â€¡Ã Â°Â·Ã Â°Â¿Ã Â°â€šÃ Â°Å¡Ã Â°â€šÃ Â°Â¡Ã Â°Â¿. Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¤Ã Â±ÂÃ Â°Â¯Ã Â±â€¡Ã Â°â€¢ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°â€šÃ Â°Â¤Ã Â°Â¾Ã Â°Â²Ã Â°Â¨Ã Â±Â Ã Â°Å¡Ã Â±â€šÃ Â°Â¡Ã Â°â€šÃ Â°Â¡Ã Â°Â¿ Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â±â‚¬Ã Â°Â®Ã Â°Â¿Ã Â°Â¯Ã Â°â€š Ã Â°â€¡Ã Â°Â³Ã Â±ÂÃ Â°Â²Ã Â°Â¨Ã Â±Â Ã Â°â€¢Ã Â°Â¨Ã Â±ÂÃ Â°â€”Ã Â±Å Ã Â°Â¨Ã Â°â€šÃ Â°Â¡Ã Â°Â¿.",
+        liveDealsSection: "Ã Â°Â²Ã Â±Ë†Ã Â°ÂµÃ Â±Â Ã Â°Â¹Ã Â°Â¾Ã Â°Å¸Ã Â±Â Ã Â°Â¡Ã Â±â‚¬Ã Â°Â²Ã Â±ÂÃ Â°Â¸Ã Â±Â. Ã Â°Â§Ã Â±Æ’Ã Â°ÂµÃ Â±â‚¬Ã Â°â€¢Ã Â°Â°Ã Â°Â¿Ã Â°â€šÃ Â°Å¡Ã Â°Â¬Ã Â°Â¡Ã Â°Â¿Ã Â°Â¨ Ã Â°Â§Ã Â°Â°Ã Â°Â²Ã Â°ÂªÃ Â±Ë† Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â±â‚¬Ã Â°Â®Ã Â°Â¿Ã Â°Â¯Ã Â°â€š Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°ÂªÃ Â°Â°Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°Â²Ã Â°ÂªÃ Â±Ë† Ã Â°Â«Ã Â±ÂÃ Â°Â²Ã Â°Â¾Ã Â°Â·Ã Â±Â Ã Â°Â¡Ã Â°Â¿Ã Â°Â¸Ã Â±ÂÃ Â°â€¢Ã Â±Å’Ã Â°â€šÃ Â°Å¸Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â²Ã Â±Â Ã Â°ÂªÃ Â±Å Ã Â°â€šÃ Â°Â¦Ã Â°â€šÃ Â°Â¡Ã Â°Â¿.",
+        nriPremiumSection: "Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°ÂªÃ Â°â€šÃ Â°Å¡Ã Â°â€šÃ Â°Â²Ã Â±â€¹ Ã Â°Å½Ã Â°â€¢Ã Â±ÂÃ Â°â€¢Ã Â°Â¡Ã Â±Ë†Ã Â°Â¨Ã Â°Â¾ Ã Â°Â¨Ã Â±ÂÃ Â°â€šÃ Â°Â¡Ã Â°Â¿ Ã Â°Â­Ã Â°Â¾Ã Â°Â°Ã Â°Â¤Ã Â°Â¦Ã Â±â€¡Ã Â°Â¶Ã Â°â€šÃ Â°Â²Ã Â±â€¹ Ã Â°ÂªÃ Â±â€ Ã Â°Å¸Ã Â±ÂÃ Â°Å¸Ã Â±ÂÃ Â°Â¬Ã Â°Â¡Ã Â°Â¿ Ã Â°ÂªÃ Â±â€ Ã Â°Å¸Ã Â±ÂÃ Â°Å¸Ã Â°â€šÃ Â°Â¡Ã Â°Â¿. Ã Â°Å½Ã Â°Â¨Ã Â±ÂÃ Â°â€ Ã Â°Â°Ã Â±ÂÃ Â°Â Ã Â°Â¸Ã Â±â€¡Ã Â°ÂµÃ Â°Â²Ã Â°Â²Ã Â±â€¹ Ã Â°ÂµÃ Â°Â°Ã Â±ÂÃ Â°Å¡Ã Â±ÂÃ Â°ÂµÃ Â°Â²Ã Â±Â Ã Â°Å¸Ã Â±â€šÃ Â°Â°Ã Â±Â Ã Â°Â¨Ã Â±ÂÃ Â°â€šÃ Â°Â¡Ã Â°Â¿ Ã Â°ÂªÃ Â°Â¤Ã Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°Â² Ã Â°ÂµÃ Â°Â°Ã Â°â€¢Ã Â±Â Ã Â°ÂªÃ Â±â€šÃ Â°Â°Ã Â±ÂÃ Â°Â¤Ã Â°Â¿ Ã Â°Â¸Ã Â°Â¹Ã Â°Â¾Ã Â°Â¯Ã Â°â€š.",
+        developersProjects: "Ã Â°ÂµÃ Â°Â¿Ã Â°Â¶Ã Â±ÂÃ Â°ÂµÃ Â°Â¸Ã Â°Â¨Ã Â±â‚¬Ã Â°Â¯ Ã Â°Â¬Ã Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°â€šÃ Â°Â¡Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â²Ã Â±Â Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¤Ã Â°Â¿Ã Â°Â·Ã Â±ÂÃ Â°Â Ã Â°Â¾Ã Â°Â¤Ã Â±ÂÃ Â°Â®Ã Â°â€¢ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°Å“Ã Â±â€ Ã Â°â€¢Ã Â±ÂÃ Â°Å¸Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â²Ã Â±Â. Ã Â°Â¡Ã Â±â‚¬Ã Â°Å½Ã Â°Â²Ã Â±ÂÃ Â°Å½Ã Â°Â«Ã Â±Â, Ã Â°Â²Ã Â±â€¹Ã Â°Â§Ã Â°Â¾, Ã Â°â€”Ã Â±â€¹Ã Â°Â¦Ã Â±ÂÃ Â°Â°Ã Â±â€¡Ã Â°Å“Ã Â±Â Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â±â€ Ã Â°Â¸Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°Å“Ã Â±Â Ã Â°ÂµÃ Â°â€šÃ Â°Å¸Ã Â°Â¿ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â®Ã Â±ÂÃ Â°â€“ Ã Â°Â¡Ã Â±â€ Ã Â°ÂµÃ Â°Â²Ã Â°ÂªÃ Â°Â°Ã Â±ÂÃ Â°Â²Ã Â°Â¤Ã Â±â€¹ Ã Â°Â®Ã Â±â€¡Ã Â°Â®Ã Â±Â Ã Â°ÂªÃ Â°Â¨Ã Â°Â¿Ã Â°Å¡Ã Â±â€¡Ã Â°Â¸Ã Â±ÂÃ Â°Â¤Ã Â°Â¾Ã Â°Â®Ã Â±Â.",
+        socialProofSection: "Ã Â°Â¸Ã Â±ÂÃ Â°â€¢Ã Â±ÂÃ Â°Â°Ã Â±â‚¬Ã Â°Â¨Ã Â±ÂÃ¢â‚¬Å’Ã Â°ÂªÃ Â±Ë† Ã Â°Â²Ã Â°â€”Ã Â±ÂÃ Â°Å“Ã Â°Â°Ã Â±â‚¬ Ã Â°Â¹Ã Â±â€¹Ã Â°Â®Ã Â±ÂÃ Â°Â¸Ã Â±Â. Ã Â°Â®Ã Â°Â¾ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â±â‚¬Ã Â°Â®Ã Â°Â¿Ã Â°Â¯Ã Â°â€š Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¾Ã Â°ÂªÃ Â°Â°Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°Â²Ã Â±Â Ã Â°Å½Ã Â°Â²Ã Â°Â¾ Ã Â°ÂªÃ Â±ÂÃ Â°Â°Ã Â°Â¦Ã Â°Â°Ã Â±ÂÃ Â°Â¶Ã Â°Â¿Ã Â°â€šÃ Â°Å¡Ã Â°Â¬Ã Â°Â¡Ã Â±ÂÃ Â°Â¡Ã Â°Â¾Ã Â°Â¯Ã Â±â€¹ Ã Â°Å¡Ã Â±â€šÃ Â°Â¡Ã Â°â€šÃ Â°Â¡Ã Â°Â¿.",
+        reviewsVideoSection: "Ã Â°Â¸Ã Â°â€šÃ Â°Â¤Ã Â±â€¹Ã Â°Â·Ã Â°â€¢Ã Â°Â°Ã Â°Â®Ã Â±Ë†Ã Â°Â¨ Ã Â°â€¢Ã Â±ÂÃ Â°Â²Ã Â°Â¯Ã Â°Â¿Ã Â°â€šÃ Â°Å¸Ã Â±Â Ã Â°â€¢Ã Â°Â¥Ã Â°Â²Ã Â±Â Ã Â°ÂµÃ Â°Â¿Ã Â°Â¨Ã Â°â€šÃ Â°Â¡Ã Â°Â¿. Ã Â°Â¨Ã Â°Â¿Ã Â°Å“Ã Â°Â®Ã Â±Ë†Ã Â°Â¨ Google Ã Â°Â°Ã Â°Â¿Ã Â°ÂµÃ Â±ÂÃ Â°Â¯Ã Â±â€šÃ Â°Â²Ã Â±Â Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°ÂµÃ Â±â‚¬Ã Â°Â¡Ã Â°Â¿Ã Â°Â¯Ã Â±â€¹Ã Â°Â²Ã Â±Â Ã Â°Å¡Ã Â±â€šÃ Â°Â¡Ã Â°â€šÃ Â°Â¡Ã Â°Â¿.",
+        "why-choose": "Ã Â°â€¡Ã Â°â€šÃ Â°Å¡Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â¬Ã Â±ÂÃ Â°Â°Ã Â°Â¿Ã Â°â€¢Ã Â±Â Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â°Â²Ã Â±ÂÃ Â°Å¸Ã Â±â‚¬Ã Â°Â¨Ã Â°Â¿ Ã Â°Å½Ã Â°â€šÃ Â°Â¦Ã Â±ÂÃ Â°â€¢Ã Â±Â Ã Â°Å½Ã Â°â€šÃ Â°Å¡Ã Â±ÂÃ Â°â€¢Ã Â±â€¹Ã Â°ÂµÃ Â°Â¾Ã Â°Â²Ã Â°Â¿. Ã Â°Â§Ã Â±Æ’Ã Â°ÂµÃ Â±â‚¬Ã Â°â€¢Ã Â°Â°Ã Â°Â¿Ã Â°â€šÃ Â°Å¡Ã Â°Â¬Ã Â°Â¡Ã Â°Â¿Ã Â°Â¨ Ã Â°Â²Ã Â°Â¿Ã Â°Â¸Ã Â±ÂÃ Â°Å¸Ã Â°Â¿Ã Â°â€šÃ Â°â€”Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â²Ã Â±Â, Ã Â°â€°Ã Â°Â¤Ã Â±ÂÃ Â°Â¤Ã Â°Â® Ã Â°Â§Ã Â°Â° Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°ÂªÃ Â±â€šÃ Â°Â°Ã Â±ÂÃ Â°Â¤Ã Â°Â¿ Ã Â°Â®Ã Â°Â¦Ã Â±ÂÃ Â°Â¦Ã Â°Â¤Ã Â±Â.",
+        blog: "Ã Â°Â¤Ã Â°Â¾Ã Â°Å“Ã Â°Â¾ Ã Â°Â¬Ã Â±ÂÃ Â°Â²Ã Â°Â¾Ã Â°â€”Ã Â±ÂÃ¢â‚¬Å’Ã Â°Â²Ã Â±Â Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°â€¦Ã Â°â€šÃ Â°Â¤Ã Â°Â°Ã Â±ÂÃ Â°Â¦Ã Â±Æ’Ã Â°Â·Ã Â±ÂÃ Â°Å¸Ã Â±ÂÃ Â°Â²Ã Â±Â. Ã Â°ÂªÃ Â±â€ Ã Â°Å¸Ã Â±ÂÃ Â°Å¸Ã Â±ÂÃ Â°Â¬Ã Â°Â¡Ã Â°Â¿, Ã Â°Â²Ã Â°â€”Ã Â±ÂÃ Â°Å“Ã Â°Â°Ã Â±â‚¬ Ã Â°â€¢Ã Â±Å Ã Â°Â¨Ã Â±ÂÃ Â°â€”Ã Â±â€¹Ã Â°Â²Ã Â±Â Ã Â°Â®Ã Â°Â°Ã Â°Â¿Ã Â°Â¯Ã Â±Â Ã Â°Â¹Ã Â±â€¹Ã Â°Â®Ã Â±Â Ã Â°Â²Ã Â±â€¹Ã Â°Â¨Ã Â±ÂÃ¢â‚¬Å’Ã Â°ÂªÃ Â±Ë† Ã Â°Â¨Ã Â°Â¿Ã Â°ÂªÃ Â±ÂÃ Â°Â£Ã Â±ÂÃ Â°Â² Ã Â°Â¸Ã Â°Â²Ã Â°Â¹Ã Â°Â¾Ã Â°Â²Ã Â±Â Ã Â°Å¡Ã Â°Â¦Ã Â°ÂµÃ Â°â€šÃ Â°Â¡Ã Â°Â¿."
+      },
+      kn: {
+        heroBanner: "Ã Â²â€¡Ã Â²â€šÃ Â²Å¡Ã Â³ÂÃ¢â‚¬Å’Ã Â²Â¬Ã Â³ÂÃ Â²Â°Ã Â²Â¿Ã Â²â€¢Ã Â³Â Ã Â²Â°Ã Â²Â¿Ã Â²Â¯Ã Â²Â²Ã Â³ÂÃ Â²Å¸Ã Â²Â¿Ã Â²â€”Ã Â³â€  Ã Â²Â¸Ã Â³ÂÃ Â²ÂµÃ Â²Â¾Ã Â²â€”Ã Â²Â¤. Ã Â²Â­Ã Â²Â¾Ã Â²Â°Ã Â²Â¤Ã Â²Â¦ Ã Â²â€¦Ã Â²Â¤Ã Â³ÂÃ Â²Â¯Ã Â³ÂÃ Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â²Â® Ã Â²Â¸Ã Â³ÂÃ Â²Â¥Ã Â²Â³Ã Â²â€”Ã Â²Â³Ã Â²Â²Ã Â³ÂÃ Â²Â²Ã Â²Â¿ Ã Â²ÂªÃ Â²Â°Ã Â²Â¿Ã Â²Â¶Ã Â³â‚¬Ã Â²Â²Ã Â²Â¿Ã Â²Â¸Ã Â²Â¿Ã Â²Â¦ Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â³â‚¬Ã Â²Â®Ã Â²Â¿Ã Â²Â¯Ã Â²â€š Ã Â²â€ Ã Â²Â¸Ã Â³ÂÃ Â²Â¤Ã Â²Â¿Ã Â²â€”Ã Â²Â³Ã Â³Å Ã Â²â€šÃ Â²Â¦Ã Â²Â¿Ã Â²â€”Ã Â³â€  Ã Â²ÂµÃ Â²Â¿Ã Â²Â¶Ã Â³â€¡Ã Â²Â· Ã Â²Å“Ã Â³â‚¬Ã Â²ÂµÃ Â²Â¨Ã Â²â€¢Ã Â³ÂÃ Â²â€¢Ã Â²Â¾Ã Â²â€”Ã Â²Â¿ Ã Â²Â®Ã Â²Â¨Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²Â¹Ã Â³ÂÃ Â²Â¡Ã Â³ÂÃ Â²â€¢Ã Â²Â¿.",
+        heroSearchSection: "Ã Â²Â¸Ã Â³ÂÃ Â²Â¥Ã Â²Â³, Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²â€¢Ã Â²Â¾Ã Â²Â°, Ã Â²Â¬Ã Â³â€ Ã Â²Â²Ã Â³â€  Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²Â¬Ã Â³â€ Ã Â²Â¡Ã Â³ÂÃ¢â‚¬Å’Ã Â²Â°Ã Â³â€šÃ Â²Â®Ã Â³ÂÃ¢â‚¬Å’Ã Â²â€”Ã Â²Â³ Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²â€¢Ã Â²Â¾Ã Â²Â° Ã Â²â€ Ã Â²Â¸Ã Â³ÂÃ Â²Â¤Ã Â²Â¿Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²Â¹Ã Â³ÂÃ Â²Â¡Ã Â³ÂÃ Â²â€¢Ã Â²Â²Ã Â³Â Ã Â²Â¸Ã Â²Â°Ã Â³ÂÃ Â²Å¡Ã Â³Â Ã Â²Â¬Ã Â²Â¾Ã Â²Â°Ã Â³Â Ã Â²Â¬Ã Â²Â³Ã Â²Â¸Ã Â²Â¿. Ã Â²Â¸Ã Â²Â¾Ã Â²ÂµÃ Â²Â¿Ã Â²Â°Ã Â²Â¾Ã Â²Â°Ã Â³Â Ã Â²Â¸Ã Â²â€šÃ Â²Â¤Ã Â³â€¹Ã Â²Â·Ã Â²Â¦ Ã Â²â€“Ã Â²Â°Ã Â³â‚¬Ã Â²Â¦Ã Â²Â¿Ã Â²Â¦Ã Â²Â¾Ã Â²Â°Ã Â²Â°Ã Â³Â Ã Â²Â¨Ã Â²Â®Ã Â³ÂÃ Â²Â® Ã Â²ÂªÃ Â²Å¸Ã Â³ÂÃ Â²Å¸Ã Â²Â¿Ã Â²â€”Ã Â²Â³ Ã Â²Â®Ã Â³â€¡Ã Â²Â²Ã Â³â€  Ã Â²Â¨Ã Â²â€šÃ Â²Â¬Ã Â²Â¿Ã Â²â€¢Ã Â³â€  Ã Â²â€¡Ã Â²Â¡Ã Â³ÂÃ Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â²Â¾Ã Â²Â°Ã Â³â€ .",
+        moodLifestyleSection: "Ã Â²Â®Ã Â³â€šÃ Â²Â¡Ã Â³Â Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²Å“Ã Â³â‚¬Ã Â²ÂµÃ Â²Â¨Ã Â²Â¶Ã Â³Ë†Ã Â²Â²Ã Â²Â¿Ã Â²Â¯ Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²â€¢Ã Â²Â¾Ã Â²Â° Ã Â²â€ Ã Â²Â¸Ã Â³ÂÃ Â²Â¤Ã Â²Â¿ Ã Â²Â¹Ã Â³ÂÃ Â²Â¡Ã Â³ÂÃ Â²â€¢Ã Â²Â¿. Ã Â²Â«Ã Â³ÂÃ Â²Â¯Ã Â²Â¾Ã Â²Â®Ã Â²Â¿Ã Â²Â²Ã Â²Â¿ Ã Â²Â²Ã Â²Â¿Ã Â²ÂµÃ Â²Â¿Ã Â²â€šÃ Â²â€”Ã Â³Â, Ã Â²Â¸Ã Â²Â¿Ã Â²Å¸Ã Â²Â¿ Ã Â²Â²Ã Â³Ë†Ã Â²Â«Ã Â³Â, Ã Â²Â¬Ã Â³â‚¬Ã Â²Å¡Ã Â³ÂÃ¢â‚¬Å’Ã Â²Â¸Ã Â³Ë†Ã Â²Â¡Ã Â³Â Ã Â²Â®Ã Â²Â¨Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â³Â Ã Â²â€¦Ã Â²Â¥Ã Â²ÂµÃ Â²Â¾ Ã Â²Â¹Ã Â³â€šÃ Â²Â¡Ã Â²Â¿Ã Â²â€¢Ã Â³â€  Ã Â²â€ Ã Â²Â¯Ã Â³ÂÃ Â²â€¢Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²â€ Ã Â²Â°Ã Â²Â¿Ã Â²Â¸Ã Â²Â¿.",
+        localities: "Ã Â²Â­Ã Â²Â¾Ã Â²Â°Ã Â²Â¤Ã Â²Â¦Ã Â²Â¾Ã Â²Â¦Ã Â³ÂÃ Â²Â¯Ã Â²â€šÃ Â²Â¤ Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²Â®Ã Â³ÂÃ Â²â€“ Ã Â²â€”Ã Â²Â®Ã Â³ÂÃ Â²Â¯Ã Â²Â¸Ã Â³ÂÃ Â²Â¥Ã Â²Â¾Ã Â²Â¨Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²â€¦Ã Â²Â¨Ã Â³ÂÃ Â²ÂµÃ Â³â€¡Ã Â²Â·Ã Â²Â¿Ã Â²Â¸Ã Â²Â¿. Ã Â²ÂµÃ Â²Â¿Ã Â²Â¶Ã Â³â€¡Ã Â²Â· Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²Â¦Ã Â³â€¡Ã Â²Â¶Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²Â¬Ã Â³ÂÃ Â²Â°Ã Â³Å’Ã Â²Â¸Ã Â³Â Ã Â²Â®Ã Â²Â¾Ã Â²Â¡Ã Â²Â¿ Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â³â‚¬Ã Â²Â®Ã Â²Â¿Ã Â²Â¯Ã Â²â€š Ã Â²Â®Ã Â²Â¨Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²Â¹Ã Â³ÂÃ Â²Â¡Ã Â³ÂÃ Â²â€¢Ã Â²Â¿.",
+        liveDealsSection: "Ã Â²Â²Ã Â³Ë†Ã Â²ÂµÃ Â³Â Ã Â²Â¹Ã Â²Â¾Ã Â²Å¸Ã Â³Â Ã Â²Â¡Ã Â³â‚¬Ã Â²Â²Ã Â³ÂÃ Â²Â¸Ã Â³Â. Ã Â²ÂªÃ Â²Â°Ã Â²Â¿Ã Â²Â¶Ã Â³â‚¬Ã Â²Â²Ã Â²Â¿Ã Â²Â¸Ã Â²Â¿Ã Â²Â¦ Ã Â²Â¬Ã Â³â€ Ã Â²Â²Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²Â²Ã Â³ÂÃ Â²Â²Ã Â²Â¿ Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â³â‚¬Ã Â²Â®Ã Â²Â¿Ã Â²Â¯Ã Â²â€š Ã Â²â€ Ã Â²Â¸Ã Â³ÂÃ Â²Â¤Ã Â²Â¿Ã Â²â€”Ã Â²Â³ Ã Â²Â®Ã Â³â€¡Ã Â²Â²Ã Â³â€  Ã Â²Â«Ã Â³ÂÃ Â²Â²Ã Â³ÂÃ Â²Â¯Ã Â²Â¾Ã Â²Â¶Ã Â³Â Ã Â²Â°Ã Â²Â¿Ã Â²Â¯Ã Â²Â¾Ã Â²Â¯Ã Â²Â¿Ã Â²Â¤Ã Â²Â¿Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²ÂªÃ Â²Â¡Ã Â³â€ Ã Â²Â¯Ã Â²Â¿Ã Â²Â°Ã Â²Â¿.",
+        nriPremiumSection: "Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²ÂªÃ Â²â€šÃ Â²Å¡Ã Â²Â¦ Ã Â²Å½Ã Â²Â²Ã Â³ÂÃ Â²Â²Ã Â²Â¿Ã Â²â€šÃ Â²Â¦Ã Â²Â¾Ã Â²Â¦Ã Â²Â°Ã Â³â€š Ã Â²Â­Ã Â²Â¾Ã Â²Â°Ã Â²Â¤Ã Â²Â¦Ã Â²Â²Ã Â³ÂÃ Â²Â²Ã Â²Â¿ Ã Â²Â¹Ã Â³â€šÃ Â²Â¡Ã Â²Â¿Ã Â²â€¢Ã Â³â€  Ã Â²Â®Ã Â²Â¾Ã Â²Â¡Ã Â²Â¿. Ã Â²Å½Ã Â²Â¨Ã Â³ÂÃ Â²â€ Ã Â²Â°Ã Â³ÂÃ Â²Â Ã Â²Â¸Ã Â³â€¡Ã Â²ÂµÃ Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²Â²Ã Â³ÂÃ Â²Â²Ã Â²Â¿ Ã Â²ÂµÃ Â²Â°Ã Â³ÂÃ Â²Å¡Ã Â³ÂÃ Â²ÂµÃ Â²Â²Ã Â³Â Ã Â²Å¸Ã Â³â€šÃ Â²Â°Ã Â³ÂÃ¢â‚¬Å’Ã Â²Â¨Ã Â²Â¿Ã Â²â€šÃ Â²Â¦ Ã Â²Â¦Ã Â²Â¾Ã Â²â€“Ã Â²Â²Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²ÂµÃ Â²Â°Ã Â³â€ Ã Â²â€”Ã Â³â€  Ã Â²ÂªÃ Â³â€šÃ Â²Â°Ã Â³ÂÃ Â²Â£ Ã Â²Â¸Ã Â²Â¹Ã Â²Â¾Ã Â²Â¯.",
+        developersProjects: "Ã Â²ÂµÃ Â²Â¿Ã Â²Â¶Ã Â³ÂÃ Â²ÂµÃ Â²Â¾Ã Â²Â¸Ã Â²Â¾Ã Â²Â°Ã Â³ÂÃ Â²Â¹ Ã Â²Â¬Ã Â³ÂÃ Â²Â°Ã Â²Â¾Ã Â²â€šÃ Â²Â¡Ã Â³ÂÃ¢â‚¬Å’Ã Â²â€”Ã Â²Â³Ã Â³Â Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²Â¤Ã Â²Â¿Ã Â²Â·Ã Â³ÂÃ Â²Â Ã Â²Â¿Ã Â²Â¤ Ã Â²Â¯Ã Â³â€¹Ã Â²Å“Ã Â²Â¨Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â³Â. Ã Â²Â¡Ã Â²Â¿Ã Â²Å½Ã Â²Â²Ã Â³ÂÃ Â²Å½Ã Â²Â«Ã Â³Â, Ã Â²Â²Ã Â³â€¹Ã Â²Â§Ã Â²Â¾, Ã Â²â€”Ã Â³â€¹Ã Â²Â¦Ã Â³ÂÃ Â²Â°Ã Â³â€¡Ã Â²Å“Ã Â³Â Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â³â€ Ã Â²Â¸Ã Â³ÂÃ Â²Å¸Ã Â³â‚¬Ã Â²Å“Ã Â³ÂÃ¢â‚¬Å’Ã Â²Â¨Ã Â²â€šÃ Â²Â¤Ã Â²Â¹ Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²Â®Ã Â³ÂÃ Â²â€“ Ã Â²Â¡Ã Â³â€ Ã Â²ÂµÃ Â²Â²Ã Â²ÂªÃ Â²Â°Ã Â³ÂÃ Â²Â¸Ã Â³ÂÃ¢â‚¬Å’Ã Â²â€”Ã Â²Â³Ã Â³Å Ã Â²â€šÃ Â²Â¦Ã Â²Â¿Ã Â²â€”Ã Â³â€  Ã Â²Â¨Ã Â²Â¾Ã Â²ÂµÃ Â³Â Ã Â²â€¢Ã Â³â€ Ã Â²Â²Ã Â²Â¸ Ã Â²Â®Ã Â²Â¾Ã Â²Â¡Ã Â³ÂÃ Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³â€¡Ã Â²ÂµÃ Â³â€ .",
+        socialProofSection: "Ã Â²ÂªÃ Â²Â°Ã Â²Â¦Ã Â³â€ Ã Â²Â¯ Ã Â²Â®Ã Â³â€¡Ã Â²Â²Ã Â³â€  Ã Â²Â²Ã Â²â€¢Ã Â³ÂÃ Â²Â¸Ã Â²Â°Ã Â²Â¿ Ã Â²Â¹Ã Â³â€¹Ã Â²Â®Ã Â³ÂÃ Â²Â¸Ã Â³Â. Ã Â²Â¨Ã Â²Â®Ã Â³ÂÃ Â²Â® Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â³â‚¬Ã Â²Â®Ã Â²Â¿Ã Â²Â¯Ã Â²â€š Ã Â²â€ Ã Â²Â¸Ã Â³ÂÃ Â²Â¤Ã Â²Â¿Ã Â²â€”Ã Â²Â³Ã Â³Â Ã Â²Â¹Ã Â³â€¡Ã Â²â€”Ã Â³â€  Ã Â²ÂªÃ Â³ÂÃ Â²Â°Ã Â²Â¦Ã Â²Â°Ã Â³ÂÃ Â²Â¶Ã Â²Â¿Ã Â²Â¸Ã Â²Â²Ã Â³ÂÃ Â²ÂªÃ Â²Å¸Ã Â³ÂÃ Â²Å¸Ã Â²ÂµÃ Â³Â Ã Â²Å½Ã Â²â€šÃ Â²Â¬Ã Â³ÂÃ Â²Â¦Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²Â¨Ã Â³â€¹Ã Â²Â¡Ã Â²Â¿.",
+        reviewsVideoSection: "Ã Â²Â¸Ã Â²â€šÃ Â²Â¤Ã Â³â€¹Ã Â²Â·Ã Â²Â¦ Ã Â²â€¢Ã Â³ÂÃ Â²Â²Ã Â³Ë†Ã Â²â€šÃ Â²Å¸Ã Â³Â Ã Â²â€¢Ã Â²Â¥Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²â€¢Ã Â³â€¡Ã Â²Â³Ã Â²Â¿. Ã Â²Â¨Ã Â²Â¿Ã Â²Å“Ã Â²ÂµÃ Â²Â¾Ã Â²Â¦ Google Ã Â²ÂµÃ Â²Â¿Ã Â²Â®Ã Â²Â°Ã Â³ÂÃ Â²Â¶Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â³Â Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²ÂµÃ Â³â‚¬Ã Â²Â¡Ã Â²Â¿Ã Â²Â¯Ã Â³Å Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²Â¨Ã Â³â€¹Ã Â²Â¡Ã Â²Â¿.",
+        "why-choose": "Ã Â²â€¡Ã Â²â€šÃ Â²Å¡Ã Â³ÂÃ¢â‚¬Å’Ã Â²Â¬Ã Â³ÂÃ Â²Â°Ã Â²Â¿Ã Â²â€¢Ã Â³Â Ã Â²Â°Ã Â²Â¿Ã Â²Â¯Ã Â²Â²Ã Â³ÂÃ Â²Å¸Ã Â²Â¿Ã Â²Â¯Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²ÂÃ Â²â€¢Ã Â³â€  Ã Â²â€ Ã Â²Â°Ã Â²Â¿Ã Â²Â¸Ã Â²Â¬Ã Â³â€¡Ã Â²â€¢Ã Â³Â. Ã Â²ÂªÃ Â²Â°Ã Â²Â¿Ã Â²Â¶Ã Â³â‚¬Ã Â²Â²Ã Â²Â¿Ã Â²Â¸Ã Â²Â¿Ã Â²Â¦ Ã Â²ÂªÃ Â²Å¸Ã Â³ÂÃ Â²Å¸Ã Â²Â¿Ã Â²â€”Ã Â²Â³Ã Â³Â, Ã Â²â€°Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â²Â® Ã Â²Â¬Ã Â³â€ Ã Â²Â²Ã Â³â€  Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²ÂªÃ Â³â€šÃ Â²Â°Ã Â³ÂÃ Â²Â£ Ã Â²Â¬Ã Â³â€ Ã Â²â€šÃ Â²Â¬Ã Â²Â².",
+        blog: "Ã Â²â€¡Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³â‚¬Ã Â²Å¡Ã Â²Â¿Ã Â²Â¨ Ã Â²Â¬Ã Â³ÂÃ Â²Â²Ã Â²Â¾Ã Â²â€”Ã Â³ÂÃ¢â‚¬Å’Ã Â²â€”Ã Â²Â³Ã Â³Â Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²â€™Ã Â²Â³Ã Â²Â¨Ã Â³â€¹Ã Â²Å¸Ã Â²â€”Ã Â²Â³Ã Â³Â. Ã Â²Â¹Ã Â³â€šÃ Â²Â¡Ã Â²Â¿Ã Â²â€¢Ã Â³â€ , Ã Â²Â²Ã Â²â€¢Ã Â³ÂÃ Â²Â¸Ã Â²Â°Ã Â²Â¿ Ã Â²â€“Ã Â²Â°Ã Â³â‚¬Ã Â²Â¦Ã Â²Â¿ Ã Â²Â®Ã Â²Â¤Ã Â³ÂÃ Â²Â¤Ã Â³Â Ã Â²Â¹Ã Â³â€¹Ã Â²Â®Ã Â³Â Ã Â²Â²Ã Â³â€¹Ã Â²Â¨Ã Â³Â Ã Â²â€¢Ã Â³ÂÃ Â²Â°Ã Â²Â¿Ã Â²Â¤Ã Â³Â Ã Â²Â¤Ã Â²Å“Ã Â³ÂÃ Â²Å¾ Ã Â²Â¸Ã Â²Â²Ã Â²Â¹Ã Â³â€ Ã Â²â€”Ã Â²Â³Ã Â²Â¨Ã Â³ÂÃ Â²Â¨Ã Â³Â Ã Â²â€œÃ Â²Â¦Ã Â²Â¿."
+      },
+      bn: {
+        heroBanner: "Ã Â¦â€¡Ã Â¦Â¨Ã Â¦Å¡Ã Â¦Â¬Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â¦â€¢ Ã Â¦Â°Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â²Ã Â§ÂÃ Â¦Å¸Ã Â¦Â¿Ã Â¦Â¤Ã Â§â€¡ Ã Â¦â€ Ã Â¦ÂªÃ Â¦Â¨Ã Â¦Â¾Ã Â¦â€¢Ã Â§â€¡ Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¬Ã Â¦Â¾Ã Â¦â€”Ã Â¦Â¤Ã Â¦Â®Ã Â¥Â¤ Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¤Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¸Ã Â§â€¡Ã Â¦Â°Ã Â¦Â¾ Ã Â¦â€¦Ã Â¦Â¬Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¥Ã Â¦Â¾Ã Â¦Â¨Ã Â§â€¡ Ã Â¦Â¯Ã Â¦Â¾Ã Â¦Å¡Ã Â¦Â¾Ã Â¦â€¡Ã Â¦â€¢Ã Â§Æ’Ã Â¦Â¤ Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â¦Â¾Ã Â¦Â® Ã Â¦Â¸Ã Â¦Â®Ã Â§ÂÃ Â¦ÂªÃ Â¦Â¤Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¿ Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡ Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¶Ã Â§â€¡Ã Â¦Â· Ã Â¦Å“Ã Â§â‚¬Ã Â¦Â¬Ã Â¦Â¨Ã Â§â€¡Ã Â¦Â° Ã Â¦Å“Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¯ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦Â¡Ã Â¦Â¼Ã Â¦Â¿ Ã Â¦â€“Ã Â§ÂÃ Â¦ÂÃ Â¦Å“Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤",
+        heroSearchSection: "Ã Â¦â€¦Ã Â¦Â¬Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¥Ã Â¦Â¾Ã Â¦Â¨, Ã Â¦Â§Ã Â¦Â°Ã Â¦Â¨, Ã Â¦Â¦Ã Â¦Â¾Ã Â¦Â® Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦Â¬Ã Â§â€¡Ã Â¦Â¡Ã Â¦Â°Ã Â§ÂÃ Â¦Â® Ã Â¦â€¦Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼Ã Â§â‚¬ Ã Â¦Â¸Ã Â¦Â®Ã Â§ÂÃ Â¦ÂªÃ Â¦Â¤Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¿ Ã Â¦â€“Ã Â§ÂÃ Â¦ÂÃ Â¦Å“Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Å¡ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦Â° Ã Â¦Â¬Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¬Ã Â¦Â¹Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€¢Ã Â¦Â°Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤ Ã Â¦Â¹Ã Â¦Â¾Ã Â¦Å“Ã Â¦Â¾Ã Â¦Â° Ã Â¦Â¹Ã Â¦Â¾Ã Â¦Å“Ã Â¦Â¾Ã Â¦Â° Ã Â¦â€“Ã Â§ÂÃ Â¦Â¶Ã Â¦Â¿ Ã Â¦â€¢Ã Â§ÂÃ Â¦Â°Ã Â§â€¡Ã Â¦Â¤Ã Â¦Â¾ Ã Â¦â€ Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¤Ã Â¦Â¾Ã Â¦Â²Ã Â¦Â¿Ã Â¦â€¢Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼ Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¶Ã Â§ÂÃ Â¦Â¬Ã Â¦Â¾Ã Â¦Â¸ Ã Â¦â€¢Ã Â¦Â°Ã Â§â€¡Ã Â¦Â¨Ã Â¥Â¤",
+        moodLifestyleSection: "Ã Â¦Â®Ã Â§ÂÃ Â¦Â¡ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦Å“Ã Â§â‚¬Ã Â¦Â¬Ã Â¦Â¨Ã Â¦Â§Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¾ Ã Â¦â€¦Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼Ã Â§â‚¬ Ã Â¦Â¸Ã Â¦Â®Ã Â§ÂÃ Â¦ÂªÃ Â¦Â¤Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¿ Ã Â¦â€“Ã Â§ÂÃ Â¦ÂÃ Â¦Å“Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤ Ã Â¦Â«Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â²Ã Â¦Â¿ Ã Â¦Â²Ã Â¦Â¿Ã Â¦Â­Ã Â¦Â¿Ã Â¦â€š, Ã Â¦Â¸Ã Â¦Â¿Ã Â¦Å¸Ã Â¦Â¿ Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Â«, Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Å¡Ã Â¦Â¸Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Â¡ Ã Â¦Â¬Ã Â¦Â¾Ã Â¦Â¡Ã Â¦Â¼Ã Â¦Â¿ Ã Â¦Â¬Ã Â¦Â¾ Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¹Ã Â¦â€”Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¬Ã Â¦Â¿Ã Â¦â€¢Ã Â¦Â²Ã Â§ÂÃ Â¦Âª Ã Â¦Â¬Ã Â§â€¡Ã Â¦â€ºÃ Â§â€¡ Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Â¨Ã Â¥Â¤",
+        localities: "Ã Â¦Â¸Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¾ Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¶Ã Â§â‚¬Ã Â¦Â°Ã Â§ÂÃ Â¦Â· Ã Â¦â€”Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¬Ã Â§ÂÃ Â¦Â¯ Ã Â¦â€¦Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¬Ã Â§â€¡Ã Â¦Â·Ã Â¦Â£ Ã Â¦â€¢Ã Â¦Â°Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤ Ã Â¦Â¬Ã Â§Ë†Ã Â¦Â¶Ã Â¦Â¿Ã Â¦Â·Ã Â§ÂÃ Â¦Å¸Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¯Ã Â§ÂÃ Â¦â€¢Ã Â§ÂÃ Â¦Â¤ Ã Â¦ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦â€¢Ã Â¦Â¾ Ã Â¦Â¦Ã Â§â€¡Ã Â¦â€“Ã Â§ÂÃ Â¦Â¨ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â¦Â¾Ã Â¦Â® Ã Â¦Â¬Ã Â¦Â¾Ã Â¦Â¡Ã Â¦Â¼Ã Â¦Â¿ Ã Â¦â€“Ã Â§ÂÃ Â¦ÂÃ Â¦Å“Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤",
+        liveDealsSection: "Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¡Ã Â¦Â­ Ã Â¦Â¹Ã Â¦Å¸ Ã Â¦Â¡Ã Â¦Â¿Ã Â¦Â²Ã Â¥Â¤ Ã Â¦Â¯Ã Â¦Â¾Ã Â¦Å¡Ã Â¦Â¾Ã Â¦â€¡Ã Â¦â€¢Ã Â§Æ’Ã Â¦Â¤ Ã Â¦Â¦Ã Â¦Â¾Ã Â¦Â®Ã Â§â€¡ Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â¦Â¾Ã Â¦Â® Ã Â¦Â¸Ã Â¦Â®Ã Â§ÂÃ Â¦ÂªÃ Â¦Â¤Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¿Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â«Ã Â§ÂÃ Â¦Â²Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â¶ Ã Â¦â€ºÃ Â¦Â¾Ã Â¦Â¡Ã Â¦Â¼ Ã Â¦ÂªÃ Â¦Â¾Ã Â¦Â¨Ã Â¥Â¤ Ã Â¦Â¶Ã Â§â‚¬Ã Â¦Â°Ã Â§ÂÃ Â¦Â· Ã Â¦Â¶Ã Â¦Â¹Ã Â¦Â°Ã Â§â€¡ Ã Â¦Â¸Ã Â§â‚¬Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¤ Ã Â¦Â¸Ã Â¦Â®Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â° Ã Â¦â€¦Ã Â¦Â«Ã Â¦Â¾Ã Â¦Â°Ã Â¥Â¤",
+        nriPremiumSection: "Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¶Ã Â§ÂÃ Â¦Â¬Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¯Ã Â§â€¡Ã Â¦â€¢Ã Â§â€¹Ã Â¦Â¨Ã Â§â€¹ Ã Â¦Å“Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼Ã Â¦â€”Ã Â¦Â¾ Ã Â¦Â¥Ã Â§â€¡Ã Â¦â€¢Ã Â§â€¡ Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¤Ã Â§â€¡ Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¹Ã Â¦â€” Ã Â¦â€¢Ã Â¦Â°Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤ Ã Â¦ÂÃ Â¦Â¨Ã Â¦â€ Ã Â¦Â°Ã Â¦â€ Ã Â¦â€¡ Ã Â¦Â¸Ã Â§â€¡Ã Â¦Â¬Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼ Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â°Ã Â§ÂÃ Â¦Å¡Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¼Ã Â¦Â¾Ã Â¦Â² Ã Â¦Å¸Ã Â§ÂÃ Â¦Â¯Ã Â§ÂÃ Â¦Â° Ã Â¦Â¥Ã Â§â€¡Ã Â¦â€¢Ã Â§â€¡ Ã Â¦Â¨Ã Â¦Â¥Ã Â¦Â¿ Ã Â¦ÂªÃ Â¦Â°Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¤ Ã Â¦Â¸Ã Â¦Â®Ã Â§ÂÃ Â¦ÂªÃ Â§â€šÃ Â¦Â°Ã Â§ÂÃ Â¦Â£ Ã Â¦Â¸Ã Â¦Â¹Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼Ã Â¦Â¤Ã Â¦Â¾Ã Â¥Â¤",
+        developersProjects: "Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¶Ã Â§ÂÃ Â¦Â¬Ã Â¦Â¸Ã Â§ÂÃ Â¦Â¤ Ã Â¦Â¬Ã Â§ÂÃ Â¦Â°Ã Â§ÂÃ Â¦Â¯Ã Â¦Â¾Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¡ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€ Ã Â¦â€¡Ã Â¦â€¢Ã Â¦Â¨Ã Â¦Â¿Ã Â¦â€¢ Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â¦â€¢Ã Â¦Â²Ã Â§ÂÃ Â¦ÂªÃ Â¥Â¤ Ã Â¦Â¡Ã Â¦Â¿Ã Â¦ÂÃ Â¦Â²Ã Â¦ÂÃ Â¦Â«, Ã Â¦Â²Ã Â§â€¹Ã Â¦Â§Ã Â¦Â¾, Ã Â¦â€”Ã Â§â€¹Ã Â¦Â¦Ã Â¦Â°Ã Â§â€¡Ã Â¦Å“ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â§â€¡Ã Â¦Â¸Ã Â§ÂÃ Â¦Å¸Ã Â¦Â¿Ã Â¦Å“Ã Â§â€¡Ã Â¦Â° Ã Â¦Â®Ã Â¦Â¤Ã Â§â€¹ Ã Â¦Â¶Ã Â§â‚¬Ã Â¦Â°Ã Â§ÂÃ Â¦Â· Ã Â¦Â¡Ã Â§â€¡Ã Â¦Â­Ã Â§â€¡Ã Â¦Â²Ã Â¦ÂªÃ Â¦Â¾Ã Â¦Â°Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦Â¸Ã Â¦â„¢Ã Â§ÂÃ Â¦â€”Ã Â§â€¡ Ã Â¦â€ Ã Â¦Â®Ã Â¦Â°Ã Â¦Â¾ Ã Â¦â€¢Ã Â¦Â¾Ã Â¦Å“ Ã Â¦â€¢Ã Â¦Â°Ã Â¦Â¿Ã Â¥Â¤",
+        socialProofSection: "Ã Â¦Â¸Ã Â§ÂÃ Â¦â€¢Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â¦Â¨Ã Â§â€¡ Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¸Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿ Ã Â¦Â¹Ã Â§â€¹Ã Â¦Â®Ã Â¦Â¸Ã Â¥Â¤ Ã Â¦â€ Ã Â¦Â®Ã Â¦Â¾Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦ÂªÃ Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â¦Â®Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â¦Â¾Ã Â¦Â® Ã Â¦Â¸Ã Â¦Â®Ã Â§ÂÃ Â¦ÂªÃ Â¦Â¤Ã Â§ÂÃ Â¦Â¤Ã Â¦Â¿ Ã Â¦â€¢Ã Â§â‚¬Ã Â¦Â­Ã Â¦Â¾Ã Â¦Â¬Ã Â§â€¡ Ã Â¦Â«Ã Â¦Â¿Ã Â¦Å¡Ã Â¦Â¾Ã Â¦Â° Ã Â¦Â¹Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦â€ºÃ Â§â€¡ Ã Â¦Â¤Ã Â¦Â¾ Ã Â¦Â¦Ã Â§â€¡Ã Â¦â€“Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤",
+        reviewsVideoSection: "Ã Â¦â€“Ã Â§ÂÃ Â¦Â¶Ã Â¦Â¿ Ã Â¦â€¢Ã Â§ÂÃ Â¦Â²Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â¨Ã Â§ÂÃ Â¦Å¸Ã Â¦Â¦Ã Â§â€¡Ã Â¦Â° Ã Â¦â€”Ã Â¦Â²Ã Â§ÂÃ Â¦Âª Ã Â¦Â¶Ã Â§ÂÃ Â¦Â¨Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤ Ã Â¦â€ Ã Â¦Â¸Ã Â¦Â² Google Ã Â¦Â°Ã Â¦Â¿Ã Â¦Â­Ã Â¦Â¿Ã Â¦â€° Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦Â­Ã Â¦Â¿Ã Â¦Â¡Ã Â¦Â¿Ã Â¦â€œ Ã Â¦Â¦Ã Â§â€¡Ã Â¦â€“Ã Â§ÂÃ Â¦Â¨Ã Â¥Â¤",
+        "why-choose": "Ã Â¦â€¢Ã Â§â€¡Ã Â¦Â¨ Ã Â¦â€¡Ã Â¦Â¨Ã Â¦Å¡Ã Â¦Â¬Ã Â§ÂÃ Â¦Â°Ã Â¦Â¿Ã Â¦â€¢ Ã Â¦Â°Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡Ã Â¦Â²Ã Â§ÂÃ Â¦Å¸Ã Â¦Â¿ Ã Â¦Â¬Ã Â§â€¡Ã Â¦â€ºÃ Â§â€¡ Ã Â¦Â¨Ã Â§â€¡Ã Â¦Â¬Ã Â§â€¡Ã Â¦Â¨Ã Â¥Â¤ Ã Â¦Â¯Ã Â¦Â¾Ã Â¦Å¡Ã Â¦Â¾Ã Â¦â€¡Ã Â¦â€¢Ã Â§Æ’Ã Â¦Â¤ Ã Â¦Â¤Ã Â¦Â¾Ã Â¦Â²Ã Â¦Â¿Ã Â¦â€¢Ã Â¦Â¾, Ã Â¦Â¸Ã Â§â€¡Ã Â¦Â°Ã Â¦Â¾ Ã Â¦Â¦Ã Â¦Â¾Ã Â¦Â® Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦Â¸Ã Â¦Â®Ã Â§ÂÃ Â¦ÂªÃ Â§â€šÃ Â¦Â°Ã Â§ÂÃ Â¦Â£ Ã Â¦Â¸Ã Â¦Â¹Ã Â¦Â¾Ã Â¦Â¯Ã Â¦Â¼Ã Â¦Â¤Ã Â¦Â¾Ã Â¥Â¤",
+        blog: "Ã Â¦Â¸Ã Â¦Â°Ã Â§ÂÃ Â¦Â¬Ã Â¦Â¶Ã Â§â€¡Ã Â¦Â· Ã Â¦Â¬Ã Â§ÂÃ Â¦Â²Ã Â¦â€” Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦â€¦Ã Â¦Â¨Ã Â§ÂÃ Â¦Â¤Ã Â¦Â°Ã Â§ÂÃ Â¦Â¦Ã Â§Æ’Ã Â¦Â·Ã Â§ÂÃ Â¦Å¸Ã Â¦Â¿Ã Â¥Â¤ Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¹Ã Â¦â€”, Ã Â¦Â²Ã Â¦Â¾Ã Â¦â€¢Ã Â§ÂÃ Â¦Â¸Ã Â¦Â¾Ã Â¦Â°Ã Â¦Â¿ Ã Â¦â€¢Ã Â§â€¡Ã Â¦Â¨Ã Â¦Â¾Ã Â¦â€¢Ã Â¦Â¾Ã Â¦Å¸Ã Â¦Â¾ Ã Â¦ÂÃ Â¦Â¬Ã Â¦â€š Ã Â¦Â¹Ã Â§â€¹Ã Â¦Â® Ã Â¦Â²Ã Â§â€¹Ã Â¦Â¨ Ã Â¦Â¨Ã Â¦Â¿Ã Â¦Â¯Ã Â¦Â¼Ã Â§â€¡ Ã Â¦Â¬Ã Â¦Â¿Ã Â¦Â¶Ã Â§â€¡Ã Â¦Â·Ã Â¦Å“Ã Â§ÂÃ Â¦Å¾ Ã Â¦ÂªÃ Â¦Â°Ã Â¦Â¾Ã Â¦Â®Ã Â¦Â°Ã Â§ÂÃ Â¦Â¶ Ã Â¦ÂªÃ Â¦Â¡Ã Â¦Â¼Ã Â§ÂÃ Â¦Â¨."
+      }
+    };
+
+    function getSelectedVoiceLang() {
+      return voiceLangSelect?.value || "en";
+    }
+
+    function getVoiceUi() {
+      const lang = getSelectedVoiceLang();
+      return VOICE_UI[lang] || VOICE_UI.en;
+    }
+
+    function getVoiceSectionKey(section) {
+      return section?.id || section?.dataset.voiceId || "";
+    }
+
+    const VOICE_CONTENT_SELECTOR = [
+      "h1", "h2", "h3", "h4", "p", "li",
+      ".hero-stat-value", ".hero-stat-label",
+      ".location-slider-title", ".location-card-title", ".location-card-meta",
+      ".hpd-section-kicker", ".hpd-card-price", ".hpd-card-name", ".hpd-card-loc",
+      ".nri-card h4", ".nri-card p",
+      ".developer-card h4", ".developer-card p",
+      ".why-card h3", ".why-card p",
+      ".home-blog-card h3"
+    ].join(",");
+
+    function cleanVoiceContent(text) {
+      return (text || "")
+        .replace(/\s+/g, " ")
+        .replace(/[•|]+/g, ".")
+        .replace(/\b(read more|view details|explore now|book now|call now|enquire now)\b/gi, "")
+        .trim();
+    }
+
+    function isReadableVoiceElement(element) {
+      if (!element) return false;
+      if (element.closest(".voice-tour-panel, .hero-slider-dots, .rv-video-grid, script, style")) return false;
+      if (element.closest("[hidden], [aria-hidden='true']")) return false;
+      const styles = window.getComputedStyle(element);
+      if (styles.display === "none" || styles.visibility === "hidden" || Number(styles.opacity) === 0) return false;
+      return element.getClientRects().length > 0;
+    }
+
+    function buildVoiceTextFromPageContent(section) {
+      if (!section) return "";
+      const seen = new Set();
+      const pieces = [];
+      Array.from(section.querySelectorAll(VOICE_CONTENT_SELECTOR)).forEach((element) => {
+        if (pieces.length >= 14 || !isReadableVoiceElement(element)) return;
+        const text = cleanVoiceContent(element.textContent);
+        if (!text || text.length < 3 || seen.has(text.toLowerCase())) return;
+        seen.add(text.toLowerCase());
+        pieces.push(text);
+      });
+      return pieces.join(". ").slice(0, 720);
+    }
+
+    function getVoiceText(section) {
+      const key = getVoiceSectionKey(section);
+      const lang = getSelectedVoiceLang();
+      if (lang === "en") {
+        return buildVoiceTextFromPageContent(section) || section?.dataset.voiceText || VOICE_I18N.en[key] || "";
+      }
+      return VOICE_I18N[lang]?.[key] || VOICE_I18N.en[key] || section?.dataset.voiceText || "";
+    }
+
+    function getVoiceLabel(section) {
+      const key = getVoiceSectionKey(section);
+      const lang = getSelectedVoiceLang();
+      return VOICE_LABELS[lang]?.[key] || VOICE_LABELS.en[key] || section?.dataset.voiceLabel || "Section";
+    }
+
+    function refreshVoiceList() {
+      cachedVoices = window.speechSynthesis.getVoices();
+    }
+
+    function pickVoiceForLang(langCode) {
+      if (!cachedVoices.length) refreshVoiceList();
+      const langPrefix = langCode.split("-")[0].toLowerCase();
+      const normalized = (voice) => voice.lang.replace("_", "-").toLowerCase();
+      return cachedVoices.find((voice) => normalized(voice) === langCode.toLowerCase())
+        || cachedVoices.find((voice) => normalized(voice).startsWith(langPrefix + "-"))
+        || cachedVoices.find((voice) => normalized(voice) === langPrefix)
+        || null;
+    }
+
+    function hasNativeVoiceForLang(langKey) {
+      const langCode = VOICE_LANG_CODES[langKey] || "en-IN";
+      return !!pickVoiceForLang(langCode);
+    }
+
+    function shouldUseCloudTTS(langKey) {
+      if (CLOUD_TTS_LANGS.has(langKey)) return true;
+      return !hasNativeVoiceForLang(langKey);
+    }
+
+    function stopCloudVoice() {
+      if (voiceAudio) {
+        voiceAudio.pause();
+        voiceAudio.onplay = null;
+        voiceAudio.onended = null;
+        voiceAudio.onerror = null;
+        voiceAudio.removeAttribute("src");
+        voiceAudio.load();
+        voiceAudio = null;
+      }
+      voiceAudioChunks = [];
+    }
+
+    function beginVoicePlayback() {
+      voicePlaybackId += 1;
+      window.speechSynthesis.cancel();
+      stopCloudVoice();
+      return voicePlaybackId;
+    }
+
+    function stopAllVoice() {
+      voiceTourPaused = false;
+      beginVoicePlayback();
+    }
+
+    function isCurrentVoicePlayback(playbackId) {
+      return voiceTourActive && !voiceTourPaused && playbackId === voicePlaybackId;
+    }
+
+    function splitTextForTTS(text, maxLen = 180) {
+      const chunks = [];
+      let remaining = text.trim();
+      while (remaining.length > maxLen) {
+        let splitAt = -1;
+        const delimiters = [". ", "Ã Â¥Â¤ ", ", ", "; ", " "];
+        for (const delimiter of delimiters) {
+          const idx = remaining.lastIndexOf(delimiter, maxLen);
+          if (idx !== -1 && idx > splitAt - delimiter.length) {
+            splitAt = idx + delimiter.length;
+          }
+        }
+        if (splitAt <= 0 || splitAt > maxLen) splitAt = maxLen;
+        chunks.push(remaining.slice(0, splitAt).trim());
+        remaining = remaining.slice(splitAt).trim();
+      }
+      if (remaining) chunks.push(remaining);
+      return chunks.filter(Boolean);
+    }
+
+    function getGoogleTtsUrls(text, langKey) {
+      const tl = GOOGLE_TTS_CODES[langKey] || "en";
+      const q = encodeURIComponent(text);
+      return [
+        `https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=${tl}&client=gtx&q=${q}`,
+        `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${tl}&q=${q}`
+      ];
+    }
+
+    function playCloudChunkAudio(urls, urlIndex, label, ui, playbackId, onComplete) {
+      if (!isCurrentVoicePlayback(playbackId)) return;
+      if (urlIndex >= urls.length) {
+        onComplete?.();
+        return;
+      }
+      const audio = new Audio(urls[urlIndex]);
+      voiceAudio = audio;
+      audio.onplay = () => {
+        if (isCurrentVoicePlayback(playbackId) && voiceoverStatus) voiceoverStatus.textContent = `${ui.playing}: ${label}`;
+      };
+      audio.onended = () => {
+        if (isCurrentVoicePlayback(playbackId) && voiceAudio === audio) onComplete?.();
+      };
+      audio.onerror = () => {
+        if (voiceAudio === audio) voiceAudio = null;
+        playCloudChunkAudio(urls, urlIndex + 1, label, ui, playbackId, onComplete);
+      };
+      audio.play().catch(() => {
+        if (voiceAudio === audio) voiceAudio = null;
+        playCloudChunkAudio(urls, urlIndex + 1, label, ui, playbackId, onComplete);
+      });
+    }
+
+    function playNextCloudChunk(label, ui, playbackId) {
+      if (!isCurrentVoicePlayback(playbackId) || !voiceAudioChunks.length) return;
+      const chunk = voiceAudioChunks.shift();
+      const urls = getGoogleTtsUrls(chunk, getSelectedVoiceLang());
+      playCloudChunkAudio(urls, 0, label, ui, playbackId, () => {
+        if (!isCurrentVoicePlayback(playbackId)) return;
+        if (voiceAudioChunks.length) {
+          playNextCloudChunk(label, ui, playbackId);
+        } else if (voiceoverStatus) {
+          voiceoverStatus.textContent = `${ui.nowAt} ${label}`;
+        }
+      });
+    }
+
+    function speakWithCloudTTS(text, label, ui, playbackId) {
+      stopCloudVoice();
+      voiceAudioChunks = splitTextForTTS(text);
+      playNextCloudChunk(label, ui, playbackId);
+    }
+
+    refreshVoiceList();
+    window.speechSynthesis.addEventListener("voiceschanged", refreshVoiceList);
+
+    const savedVoiceLang = localStorage.getItem("voiceTourLang");
+    if (savedVoiceLang && voiceLangSelect) {
+      voiceLangSelect.value = savedVoiceLang;
+    }
+
+    function updateVoiceTourUI() {
+      const ui = getVoiceUi();
+      const isPlaying = voiceTourActive && !voiceTourPaused;
+      const isPaused = voiceTourActive && voiceTourPaused;
+
+      voicePlayBtn?.classList.toggle("active", isPlaying);
+      voicePlayBtn?.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+
+      if (voicePlayLabel) {
+        if (!voiceTourActive) voicePlayLabel.textContent = ui.start;
+        else if (isPaused) voicePlayLabel.textContent = ui.resume;
+        else voicePlayLabel.textContent = ui.pause;
+      }
+
+      if (voicePlayIcon) {
+        voicePlayIcon.className = isPlaying ? "fas fa-pause" : "fas fa-play";
+      }
+
+      voicePlayBtn?.setAttribute(
+        "aria-label",
+        !voiceTourActive ? "Start voice tour" : isPaused ? "Resume voice tour" : "Pause voice tour"
+      );
+
+      if (!voiceTourActive && voiceoverStatus) {
+        voiceoverStatus.textContent = ui.off;
+      } else if (voiceTourPaused && voiceoverStatus) {
+        voiceoverStatus.textContent = ui.pause + " · " + (ui.resume || "Resume");
+      }
+    }
+
+    function setActiveVoiceHighlight(section) {
+      if (activeVoiceSection === section) return;
+      activeVoiceSection?.classList.remove("voice-section-active");
+      activeVoiceSection = section;
+      activeVoiceSection?.classList.add("voice-section-active");
+    }
+
+    function speakVoiceSection(section, force = false) {
+      if (!section || !voiceTourActive || voiceTourPaused) return;
+      if (!force && section === lastSpokenSection) return;
+      const text = getVoiceText(section);
+      const label = getVoiceLabel(section);
+      const ui = getVoiceUi();
+      const langKey = getSelectedVoiceLang();
+      if (!text) return;
+
+      const playbackId = beginVoicePlayback();
+      lastSpokenSection = section;
+      setActiveVoiceHighlight(section);
+
+      if (shouldUseCloudTTS(langKey)) {
+        speakWithCloudTTS(text, label, ui, playbackId);
+        return;
+      }
+
+      const langCode = VOICE_LANG_CODES[langKey] || "en-IN";
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = langCode;
+      utterance.rate = 0.95;
+      utterance.pitch = 1;
+      const matchedVoice = pickVoiceForLang(langCode);
+      if (matchedVoice) utterance.voice = matchedVoice;
+      let nativeStarted = false;
+      utterance.onstart = () => {
+        nativeStarted = true;
+        if (isCurrentVoicePlayback(playbackId) && voiceoverStatus) voiceoverStatus.textContent = `${ui.playing}: ${label}`;
+      };
+      utterance.onend = () => {
+        if (voiceoverStatus && isCurrentVoicePlayback(playbackId)) {
+          voiceoverStatus.textContent = `${ui.nowAt} ${label}`;
+        }
+      };
+      utterance.onerror = () => {
+        if (!isCurrentVoicePlayback(playbackId) || nativeStarted) return;
+        speakWithCloudTTS(text, label, ui, playbackId);
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function getDominantVoiceSection() {
+      let best = null;
+      let bestRatio = 0;
+      sectionVisibility.forEach((ratio, section) => {
+        if (ratio > bestRatio) {
+          bestRatio = ratio;
+          best = section;
+        }
+      });
+      return bestRatio >= 0.28 ? best : null;
+    }
+
+    function handleVoiceSectionChange() {
+      if (!voiceTourActive || voiceTourPaused) return;
+      const section = getDominantVoiceSection();
+      if (section) speakVoiceSection(section);
+    }
+
+    const voiceObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        sectionVisibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+      });
+      handleVoiceSectionChange();
+    }, {
+      threshold: [0, 0.15, 0.28, 0.4, 0.55, 0.7, 0.85, 1],
+      rootMargin: "-12% 0px -12% 0px"
+    });
+
+    voiceSections.forEach((section) => voiceObserver.observe(section));
+
+    function getCurrentVoiceSection() {
+      return getDominantVoiceSection()
+        || activeVoiceSection
+        || voiceSections.find((section) => {
+          const rect = section.getBoundingClientRect();
+          return rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.2;
+        })
+        || voiceSections[0];
+    }
+
+    function startVoiceTour(forceRestart = false) {
+      voiceTourActive = true;
+      voiceTourPaused = false;
+      if (forceRestart) {
+        lastSpokenSection = null;
+        stopAllVoice();
+        voiceTourActive = true;
+      }
+      updateVoiceTourUI();
+      const current = getCurrentVoiceSection();
+      if (current) speakVoiceSection(current, true);
+    }
+
+    function stopVoiceTour() {
+      voiceTourActive = false;
+      stopAllVoice();
+      lastSpokenSection = null;
+      activeVoiceSection?.classList.remove("voice-section-active");
+      activeVoiceSection = null;
+      updateVoiceTourUI();
+    }
+
+    function pauseVoiceTour() {
+      if (!voiceTourActive || voiceTourPaused) return;
+      voiceTourPaused = true;
+      window.speechSynthesis.pause();
+      voiceAudio?.pause();
+      updateVoiceTourUI();
+    }
+
+    function resumeVoiceTour() {
+      if (!voiceTourActive) {
+        startVoiceTour(true);
+        return;
+      }
+      voiceTourPaused = false;
+      window.speechSynthesis.resume();
+      const current = getCurrentVoiceSection();
+
+      if (voiceAudio) {
+        voiceAudio.play().catch(() => {
+          voiceAudio = null;
+          if (current) speakVoiceSection(current, true);
+        });
+      } else if (!window.speechSynthesis.speaking && current) {
+        speakVoiceSection(current, true);
+      }
+
+      updateVoiceTourUI();
+    }
+
+    voicePlayBtn?.addEventListener("click", () => {
+      if (!voiceTourActive) {
+        startVoiceTour(true);
+      } else if (voiceTourPaused) {
+        resumeVoiceTour();
+      } else {
+        pauseVoiceTour();
+      }
+    });
+
+    voiceLangSelect?.addEventListener("change", () => {
+      localStorage.setItem("voiceTourLang", voiceLangSelect.value);
+      voiceTourPaused = false;
+      updateVoiceTourUI();
+      if (!voiceTourActive) return;
+      stopAllVoice();
+      lastSpokenSection = null;
+      const current = getDominantVoiceSection() || activeVoiceSection;
+      if (current) speakVoiceSection(current, true);
+    });
+
+    window.addEventListener("beforeunload", () => stopAllVoice());
+    updateVoiceTourUI();
+
+    // --- Reviews & Virtual Tour Sliders ---
+    const clientStoryCards = Array.from(document.querySelectorAll(".client-testimonial-card"));
+    const clientStoryDots = Array.from(document.querySelectorAll(".client-story-dot"));
+    const clientStoryPrev = document.getElementById("clientStoryPrev");
+    const clientStoryNext = document.getElementById("clientStoryNext");
+    let currentClientStorySlide = 0;
+
+    function updateClientStorySlider(index) {
+      if (!clientStoryCards.length) return;
+      const total = clientStoryCards.length;
+      currentClientStorySlide = (index + total) % total;
+      clientStoryCards.forEach((card, i) => {
+        card.classList.remove("is-active", "is-prev", "is-next", "is-hidden");
+        const offset = (i - currentClientStorySlide + total) % total;
+        if (offset === 0) card.classList.add("is-active");
+        else if (offset === 1) card.classList.add("is-next");
+        else if (offset === total - 1) card.classList.add("is-prev");
+        else card.classList.add("is-hidden");
+      });
+      clientStoryDots.forEach((dot, i) => dot.classList.toggle("active", i === currentClientStorySlide));
+    }
+    clientStoryPrev?.addEventListener("click", () => updateClientStorySlider(currentClientStorySlide - 1));
+    clientStoryNext?.addEventListener("click", () => updateClientStorySlider(currentClientStorySlide + 1));
+    clientStoryDots.forEach((dot, i) => dot.addEventListener("click", () => updateClientStorySlider(i)));
+
+    function updateReviewSlider(index) {
+      if (!reviewsTrack) return;
+      currentReviewSlide = index;
+      reviewsTrack.style.transform = `translateX(-${index * 100}%)`;
+      reviewDots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+    reviewDots.forEach((d, i) => d.addEventListener('click', () => updateReviewSlider(i)));
+
+    function updateVirtualSlider(index) {
+      if (!virtualTrack) return;
+      currentVirtualSlide = index;
+      virtualTrack.style.transform = `translateX(-${index * 100}%)`;
+      virtualDots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+    virtualNext?.addEventListener('click', () => { currentVirtualSlide = (currentVirtualSlide + 1) % virtualDots.length; updateVirtualSlider(currentVirtualSlide); });
+    virtualPrev?.addEventListener('click', () => { currentVirtualSlide = (currentVirtualSlide - 1 + virtualDots.length) % virtualDots.length; updateVirtualSlider(currentVirtualSlide); });
+
+    function updateInvestmentSlider(index) {
+      if (!investmentJourneyTrack || !investmentDots.length) return;
+      currentInvestmentSlide = (index + investmentDots.length) % investmentDots.length;
+      investmentJourneyTrack.style.transform = `translateX(-${currentInvestmentSlide * 100}%)`;
+      investmentDots.forEach((dot, i) => dot.classList.toggle("active", i === currentInvestmentSlide));
+    }
+    investmentPrev?.addEventListener("click", () => updateInvestmentSlider(currentInvestmentSlide - 1));
+    investmentNext?.addEventListener("click", () => updateInvestmentSlider(currentInvestmentSlide + 1));
+    investmentDots.forEach((dot, i) => dot.addEventListener("click", () => updateInvestmentSlider(i)));
+
+    // --- Final Init ---
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeroBannerVideo();
+      updateHotDealSlider(0);
+      startHotDealSlider();
+      updateLocationSlider(0);
+      updateBrandShowcase(0);
+      updateReviewSlider(0);
+      updateClientStorySlider(0);
+      updateVirtualSlider(0);
+      updateInvestmentSlider(0);
+    });
+    window.addEventListener('resize', updatePropSlider);
+
+    luxuryPlayButtons.forEach(b => b.addEventListener('click', () => {
+      const v = b.parentElement.querySelector('video');
+      if (v) v.paused ? v.play() : v.pause();
+    }));
+  </script>
+
+  <script>
+    function performPremiumSearch() {
+      const query = document.getElementById('hero-search-input')?.value?.trim() || '';
+      const citySlug = window.CitySearch?.resolveCity(query);
+
+      if (citySlug) {
+        window.location.href = 'city.html?city=' + encodeURIComponent(citySlug);
+        return;
+      }
+
+      if (query) {
+        window.location.href = 'listings.html?q=' + encodeURIComponent(query);
+        return;
+      }
+
+      window.location.href = 'city.html';
+    }
+
+    document.querySelectorAll('.hero-cinema-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.hero-cinema-tab').forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+      });
+    });
+
+    document.getElementById('hero-search-input')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') performPremiumSearch();
+    });
+
+    (function initHeroCitySearch() {
+      const input = document.getElementById('hero-search-input');
+      if (input && window.CitySearch) {
+        window.CitySearch.initAutocomplete(input, { limit: 5 });
+      }
+    })();
+
+    (function initHeroSearchPlaceholder() {
+      const input = document.getElementById('hero-search-input');
+      if (!input) return;
+      const examples = [
+        'Try Mumbai, Dubai, GoaÃ¢â‚¬Â¦',
+        'Try Bangalore, WhitefieldÃ¢â‚¬Â¦',
+        'Try Delhi NCR, NoidaÃ¢â‚¬Â¦',
+        'Try Pune, HinjewadiÃ¢â‚¬Â¦',
+        'Try Hyderabad, GachibowliÃ¢â‚¬Â¦'
+      ];
+      let idx = 0;
+      setInterval(() => {
+        if (document.activeElement === input || input.value.trim()) return;
+        idx = (idx + 1) % examples.length;
+        input.setAttribute('placeholder', examples[idx]);
+      }, 2800);
+    })();
+  </script>

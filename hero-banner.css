@@ -110,9 +110,9 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  /* background:
-    linear-gradient(105deg, rgba(8, 18, 34, 0.88) 0%, rgba(8, 18, 34, 0.42) 48%, rgba(12, 24, 42, 0.72) 100%),
-    linear-gradient(180deg, rgba(7, 14, 26, 0.45) 0%, rgba(7, 14, 26, 0.12) 38%, rgba(7, 14, 26, 0.78) 100%); */
+  background:
+    linear-gradient(#070e1a17 0%, #070e1a08 50%, #070e1a29 100%),
+    radial-gradient(ellipse at center, #070e1a30 0%, #070e1a78 100%);
 }
 
 .hero-cinema-center {
@@ -154,7 +154,8 @@
   font-style: italic;
   letter-spacing: 0.04em;
   text-transform: none;
-  color: var(--hero-ivory);
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
 }
 
 .hero-banner-divider {
@@ -186,8 +187,7 @@
   line-height: 1.02;
   letter-spacing: -0.015em;
   text-transform: none;
-  color: var(--hero-ivory);
-  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
 }
 
 .hero-cinema-title span {
@@ -195,11 +195,12 @@
   font-size: 1em;
   font-weight: 700;
   font-style: italic;
-  color: var(--hero-gold-light);
-  background: linear-gradient(120deg, #f0d7ad 0%, #c29a63 48%, #a67c45 100%);
+  color: #f7e2c1;
+  background: linear-gradient(120deg, #ffffff 0%, #f7e2c1 48%, #dfb576 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.9));
 }
 
 .hero-banner-subtitle {
@@ -207,10 +208,11 @@
   max-width: 520px;
   font-family: var(--hero-ui);
   font-size: clamp(0.92rem, 1.5vw, 1.05rem);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.65;
   letter-spacing: 0.01em;
-  color: rgba(244, 239, 230, 0.78);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
 }
 
 .hero-cinema-tabs {
@@ -222,10 +224,10 @@
   margin-bottom: 1.15rem;
   padding: 0.35rem;
   border-radius: 999px;
-  background: rgba(12, 26, 46, 0.45);
-  border: 1px solid rgba(228, 199, 154, 0.22);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  background: rgba(7, 14, 26, 0.65);
+  border: 1px solid rgba(228, 199, 154, 0.32);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
 .hero-cinema-tab {
@@ -1538,6 +1540,15 @@
   box-shadow: 0 6px 20px rgba(201,36,43,0.35);
 }
 .page-hero-btn--primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+.page-hero-btn--outline {
+  border: 2px solid rgba(255,255,255,0.55);
+  color: #fff;
+}
+.page-hero-btn--outline:hover { background: rgba(255,255,255,0.12); }
+.hero-cinema .city-ac-tag,
+.hero-cinema .city-ac-arrow {
+  display: none;
+}
 .page-hero-btn--outline {
   border: 2px solid rgba(255,255,255,0.55);
   color: #fff;

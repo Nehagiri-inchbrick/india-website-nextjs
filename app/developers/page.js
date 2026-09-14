@@ -12,7 +12,7 @@ export default function Page() {
     <HtmlBodyPage
       html={html}
       bodyClass={bodyClass}
-      scripts={["/js/developers-data.js","/js/developers.js"]}
+      scripts={["/js/developers-data.js", "/js/developers.js"]}
     />
   );
 }

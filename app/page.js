@@ -5,6 +5,8 @@ import '@/styles/homes-deals.css';
 import '@/styles/nri-section.css';
 import '@/styles/client-video-mobile.css';
 import '@/styles/home-mobile-align.css';
+import '@/styles/home-social-proof.css';
+import '@/styles/home-blog.css';
 
 export const metadata = {
   title: 'Inchbrick Realty - Find Your Dream Home in India',
@@ -16,7 +18,7 @@ export default function HomePage() {
     <HtmlBodyPage
       html={html}
       bodyClass={bodyClass}
-      scripts={['/js/brand-showcase.js', '/js/mood-slider.js', '/js/cities-data.js', '/js/city-search.js', '/js/hot-deals.js', '/js/home-reviews-link.js', '/js/wtrust-drag.js']}
+      scripts={['/js/brand-showcase.js', '/js/mood-slider.js', '/js/cities-data.js', '/js/city-search.js', '/js/hot-deals.js', '/js/home-reviews-link.js', '/js/home-sp-slider.js', '/js/wtrust-drag.js']}
     />
   );
 }

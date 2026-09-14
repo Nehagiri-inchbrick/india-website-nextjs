@@ -557,6 +557,12 @@ a.hpd-card-img {
   font-size: 0.85rem;
 }
 
+.hpd-slider-nav svg,
+.hpd-card-cta svg {
+  display: block;
+  flex-shrink: 0;
+}
+
 .hpd-slider-nav:hover {
   background: #0f2339;
   border-color: #0f2339;

@@ -38,10 +38,65 @@ html {
 }
 
 body {
-  font-family: var(--font-jakarta);
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", "Segoe UI", "Noto Sans", system-ui, sans-serif;
   background: var(--page-bg);
   color: #1e293b;
   line-height: 1.5;
+}
+
+/* ── Global heading typography — same font as homepage across all pages ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/*
+  Indian Rupee (U+20B9) is outside next/font latin unicode-range.
+  Force a system stack on price text so ₹ never renders as a blank/missing glyph.
+*/
+.loc-city-meta strong,
+.hpd-card-meta strong,
+.emi-result-value,
+.emi-result-meta,
+.project-card-price,
+.project-card-specs,
+.mood-card-price,
+.prop-price,
+.price,
+[class*="-price"],
+[class*="price-"] {
+  font-family: "Segoe UI", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Keep Font Awesome glyphs from inheriting page fonts */
+.fa,
+.fas,
+.far,
+.fal,
+.fat,
+.fad,
+.fab {
+  font-family: "Font Awesome 6 Free" !important;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fab {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400;
+}
+
+.fas {
+  font-weight: 900 !important;
+}
+
+.far {
+  font-weight: 400 !important;
 }
 
 a {

@@ -46,7 +46,7 @@ export default function HomeHero() {
           preload="auto"
           poster="https://images.pexels.com/videos/3280311/pictures/preview-0.jpg"
         >
-          <source src="https://cdn.pixabay.com/video/2026/07/09/362909_large.mp4" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/video/2022/03/16/110923-689949643_large.mp4" type="video/mp4" />
         </video>
       </div>
 

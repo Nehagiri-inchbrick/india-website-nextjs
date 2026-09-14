@@ -23,10 +23,23 @@
     }
 
     body {
-      font-family: "Plus Jakarta Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Plus Jakarta Sans", "Segoe UI", "Noto Sans", Tahoma, Geneva, Verdana, sans-serif;
       background: #f8fafc;
       color: #0f172a;
       line-height: 1.5;
+    }
+
+    /* Rupee glyph fallback (next/font latin omits U+20B9) */
+    .loc-city-meta strong,
+    .hpd-card-meta strong,
+    .emi-result-value,
+    .emi-result-meta,
+    .project-card-price,
+    .prop-price,
+    .price,
+    [class*="-price"],
+    [class*="price-"] {
+      font-family: "Segoe UI", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
     }
 
     a {
@@ -2302,8 +2315,8 @@
 
     .investment-journey-shell {
       border-radius: 20px;
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.26), rgba(15, 23, 42, 0.56));
-      box-shadow: 0 20px 40px rgba(2, 6, 23, 0.35);
+      background: transparent;
+      box-shadow: none;
       padding: 1rem;
     }
 
@@ -5000,7 +5013,6 @@
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(148, 163, 184, 0.2);
       padding-top: 0.75rem;
       color: #94a3b8;
       font-size: 0.78rem;
@@ -6754,6 +6766,15 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+    }
+
+    .social-header-top .star-icon {
+      color: #c29a63;
+      line-height: 1;
+    }
+
+    .social-header-top .star-icon .fa-star {
+      font-size: 0.85em;
     }
 
     .social-header-sub {
@@ -8811,7 +8832,7 @@
     .why-choose-section,
     .stats-section,
     .specialty-living-section {
-      padding-top: clamp(3rem, 6vw, 4.2rem);
+      padding-top: clamp(0rem, 6vw, 0rem);
       padding-bottom: clamp(3rem, 6vw, 4.2rem);
     }
 
@@ -9328,6 +9349,7 @@
     .mood-lifestyle-section {
       background: #f8fafc;
       border-top: 1px solid rgba(148, 163, 184, 0.22);
+      padding-top:5rem;
     }
 
     .mood-header {
@@ -13124,6 +13146,21 @@
       font-size: 1rem;
       flex-shrink: 0;
       color: #0f2339;
+    }
+
+    .loc-city-icon svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .loc-city-icon i {
+      font-family: "Font Awesome 6 Free" !important;
+      font-weight: 900 !important;
+      font-style: normal !important;
+      line-height: 1;
+      display: inline-block;
     }
 
     .loc-city-icon--mumbai {

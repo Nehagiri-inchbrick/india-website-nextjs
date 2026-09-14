@@ -9,8 +9,6 @@
   .developers-projects .developer-grid,
   .developers-projects .project-track-container,
   .wtrust-grid,
-  .compact-review-list,
-  .rv-video-grid,
   .loc-city-grid,
   .home-blog-row {
     margin-inline: calc(50% - 50vw) !important;
@@ -61,12 +59,27 @@
   }
 
   .compact-reviews-head,
+  .home-sp-head,
   .loc-compact-head,
   .home-blog-head,
   .brand-showcase-head,
   .wtrust-head,
   .mood-header {
     padding-inline: 0;
+  }
+
+  .home-social-proof > .container {
+    width: min(1240px, 92%) !important;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  .home-sp-reviews,
+  .home-sp-videos,
+  .home-sp-trust {
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
+    width: 100%;
   }
 
   .footer-top {

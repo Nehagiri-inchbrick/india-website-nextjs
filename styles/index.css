@@ -921,6 +921,11 @@
   color: var(--primary);
 }
 
+.social-header-top .star-icon .fa-star {
+  color: inherit;
+  font-size: 0.85em;
+}
+
 .social-header-sub {
   color: rgba(255, 255, 255, 0.45);
 }

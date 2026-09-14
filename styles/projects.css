@@ -20,7 +20,7 @@ body.pj-page .html-body-page {
   --pj-border: #e5e7eb;
   --pj-bg: #f4f6f8;
   --pj-paper: #ffffff;
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   color: #1e293b;
   background:
     radial-gradient(ellipse 80% 40% at 100% 0%, rgba(194, 154, 99, 0.08), transparent 55%),
@@ -124,9 +124,9 @@ body.pj-page .html-body-page {
 
 .pj-hero h1 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.18;
   max-width: 18ch;
   letter-spacing: -0.015em;
@@ -585,9 +585,9 @@ body.pj-page .html-body-page {
 }
 .pj-panel-head h2 {
   margin: 0 0 0.3rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   font-size: clamp(1.35rem, 2.6vw, 1.75rem);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--pj-navy);
   letter-spacing: -0.01em;
 }
@@ -684,8 +684,8 @@ body.pj-page .html-body-page {
   gap: 0.3rem;
   padding: 0.28rem 0.55rem 0.28rem 0.45rem;
   border-radius: 0 6px 6px 0;
-  background: #16a34a;
-  color: #fff;
+  background: var(--pj-navy);
+  color: var(--pj-gold-soft);
   font-size: 0.68rem;
   font-weight: 800;
 }
@@ -783,8 +783,8 @@ body.pj-page .html-body-page {
 }
 
 .pj-card-status.is-ready {
-  background: rgba(22, 163, 74, 0.12);
-  color: #15803d;
+  background: rgba(194, 154, 99, 0.14);
+  color: #7a5c2e;
 }
 
 .pj-card-status.is-uc {
@@ -1069,10 +1069,9 @@ body.pj-page .html-body-page {
     gap: 0.75rem;
     margin: 0;
     padding: 0 1rem;
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
     font-size: 1.05rem;
-    font-weight: 700;
-    font-style: italic;
+    font-weight: 800;
     letter-spacing: -0.01em;
     text-transform: none;
     color: var(--pj-navy);
@@ -1085,7 +1084,7 @@ body.pj-page .html-body-page {
   .pj-side-title::after {
     content: "Swipe";
     flex: 0 0 auto;
-    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
     font-size: 0.58rem;
     font-weight: 800;
     font-style: normal;
@@ -1239,7 +1238,7 @@ body.pj-page .html-body-page {
     content: "Refine shortlist";
     display: block;
     margin: 0 0 0.55rem;
-    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
     font-size: 0.58rem;
     font-weight: 800;
     letter-spacing: 0.16em;

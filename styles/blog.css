@@ -164,10 +164,11 @@ body.blog-page {
 }
 
 .blog-toolbar h2 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   color: #0f2339;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .blog-toolbar h2 em {
@@ -227,7 +228,6 @@ body.blog-page {
   display: block;
   text-decoration: none;
   color: #fff;
-  group: article;
 }
 
 .blog-featured-main img {
@@ -286,9 +286,11 @@ body.blog-page {
 }
 
 .blog-featured-main h3 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
   line-height: 1.15;
+  letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
   max-width: 90%;
 }
@@ -355,6 +357,7 @@ body.blog-page {
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -450,11 +453,12 @@ body.blog-page {
 }
 
 .blog-card-body h3 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 1.2rem;
+  font-weight: 800;
   line-height: 1.3;
+  letter-spacing: -0.015em;
   color: #0f2339;
-  font-weight: 700;
 }
 
 .blog-card.is-wide .blog-card-body h3 {
@@ -520,8 +524,10 @@ body.blog-page {
 }
 
 .blog-newsletter-text h3 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 0.5rem;
 }
