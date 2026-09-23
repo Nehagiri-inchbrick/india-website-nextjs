@@ -2,7 +2,7 @@
    Hero Banner - Inchbrick Search Hero
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Dancing+Script:wght@700&family=Outfit:wght@400;500;600;700&family=Playball&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playball&display=swap');
 
 :root {
   --hero-navy: #0c1a2e;
@@ -13,8 +13,8 @@
   --hero-copper: #b8844a;
   --hero-white: #ffffff;
   --hero-gray: #9ca3af;
-  --hero-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --hero-ui: "Outfit", "Plus Jakarta Sans", sans-serif;
+  --hero-display: "DM Serif Display", "Georgia", "Times New Roman", serif;
+  --hero-ui: var(--font-site, var(--font-jakarta)), "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
 /* ── Cinematic Hero (center search + featured slide) ── */
@@ -149,10 +149,10 @@
 .hero-banner-tagline {
   margin: 0;
   font-family: var(--hero-display);
-  font-size: clamp(1.15rem, 2.2vw, 1rem);
-  font-weight: 600;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 400;
   font-style: italic;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: none;
   color: #ffffff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
@@ -182,18 +182,19 @@
 .hero-cinema-title {
   margin: 0 0 0.65rem;
   font-family: var(--hero-display);
-  font-size: clamp(2.35rem, 5.8vw, 4.1rem);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.5rem, 6vw, 4.35rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
   text-transform: none;
   color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
 }
 
 .hero-cinema-title span {
   display: block;
   font-size: 1em;
-  font-weight: 700;
+  font-weight: 400;
   font-style: italic;
   color: #f7e2c1;
   background: linear-gradient(120deg, #ffffff 0%, #f7e2c1 48%, #dfb576 100%);
@@ -210,7 +211,7 @@
   font-size: clamp(0.92rem, 1.5vw, 1.05rem);
   font-weight: 500;
   line-height: 1.65;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
 }
@@ -1323,7 +1324,7 @@
 }
 
 .creative-dest-title {
-  font-family: "Playfair Display", serif !important;
+  font-family: var(--hero-display) !important;
   font-size: clamp(2rem, 3.2vw, 3.2rem) !important;
   color: #ffffff !important;
   font-weight: 700;
@@ -1430,7 +1431,7 @@
 }
 
 .creative-dest-title.location-slider-title {
-  font-family: "Playfair Display", serif !important;
+  font-family: var(--hero-display) !important;
   font-size: clamp(2rem, 3.2vw, 3.2rem) !important;
   color: #ffffff !important;
   line-height: 1.15 !important;

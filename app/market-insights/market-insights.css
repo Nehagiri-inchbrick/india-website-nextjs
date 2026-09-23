@@ -35,7 +35,7 @@
 
 .mi-hero h1 {
   margin: 0 0 0.5rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.85rem, 4vw, 2.65rem);
   font-weight: 700;
   color: #fff;
@@ -169,7 +169,7 @@
 
 .mi-sec-head h2 {
   margin: 0 0 0.45rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.45rem, 3vw, 2rem);
   color: var(--mi-navy);
 }
@@ -614,7 +614,7 @@
 
 .mi-expert-quote::before {
   content: "\201C";
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 2rem;
   color: var(--mi-gold);
   line-height: 0;
@@ -675,7 +675,7 @@
 
 .mi-cta h2 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.25rem, 2.5vw, 1.65rem);
   color: #fff;
 }

@@ -212,7 +212,7 @@ body.ex-page .html-body-page {
 
 .ex-hero-brand {
   margin: 0 0 0.75rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.15rem, 2vw, 1.4rem);
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -249,7 +249,7 @@ body.ex-page .html-body-page {
 
 .ex-hero-content h1 {
   margin: 0 0 0.7rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(2.05rem, 4.2vw, 3.1rem);
   font-weight: 700;
   line-height: 1.08;
@@ -1183,7 +1183,7 @@ body.ex-page .html-body-page {
 }
 .ex-live-card-body h2 {
   margin: 0 0 .35rem;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-site);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
 }
@@ -1378,7 +1378,7 @@ body.ex-page .html-body-page {
 
 .ex-gal-head-row h2 {
   margin: 0 0 0.45rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(2rem, 4.2vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -1422,7 +1422,7 @@ body.ex-page .html-body-page {
   position: absolute;
   top: -0.35rem;
   left: -0.2rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(5.5rem, 12vw, 8.5rem);
   font-weight: 700;
   line-height: 0.85;
@@ -1456,7 +1456,7 @@ body.ex-page .html-body-page {
 
 .ex-gal-label {
   margin: 0 0 0.25rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.45rem, 2.4vw, 1.9rem);
   font-weight: 700;
   line-height: 1.15;
@@ -2352,7 +2352,7 @@ body.ex-page .html-body-page {
 
 .ex-stories-head h2 {
   margin: 0 0 0.5rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.85rem, 3.6vw, 2.55rem);
   font-weight: 700;
   color: var(--navy);
@@ -2441,7 +2441,7 @@ body.ex-page .html-body-page {
 }
 
 .ex-quote-mark {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 3.4rem;
   font-weight: 700;
   line-height: 0.7;
@@ -2467,7 +2467,7 @@ body.ex-page .html-body-page {
 
 .ex-quote p {
   margin: 0;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.02rem, 1.5vw, 1.12rem);
   font-style: italic;
   line-height: 1.55;
@@ -2710,7 +2710,7 @@ body.ex-page .html-body-page {
 
 .ex-past-head h2 {
   margin: 0 0 0.55rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(2rem, 4vw, 2.85rem);
   font-weight: 700;
   color: var(--navy, #0f2339);
@@ -2912,7 +2912,7 @@ body.ex-page .html-body-page {
 .ex-past-card-body h3 {
   margin: 0;
   padding-right: 2.4rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.25;
@@ -3213,7 +3213,7 @@ body.ex-page .html-body-page {
 .ex-modal-form { padding: 1.5rem; }
 .ex-modal-form h3 {
   margin: 0 0 1rem;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-site);
   font-size: 1.25rem;
   color: var(--navy);
 }

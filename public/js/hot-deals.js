@@ -1,4 +1,38 @@
 (function () {
+  const HOT_DEALS = [
+    {
+      id: 5,
+      name: "Skyline Towers",
+      meta: "Bandra West, Mumbai · ₹ 2.85 Cr*",
+    },
+    {
+      id: 3,
+      name: "Sunrise Park Villas",
+      meta: "Hinjewadi, Pune · ₹ 1.42 Cr*",
+    },
+    {
+      id: 18,
+      name: "Flex Space Apartments",
+      meta: "Indiranagar, Bangalore · ₹ 1.08 Cr*",
+    },
+  ];
+
+  function dealMeta(deal) {
+    var p = (window.LISTINGS_DATA || []).find(function (x) {
+      return x.id === deal.id;
+    });
+    if (p && window.listingPrice) {
+      return p.location + ", " + p.city + " · " + window.listingPrice(p);
+    }
+    if (window.CURRENCY && window.CURRENCY.convertPriceText) {
+      var parts = String(deal.meta || "").split("·");
+      if (parts.length > 1) {
+        return parts[0].trim() + " · " + window.CURRENCY.convertPriceText(parts[1].trim());
+      }
+    }
+    return deal.meta;
+  }
+
   function initHotDeals() {
     const root = document.getElementById("liveDealsSection");
     if (!root || root.dataset.hotDealsReady === "true") return;
@@ -10,24 +44,7 @@
 
     if (!cards.length) return;
 
-    const deals = [
-      {
-        id: 5,
-        name: "Skyline Towers",
-        meta: "Bandra West, Mumbai · ₹ 2.85 Cr*"
-      },
-      {
-        id: 3,
-        name: "Sunrise Park Villas",
-        meta: "Hinjewadi, Pune · ₹ 1.42 Cr*"
-      },
-      {
-        id: 18,
-        name: "Flex Space Apartments",
-        meta: "Indiranagar, Bangalore · ₹ 1.08 Cr*"
-      }
-    ];
-
+    const deals = HOT_DEALS;
     root.dataset.hotDealsReady = "true";
 
     let current = Math.max(
@@ -85,10 +102,11 @@
       if (nameEl) nameEl.textContent = deal.name;
       if (img) img.alt = deal.name;
       if (metaEl) {
-        const parts = deal.meta.split("·");
+        const meta = dealMeta(deal);
+        const parts = meta.split("·");
         metaEl.innerHTML = parts.length > 1
           ? parts[0].trim() + ' · <strong>' + parts[1].trim() + "</strong>"
-          : deal.meta;
+          : meta;
       }
 
       function goToDetail(event) {
@@ -139,4 +157,20 @@
   }
 
   window.addEventListener("html-page-scripts-ready", initHotDeals);
+
+  window.addEventListener("inchbrick-currency-change", function () {
+    var root = document.getElementById("liveDealsSection");
+    if (!root || root.dataset.hotDealsReady !== "true") return;
+    root.querySelectorAll(".hpd-feature-deal").forEach(function (card, index) {
+      var deal = HOT_DEALS[index];
+      var metaEl = card.querySelector(".hpd-card-meta");
+      if (!deal || !metaEl) return;
+      var meta = dealMeta(deal);
+      var parts = meta.split("·");
+      metaEl.innerHTML =
+        parts.length > 1
+          ? parts[0].trim() + ' · <strong>' + parts[1].trim() + "</strong>"
+          : meta;
+    });
+  });
 })();

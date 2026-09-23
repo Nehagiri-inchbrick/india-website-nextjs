@@ -48,6 +48,10 @@
     }).join("");
   }
 
+  function priceLabel(p) {
+    return window.listingPrice ? window.listingPrice(p) : p.price;
+  }
+
   function renderPickers() {
     if (!selectedIds.length) {
       selectedIds = [5, 4, 1].filter(function (id) { return getProperty(id); });
@@ -66,7 +70,7 @@
         '</select>' +
         (p ? '<div class="cp-picker-preview">' +
           '<img src="' + p.img.replace("w=1200", "w=200") + '" alt="">' +
-          '<div><strong>' + p.name + '</strong><span>' + p.price + '</span></div>' +
+          '<div><strong>' + p.name + '</strong><span>' + priceLabel(p) + '</span></div>' +
         '</div>' : '') +
         '</div>';
     }).join("");
@@ -95,7 +99,7 @@
   }
 
   function cellValue(key, p) {
-    if (key === "price") return '<span class="cp-val-highlight">' + p.price + '</span>';
+    if (key === "price") return '<span class="cp-val-highlight">' + priceLabel(p) + '</span>';
     if (key === "area") return p.area + ' <small>(' + p.bhk + ')</small>';
     if (key === "amenities") return amenityHtml(p.amenities);
     if (key === "builder") return p.builder;
@@ -114,7 +118,7 @@
           '<img src="' + p.img.replace("w=1200", "w=400") + '" alt="' + p.name + '">' +
           '<strong>' + p.name + '</strong>' +
           '<span>' + p.type + ' · ' + p.status + '</span>' +
-          '<a href="/listing-detail">View Details <i class="fas fa-arrow-right"></i></a>' +
+          '<a href="/listing-detail?id=' + p.id + '">View Details <i class="fas fa-arrow-right"></i></a>' +
         '</th>';
       }).join("") + '</tr>';
 
@@ -140,4 +144,9 @@
 
   renderPickers();
   renderTable();
+
+  window.addEventListener("inchbrick-currency-change", function () {
+    renderPickers();
+    renderTable();
+  });
 })();

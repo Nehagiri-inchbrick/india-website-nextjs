@@ -47,7 +47,7 @@
 
 .cr-hero h1 {
   margin: 0 0 0.5rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.85rem, 4vw, 2.65rem);
   font-weight: 700;
   color: #fff;
@@ -147,7 +147,7 @@
 
 .cr-sec-head h2 {
   margin: 0 0 0.45rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.45rem, 3vw, 1.95rem);
   font-weight: 700;
   color: var(--cr-navy);
@@ -334,7 +334,7 @@
 
 .cr-apply-info h2 {
   margin: 0 0 0.5rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.4rem, 3vw, 1.85rem);
   font-weight: 700;
   color: var(--cr-navy);

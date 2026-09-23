@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { CURRENCY_META } from '@/lib/currency';
 
 const NAV_ITEMS = [
   {
@@ -118,6 +119,12 @@ const NAV_ITEMS = [
         icon: 'fa-heart',
       },
       {
+        label: 'Recent Views',
+        href: '/recent-views',
+        desc: 'Properties you opened recently',
+        icon: 'fa-clock-rotate-left',
+      },
+      {
         label: 'Investment Advisory',
         href: '/investment-opportunities',
         desc: 'ROI tools & growth corridors',
@@ -130,9 +137,9 @@ const NAV_ITEMS = [
         icon: 'fa-newspaper',
       },
       {
-        label: 'Design Your House',
-        href: '/design-your-house',
-        desc: 'Styles, floor plans & interiors',
+        label: 'Interior Design',
+        href: '/interior-design',
+        desc: 'Turnkey interiors, modular & styling',
         icon: 'fa-compass-drafting',
       },
       {
@@ -152,6 +159,36 @@ export default function Header() {
   const [openNav, setOpenNav] = useState(null);
   const [moreOpen, setMoreOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [currency, setCurrency] = useState('INR');
+
+  useEffect(() => {
+    const syncCurrency = () => {
+      try {
+        const code = window.CURRENCY?.getCode?.() || localStorage.getItem('inchbrick-currency') || 'INR';
+        setCurrency(CURRENCY_META[code] ? code : 'INR');
+      } catch {
+        setCurrency('INR');
+      }
+    };
+    syncCurrency();
+    window.addEventListener('inchbrick-currency-change', syncCurrency);
+    return () => window.removeEventListener('inchbrick-currency-change', syncCurrency);
+  }, []);
+
+  function handleCurrencyChange(e) {
+    const code = e.target.value;
+    if (window.CURRENCY?.setCode) {
+      window.CURRENCY.setCode(code);
+    } else {
+      try {
+        localStorage.setItem('inchbrick-currency', code);
+      } catch {
+        /* ignore */
+      }
+      window.dispatchEvent(new CustomEvent('inchbrick-currency-change', { detail: { code } }));
+    }
+    setCurrency(code);
+  }
 
   useEffect(() => {
     const syncAuth = () => {
@@ -188,7 +225,7 @@ export default function Header() {
     if (pathname.startsWith('/nri')) return 'nri';
     if (pathname.startsWith('/blog') || pathname.startsWith('/market')) return 'blog';
     if (pathname.startsWith('/events')) return 'events';
-    if (pathname.startsWith('/contact') || pathname.startsWith('/home-buying') || pathname.startsWith('/home-loan') || pathname.startsWith('/emi') || pathname.startsWith('/compare') || pathname.startsWith('/saved') || pathname.startsWith('/investment') || pathname.startsWith('/design')) return 'services';
+    if (pathname.startsWith('/contact') || pathname.startsWith('/home-buying') || pathname.startsWith('/home-loan') || pathname.startsWith('/emi') || pathname.startsWith('/compare') || pathname.startsWith('/saved') || pathname.startsWith('/recent-views') || pathname.startsWith('/investment') || pathname.startsWith('/design')) return 'services';
     return '';
   }
 
@@ -259,7 +296,7 @@ export default function Header() {
       <div className="container nav">
         {/* Brand */}
         <div className="nav-brand">
-          <Link href="/" className="logo-brand" aria-label="Inchbrick Realty Home">
+          <Link href="/home" className="logo-brand" aria-label="Inchbrick Realty Home">
             <img
               src="/img/inchbrick-logo.png"
               alt="Inchbrick Realty"
@@ -412,6 +449,24 @@ export default function Header() {
 
         {/* Actions */}
         <div className="nav-actions">
+          <label className="header-currency" htmlFor="headerCurrency">
+            <span className="sr-only">Price currency</span>
+            <span className="header-currency-icon" aria-hidden="true">
+              <i className="fas fa-coins" />
+            </span>
+            <select
+              id="headerCurrency"
+              value={currency}
+              onChange={handleCurrencyChange}
+              aria-label="Price currency"
+            >
+              {Object.entries(CURRENCY_META).map(([code, meta]) => (
+                <option key={code} value={code}>
+                  {meta.label}
+                </option>
+              ))}
+            </select>
+          </label>
           <div className="header-actions-group">
             {loggedIn ? (
               <button type="button" className="header-login-link" onClick={handleLogout}>

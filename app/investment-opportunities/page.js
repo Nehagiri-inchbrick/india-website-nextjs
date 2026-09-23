@@ -1,18 +1,12 @@
-import HtmlBodyPage from '@/components/HtmlBodyPage';
-import { html, bodyClass } from '@/lib/html-bodies/investment-opportunities';
+import InvestorHub from './InvestorHub';
 import '@/styles/investment-opportunities.css';
 
 export const metadata = {
-  title: "Investment Opportunities | Inchbrick Realty",
-  description: "Real estate investment opportunities across India.",
+  title: 'Investment Opportunities | Inchbrick Realty',
+  description:
+    'Growth corridors, market insights, new launches, top 10 projects, and an investment calculator for Indian real estate.',
 };
 
 export default function Page() {
-  return (
-    <HtmlBodyPage
-      html={html}
-      bodyClass={bodyClass}
-      scripts={["/js/investment-opportunities.js"]}
-    />
-  );
+  return <InvestorHub />;
 }

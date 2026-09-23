@@ -12,6 +12,10 @@
     return allProperties.find(function (p) { return p.id === Number(id); });
   }
 
+  function priceLabel(p) {
+    return window.listingPrice ? window.listingPrice(p) : p.price;
+  }
+
   function showToast(message) {
     if (!toastEl) return;
     toastEl.textContent = message;
@@ -28,7 +32,7 @@
   }
 
   function shareProperty(p) {
-    var text = p.name + " — " + p.price + " | " + p.location + ", " + p.city;
+    var text = p.name + " — " + priceLabel(p) + " | " + p.location + ", " + p.city;
     var url = location.origin + "/listing-detail?id=" + p.id;
 
     if (navigator.share) {
@@ -78,7 +82,7 @@
         "<span><i class=\"fas fa-expand\"></i> " + p.area + "</span>" +
         "<span><i class=\"fas fa-building\"></i> " + p.type + "</span>" +
         "</div>" +
-        '<p class="sp-card-price">' + p.price + "</p>" +
+        '<p class="sp-card-price">' + priceLabel(p) + "</p>" +
         "</div>" +
         '<div class="sp-card-actions">' +
         '<button type="button" class="sp-card-action' + (isSaved ? " is-active" : "") + '" data-action="wishlist" title="Wishlist">' +
@@ -173,4 +177,6 @@
   }
 
   render();
+
+  window.addEventListener("inchbrick-currency-change", render);
 })();

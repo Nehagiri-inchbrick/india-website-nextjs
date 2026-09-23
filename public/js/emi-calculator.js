@@ -22,6 +22,9 @@
   var fmt = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
 
   function formatCurrency(value) {
+    if (window.CURRENCY && window.CURRENCY.formatAmount) {
+      return window.CURRENCY.formatAmount(value);
+    }
     return "₹ " + fmt.format(Math.round(value));
   }
 
@@ -153,4 +156,6 @@
   });
 
   calculate();
+
+  window.addEventListener("inchbrick-currency-change", calculate);
 })();

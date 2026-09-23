@@ -136,6 +136,19 @@
       .slice(0, 3);
   }
 
+  function comparePool(current) {
+    return data
+      .filter((x) => x.id !== current.id)
+      .sort((a, b) => {
+        let scoreA = a.city === current.city ? 2 : 0;
+        let scoreB = b.city === current.city ? 2 : 0;
+        if (a.type === current.type) scoreA += 1;
+        if (b.type === current.type) scoreB += 1;
+        return scoreB - scoreA;
+      })
+      .slice(0, 8);
+  }
+
   function esc(s) {
     return String(s)
       .replace(/&/g, "&amp;")
@@ -449,6 +462,56 @@
     );
   }
 
+  function renderCompare(prop, pool) {
+    if (!pool.length) {
+      return (
+        '<p class="ld-empty">Add more listings from <a href="/listings">property search</a> to compare.</p>'
+      );
+    }
+
+    return (
+      '<div class="ld-compare" id="ldCompare">' +
+      '<p class="ld-compare-lead">' +
+      '<strong>' +
+      esc(prop.name) +
+      '</strong> is locked as property 1. Pick up to <strong>two more</strong> for a side-by-side comparison on price, ROI, amenities, and possession.' +
+      "</p>" +
+      '<div class="ld-compare-queue" id="ldCompareQueue" aria-live="polite"></div>' +
+      '<div class="ld-compare-options" id="ldCompareOptions">' +
+      pool
+        .map(
+          (p) =>
+            '<button type="button" class="ld-compare-opt" data-id="' +
+            p.id +
+            '" aria-pressed="false">' +
+            '<img src="' +
+            p.img.replace("w=1200", "w=400") +
+            '" alt="">' +
+            "<span>" +
+            "<b>" +
+            esc(p.name) +
+            "</b>" +
+            "<small>" +
+            esc(p.location) +
+            ", " +
+            esc(p.city) +
+            "</small>" +
+            "<em>" +
+            esc(p.price) +
+            " · " +
+            esc(p.bhk) +
+            "</em>" +
+            "</span></button>"
+        )
+        .join("") +
+      "</div>" +
+      '<div class="ld-compare-actions">' +
+      '<button type="button" class="ld-btn ld-btn-outline" id="ldCompareClear">Reset picks</button>' +
+      '<a href="/compare-properties" class="ld-btn ld-btn-primary" id="ldCompareGo"><i class="fas fa-scale-balanced"></i> Compare side by side</a>' +
+      "</div></div>"
+    );
+  }
+
   function renderInquiry(prop) {
     return (
       '<form class="ld-inquiry" id="detailContactForm">' +
@@ -497,6 +560,7 @@
       "</div>" +
       '<div class="ld-sidebar-actions">' +
       '<a href="#ld-inquiry" class="ld-btn ld-btn-primary ld-btn-glow"><i class="fas fa-calendar-check"></i> Book Site Visit</a>' +
+      '<button type="button" class="ld-btn ld-btn-outline ld-btn-block" id="ldSidebarCompare"><i class="fas fa-scale-balanced"></i> Compare property</button>' +
       '<div class="ld-sidebar-action-row">' +
       '<a href="tel:+919876543210" class="ld-btn ld-btn-outline"><i class="fas fa-phone"></i> Call</a>' +
       '<button type="button" class="ld-btn ld-btn-outline" id="ldSidebarBrochure"><i class="fas fa-download"></i> Brochure</button>' +
@@ -580,6 +644,7 @@
       ["ld-builder", "Builder"],
       ["ld-progress", "Progress"],
       ["ld-emi", "EMI"],
+      ["ld-compare", "Compare"],
       ["ld-inquiry", "Inquiry"]
     ];
     return (
@@ -592,6 +657,7 @@
   function render(p) {
     const prop = enrich(p);
     const similar = similarProperties(prop);
+    const compareList = comparePool(prop);
 
     document.title = prop.name + " | Inchbrick Realty";
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -621,6 +687,7 @@
       section("ld-progress", "Construction Progress", "fa-chart-line", renderProgress(prop)) +
       section("ld-emi", "EMI Calculator", "fa-calculator", renderEmi(prop)) +
       section("ld-brochure", "Brochure Download", "fa-file-pdf", renderBrochure(prop)) +
+      section("ld-compare", "Property Comparison", "fa-scale-balanced", renderCompare(prop, compareList)) +
       section("ld-similar", "Similar Properties", "fa-clone", renderSimilar(similar)) +
       section("ld-inquiry", "Inquiry Form", "fa-envelope", renderInquiry(prop)) +
       "</div>" +
@@ -631,12 +698,16 @@
       esc(prop.price) +
       "</strong></div>" +
       '<a href="tel:+919876543210" class="ld-mobile-bar-btn ld-mobile-bar-call"><i class="fas fa-phone"></i> Call</a>' +
+      '<a href="#ld-compare" class="ld-mobile-bar-btn ld-mobile-bar-compare"><i class="fas fa-scale-balanced"></i> Compare</a>' +
       '<a href="#ld-inquiry" class="ld-mobile-bar-btn ld-mobile-bar-cta"><i class="fas fa-calendar-check"></i> Visit</a>' +
       "</div></div>";
 
-    bindEvents(prop);
+    bindEvents(prop, compareList);
     calcEmi();
     initStickyJumpNav();
+    if (window.CURRENCY) {
+      window.CURRENCY.annotatePrices(root);
+    }
   }
 
   function calcEmi() {
@@ -678,7 +749,13 @@
     observer.observe(topbar);
   }
 
-  function bindEvents(prop) {
+  function bindEvents(prop, compareList) {
+    initCompareUI(prop, compareList || []);
+
+    document.getElementById("ldSidebarCompare")?.addEventListener("click", () => {
+      const target = document.getElementById("ld-compare");
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
     document.querySelectorAll(".ld-gallery-thumb, .ld-gallery-more").forEach((btn) => {
       btn.addEventListener("click", () => {
         const img = btn.dataset.img || prop.gallery[0];
@@ -715,11 +792,155 @@
     });
   }
 
+  function initCompareUI(prop, pool) {
+    const store = window.COMPARE_STORE;
+    const queueEl = document.getElementById("ldCompareQueue");
+    const goEl = document.getElementById("ldCompareGo");
+    const clearBtn = document.getElementById("ldCompareClear");
+    const optionsEl = document.getElementById("ldCompareOptions");
+    if (!queueEl || !goEl || !optionsEl) return;
+
+    const stored = store ? store.getIds() : [];
+    const initialExtras = stored.filter((id) => id !== prop.id).slice(0, 2);
+    if (!initialExtras.length && pool.length) {
+      initialExtras.push(pool[0].id);
+      if (pool[1]) initialExtras.push(pool[1].id);
+    }
+    let selectedExtras = initialExtras.slice(0, 2);
+
+    function selectedIds() {
+      return [prop.id].concat(selectedExtras).slice(0, 3);
+    }
+
+    function syncStore() {
+      if (store) store.withPrimary(prop.id, selectedExtras);
+    }
+
+    function renderQueue() {
+      const slots = [prop].concat(
+        selectedExtras
+          .map((id) => data.find((p) => p.id === id))
+          .filter(Boolean)
+      );
+      while (slots.length < 3) slots.push(null);
+
+      queueEl.innerHTML = slots
+        .map((p, i) => {
+          if (!p) {
+            return (
+              '<div class="ld-compare-slot ld-compare-slot--empty"><span>Property ' +
+              (i + 1) +
+              "</span><p>Pick a listing below</p></div>"
+            );
+          }
+          const locked = i === 0;
+          return (
+            '<div class="ld-compare-slot' +
+            (locked ? " is-locked" : "") +
+            '">' +
+            '<span class="ld-compare-slot-label">Property ' +
+            (i + 1) +
+            (locked ? " · This listing" : "") +
+            "</span>" +
+            '<img src="' +
+            p.img.replace("w=1200", "w=300") +
+            '" alt="">' +
+            "<div><strong>" +
+            esc(p.name) +
+            "</strong><em>" +
+            esc(p.price) +
+            "</em></div>" +
+            (locked
+              ? ""
+              : '<button type="button" class="ld-compare-slot-remove" data-remove-id="' +
+                p.id +
+                '" aria-label="Remove"><i class="fas fa-xmark"></i></button>') +
+            "</div>"
+          );
+        })
+        .join("");
+
+      queueEl.querySelectorAll("[data-remove-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const rid = Number(btn.dataset.removeId);
+          selectedExtras = selectedExtras.filter((id) => id !== rid);
+          syncOptionStates();
+          renderQueue();
+          syncStore();
+          updateGoLink();
+        });
+      });
+    }
+
+    function syncOptionStates() {
+      optionsEl.querySelectorAll(".ld-compare-opt").forEach((btn) => {
+        const pid = Number(btn.dataset.id);
+        const on = selectedExtras.indexOf(pid) !== -1;
+        btn.classList.toggle("is-selected", on);
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    function updateGoLink() {
+      const ids = selectedIds();
+      goEl.href = "/compare-properties?ids=" + ids.join(",");
+      goEl.classList.toggle("is-disabled", ids.length < 2);
+      goEl.setAttribute("aria-disabled", ids.length < 2 ? "true" : "false");
+    }
+
+    optionsEl.querySelectorAll(".ld-compare-opt").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const pid = Number(btn.dataset.id);
+        if (selectedExtras.indexOf(pid) !== -1) {
+          selectedExtras = selectedExtras.filter((id) => id !== pid);
+        } else if (selectedExtras.length >= 2) {
+          selectedExtras = [selectedExtras[1], pid];
+        } else {
+          selectedExtras.push(pid);
+        }
+        syncOptionStates();
+        renderQueue();
+        syncStore();
+        updateGoLink();
+      });
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        selectedExtras = pool[0] ? [pool[0].id] : [];
+        syncOptionStates();
+        renderQueue();
+        syncStore();
+        updateGoLink();
+      });
+    }
+
+    goEl.addEventListener("click", (e) => {
+      if (selectedIds().length < 2) {
+        e.preventDefault();
+        alert("Select at least one more property to compare.");
+      } else {
+        syncStore();
+      }
+    });
+
+    syncOptionStates();
+    renderQueue();
+    syncStore();
+    updateGoLink();
+  }
+
   if (!root) return;
   const property = data.find((p) => p.id === id);
   if (!property) {
     renderNotFound();
     return;
   }
+  if (window.RECENT_VIEWS_STORE) {
+    window.RECENT_VIEWS_STORE.track(property.id);
+  }
   render(property);
+  window.addEventListener("inchbrick-currency-change", function () {
+    render(property);
+  });
 })();

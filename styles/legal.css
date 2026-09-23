@@ -49,7 +49,7 @@
 }
 
 .legal-hero h1 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.45rem, 3vw, 2rem);
   font-weight: 700;
   color: #fff;
@@ -102,7 +102,7 @@
 }
 
 .legal-card h2 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-site);
   font-size: 1.35rem;
   color: #0f2339;
   margin-bottom: 0.75rem;

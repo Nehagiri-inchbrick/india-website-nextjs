@@ -64,6 +64,13 @@
     ],
   };
 
+  function displayPrice(text) {
+    if (window.CURRENCY && window.CURRENCY.convertPriceText) {
+      return window.CURRENCY.convertPriceText(text);
+    }
+    return text;
+  }
+
   function escapeHtml(str) {
     return String(str || "")
       .replace(/&/g, "&amp;")
@@ -187,7 +194,7 @@
             '<div class="project-card-body">' +
             '<h4 class="project-card-name">' + escapeHtml(project.name) + "</h4>" +
             '<p class="project-card-loc"><i class="fas fa-location-dot"></i> ' + escapeHtml(project.location) + "</p>" +
-            '<p class="project-card-price">' + escapeHtml(project.price) + "</p>" +
+            '<p class="project-card-price">' + escapeHtml(displayPrice(project.price)) + "</p>" +
             '<div class="project-card-specs">' +
             '<span><i class="fas fa-bed"></i> ' + escapeHtml(project.bhk) + "</span>" +
             '<span><i class="fas fa-vector-square"></i> ' + escapeHtml(project.sqft) + "</span>" +
@@ -304,5 +311,9 @@
 
   window.addEventListener("html-page-scripts-ready", function () {
     initBrandShowcase();
+  });
+
+  window.addEventListener("inchbrick-currency-change", function () {
+    updateBrandShowcase(currentBrandIndex || 0);
   });
 })();

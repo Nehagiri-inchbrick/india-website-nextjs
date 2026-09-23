@@ -557,7 +557,7 @@
 
 .dd-cta-inner h2 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.25rem, 2.4vw, 1.55rem);
   font-weight: 700;
 }

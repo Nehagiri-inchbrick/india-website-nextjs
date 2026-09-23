@@ -11,7 +11,8 @@
   const PROPERTIES = [
     { name: "Ganga View Residences", loc: "Rishikesh, Uttarakhand", price: "₹ 68 L*", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" },
     { name: "Temple Town Villas", loc: "Haridwar, Uttarakhand", price: "₹ 95 L*", img: "https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&w=600&q=80" },
-    { name: "Ghat Side Apartments", loc: "Varanasi, Uttar Pradesh", price: "₹ 72 L*", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" }
+    { name: "Ghat Side Apartments", loc: "Varanasi, Uttar Pradesh", price: "₹ 72 L*", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" },
+    { name: "Serene Valley Homes", loc: "Dehradun, Uttarakhand", price: "₹ 58 L*", img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=600&q=80" }
   ];
 
   const COLLECTIONS = {
@@ -31,7 +32,8 @@
       featuredLocations: [
         { name: "Rishikesh", desc: "Yoga capital on the Ganges", img: "https://images.unsplash.com/photo-1524492412937-280ce19acd81?auto=format&fit=crop&w=600&q=80" },
         { name: "Haridwar", desc: "Ancient pilgrimage gateway", img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74203?auto=format&fit=crop&w=600&q=80" },
-        { name: "Varanasi", desc: "Timeless ghats and heritage", img: "https://images.unsplash.com/photo-1561361513-0665876603b4?auto=format&fit=crop&w=600&q=80" }
+        { name: "Varanasi", desc: "Timeless ghats and heritage", img: "https://images.unsplash.com/photo-1561361513-0665876603b4?auto=format&fit=crop&w=600&q=80" },
+        { name: "Tirupati", desc: "Sacred hills and temple town", img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Temples",
       nearbyIcon: "fa-place-of-worship",
@@ -63,7 +65,8 @@
       featuredLocations: [
         { name: "Lonavala", desc: "Mist-covered hill escapes", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" },
         { name: "Goa", desc: "Coastal weekend retreats", img: "https://images.unsplash.com/photo-1519046909882-ff06b0f0a7b0?auto=format&fit=crop&w=600&q=80" },
-        { name: "Nainital", desc: "Lake-side mountain charm", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" }
+        { name: "Nainital", desc: "Lake-side mountain charm", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" },
+        { name: "Khandala", desc: "Western Ghats weekend belt", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Attractions",
       nearbyIcon: "fa-camera",
@@ -95,7 +98,8 @@
       featuredLocations: [
         { name: "Worli", desc: "Sea-link skyline living", img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" },
         { name: "Golf Course Road", desc: "Gurgaon's premium corridor", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" },
-        { name: "Bengaluru CBD", desc: "Urban luxury towers", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" }
+        { name: "Bengaluru CBD", desc: "Urban luxury towers", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" },
+        { name: "Malabar Hill", desc: "South Mumbai prestige", img: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Landmarks",
       nearbyIcon: "fa-landmark",
@@ -127,7 +131,8 @@
       featuredLocations: [
         { name: "North Goa", desc: "Vibrant beach belt", img: "https://images.unsplash.com/photo-1519046909882-ff06b0f0a7b0?auto=format&fit=crop&w=600&q=80" },
         { name: "Alibaug", desc: "Mumbai's coastal escape", img: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=600&q=80" },
-        { name: "Kochi", desc: "Backwater waterfront", img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=600&q=80" }
+        { name: "Kochi", desc: "Backwater waterfront", img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=600&q=80" },
+        { name: "Chennai ECR", desc: "East Coast sea-facing belt", img: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Beaches & Waterfronts",
       nearbyIcon: "fa-umbrella-beach",
@@ -159,7 +164,8 @@
       featuredLocations: [
         { name: "Noida", desc: "Metro-linked family townships", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" },
         { name: "Pune", desc: "Suburban family belts", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" },
-        { name: "Hyderabad", desc: "IT corridor family hubs", img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=600&q=80" }
+        { name: "Hyderabad", desc: "IT corridor family hubs", img: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=600&q=80" },
+        { name: "Thane", desc: "Mumbai metro family suburbs", img: "https://images.unsplash.com/photo-1605276374101-dea6bf5a0a2a?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Schools",
       nearbyIcon: "fa-school",
@@ -191,7 +197,8 @@
       featuredLocations: [
         { name: "Dehradun", desc: "Valley wellness retreats", img: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80" },
         { name: "Karjat", desc: "Nature belts near Mumbai", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" },
-        { name: "Bangalore North", desc: "Green township corridors", img: "https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&w=600&q=80" }
+        { name: "Bangalore North", desc: "Green township corridors", img: "https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&w=600&q=80" },
+        { name: "Mulshi", desc: "Lake-side wellness escapes", img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Wellness Centres",
       nearbyIcon: "fa-spa",
@@ -223,7 +230,8 @@
       featuredLocations: [
         { name: "DLF Golf Links", desc: "Gurgaon's flagship course", img: "https://images.unsplash.com/photo-1587174485991-947173e6d088?auto=format&fit=crop&w=600&q=80" },
         { name: "E City Bangalore", desc: "Championship course belt", img: "https://images.unsplash.com/photo-1535131749006-ba7ca386457d?auto=format&fit=crop&w=600&q=80" },
-        { name: "Greater Noida", desc: "Jaypee Greens corridor", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" }
+        { name: "Greater Noida", desc: "Jaypee Greens corridor", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" },
+        { name: "Chandigarh", desc: "Planned city golf estates", img: "https://images.unsplash.com/photo-1535131749006-ba7ca386457d?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Golf Courses",
       nearbyIcon: "fa-golf-ball-tee",
@@ -255,7 +263,8 @@
       featuredLocations: [
         { name: "Coimbatore", desc: "Calm southern retirement hub", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" },
         { name: "Dehradun", desc: "Valley climate and connectivity", img: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80" },
-        { name: "Pondicherry", desc: "Coastal serenity", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" }
+        { name: "Pondicherry", desc: "Coastal serenity", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" },
+        { name: "Mysuru", desc: "Heritage city calm", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80" }
       ],
       nearbyTitle: "Nearby Hospitals",
       nearbyIcon: "fa-hospital",
@@ -339,7 +348,7 @@
       '<div class="ls-container">' +
       headBlock("Locations", "Featured destinations") +
       '<div class="lsd-locs">' +
-      c.featuredLocations.map(function (l, i) {
+      c.featuredLocations.slice(0, 4).map(function (l, i) {
         return '<article class="lsd-loc"><img src="' + l.img + '" alt="' + esc(l.name) + '" loading="lazy"><div><em>0' + (i + 1) + "</em><strong>" + esc(l.name) + "</strong><span>" + esc(l.desc) + "</span></div></article>";
       }).join("") +
       "</div></div></section>"
@@ -353,7 +362,7 @@
       '<div class="lsd-head-row">' + headBlock("Homes", "Recommended properties") +
       '<a href="/listings" class="lsd-link">All listings <i class="fas fa-arrow-right"></i></a></div>' +
       '<div class="lsd-props">' +
-      PROPERTIES.map(function (p) {
+      PROPERTIES.slice(0, 4).map(function (p) {
         return '<a href="/listing-detail" class="lsd-prop"><img src="' + p.img + '" alt="' + esc(p.name) + '" loading="lazy"><div><strong>' + esc(p.name) + '</strong><span><i class="fas fa-location-dot"></i> ' + esc(p.loc) + "</span><em>" + esc(p.price) + "</em></div></a>";
       }).join("") +
       "</div></div></section>"

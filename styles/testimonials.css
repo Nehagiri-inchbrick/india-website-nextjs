@@ -59,7 +59,7 @@
 
 .ts-hero h1 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.65rem, 3.8vw, 2.2rem);
   font-weight: 700;
   color: #fff;
@@ -98,7 +98,7 @@
 
 .ts-hero-mini-stats strong {
   color: var(--ts-gold);
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1rem;
   line-height: 1;
 }
@@ -141,7 +141,7 @@
 
 .ts-sec-head h2 {
   margin: 0 0 0.45rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.45rem, 3vw, 1.95rem);
   font-weight: 700;
   color: var(--ts-navy);
@@ -211,7 +211,7 @@
 }
 
 .ts-google-score strong {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 2rem;
   color: var(--ts-navy);
   line-height: 1;
@@ -500,7 +500,7 @@
 
 .ts-story-body h3 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--ts-navy);
@@ -566,7 +566,7 @@
 
 .ts-cta h2 {
   margin: 0 0 0.45rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.35rem, 3vw, 1.75rem);
   color: #fff;
 }

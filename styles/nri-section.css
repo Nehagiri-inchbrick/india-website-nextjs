@@ -50,7 +50,7 @@
 }
 
 .nri-premium-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-site);
   font-size: clamp(2.5rem, 4vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -98,7 +98,7 @@
 }
 
 .nri-stat strong {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-site);
   font-size: 2.2rem;
   color: #c9a55c;
   line-height: 1;

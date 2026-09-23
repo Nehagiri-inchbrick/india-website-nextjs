@@ -88,7 +88,7 @@ body.contact-page .html-body-page {
 
 .cx-head h1 {
   margin: 0 0 .65rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(2.2rem, 4.5vw, 3.15rem);
   font-weight: 700;
   color: var(--cx-navy);
@@ -261,7 +261,7 @@ body.contact-page .html-body-page {
 }
 .cx-aside h2 {
   margin: 0 0 1.15rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.55rem;
   font-weight: 700;
   color: var(--cx-navy);

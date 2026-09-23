@@ -12,7 +12,7 @@ export default function Page() {
     <HtmlBodyPage
       html={html}
       bodyClass={bodyClass}
-      scripts={["/js/listings-data.js","/js/listing-detail.js"]}
+      scripts={['/js/listings-data.js', '/js/recent-views-store.js', '/js/compare-store.js', '/js/listing-detail.js']}
     />
   );
 }

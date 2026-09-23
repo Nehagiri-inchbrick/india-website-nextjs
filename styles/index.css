@@ -58,7 +58,7 @@
 }
 
 .mood-header h2 {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.75rem, 3.5vw, 2.35rem);
   font-weight: 700;
   color: var(--navy);
@@ -281,7 +281,7 @@
 
 .location-slider-title,
 .ls-city-title {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.6rem, 3.2vw, 2.25rem);
   font-weight: 700;
   color: var(--navy);
@@ -662,7 +662,7 @@
 }
 
 .brand-showcase-title {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.75rem, 3.5vw, 2.35rem);
   font-weight: 700;
   color: var(--navy);
@@ -951,7 +951,7 @@
 }
 
 .social-header-main h2 {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
   white-space: nowrap;
@@ -1320,7 +1320,7 @@
 }
 
 .client-video-heading {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.5rem, 2.8vw, 2rem);
   font-weight: 700;
   color: var(--navy);
@@ -1502,7 +1502,7 @@
 }
 
 .why-choose-head h2 {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.75rem, 3.5vw, 2.25rem);
   font-weight: 700;
   margin-bottom: 0.5rem;

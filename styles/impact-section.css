@@ -73,7 +73,7 @@
 }
 
 .stats-section .impact-title {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.85rem, 4.5vw, 3rem);
   font-weight: 700;
   color: #0f2339;

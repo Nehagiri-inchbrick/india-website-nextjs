@@ -1,0 +1,127 @@
+/**
+ * Site typography — Plus Jakarta Sans (same as header nav).
+ * Does not apply on / "Who's exploring" (.ix2); that page uses styles/index2.css.
+ */
+
+:root {
+  --font-site: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+body:not(:has(.ix2)) {
+  font-family: var(--font-site);
+}
+
+body:not(:has(.ix2)) :where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  li,
+  label,
+  small,
+  strong,
+  em,
+  button,
+  input,
+  select,
+  textarea,
+  th,
+  td,
+  figcaption,
+  blockquote,
+  .section-title,
+  .section-subtitle
+):not(:where(.hero-cinema *)) {
+  font-family: var(--font-site);
+}
+
+/*
+ * Override legacy serif in page CSS. Never target Font Awesome icon classes —
+ * the old blanket [class] rule beat .fab/.fas and showed empty icons.
+ */
+body:not(:has(.ix2)) :where([class]):not(.hero-cinema):not(.hero-cinema *):not(.fa):not(.fas):not(
+    .far
+  ):not(.fal):not(.fat):not(.fad):not(.fab) {
+  font-family: inherit !important;
+}
+
+/* Font Awesome — must stay after inherit rule; solid vs brands weights differ */
+body:not(:has(.ix2)) :where(.fa, .fas, .far, .fal, .fat, .fad),
+body:not(:has(.ix2)) i[class*='fa-']:not(.fab) {
+  font-family: 'Font Awesome 6 Free' !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+body:not(:has(.ix2)) :where(.fas, .fa-solid),
+body:not(:has(.ix2)) i.fas {
+  font-weight: 900 !important;
+}
+
+body:not(:has(.ix2)) :where(.far, .fa-regular),
+body:not(:has(.ix2)) i.far {
+  font-weight: 400 !important;
+}
+
+body:not(:has(.ix2)) :where(.fab, .fa-brands),
+body:not(:has(.ix2)) i.fab,
+body:not(:has(.ix2)) i[class*='fa-brands'] {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+body:not(:has(.ix2)) :where(
+  .loc-city-meta strong,
+  .hpd-card-meta strong,
+  .emi-result-value,
+  .emi-result-meta,
+  .project-card-price,
+  .project-card-specs,
+  .mood-card-price,
+  .prop-price,
+  .price,
+  [class*='-price'],
+  [class*='price-']
+) {
+  font-family: 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Header nav — explicit match to --font-site */
+.header .nav-links,
+.header .nav-trigger,
+.header .nav-dropdown-inner a,
+.header .header-cta-btn,
+.header .header-more-menu a {
+  font-family: var(--font-site);
+}
+
+.site-footer,
+.site-footer :where(h1, h2, h3, h4, p, a, span, li) {
+  font-family: var(--font-site);
+}
+
+.footer-social .fab,
+.home-social-fixed__btn .fab,
+.home-social-fixed__btn .fas,
+.header-currency .fas {
+  font-family: 'Font Awesome 6 Free' !important;
+  font-style: normal !important;
+}
+
+.footer-social .fab,
+.home-social-fixed__btn .fab {
+  font-family: 'Font Awesome 6 Brands' !important;
+  font-weight: 400 !important;
+}
+
+.header-currency .fas {
+  font-weight: 900 !important;
+}

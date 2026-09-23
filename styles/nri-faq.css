@@ -1,0 +1,11 @@
+/* NRI FAQ — extends shared FAQ layout */
+.nri-faq-page .fq-hero--nri {
+  background:
+    linear-gradient(115deg, rgba(15, 35, 57, 0.94), rgba(8, 20, 36, 0.9)),
+    url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80") center / cover no-repeat;
+}
+
+.nri-faq-page .fq-nav a.is-active {
+  background: rgba(194, 154, 99, 0.14);
+  color: var(--fq-navy);
+}

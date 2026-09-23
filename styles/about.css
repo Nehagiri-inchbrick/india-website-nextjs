@@ -59,7 +59,7 @@
 
 .ab-brand {
   margin: 0 0 0.85rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.65rem, 3.6vw, 2.35rem);
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -70,7 +70,7 @@
 .ab-hero h1 {
   margin: 0 0 1rem;
   max-width: 14ch;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(2.35rem, 6vw, 4rem);
   font-weight: 700;
   line-height: 1.08;
@@ -171,7 +171,7 @@
 
 .ab-pulse-item strong {
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.7rem, 3vw, 2.15rem);
   font-weight: 700;
   color: var(--ab-red);
@@ -211,7 +211,7 @@
 
 .ab-story-copy h2 {
   margin: 0 0 1rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.85rem, 3.4vw, 2.55rem);
   font-weight: 700;
   line-height: 1.15;
@@ -269,7 +269,7 @@
 .ab-ways-title {
   margin: 0 auto 2rem;
   text-align: center;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--ab-navy);
@@ -306,7 +306,7 @@
 }
 
 .ab-ways-num {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--ab-gold);
@@ -354,7 +354,7 @@
 
 .ab-cta h2 {
   margin: 0 0 0.55rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.65rem, 3vw, 2.15rem);
   font-weight: 700;
   color: #fff;

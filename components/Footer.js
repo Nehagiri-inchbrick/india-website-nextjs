@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react';
 const AUTH_KEY = 'inchbrick-auth';
 
 const GUEST_QUICK_LINKS = [
-  { href: '/', label: 'Home', icon: 'fa-house', match: (p) => p === '/' },
+  { href: '/home', label: 'Home', icon: 'fa-house', match: (p) => p === '/home' },
   { href: '/projects', label: 'Projects', icon: 'fa-building', match: (p) => p.startsWith('/projects') || p.startsWith('/listings') },
   { href: '/events-expo', label: 'Expos', icon: 'fa-globe', match: (p) => p.startsWith('/events-expo') || p.startsWith('/event-detail') },
   { href: '/auth#login', label: 'Login', icon: 'fa-user', match: (p) => p.startsWith('/auth') || p.startsWith('/login') },
 ];
 
 const AUTH_QUICK_LINKS = [
-  { href: '/', label: 'Home', icon: 'fa-house', match: (p) => p === '/' },
+  { href: '/home', label: 'Home', icon: 'fa-house', match: (p) => p === '/home' },
   { href: '/projects', label: 'Projects', icon: 'fa-building', match: (p) => p.startsWith('/projects') || p.startsWith('/listings') },
   { href: '/saved-properties', label: 'Saved', icon: 'fa-heart', match: (p) => p.startsWith('/saved-properties') },
   { href: '/contact', label: 'Account', icon: 'fa-user-circle', match: (p) => p.startsWith('/contact') },
@@ -119,10 +119,13 @@ export default function Footer() {
                   <Link href="/emi-calculator">EMI Calculator</Link>
                   <Link href="/investment-opportunities">Investment Advisory</Link>
                   <Link href="/market-insights">Market Insights</Link>
-                  <Link href="/design-your-house">Design Your House</Link>
+                  <Link href="/saved-properties">Saved Properties</Link>
+                  <Link href="/recent-views">Recent Views</Link>
+                  <Link href="/interior-design">Interior Design</Link>
                   <Link href="/contact">Property Legal Check</Link>
                   <Link href="/contact">Site Visit Booking</Link>
-                  <Link href="/contact">NRI Property Services</Link>
+                  <Link href="/nri-corner">NRI Property Services</Link>
+                  <Link href="/nri-faq">NRI FAQ</Link>
                 </div>
               </div>
 

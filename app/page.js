@@ -1,24 +1,12 @@
-import HtmlBodyPage from '@/components/HtmlBodyPage';
-import { html, bodyClass } from '@/lib/html-bodies/home';
-import '@/styles/home-inline.css';
-import '@/styles/homes-deals.css';
-import '@/styles/nri-section.css';
-import '@/styles/client-video-mobile.css';
-import '@/styles/home-mobile-align.css';
-import '@/styles/home-social-proof.css';
-import '@/styles/home-blog.css';
+import Index2Experience from './index2/Index2Experience';
+import '@/styles/index2.css';
 
 export const metadata = {
-  title: 'Inchbrick Realty - Find Your Dream Home in India',
-  description: "Discover RERA-verified properties across India's top cities. Flats, villas, plots, and exclusive builder projects.",
+  title: "Who's Exploring Today? | Inchbrick Realty",
+  description:
+    'Choose your experience — home seeker, investor, city explorer, lifestyle seeker, or partner — and discover India with Inchbrick Realty.',
 };
 
-export default function HomePage() {
-  return (
-    <HtmlBodyPage
-      html={html}
-      bodyClass={bodyClass}
-      scripts={['/js/brand-showcase.js', '/js/mood-slider.js', '/js/cities-data.js', '/js/city-search.js', '/js/hot-deals.js', '/js/home-reviews-link.js', '/js/home-sp-slider.js', '/js/wtrust-drag.js']}
-    />
-  );
+export default function EntryPage() {
+  return <Index2Experience />;
 }

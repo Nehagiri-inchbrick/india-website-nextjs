@@ -11773,7 +11773,7 @@
     }
 
     .hero-title-main {
-      font-family: "Playfair Display", serif;
+      font-family: var(--font-site);
       font-size: clamp(2.5rem, 2.7rem, 4.4rem);
       font-weight: 700;
       line-height: 1.05;

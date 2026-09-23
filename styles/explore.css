@@ -24,7 +24,7 @@
 }
 
 .explore-page #exploreContent .section-title {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.65rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--navy);
@@ -77,7 +77,7 @@
 }
 
 .explore-page .impact-title {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 700;
   color: var(--navy);
@@ -216,7 +216,7 @@
 }
 
 .explore-page .smart-money-title {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.65rem, 3.2vw, 2.35rem);
   font-weight: 700;
   line-height: 1.15;
@@ -429,7 +429,7 @@
 }
 
 .explore-page .investor-hero-title {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.5rem, 2.8vw, 2.1rem);
   font-weight: 700;
   line-height: 1.2;
@@ -778,7 +778,7 @@
 }
 
 .explore-page .investment-journey-head h2 {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.5rem, 3vw, 2.15rem);
   font-weight: 700;
   color: var(--navy);
@@ -1010,7 +1010,7 @@
 }
 
 .explore-page .brand-compare-side h2 {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.45rem, 2.5vw, 1.9rem);
   font-weight: 700;
   color: var(--navy);
@@ -1233,7 +1233,7 @@
 }
 
 .explore-page .offers-side h3 {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.35rem, 2.2vw, 1.75rem);
   font-weight: 700;
   line-height: 1.2;
@@ -1456,7 +1456,7 @@
 }
 
 .explore-page .everything-header h2 {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 700;
   color: var(--navy);
@@ -1738,7 +1738,7 @@
 }
 
 .explore-page .blog-title {
-  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-family: var(--font-site);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--navy);

@@ -7,6 +7,8 @@ html {
 :root {
   --gold: #c29a63;
   --red: #c9242b;
+  --font-ui: var(--font-site, "Plus Jakarta Sans"), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-site: var(--font-jakarta, "Plus Jakarta Sans"), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --red-dark: #a71d22;
   --black: #0f172a;
   --navy: #0f2339;
@@ -30,7 +32,7 @@ html {
 }
 
 body {
-  font-family: "Plus Jakarta Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-site);
   background: var(--page-bg);
   color: #1e293b;
   line-height: 1.5;
@@ -40,7 +42,7 @@ body {
 
 /* ── Global heading typography — same font as homepage across all pages ── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-site);
 }
 
 button, input, select, textarea {

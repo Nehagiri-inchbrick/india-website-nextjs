@@ -61,7 +61,7 @@ body.hba-page .html-body-page {
 
 .hba-hero h1 {
   margin: 0 0 0.5rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.85rem, 4vw, 2.65rem);
   font-weight: 700;
   color: #fff;
@@ -143,7 +143,7 @@ body.hba-page .html-body-page {
 }
 .hba-sec-head h2 {
   margin: 0 0 0.4rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.4rem, 3vw, 1.85rem);
   font-weight: 700;
   color: var(--hba-navy);
@@ -307,7 +307,7 @@ body.hba-page .html-body-page {
 }
 .hba-enquire-info h2 {
   margin: 0 0 0.5rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.4rem, 3vw, 1.85rem);
   font-weight: 700;
   color: var(--hba-navy);

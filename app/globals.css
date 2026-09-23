@@ -22,6 +22,9 @@ html {
   --card-bg: #ffffff;
   --border-soft: rgba(0, 0, 0, 0.08);
   --font-jakarta: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Header nav + all site pages (except / entry gate overrides) */
+  --font-site: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-ui: var(--font-site);
   --font-playfair: 'Playfair Display', serif;
   --layout-gold: #c29a63;
   --layout-red: #c9242b;
@@ -38,7 +41,7 @@ html {
 }
 
 body {
-  font-family: var(--font-jakarta), "Plus Jakarta Sans", "Segoe UI", "Noto Sans", system-ui, sans-serif;
+  font-family: var(--font-site);
   background: var(--page-bg);
   color: #1e293b;
   line-height: 1.5;
@@ -46,7 +49,7 @@ body {
 
 /* ── Global heading typography — same font as homepage across all pages ── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-jakarta), "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  font-family: var(--font-site);
 }
 
 button, input, select, textarea {

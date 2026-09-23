@@ -7,11 +7,11 @@ import { useEffect, useMemo, useState } from 'react';
  * so Next.js pages match the static HTML designs.
  */
 export default function HtmlBodyPage({ html, bodyClass = '', scriptSrc, scripts = [] }) {
-  const scriptKey = useMemo(
-    () => [...scripts, scriptSrc].filter(Boolean).join('|'),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [scriptSrc, JSON.stringify(scripts)]
-  );
+  const scriptKey = useMemo(() => {
+    const base = [...scripts, scriptSrc].filter(Boolean);
+    const ordered = ['/js/currency.js', ...base.filter((s) => s !== '/js/currency.js')];
+    return ordered.join('|');
+  }, [scriptSrc, JSON.stringify(scripts)]);
 
   // Strip inline <script> tags — they break hydration and often reference undefined globals
   const safeHtml = useMemo(

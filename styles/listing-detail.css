@@ -1853,3 +1853,192 @@
     font-size: 0.88rem;
   }
 }
+
+/* Property comparison */
+.ld-btn-block {
+  width: 100%;
+}
+
+.ld-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ld-compare-lead {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ld-muted);
+}
+
+.ld-compare-lead strong {
+  color: var(--ld-dark);
+}
+
+.ld-compare-queue {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.ld-compare-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.65rem;
+  border-radius: 14px;
+  border: 1px solid var(--ld-border);
+  background: #fff;
+  min-height: 148px;
+}
+
+.ld-compare-slot.is-locked {
+  border-color: rgba(194, 154, 99, 0.55);
+  background: linear-gradient(180deg, #fffaf2, #fff);
+  box-shadow: 0 0 0 2px rgba(194, 154, 99, 0.12);
+}
+
+.ld-compare-slot--empty {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-style: dashed;
+  background: #f8fafc;
+  color: var(--ld-muted);
+}
+
+.ld-compare-slot--empty p {
+  margin: 0.25rem 0 0;
+  font-size: 0.78rem;
+}
+
+.ld-compare-slot-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ld-muted);
+}
+
+.ld-compare-slot img {
+  width: 100%;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.ld-compare-slot strong {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.25;
+  color: var(--ld-dark);
+}
+
+.ld-compare-slot em {
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--ld-red);
+}
+
+.ld-compare-slot-remove {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(15, 35, 57, 0.08);
+  color: var(--ld-dark);
+  cursor: pointer;
+}
+
+.ld-compare-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.ld-compare-opt {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.45rem;
+  border-radius: 12px;
+  border: 1px solid var(--ld-border);
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ld-compare-opt:hover {
+  border-color: rgba(194, 154, 99, 0.45);
+}
+
+.ld-compare-opt.is-selected {
+  border-color: var(--ld-gold);
+  box-shadow: 0 0 0 2px rgba(194, 154, 99, 0.2);
+}
+
+.ld-compare-opt img {
+  width: 72px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.ld-compare-opt b {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ld-dark);
+  line-height: 1.25;
+}
+
+.ld-compare-opt small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ld-muted);
+}
+
+.ld-compare-opt em {
+  display: block;
+  margin-top: 0.15rem;
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ld-dark);
+}
+
+.ld-compare-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.ld-compare-actions .ld-btn-primary.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.ld-mobile-bar-compare {
+  background: rgba(15, 35, 57, 0.06);
+  color: var(--ld-dark);
+  border: 1px solid var(--ld-border);
+}
+
+@media (max-width: 768px) {
+  .ld-compare-queue {
+    grid-template-columns: 1fr;
+  }
+
+  .ld-compare-options {
+    grid-template-columns: 1fr;
+  }
+}

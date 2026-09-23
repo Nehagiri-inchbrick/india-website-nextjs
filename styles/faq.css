@@ -68,7 +68,7 @@
 
 .fq-hero h1 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.65rem, 3.8vw, 2.2rem);
   font-weight: 700;
   color: #fff;
@@ -149,7 +149,7 @@
 
 .fq-group h2 {
   margin: 0 0 0.75rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--fq-navy);
@@ -237,7 +237,7 @@
 
 .fq-cta h2 {
   margin: 0 0 0.45rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.35rem, 2.5vw, 1.7rem);
   color: #fff;
 }

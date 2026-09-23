@@ -43,7 +43,7 @@
 }
 
 .dyh-sec-head h2 {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(1.85rem, 3.6vw, 2.75rem);
   color: var(--dyh-navy);
   line-height: 1.1;
@@ -106,7 +106,7 @@
 
 .dyh-hero h1 {
   margin: 0 0 0.75rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: clamp(2rem, 4.2vw, 3.1rem);
   font-weight: 700;
   color: var(--dyh-navy);
@@ -486,7 +486,7 @@
 
 .dyh-style-overlay h3 {
   margin: 0 0 0.2rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.05rem;
   color: #fff;
   line-height: 1.15;
@@ -580,7 +580,7 @@
 
 .dyh-style-preview-body h3 {
   margin: 0 0 0.4rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.45rem;
   color: var(--dyh-navy);
 }
@@ -683,7 +683,7 @@
 
 .dyh-plan-card-body h3 {
   margin: 0 0 0.15rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.05rem;
   color: var(--dyh-navy);
 }
@@ -817,7 +817,7 @@
 
 .dyh-inspire-overlay h4 {
   margin: 0.2rem 0 0;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 0.95rem;
   color: #fff;
 }
@@ -868,7 +868,7 @@
 
 .dyh-service-card h3 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1rem;
   color: var(--dyh-navy);
 }
@@ -912,7 +912,7 @@
 
 .dyh-trust-left h4 {
   margin: 0;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.05rem;
   color: var(--dyh-navy);
 }
@@ -989,7 +989,7 @@
 
 .dyh-consult-visual-overlay h3 {
   margin: 0 0 0.35rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.5rem;
 }
 
@@ -1035,7 +1035,7 @@
 
 .dyh-form-title {
   margin: 0 0 0.3rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-site);
   font-size: 1.4rem;
   color: var(--dyh-navy);
 }

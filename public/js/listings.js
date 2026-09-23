@@ -31,6 +31,10 @@
     q: (params.get("q") || "").trim().toLowerCase()
   };
 
+  function priceLabel(p) {
+    return window.listingPrice ? window.listingPrice(p) : p.price;
+  }
+
   function initCityOptions() {
     if (!filterCity) return;
     const cities = [...new Set(allProperties.map((p) => p.city))].sort();
@@ -179,8 +183,8 @@
         const badgeCls = statusClass(p.status);
         const photoCount = 8 + (i % 6);
         const featured = i % 4 === 0;
-        const shareText = encodeURIComponent(p.name + " — " + p.price + " | Inchbrick Realty");
-        const waText = encodeURIComponent("Hi, I'm interested in " + p.name + " (" + p.price + ")");
+        const shareText = encodeURIComponent(p.name + " — " + priceLabel(p) + " | Inchbrick Realty");
+        const waText = encodeURIComponent("Hi, I'm interested in " + p.name + " (" + priceLabel(p) + ")");
         const detailHref = "/listing-detail?id=" + p.id;
         return (
           '<article class="prop-list-item" data-id="' + p.id + '">' +
@@ -196,7 +200,7 @@
           '<div class="prop-list-title-row">' +
           '<h3><a href="' + detailHref + '">' + p.name + "</a></h3>" +
           '<div class="prop-list-price-block prop-list-price--mobile">' +
-          '<p class="prop-list-price">' + p.price + "</p>" +
+          '<p class="prop-list-price">' + priceLabel(p) + "</p>" +
           "</div></div>" +
           '<p class="prop-list-loc"><i class="fas fa-map-marker-alt"></i> ' + p.location + ", " + p.city + "</p>" +
           '<div class="prop-list-specs">' +
@@ -218,7 +222,7 @@
           "</div></div>" +
           '<div class="prop-list-aside">' +
           '<div class="prop-list-price-block prop-list-price--desk">' +
-          '<p class="prop-list-price">' + p.price + "</p>" +
+          '<p class="prop-list-price">' + priceLabel(p) + "</p>" +
           '<p class="prop-list-price-note">All inclusive*</p></div>' +
           '<div class="prop-list-actions">' +
           '<a href="/contact#contactForm" class="prop-list-btn prop-list-btn-primary" aria-label="Book site visit" title="Book site visit">' +
@@ -431,6 +435,8 @@
 
   window.addEventListener("resize", syncMobileFilterChrome);
   window.addEventListener("orientationchange", syncMobileFilterChrome);
+
+  window.addEventListener("inchbrick-currency-change", render);
 
   render();
   syncMobileFilterChrome();

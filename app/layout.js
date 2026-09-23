@@ -1,22 +1,18 @@
-import { Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google';
+import Script from 'next/script';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import '@/styles/common.css';
 import '@/styles/theme.css';
 import '@/styles/layout.css';
-import AppShell from '@/components/AppShell';
 import '../hero-banner.css';
+import '@/styles/typography.css';
+import AppShell from '@/components/AppShell';
+import GlobalScripts from '@/components/GlobalScripts';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-jakarta',
-  display: 'swap',
-});
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-playfair',
   display: 'swap',
 });
 
@@ -37,8 +33,10 @@ export default function RootLayout({ children }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
       </head>
-      <body className={`${plusJakarta.variable} ${playfair.variable}`}>
+      <body className={plusJakarta.variable}>
+        <Script src="/js/currency.js" strategy="beforeInteractive" />
         <AppShell>{children}</AppShell>
+        <GlobalScripts />
       </body>
     </html>
   );
