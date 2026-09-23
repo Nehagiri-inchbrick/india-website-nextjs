@@ -109,19 +109,7 @@ body:not(:has(.ix2)) :where(
 }
 
 .footer-social .fab,
-.home-social-fixed__btn .fab,
-.home-social-fixed__btn .fas,
-.header-currency .fas {
-  font-family: 'Font Awesome 6 Free' !important;
-  font-style: normal !important;
-}
-
-.footer-social .fab,
 .home-social-fixed__btn .fab {
   font-family: 'Font Awesome 6 Brands' !important;
   font-weight: 400 !important;
-}
-
-.header-currency .fas {
-  font-weight: 900 !important;
 }

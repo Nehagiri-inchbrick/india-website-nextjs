@@ -451,18 +451,15 @@ export default function Header() {
         <div className="nav-actions">
           <label className="header-currency" htmlFor="headerCurrency">
             <span className="sr-only">Price currency</span>
-            <span className="header-currency-icon" aria-hidden="true">
-              <i className="fas fa-coins" />
-            </span>
             <select
               id="headerCurrency"
               value={currency}
               onChange={handleCurrencyChange}
               aria-label="Price currency"
             >
-              {Object.entries(CURRENCY_META).map(([code, meta]) => (
+              {Object.entries(CURRENCY_META).map(([code]) => (
                 <option key={code} value={code}>
-                  {meta.label}
+                  {code}
                 </option>
               ))}
             </select>
