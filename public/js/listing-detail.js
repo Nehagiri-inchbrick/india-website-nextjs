@@ -156,11 +156,54 @@
       .replace(/"/g, "&quot;");
   }
 
-  function section(id, title, icon, body) {
+  function inquiryCta(label, opts) {
+    const o = opts || {};
+    const icon = o.icon || "fa-envelope";
+    const kind = o.outline ? "ld-btn-outline" : "ld-btn-primary";
+    return (
+      '<a href="#ld-inquiry" class="ld-btn ' +
+      kind +
+      ' ld-scroll-inquiry">' +
+      '<i class="fas ' +
+      icon +
+      '" aria-hidden="true"></i> ' +
+      esc(label) +
+      "</a>"
+    );
+  }
+
+  function renderInquiryStrip(heading, sub) {
+    return (
+      '<div class="ld-inquiry-strip">' +
+      '<div class="ld-inquiry-strip-copy">' +
+      "<strong>" +
+      esc(heading) +
+      "</strong>" +
+      (sub ? "<p>" + esc(sub) + "</p>" : "") +
+      "</div>" +
+      '<div class="ld-inquiry-strip-actions">' +
+      inquiryCta("Get expert callback", { icon: "fa-headset" }) +
+      inquiryCta("Book site visit", { icon: "fa-calendar-check", outline: true }) +
+      "</div></div>"
+    );
+  }
+
+  function section(id, title, icon, body, headActions) {
+    const headExtra = headActions
+      ? '<div class="ld-section-head-actions">' + headActions + "</div>"
+      : "";
     return (
       '<section class="ld-section" id="' + id + '">' +
-      '<div class="ld-section-head"><i class="fas ' + icon + '"></i><h2>' + title + "</h2></div>" +
-      '<div class="ld-section-body">' + body + "</div></section>"
+      '<div class="ld-section-head"><i class="fas ' +
+      icon +
+      '"></i><h2>' +
+      title +
+      "</h2>" +
+      headExtra +
+      "</div>" +
+      '<div class="ld-section-body">' +
+      body +
+      "</div></section>"
     );
   }
 
@@ -212,6 +255,10 @@
       badge("RERA Verified") +
       "</div>" +
       '<p class="ld-overview-text">' + esc(prop.description) + "</p>" +
+      '<div class="ld-section-cta ld-section-cta--start">' +
+      inquiryCta("Enquire about this property", { icon: "fa-comment-dots" }) +
+      inquiryCta("Request floor plan & pricing", { icon: "fa-file-lines", outline: true }) +
+      "</div>" +
       "</div>" +
       '<div class="ld-overview-meta">' +
       metaItem("fa-bed", prop.bhk) +
@@ -259,7 +306,9 @@
             "</p></div></div>"
         )
         .join("") +
-      "</div></div>"
+      "</div></div>" +
+      renderInquiryStrip("Need a payment plan breakdown?", "Our advisors will share booking steps and bank tie-ups.") +
+      "</div>"
     );
   }
 
@@ -271,7 +320,10 @@
     return (
       '<ul class="ld-highlight-grid">' +
       prop.highlights.map((h) => '<li><i class="fas fa-check"></i> ' + esc(h) + "</li>").join("") +
-      "</ul>"
+      "</ul>" +
+      '<div class="ld-section-cta">' +
+      inquiryCta("Talk to an advisor", { icon: "fa-user-tie" }) +
+      "</div>"
     );
   }
 
@@ -279,6 +331,10 @@
     return (
       '<div class="ld-amenities-grid">' +
       AMENITIES.map((a) => '<span class="ld-amenity"><i class="fas fa-check-circle"></i> ' + esc(a) + "</span>").join("") +
+      "</div>" +
+      '<div class="ld-section-cta">' +
+      inquiryCta("Book amenity tour", { icon: "fa-concierge-bell", outline: true }) +
+      inquiryCta("Get availability & offers", { icon: "fa-tags" }) +
       "</div>"
     );
   }
@@ -376,7 +432,10 @@
       phase("Structure", prop.progress >= 55) +
       phase("Finishing", prop.progress >= 80) +
       phase("Handover", prop.progress >= 100) +
-      "</div></div>"
+      "</div></div>" +
+      '<div class="ld-section-cta">' +
+      inquiryCta("Get construction update call", { icon: "fa-phone" }) +
+      "</div>"
     );
   }
 
@@ -401,7 +460,11 @@
       field("emiRate", "Interest Rate (% p.a.)", "8.5", "number") +
       field("emiTenure", "Tenure (Years)", "20", "number") +
       "</div>" +
-      '<div class="ld-emi-result"><span>Estimated EMI</span><strong id="emiResult">₹ —</strong><p class="ld-emi-note">Indicative only. Actual EMI depends on bank approval.</p></div></div>'
+      '<div class="ld-emi-result"><span>Estimated EMI</span><strong id="emiResult">₹ —</strong><p class="ld-emi-note">Indicative only. Actual EMI depends on bank approval.</p></div>' +
+      '<div class="ld-section-cta">' +
+      inquiryCta("Home loan assistance", { icon: "fa-landmark" }) +
+      inquiryCta("Submit enquiry", { icon: "fa-paper-plane", outline: true }) +
+      "</div></div>"
     );
   }
 
@@ -674,7 +737,13 @@
       "</div></div>" +
       '<div class="ld-layout ld-container">' +
       '<div class="ld-main">' +
-      section("ld-gallery", "Image & Video Gallery", "fa-images", renderGallery(prop)) +
+      section(
+        "ld-gallery",
+        "Image & Video Gallery",
+        "fa-images",
+        renderGallery(prop),
+        inquiryCta("Book gallery tour", { icon: "fa-calendar-check" })
+      ) +
       section("ld-overview", "Property Overview", "fa-building", renderOverview(prop)) +
       section("ld-price", "Price & Payment Plan", "fa-indian-rupee-sign", renderPrice(prop)) +
       section("ld-highlights", "Key Highlights", "fa-star", renderHighlights(prop)) +
@@ -788,6 +857,21 @@
           e.preventDefault();
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         }
+      });
+    });
+
+    root.querySelectorAll('a[href="#ld-inquiry"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const target = document.getElementById("ld-inquiry");
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.setTimeout(() => {
+          const field = target.querySelector("input, textarea, select, button");
+          if (field && typeof field.focus === "function") {
+            field.focus({ preventScroll: true });
+          }
+        }, 450);
       });
     });
   }
