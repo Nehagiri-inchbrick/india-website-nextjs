@@ -10,7 +10,7 @@ const GUEST_QUICK_LINKS = [
   { href: '/home', label: 'Home', icon: 'fa-house', match: (p) => p === '/home' },
   { href: '/projects', label: 'Projects', icon: 'fa-building', match: (p) => p.startsWith('/projects') || p.startsWith('/listings') },
   { href: '/events-expo', label: 'Expos', icon: 'fa-globe', match: (p) => p.startsWith('/events-expo') || p.startsWith('/event-detail') },
-  { href: '/auth#login', label: 'Login', icon: 'fa-user', match: (p) => p.startsWith('/auth') || p.startsWith('/login') },
+  { href: '/', label: 'Explore', icon: 'fa-compass', match: (p) => p === '/' },
 ];
 
 const AUTH_QUICK_LINKS = [

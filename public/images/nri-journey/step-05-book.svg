@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+  <circle cx="60" cy="60" r="58" fill="url(#g5)" opacity="0.35"/>
+  <defs>
+    <radialGradient id="g5" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#93C5FD"/>
+      <stop offset="100%" stop-color="#93C5FD" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="42" y="22" width="36" height="72" rx="6" fill="#0F2339"/>
+  <rect x="46" y="28" width="28" height="58" rx="3" fill="#F8FAFC"/>
+  <rect x="50" y="38" width="20" height="20" rx="4" fill="#2563EB"/>
+  <path d="M56 48 L60 52 L66 44" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="50" y="68" fill="#0F2339" font-family="system-ui,sans-serif" font-size="4.5" font-weight="800">Booking</text>
+  <text x="50" y="76" fill="#16A34A" font-family="system-ui,sans-serif" font-size="4.5" font-weight="800">Confirmed</text>
+  <circle cx="60" cy="86" r="3" fill="#CBD5E1"/>
+</svg>

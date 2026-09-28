@@ -1,11 +1,61 @@
 /**
- * Contact page — enquiry form toast
+ * Contact page — enquiry form + office map tabs
  */
 (function () {
-  var form = document.getElementById("contactForm");
-  if (!form) return;
+  var OFFICE_MAPS = {
+    india: {
+      caption: "India — Dwarka Sector 12, New Delhi",
+      embed:
+        "https://maps.google.com/maps?q=Dwarka+Sector+12,+New+Delhi,+India&hl=en&z=14&output=embed",
+      title: "Map: Inchbrick India office, New Delhi"
+    },
+    dubai: {
+      caption: "Dubai — Churchill Towers, Business Bay",
+      embed:
+        "https://maps.google.com/maps?q=Churchill+Towers,+Business+Bay,+Dubai&hl=en&z=15&output=embed",
+      title: "Map: Inchbrick Dubai office, Business Bay"
+    }
+  };
 
-  form.addEventListener("submit", function (e) {
+  var tabs = document.querySelectorAll("[data-office-tab]");
+  var panels = document.querySelectorAll("[data-office-panel]");
+  var mapFrame = document.getElementById("cxOfficeMap");
+  var mapCaption = document.getElementById("cxMapCaption");
+
+  function setOffice(officeId) {
+    var data = OFFICE_MAPS[officeId];
+    if (!data) return;
+
+    tabs.forEach(function (tab) {
+      var on = tab.getAttribute("data-office-tab") === officeId;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+    });
+
+    panels.forEach(function (panel) {
+      var on = panel.getAttribute("data-office-panel") === officeId;
+      panel.classList.toggle("is-active", on);
+      panel.hidden = !on;
+    });
+
+    if (mapFrame && data.embed) {
+      mapFrame.src = data.embed;
+      mapFrame.title = data.title;
+    }
+    if (mapCaption) mapCaption.textContent = data.caption;
+  }
+
+  if (tabs.length) {
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        setOffice(tab.getAttribute("data-office-tab"));
+      });
+    });
+  }
+
+  var form = document.getElementById("contactForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
     e.preventDefault();
     var name =
       (document.getElementById("cName") &&
@@ -28,4 +78,5 @@
       }, 400);
     }, 3500);
   });
+  }
 })();

@@ -1,0 +1,97 @@
+.office-map-section {
+  position: relative;
+  min-height: 800px;
+  background: #fff;
+  padding: 60px 5%;
+  color: #111;
+}
+
+.world-map {
+  width: 100%;
+  height: 600px;
+}
+
+.country {
+  fill: #f0f0f0;
+  stroke: #bbb;
+  stroke-width: 0.5;
+}
+
+.country.highlight {
+  fill: #e6f2ff; /* subtle highlight */
+}
+
+.country-label {
+  fill: #111;
+  font-family: 'Inter', sans-serif;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+.office-marker {
+  cursor: pointer;
+}
+
+.marker-dot {
+  fill: #ef4444; /* red */
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.marker-label {
+  fill: #111;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+/* Card */
+.office-card {
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  width: 260px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  overflow: hidden;
+  animation: cardIn 0.3s ease;
+}
+
+.close-card {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.office-image img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.office-content {
+  padding: 12px;
+}
+
+.office-content h3 {
+  margin: 4px 0;
+  font-size: 16px;
+  color: #111;
+}
+
+.office-address {
+  font-size: 13px;
+  color: #555;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,7 +1,7 @@
-import HtmlBodyPage from '@/components/HtmlBodyPage';
-import { html, bodyClass } from '@/lib/html-bodies/contact';
-import '@/styles/contact-banner.css';
-import '@/styles/contact-inline.css';
+import GlobalOfficeMap from '@/components/GlobalOfficeMap';
+import HeroBanner from '@/components/HeroBanner';
+import EnquiryForm from '@/components/EnquiryForm';
+import '@/components/GlobalOfficeMap.css';
 
 export const metadata = {
   title: "Contact Us | Inchbrick Realty",
@@ -10,10 +10,11 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <HtmlBodyPage
-      html={html}
-      bodyClass={bodyClass}
-      scripts={["/js/contact.js"]}
-    />
+    <>
+      <HeroBanner />
+      <GlobalOfficeMap />
+      <EnquiryForm />
+      {/* Add your contact form component here if needed */}
+    </>
   );
 }

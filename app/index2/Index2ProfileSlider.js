@@ -1,96 +1,100 @@
 'use client';
 
-import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
-
-function getVisibleCount() {
-  if (typeof window === 'undefined') return 4;
-  if (window.matchMedia('(max-width: 640px)').matches) return 2;
-  if (window.matchMedia('(max-width: 1100px)').matches) return 3;
-  return 4;
-}
+import { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { getAuthSession } from '@/lib/inchbrick-auth';
+import { isPublicRoute } from '@/components/AuthGuard';
+import Index2LoginModal from './Index2LoginModal';
 
 export default function Index2ProfileSlider({ profiles }) {
-  const [visible, setVisible] = useState(4);
-  const [index, setIndex] = useState(0);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [loginProfile, setLoginProfile] = useState(null);
 
   useEffect(() => {
-    const update = () => {
-      setVisible(getVisibleCount());
-    };
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
+    const redirectTarget = searchParams?.get('redirect');
+    if (redirectTarget && !getAuthSession()) {
+      setLoginProfile({
+        id: 'explore-login',
+        title: 'Sign in to Continue',
+        description: 'Please sign in with your email and phone number to explore this page.',
+        href: redirectTarget,
+      });
+    }
+  }, [searchParams]);
 
-  useEffect(() => {
-    setIndex((current) => {
-      const max = Math.max(0, profiles.length - visible);
-      return Math.min(current, max);
-    });
-  }, [visible, profiles.length]);
-
-  const maxIndex = Math.max(0, profiles.length - visible);
-  const canNext = index < maxIndex;
-  const canBack = index > 0 && !canNext;
-
-  const goNext = useCallback(() => {
-    setIndex((i) => Math.min(maxIndex, i + 1));
-  }, [maxIndex]);
-
-  const goBack = useCallback(() => {
-    setIndex(0);
-  }, []);
-
-  const onNavClick = () => {
-    if (canNext) goNext();
-    else if (canBack) goBack();
+  const onProfileClick = (profile) => {
+    if (getAuthSession() || isPublicRoute(profile.href)) {
+      router.push(profile.href);
+      return;
+    }
+    setLoginProfile(profile);
   };
 
-  const trackStyle = {
-    '--ix2-count': profiles.length,
-    transform: `translateX(-${index * (100 / profiles.length)}%)`,
+  const closeModal = () => {
+    setLoginProfile(null);
+    if (searchParams?.get('redirect')) {
+      router.replace('/');
+    }
+  };
+
+  const onLoggedIn = () => {
+    const href = loginProfile?.href;
+    setLoginProfile(null);
+    if (href) {
+      router.push(href);
+    } else {
+      router.push('/home');
+    }
   };
 
   const sliderStyle = {
     '--ix2-count': profiles.length,
-    '--ix2-visible': visible,
+    '--ix2-visible': profiles.length,
+  };
+
+  const trackStyle = {
+    '--ix2-count': profiles.length,
   };
 
   return (
-    <div className="ix2-slider-row">
-      <div className="ix2-slider" style={sliderStyle}>
-        <div className="ix2-cards-track" style={trackStyle} role="list">
-          {profiles.map((profile) => (
-            <Link
-              key={profile.id}
-              href={profile.href}
-              className="ix2-card"
-              role="listitem"
-              aria-label={`${profile.title}. ${profile.description}`}
-            >
-              <span className="ix2-card-ico" aria-hidden="true">
-                <i className={`fas ${profile.icon}`} />
-              </span>
-              <span className="ix2-card-title">{profile.title}</span>
-              <span className="ix2-card-desc">{profile.description}</span>
-              <span className="ix2-card-go" aria-hidden="true">
-                <i className="fas fa-arrow-right" />
-              </span>
-            </Link>
-          ))}
+    <>
+      <div className="ix2-slider-row">
+        <div className="ix2-slider" style={sliderStyle}>
+          <div className="ix2-cards-track" style={trackStyle} role="list">
+            {profiles.map((profile, i) => (
+              <button
+                key={profile.id}
+                type="button"
+                className={`ix2-card ix2-card--${profile.id}`}
+                role="listitem"
+                style={{
+                  '--ix2-accent': profile.accent,
+                  '--ix2-glow': profile.glow,
+                  '--ix2-stagger': i,
+                }}
+                aria-label={`${profile.title}. ${profile.description}`}
+                onClick={() => onProfileClick(profile)}
+              >
+                <span className="ix2-card-ico" aria-hidden="true">
+                  <span className="ix2-card-ico-ring" />
+                  <span className="ix2-card-ico-core">
+                    <i className={`fas ${profile.icon}`} />
+                  </span>
+                </span>
+                <span className="ix2-card-title">{profile.title}</span>
+                <span className="ix2-card-go" aria-hidden="true">
+                  <i className="fas fa-arrow-right" />
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      <button
-        type="button"
-        className="ix2-slider-nav ix2-slider-nav--next"
-        onClick={onNavClick}
-        disabled={!canNext && !canBack}
-        aria-label={canBack ? 'Show first profiles' : 'Show more profiles'}
-      >
-        <i className={`fas fa-chevron-${canBack ? 'left' : 'right'}`} aria-hidden="true" />
-      </button>
-    </div>
+      {loginProfile ? (
+        <Index2LoginModal profile={loginProfile} onClose={closeModal} onLoggedIn={onLoggedIn} />
+      ) : null}
+    </>
   );
 }

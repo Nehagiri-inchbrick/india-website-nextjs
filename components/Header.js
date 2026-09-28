@@ -4,6 +4,18 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { CURRENCY_META } from '@/lib/currency';
+import { getAuthSession } from '@/lib/inchbrick-auth';
+
+function getUserDisplayName(session) {
+  if (!session) return 'User';
+  if (session.name && session.name.trim()) return session.name.trim();
+  if (session.email && session.email.includes('@')) {
+    const part = session.email.split('@')[0];
+    return part.charAt(0).toUpperCase() + part.slice(1);
+  }
+  if (session.phone) return session.phone;
+  return 'User';
+}
 
 const NAV_ITEMS = [
   {
@@ -159,6 +171,8 @@ export default function Header() {
   const [openNav, setOpenNav] = useState(null);
   const [moreOpen, setMoreOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userSession, setUserSession] = useState(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [currency, setCurrency] = useState('INR');
 
   useEffect(() => {
@@ -193,8 +207,11 @@ export default function Header() {
   useEffect(() => {
     const syncAuth = () => {
       try {
-        setLoggedIn(Boolean(localStorage.getItem('inchbrick-auth')));
+        const session = getAuthSession();
+        setUserSession(session);
+        setLoggedIn(Boolean(session));
       } catch {
+        setUserSession(null);
         setLoggedIn(false);
       }
     };
@@ -208,11 +225,12 @@ export default function Header() {
   }, []);
 
   function handleLogout(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     try {
       localStorage.removeItem('inchbrick-auth');
       window.dispatchEvent(new Event('inchbrick-auth-change'));
     } catch {}
+    setUserMenuOpen(false);
     setMoreOpen(false);
     setMenuOpen(false);
   }
@@ -245,6 +263,7 @@ export default function Header() {
         setMenuOpen(false);
         setOpenNav(null);
         setMoreOpen(false);
+        setUserMenuOpen(false);
       }
     };
     const handleKeyDown = (e) => {
@@ -252,6 +271,7 @@ export default function Header() {
         setMenuOpen(false);
         setOpenNav(null);
         setMoreOpen(false);
+        setUserMenuOpen(false);
       }
     };
     document.addEventListener('click', handleOutsideClick);
@@ -464,17 +484,80 @@ export default function Header() {
               ))}
             </select>
           </label>
-          <div className="header-actions-group">
-            {loggedIn ? (
-              <button type="button" className="header-login-link" onClick={handleLogout}>
-                Logout
+          {loggedIn && userSession && (
+            <div className="header-user-menu-rel">
+              <button
+                type="button"
+                className={`header-user-trigger${userMenuOpen ? ' active' : ''}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setUserMenuOpen((v) => !v);
+                }}
+                aria-expanded={userMenuOpen}
+                aria-label="User profile menu"
+                title={getUserDisplayName(userSession)}
+              >
+                <span className="header-user-avatar">
+                  <i className="fas fa-circle-user" aria-hidden="true" />
+                </span>
+                <svg
+                  className={`header-user-chevron${userMenuOpen ? ' is-open' : ''}`}
+                  width="10"
+                  height="10"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2.5 4.5L6 8L9.5 4.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
-            ) : (
-              <Link href="/auth#login" className="header-login-link">
-                Login
-              </Link>
-            )}
-          </div>
+
+              {userMenuOpen && (
+                <div className="header-user-dropdown">
+                  <div className="header-user-dropdown-header">
+                    <span className="header-user-dropdown-avatar">
+                      <i className="fas fa-circle-user" aria-hidden="true" />
+                    </span>
+                    <div className="header-user-dropdown-info">
+                      <strong className="header-user-dropdown-name">
+                        {getUserDisplayName(userSession)}
+                      </strong>
+                      {userSession.email && (
+                        <span className="header-user-dropdown-email">
+                          {userSession.email}
+                        </span>
+                      )}
+                      {userSession.phone && (
+                        <span className="header-user-dropdown-phone">
+                          {userSession.phone}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="header-user-dropdown-divider" />
+
+                  <button
+                    type="button"
+                    className="header-user-dropdown-logout"
+                    onClick={(e) => {
+                      handleLogout(e);
+                      setUserMenuOpen(false);
+                    }}
+                  >
+                    <i className="fas fa-arrow-right-from-bracket" aria-hidden="true" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
           <Link href="/contact" className="header-cta-btn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -507,13 +590,19 @@ export default function Header() {
           <div className={`header-more-menu${moreOpen ? ' open' : ''}`} id="headerMoreMenu">
             <a href="tel:+919876543210">+91 98765 43210</a>
             <a href="mailto:support@inchbrickrealty.com">support@inchbrickrealty.com</a>
-            {loggedIn ? (
-              <button type="button" onClick={handleLogout}>Logout</button>
-            ) : (
-              <>
-                <Link href="/auth#login">Login</Link>
-                <Link href="/auth#register">Register</Link>
-              </>
+            {loggedIn && userSession && (
+              <div className="header-more-user-block">
+                <div className="header-more-user-info">
+                  <i className="fas fa-circle-user" aria-hidden="true" />
+                  <div>
+                    <strong>{getUserDisplayName(userSession)}</strong>
+                    {userSession.email && <span>{userSession.email}</span>}
+                  </div>
+                </div>
+                <button type="button" onClick={handleLogout} className="header-more-logout-btn">
+                  <i className="fas fa-arrow-right-from-bracket" aria-hidden="true" /> Logout
+                </button>
+              </div>
             )}
             <Link href="/contact#contactForm" className="header-menu-callback">Get Callback</Link>
           </div>

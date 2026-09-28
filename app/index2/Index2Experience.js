@@ -1,12 +1,19 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
-import { EXPLORING_HERO_BG, EXPLORING_PROFILES } from './exploring-data';
+import { EXPLORING_PROFILES } from './exploring-data';
 import Index2ProfileSlider from './Index2ProfileSlider';
 
 export default function Index2Experience() {
   return (
-    <section className="ix2" aria-label="Who is exploring today">
-      <div className="ix2-bg" style={{ backgroundImage: `url('${EXPLORING_HERO_BG}')` }} aria-hidden="true" />
-      <div className="ix2-overlay" aria-hidden="true" />
+    <section className="ix2 ix2--exploring" aria-label="Who is exploring today">
+      <div className="ix2-ambient" aria-hidden="true">
+        <span className="ix2-orb ix2-orb--1" />
+        <span className="ix2-orb ix2-orb--2" />
+        <span className="ix2-orb ix2-orb--3" />
+        <span className="ix2-scanline" />
+      </div>
+      <div className="ix2-grid-glow" aria-hidden="true" />
+      <div className="ix2-overlay ix2-overlay--black" aria-hidden="true" />
       <div className="ix2-grain" aria-hidden="true" />
 
       <Link href="/home" className="ix2-logo" aria-label="Inchbrick Realty Home">
@@ -14,17 +21,24 @@ export default function Index2Experience() {
       </Link>
 
       <div className="ix2-inner">
-        <header className="ix2-head">
-          <p className="ix2-kicker">Choose your experience</p>
-          <h1 className="ix2-title">Who&apos;s exploring today?</h1>
+        <header className="ix2-head ix2-head--animate">
+          <p className="ix2-kicker">
+            <i className="fas fa-compass" aria-hidden="true" />
+            Choose your experience
+          </p>
+          <h1 className="ix2-title">
+            Who&apos;s exploring <span className="ix2-title-accent">today?</span>
+          </h1>
           <p className="ix2-lead">
-            Choose what best describes you and let us help you find the right property for your goals.
+            Pick the path that matches your goals — we&apos;ll tailor projects, insights, and advisor support for you.
           </p>
         </header>
 
-        <Index2ProfileSlider profiles={EXPLORING_PROFILES} />
+        <Suspense fallback={null}>
+          <Index2ProfileSlider profiles={EXPLORING_PROFILES} />
+        </Suspense>
 
-        <Link href="/home" className="ix2-skip" aria-label="Skip to main site">
+        <Link href="/home" className="ix2-skip ix2-skip--animate" aria-label="Skip to main site">
           Skip to site
         </Link>
       </div>

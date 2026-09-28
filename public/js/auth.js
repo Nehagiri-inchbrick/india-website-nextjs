@@ -231,7 +231,9 @@
           localStorage.setItem("inchbrick-auth", JSON.stringify(payload));
           window.dispatchEvent(new Event("inchbrick-auth-change"));
         } catch (_) {}
-        window.location.href = "/";
+        const params = new URLSearchParams(window.location.search);
+        const redirectTo = params.get("redirect");
+        window.location.href = redirectTo ? decodeURIComponent(redirectTo) : "/home";
       }, 1000);
     });
   });
