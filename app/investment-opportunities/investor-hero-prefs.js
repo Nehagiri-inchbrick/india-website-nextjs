@@ -56,7 +56,7 @@ export function readInvHeroPrefs() {
   }
 }
 
-const BUILD_LOCATION_IDS = new Set(['mumbai', 'gurgaon', 'noida', 'bangalore', 'dubai']);
+const BUILD_LOCATION_IDS = new Set(['mumbai', 'gurgaon', 'noida', 'bangalore', 'dubai', 'pune', 'hyderabad']);
 
 const HERO_PROPERTY_TO_BUILD = {
   residential: 'residential',

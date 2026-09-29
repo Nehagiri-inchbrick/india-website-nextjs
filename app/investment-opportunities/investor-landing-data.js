@@ -16,8 +16,7 @@ export const INVESTOR_FEATURED_BANNER = {
   locationLine: 'Gurugram • 3 & 4 BHK',
   exploreHref: '/listings',
   roiHref: '#growth-visualizer',
-  image:
-    'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=2400&q=80',
+  image: '/images/investment-hero-bg.jpg',
 };
 
 export const LANDING_HERO_FEATURES = [
@@ -1067,6 +1066,36 @@ export const BUILD_INVESTMENT_OPPORTUNITIES = [
     rankBoost: 6,
     href: '/listings',
     img: 'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'bi-15',
+    name: 'Lodha Bellagio',
+    city: 'Pune',
+    segment: 'Luxury',
+    price: '₹1.6 Cr onwards',
+    growthPct: 7.2,
+    budgetBands: ['1-3Cr', '3-5Cr'],
+    goals: ['capital-growth', 'second-home'],
+    locations: ['pune'],
+    propertyTypes: ['residential'],
+    rankBoost: 7,
+    href: '/listings',
+    img: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 'bi-16',
+    name: 'Prestige City',
+    city: 'Hyderabad',
+    segment: 'Township',
+    price: '₹85 L onwards',
+    growthPct: 10.5,
+    budgetBands: ['50L-1Cr', '1-3Cr'],
+    goals: ['capital-growth', 'rental-income', 'long-term'],
+    locations: ['hyderabad'],
+    propertyTypes: ['residential'],
+    rankBoost: 8,
+    href: '/listings',
+    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
   },
 ];
 

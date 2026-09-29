@@ -17,7 +17,7 @@ export default function InvestorPageNav() {
     if (!sections.length) return undefined;
 
     const onScroll = () => {
-      const hero = document.querySelector('.inv-land-hero');
+      const hero = document.querySelector('.inv-hero-v3-fullscreen') || document.querySelector('.inv-land-hero');
       const navEl = document.querySelector('.inv-page-nav');
       const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
       const navHeight = navEl?.offsetHeight ?? 0;

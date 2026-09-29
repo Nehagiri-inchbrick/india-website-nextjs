@@ -1,7 +1,7 @@
 import InvestorLeadSection from './InvestorLeadSection';
 import InvestorMotion from './InvestorMotion';
 import InvestorHeroSection from './InvestorHeroSection';
-import InvestorPageNav from './InvestorPageNav';
+import InvestorHeroSearchResults from './InvestorHeroSearchResults';
 import InvestorCityCompareSection from './InvestorCityCompareSection';
 import InvestorPopularAreasSection from './InvestorPopularAreasSection';
 import InvestorMarketGrowthSection from './InvestorMarketGrowthSection';
@@ -9,7 +9,6 @@ import InvestorTopProjectsSection from './InvestorTopProjectsSection';
 import InvestorCompareProjectsSection from './InvestorCompareProjectsSection';
 import InvestorPaymentPlanSection from './InvestorPaymentPlanSection';
 import InvestorTransparentPricingSection from './InvestorTransparentPricingSection';
-import InvestorBuildInvestmentSection from './InvestorBuildInvestmentSection';
 import InvestorGrowthVisualizer from './InvestorGrowthVisualizer';
 import InvestorJourneySection from './InvestorJourneySection';
 import { INVESTOR_PAGE_CHAPTERS } from './investor-page-sections';
@@ -23,9 +22,8 @@ export default function InvestorHub() {
 
       <InvestorHeroSection />
 
-      <InvestorPageNav />
-
       <div className="inv-land-chapter" data-chapter={markets.id}>
+        <InvestorHeroSearchResults />
         <InvestorCityCompareSection />
         <InvestorTransparentPricingSection />
         <InvestorPopularAreasSection />
@@ -38,7 +36,6 @@ export default function InvestorHub() {
       </div>
 
       <div className="inv-land-chapter" data-chapter={discover.id}>
-        <InvestorBuildInvestmentSection />
         <InvestorPaymentPlanSection />
         <InvestorGrowthVisualizer />
       </div>

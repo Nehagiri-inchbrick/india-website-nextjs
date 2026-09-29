@@ -2,104 +2,145 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { POPULAR_AREAS_META, POPULAR_INVESTMENT_AREAS } from './investor-landing-data';
 
-const DEMAND_LABEL = {
-  high: 'High',
-  medium: 'Medium',
-  low: 'Low',
-};
+const TOP_INVESTMENT_AREAS = [
+  {
+    id: 'mumbai-andheri',
+    city: 'Mumbai',
+    area: 'Andheri East',
+    demandTag: 'High Demand',
+    tagType: 'high',
+    rentalYield: '4.3%',
+    appreciation: '+26%',
+    entryPrice: '₹14,500/sq.ft',
+    image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+    href: '/listings?city=mumbai',
+  },
+  {
+    id: 'bengaluru-whitefield',
+    city: 'Bengaluru',
+    area: 'Whitefield',
+    demandTag: 'High Demand',
+    tagType: 'high',
+    rentalYield: '4.8%',
+    appreciation: '+32%',
+    entryPrice: '₹9,500/sq.ft',
+    image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80',
+    href: '/listings?city=bangalore',
+  },
+  {
+    id: 'pune-hinjewadi',
+    city: 'Pune',
+    area: 'Hinjewadi',
+    demandTag: 'High Demand',
+    tagType: 'high',
+    rentalYield: '4.5%',
+    appreciation: '+26%',
+    entryPrice: '₹7,800/sq.ft',
+    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+    href: '/listings?city=pune',
+  },
+  {
+    id: 'delhi-gurugram',
+    city: 'Delhi NCR',
+    area: 'Gurugram',
+    demandTag: 'Growing Demand',
+    tagType: 'growing',
+    rentalYield: '4.1%',
+    appreciation: '+24%',
+    entryPrice: '₹10,500/sq.ft',
+    image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+    href: '/listings?city=gurgaon',
+  },
+];
 
 export default function InvestorPopularAreasSection() {
-  const [cityId, setCityId] = useState(POPULAR_INVESTMENT_AREAS[0]?.id ?? 'gurgaon');
+  const [selectedFilter, setSelectedFilter] = useState('all');
 
-  const activeCity = useMemo(
-    () => POPULAR_INVESTMENT_AREAS.find((c) => c.id === cityId) ?? POPULAR_INVESTMENT_AREAS[0],
-    [cityId]
-  );
+  const filteredAreas = useMemo(() => {
+    if (selectedFilter === 'all') return TOP_INVESTMENT_AREAS;
+    return TOP_INVESTMENT_AREAS.filter(
+      (item) => item.city.toLowerCase().replace(/\s+/g, '') === selectedFilter
+    );
+  }, [selectedFilter]);
 
   return (
-    <section
-      className="inv-pop-areas inv-creative inv-creative--mesh inv-land-block inv-reveal"
-      id="popular-areas"
-      aria-labelledby="inv-pop-areas-title"
-    >
-      <div className="inv-creative-bg" aria-hidden="true" />
-      <div className="inv-wrap inv-creative-inner">
-        <header className="inv-mock-section-head inv-mock-section-head--center">
-          <p className="inv-mock-eyebrow">Popular investment areas</p>
-          <h2 id="inv-pop-areas-title">{POPULAR_AREAS_META.title}</h2>
-          <p className="inv-pop-areas-lead">{POPULAR_AREAS_META.lead}</p>
-        </header>
+    <section className="inv-top-areas-sec-root" id="popular-areas">
+      <div className="inv-top-areas-container">
+        
+        {/* Header Row */}
+        <div className="inv-top-areas-header">
+          <div className="inv-top-areas-header-left">
+            <div className="inv-top-areas-eyebrow">
+              TOP CITIES &amp; AREAS
+            </div>
+            <h2 className="inv-top-areas-title">Where to invest inside top cities</h2>
+            <p className="inv-top-areas-subtitle">
+              Explore the best-performing areas with strong rental demand and long-term growth potential.
+            </p>
+          </div>
 
-        <div className="inv-pop-areas-tabs" role="tablist" aria-label="Select city">
-          {POPULAR_INVESTMENT_AREAS.map((city) => (
-            <button
-              key={city.id}
-              type="button"
-              role="tab"
-              id={`inv-pop-tab-${city.id}`}
-              aria-selected={city.id === cityId}
-              aria-controls="inv-pop-areas-panel"
-              className={`inv-pop-areas-tab${city.id === cityId ? ' is-active' : ''}`}
-              onClick={() => setCityId(city.id)}
-            >
-              {city.name}
-            </button>
+          <div className="inv-top-areas-header-right">
+            <Link href="/listings" className="inv-top-areas-explore-link">
+              Explore All Areas &rarr;
+            </Link>
+          </div>
+        </div>
+
+        {/* 4 Area Cards Grid */}
+        <div className="inv-top-areas-grid">
+          {filteredAreas.map((card) => (
+            <article key={card.id} className="inv-area-card">
+              <div className="inv-area-card-media">
+                <img src={card.image} alt={`${card.city} - ${card.area}`} className="inv-area-card-img" />
+                <span className="inv-area-img-overlay-tag">
+                  {card.demandTag}
+                </span>
+              </div>
+
+              <div className="inv-area-card-body">
+                {/* Title & Tag Row */}
+                <div className="inv-area-card-head-row">
+                  <div className="inv-area-card-titles">
+                    <h3 className="inv-area-city-name">{card.city}</h3>
+                    <span className="inv-area-sub-name">{card.area}</span>
+                  </div>
+
+                  <span className={`inv-area-demand-pill inv-area-demand-pill--${card.tagType}`}>
+                    <span className="inv-demand-dot" />
+                    {card.demandTag}
+                  </span>
+                </div>
+
+                {/* Metrics Row */}
+                <div className="inv-area-card-metrics-row">
+                  <div className="inv-area-metric">
+                    <span className="inv-area-metric-lbl">Rental Yield</span>
+                    <strong className="inv-area-metric-val">{card.rentalYield}</strong>
+                  </div>
+
+                  <div className="inv-area-metric">
+                    <span className="inv-area-metric-lbl">Appreciation</span>
+                    <strong className="inv-area-metric-val inv-area-metric-val--green">
+                      {card.appreciation}
+                    </strong>
+                  </div>
+
+                  <Link href={card.href} className="inv-area-action-circle" title={`Explore ${card.area}`}>
+                    &rarr;
+                  </Link>
+                </div>
+
+                {/* Bottom Entry Price */}
+                <div className="inv-area-card-entry-row">
+                  <span className="inv-area-entry-lbl">Entry Price</span>
+                  <strong className="inv-area-entry-val">{card.entryPrice}</strong>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
 
-        <div
-          className="inv-pop-areas-panel"
-          id="inv-pop-areas-panel"
-          role="tabpanel"
-          aria-labelledby={`inv-pop-tab-${activeCity.id}`}
-        >
-          <ul className="inv-pop-areas-grid">
-            {activeCity.areas.map((area) => (
-              <li key={area.id}>
-                <article className="inv-pop-area-card">
-                  <h3>{area.name}</h3>
-                  <dl className="inv-pop-area-stats">
-                    <div>
-                      <dt>Price Growth</dt>
-                      <dd>
-                        <span className="inv-pop-area-up" aria-hidden="true">
-                          ↑
-                        </span>{' '}
-                        {area.priceGrowthPct}%
-                      </dd>
-                    </div>
-                    <div>
-                      <dt>Demand</dt>
-                      <dd>
-                        <span className={`inv-pop-area-demand inv-pop-area-demand--${area.demand}`}>
-                          {DEMAND_LABEL[area.demand]}
-                        </span>
-                      </dd>
-                    </div>
-                    <div>
-                      <dt>Projects</dt>
-                      <dd>{area.projects}</dd>
-                    </div>
-                    <div>
-                      <dt>Avg. Price</dt>
-                      <dd>{area.avgPriceSqft}/sq.ft.</dd>
-                    </div>
-                  </dl>
-                  <Link href={area.href} className="inv-pop-area-cta">
-                    Explore Area
-                    <i className="fas fa-arrow-right" aria-hidden="true" />
-                  </Link>
-                </article>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <p className="inv-pop-areas-source">
-          <strong>Period:</strong> {POPULAR_AREAS_META.period} · <strong>Source:</strong> {POPULAR_AREAS_META.source}
-        </p>
       </div>
     </section>
   );

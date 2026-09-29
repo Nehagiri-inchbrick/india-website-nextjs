@@ -258,9 +258,8 @@ export default function InvestorCompareProjectsSection() {
             {slotProjects.map((project, index) => (
               <div
                 key={SLOT_LABELS[index]}
-                className={`inv-proj-compare-col inv-proj-compare-col--${SLOT_MODIFIERS[index]}${
-                  project ? ' is-filled' : ' is-empty'
-                }`}
+                className={`inv-proj-compare-col inv-proj-compare-col--${SLOT_MODIFIERS[index]}${project ? ' is-filled' : ' is-empty'
+                  }`}
               >
                 {project ? (
                   <CompareFilledColumn
