@@ -1074,64 +1074,897 @@ body.nri-page .html-body-page {
   line-height: 1.4;
 }
 
-.nri-market-pulse-body {
-  max-width: 52rem;
+/* ── Vertical City Growth Bar Chart (Matches Reference Design) ── */
+/* =========================================================
+   NRI CITY GROWTH — PREMIUM INVESTMENT BAR CHART
+   ========================================================= */
+
+/* =========================================================
+   NRI CITY GROWTH — PREMIUM INVESTMENT DASHBOARD
+   ========================================================= */
+
+.nri-vchart-card {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
+
+  overflow: hidden;
 }
 
-.nri-market-pulse-lead {
-  margin: 0 0 1.25rem;
-  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-  line-height: 1.75;
-  color: var(--nri-muted);
-  text-align: center;
+.nri-vchart-bar::first-child{
+ background: linear-gradient(#d33434 0%, #9c1414 38%, #831c1c 100%) !important ;
 }
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-.nri-market-pulse-lead strong {
-  color: var(--nri-navy);
+.nri-vchart-card::before {
+  content: "CITY GROWTH INDEX";
+
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+
+  font-size: 0.58rem;
   font-weight: 800;
-}
+  letter-spacing: 0.16em;
 
-.nri-market-pulse-points {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.65rem;
-}
-
-.nri-market-pulse-points li {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.85rem;
-  align-items: start;
-  padding: 0.85rem 1rem;
-  border-radius: 12px;
-  border-left: 3px solid var(--nri-gold);
-  background: #f8fafc;
-  border: 1px solid var(--nri-border);
-  border-left-width: 3px;
-  border-left-color: var(--nri-gold);
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: #475569;
-}
-
-.nri-market-pulse-points li span {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--nri-gold);
-}
-
-.nri-market-pulse-foot {
-  margin: 1.25rem 0 0;
-  text-align: center;
-  font-size: 0.68rem;
   color: #94a3b8;
-  line-height: 1.5;
 }
 
+
+/* =========================================================
+   BACKGROUND GRID
+   ========================================================= */
+
+.nri-vchart-bg-pattern {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.65;
+
+  background-image:
+    linear-gradient(
+      rgba(15, 35, 57, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(15, 35, 57, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 42px 42px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.65),
+      transparent 90%
+    );
+}
+
+
+/* =========================================================
+   CHART GRID
+   ========================================================= */
+
+.nri-vchart-grid {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  gap: clamp(0.65rem, 2vw, 1.5rem);
+
+  align-items: end;
+
+  min-height: 460px;
+
+  padding:
+    3.5rem
+    clamp(0.25rem, 1vw, 1rem)
+    0;
+}
+
+
+/* =========================================================
+   CITY COLUMN
+   ========================================================= */
+
+.nri-vchart-col {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+  /* height: 100%; */
+
+  text-align: center;
+
+  transition:
+    transform 0.35s cubic-bezier(.22,1,.36,1);
+}
+
+.nri-vchart-col:hover {
+  transform: translateY(-7px);
+  z-index: 5;
+}
+
+
+/* =========================================================
+   VALUE AREA
+   ========================================================= */
+
+.nri-vchart-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+  min-height: 72px;
+
+  margin-bottom: 0.7rem;
+
+  position: relative;
+  z-index: 5;
+}
+
+
+/* =========================================================
+   VALUE BADGE
+   ========================================================= */
+
+.nri-vchart-val {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 72px;
+
+  padding: 0.5rem 0.75rem;
+
+  border-radius: 12px;
+
+  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  font-weight: 900;
+
+  letter-spacing: -0.04em;
+
+  color: #087f5b;
+
+  background: rgba(255,255,255,0.96);
+
+  border: 1px solid rgba(16,185,129,0.18);
+
+  box-shadow:
+    0 8px 22px rgba(15,35,57,0.08),
+    0 0 0 4px rgba(16,185,129,0.035);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.nri-vchart-val::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -6px;
+
+  width: 10px;
+  height: 10px;
+
+  transform: translateX(-50%) rotate(45deg);
+
+  background: #ffffff;
+
+  border-right: 1px solid rgba(16,185,129,0.18);
+  border-bottom: 1px solid rgba(16,185,129,0.18);
+}
+
+.nri-vchart-col:hover .nri-vchart-val {
+  transform: translateY(-4px) scale(1.05);
+
+  box-shadow:
+    0 14px 30px rgba(16,185,129,0.16),
+    0 0 0 5px rgba(16,185,129,0.05);
+}
+
+
+/* GOLD / FEATURED CITY */
+
+.nri-vchart-col--gold .nri-vchart-val {
+  color: #9a671d;
+
+  border-color: rgba(194,154,99,0.32);
+
+  box-shadow:
+    0 8px 22px rgba(194,154,99,0.12),
+    0 0 0 4px rgba(194,154,99,0.04);
+}
+
+
+/* =========================================================
+   TOP PERFORMER
+   ========================================================= */
+
+.nri-vchart-crown-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  margin-bottom: 0.45rem;
+
+  padding: 0.3rem 0.7rem;
+
+  border-radius: 999px;
+
+  background: #fff8e9;
+
+  border: 1px solid rgba(194,154,99,0.35);
+
+  color: #9a671d;
+
+  font-size: 0.55rem;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 6px 16px rgba(194,154,99,0.12);
+
+  animation: nriBadgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes nriBadgeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+
+/* =========================================================
+   BAR AREA
+   ========================================================= */
+
+.nri-vchart-bar-container {
+  position: relative;
+
+  width: min(76px, 76%);
+
+  height: var(--bar-height, 235px);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  margin-bottom: 1.4rem;
+}
+
+
+/* Ground shadow */
+
+.nri-vchart-bar-container::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -8px;
+  left: 50%;
+
+  width: 145%;
+  height: 12px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(15,35,57,0.10);
+
+  filter: blur(7px);
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   PREMIUM BAR
+   ========================================================= */
+
+.nri-vchart-bar {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 16px 16px 7px 7px;
+
+  transform-origin: bottom center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #34d399 0%,
+      #10b981 38%,
+      #087f5b 100%
+    );
+
+  box-shadow:
+    inset 1px 0 rgba(255,255,255,0.35),
+    inset -1px 0 rgba(0,80,60,0.16),
+    0 18px 38px rgba(5,118,83,0.20);
+
+  transform: scaleY(0);
+
+  animation:
+    nriBarGrow
+    1.15s
+    cubic-bezier(.22,1,.36,1)
+    forwards;
+
+  transition:
+    transform 0.4s cubic-bezier(.22,1,.36,1),
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* Featured / highest bar */
+
+.nri-vchart-col--gold .nri-vchart-bar {
+  background:
+    linear-gradient(
+      180deg,
+      #f0cc86 0%,
+      #d2a75e 42%,
+      #a77a38 100%
+    );
+
+  box-shadow:
+    inset 1px 0 rgba(255,255,255,0.45),
+    inset -1px 0 rgba(120,80,20,0.18),
+    0 20px 42px rgba(194,154,99,0.28);
+}
+
+
+/* =========================================================
+   BAR GROWTH
+   ========================================================= */
+
+@keyframes nriBarGrow {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scaleY(1.035);
+  }
+
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   ANIMATION DELAYS
+   ========================================================= */
+
+.nri-vchart-col:nth-child(1) .nri-vchart-bar {
+  animation-delay: .05s;
+}
+
+.nri-vchart-col:nth-child(2) .nri-vchart-bar {
+  animation-delay: .13s;
+}
+
+.nri-vchart-col:nth-child(3) .nri-vchart-bar {
+  animation-delay: .21s;
+}
+
+.nri-vchart-col:nth-child(4) .nri-vchart-bar {
+  animation-delay: .29s;
+}
+
+.nri-vchart-col:nth-child(5) .nri-vchart-bar {
+  animation-delay: .37s;
+}
+
+.nri-vchart-col:nth-child(6) .nri-vchart-bar {
+  animation-delay: .45s;
+}
+
+
+/* =========================================================
+   HOVER BAR
+   ========================================================= */
+
+.nri-vchart-col:hover .nri-vchart-bar {
+  transform:
+    scaleY(1)
+    translateY(-8px)
+    scaleX(1.06);
+
+  filter:
+    brightness(1.06)
+    saturate(1.08);
+
+  box-shadow:
+    0 26px 50px rgba(5,118,83,0.28),
+    inset 1px 0 rgba(255,255,255,0.4);
+}
+
+.nri-vchart-col--gold:hover .nri-vchart-bar {
+  box-shadow:
+    0 26px 52px rgba(194,154,99,0.34),
+    inset 1px 0 rgba(255,255,255,0.45);
+}
+
+
+/* =========================================================
+   BAR HIGHLIGHT
+   ========================================================= */
+
+.nri-vchart-bar::before {
+  content: "";
+
+  position: absolute;
+
+  top: -20%;
+  left: -80%;
+
+  width: 38%;
+  height: 140%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.32),
+      transparent
+    );
+
+  transform: skewX(-18deg);
+
+  animation:
+    nriBarShine
+    4.5s
+    ease-in-out
+    infinite;
+
+  pointer-events: none;
+}
+
+@keyframes nriBarShine {
+  0% {
+    left: -80%;
+  }
+
+  35%,
+  100% {
+    left: 145%;
+  }
+}
+
+
+/* =========================================================
+   SUBTLE BAR LINES
+   ========================================================= */
+
+.nri-vchart-bar::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 34px,
+      rgba(255,255,255,0.055) 35px,
+      transparent 36px
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SVG TREND
+   ========================================================= */
+
+.nri-vchart-bar-trend {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  opacity: 0.55;
+
+  z-index: 2;
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+.nri-vchart-col:hover .nri-vchart-bar-trend {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   CITY INFORMATION
+   ========================================================= */
+
+.nri-vchart-bottom {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+
+  gap: 0.35rem;
+}
+
+
+/* CITY ICON */
+
+.nri-vchart-icon-circle {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 0.25rem;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(15,35,57,0.08);
+
+  color: #087f5b;
+
+  font-size: 0.95rem;
+
+  box-shadow:
+    0 8px 20px rgba(15,35,57,0.08);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.nri-vchart-col:hover .nri-vchart-icon-circle {
+  transform:
+    translateY(-4px)
+    rotate(-3deg);
+
+  background: #f0fdf8;
+
+  box-shadow:
+    0 14px 28px rgba(16,185,129,0.15);
+}
+
+.nri-vchart-col--gold .nri-vchart-icon-circle {
+  color: #a66a18;
+
+  background: #fffaf0;
+
+  border-color: rgba(194,154,99,0.25);
+}
+
+
+/* CITY */
+
+.nri-vchart-city {
+  margin: 0;
+
+  font-family: var(--font-site);
+
+  font-size: clamp(0.82rem, 1.3vw, 1rem);
+
+  font-weight: 850;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.025em;
+
+  color: #0f2339;
+
+  transition:
+    color .25s ease,
+    transform .25s ease;
+}
+
+.nri-vchart-col:hover .nri-vchart-city {
+  color: #087f5b;
+
+  transform: translateY(-2px);
+}
+
+.nri-vchart-col--gold:hover .nri-vchart-city {
+  color: #a66a18;
+}
+
+
+/* CORRIDOR */
+
+.nri-vchart-sub {
+  margin: 0;
+
+  max-width: 145px;
+
+  font-size: 0.65rem;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  color: #718096;
+}
+
+
+/* =========================================================
+   GROWTH / YIELD PILL
+   ========================================================= */
+
+.nri-vchart-yield-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0.4rem;
+
+  padding: 0.3rem 0.7rem;
+
+  border-radius: 999px;
+
+  background: #effaf5;
+
+  border: 1px solid rgba(16,185,129,0.16);
+
+  color: #087f5b;
+
+  font-size: 0.64rem;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.nri-vchart-col:hover .nri-vchart-yield-pill {
+  transform: translateY(-2px);
+
+  background: #e5f8ef;
+
+  box-shadow:
+    0 7px 16px rgba(16,185,129,0.12);
+}
+
+.nri-vchart-col--gold .nri-vchart-yield-pill {
+  background: #fff8ea;
+
+  border-color: rgba(194,154,99,0.25);
+
+  color: #9a671d;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.nri-vchart-footer-rule {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  width: 100%;
+  max-width: 760px;
+
+  margin: 2.25rem auto 0;
+
+  text-align: center;
+}
+
+.nri-vchart-footer-line {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(15,35,57,0.12)
+    );
+}
+
+.nri-vchart-footer-line:last-of-type {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15,35,57,0.12),
+      transparent
+    );
+}
+
+.nri-vchart-footer-text {
+  font-size: 0.63rem;
+
+  color: #94a3b8;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+  .nri-vchart-card {
+    padding: 1.5rem;
+  }
+
+  .nri-vchart-grid {
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 2.5rem 1rem;
+
+    min-height: auto;
+  }
+
+  .nri-vchart-bar-container {
+    width: 70px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .nri-vchart-card {
+    padding: 1.25rem 0.9rem;
+
+    border-radius: 20px;
+  }
+
+  .nri-vchart-card::before {
+    display: none;
+  }
+
+  .nri-vchart-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 2.5rem 0.75rem;
+
+    padding-top: 1.5rem;
+  }
+
+  .nri-vchart-bar-container {
+    width: 62px;
+
+    height: var(--bar-height, 190px);
+
+    margin-bottom: 1.1rem;
+  }
+
+  .nri-vchart-val {
+    min-width: 62px;
+
+    padding: 0.42rem 0.55rem;
+
+    font-size: 0.92rem;
+  }
+
+  .nri-vchart-icon-circle {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+  }
+
+  .nri-vchart-city {
+    font-size: 0.82rem;
+  }
+
+  .nri-vchart-sub {
+    max-width: 120px;
+
+    font-size: 0.6rem;
+  }
+
+  .nri-vchart-yield-pill {
+    font-size: 0.58rem;
+
+    padding: 0.28rem 0.55rem;
+  }
+
+  .nri-vchart-footer-rule {
+    gap: 0.5rem;
+
+    margin-top: 1.75rem;
+  }
+
+  .nri-vchart-footer-text {
+    font-size: 0.56rem;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .nri-vchart-bar,
+  .nri-vchart-crown-pill,
+  .nri-vchart-bar::before {
+    animation: none !important;
+  }
+
+  .nri-vchart-bar {
+    transform: scaleY(1);
+  }
+
+  .nri-vchart-col,
+  .nri-vchart-val,
+  .nri-vchart-icon-circle,
+  .nri-vchart-yield-pill {
+    transition: none !important;
+  }
+}
 /* ── Metro showdown (city compare) ── */
 .nri-metro-arena {
   padding: clamp(3rem, 6vw, 4.25rem) 0;
