@@ -1,6 +1,7 @@
 import InvestorLeadSection from './InvestorLeadSection';
 import InvestorMotion from './InvestorMotion';
 import InvestorHeroSection from './InvestorHeroSection';
+import InvestorPageNav from './InvestorPageNav';
 import InvestorHeroSearchResults from './InvestorHeroSearchResults';
 import InvestorCityCompareSection from './InvestorCityCompareSection';
 import InvestorPopularAreasSection from './InvestorPopularAreasSection';
@@ -21,6 +22,7 @@ export default function InvestorHub() {
       <InvestorMotion />
 
       <InvestorHeroSection />
+      <InvestorPageNav />
 
       <div className="inv-land-chapter" data-chapter={markets.id}>
         <InvestorHeroSearchResults />

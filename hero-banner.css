@@ -42,6 +42,46 @@
   font-family: var(--hero-ui);
 }
 
+.hero-cinema--compact {
+  min-height: 220px;
+  height: clamp(200px, 28vh, 260px);
+  padding: 1.5rem 1.25rem;
+}
+
+.hero-cinema--compact .hero-cinema-center {
+  padding-block: 0;
+}
+
+.hero-cinema--compact .hero-banner-logo {
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.15rem;
+}
+
+.hero-cinema--compact .hero-banner-tagline {
+  font-size: 0.72rem;
+}
+
+.hero-cinema--compact .hero-cinema-title {
+  margin-bottom: 0.4rem;
+  font-size: clamp(1.55rem, 3.2vw, 2.15rem);
+}
+
+.hero-cinema--compact .hero-banner-subtitle {
+  margin-bottom: 0;
+  max-width: 420px;
+  font-size: clamp(0.82rem, 1.3vw, 0.92rem);
+  line-height: 1.45;
+}
+
+.hero-cinema--compact .hero-banner-brand {
+  margin-bottom: 0.45rem;
+}
+
+.hero-cinema--compact .hero-banner-divider {
+  margin-block: 0.35rem;
+}
+
 .hero-cinema-media {
   position: absolute;
   inset: 0;

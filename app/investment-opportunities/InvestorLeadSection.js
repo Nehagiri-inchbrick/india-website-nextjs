@@ -11,7 +11,7 @@ export default function InvestorLeadSection() {
           Tell us your ticket size and goals — we&apos;ll shortlist verified opportunities built around you.
         </p>
         <div className="inv-final-cta-actions">
-          <Link href="#build-investment" className="inv-btn inv-btn-gold inv-btn-shine inv-final-cta-btn">
+          <Link href="/contact#contactForm" className="inv-btn inv-btn-gold inv-btn-shine inv-final-cta-btn">
             Get Personalised Opportunities
             <i className="fas fa-arrow-right" aria-hidden="true" />
           </Link>

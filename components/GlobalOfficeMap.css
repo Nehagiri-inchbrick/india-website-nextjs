@@ -1,97 +1,542 @@
 .office-map-section {
   position: relative;
-  min-height: 800px;
+  padding: 0;
+  color: #0f2339;
+  height: 100%;
+  background: transparent;
+}
+
+.office-map-section--embedded {
+  height: 100%;
+}
+
+.office-reach-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
   background: #fff;
-  padding: 60px 5%;
-  color: #111;
+  border: 1px solid rgba(15, 35, 57, 0.06);
+  box-shadow: 0 18px 48px rgba(15, 35, 57, 0.1);
+  overflow: hidden;
+}
+
+.office-reach-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.25rem 0.85rem;
+}
+
+.office-reach-mark {
+  display: block;
+  width: 28px;
+  height: 3px;
+  border-radius: 999px;
+  background: #c9242b;
+  margin-bottom: 0.5rem;
+}
+
+.office-reach-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c9242b;
+}
+
+.office-reach-head h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #0f2339;
+}
+
+.office-reach-head h2 span {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.office-reach-note {
+  max-width: 220px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 20px rgba(15, 35, 57, 0.05);
+}
+
+.office-reach-note i {
+  color: #c9242b;
+  margin-top: 0.15rem;
+}
+
+.office-reach-note p {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.office-map-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 360px;
+  background: #f7f8fb;
+  overflow: hidden;
 }
 
 .world-map {
   width: 100%;
-  height: 600px;
+  height: 100%;
+  min-height: 360px;
+  display: block;
 }
 
 .country {
-  fill: #f0f0f0;
-  stroke: #bbb;
-  stroke-width: 0.5;
+  fill: #e4e9ef;
+  stroke: #cbd5e1;
+  stroke-width: 0.4;
+  outline: none;
 }
 
 .country.highlight {
-  fill: #e6f2ff; /* subtle highlight */
+  fill: #f0e4d2;
+  stroke: #c29a63;
+  stroke-width: 0.55;
 }
 
-.country-label {
-  fill: #111;
-  font-family: 'Inter', sans-serif;
+.map-place-label {
   pointer-events: none;
-  font-size: 12px;
+}
+
+.map-place-dot {
+  fill: #64748b;
+}
+
+.map-place-text {
+  fill: #475569;
+  font-size: 8px;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 2.5px;
+}
+
+.office-flight-line {
+  opacity: 0.85;
+}
+
+.office-plane-halo {
+  fill: #0f2339;
+}
+
+.office-plane-icon {
+  fill: #fff;
+  font-size: 8px;
 }
 
 .office-marker {
   cursor: pointer;
 }
 
+.marker-glow {
+  fill: rgba(15, 35, 57, 0.16);
+}
+
+.office-marker--gold .marker-glow {
+  fill: rgba(194, 154, 99, 0.22);
+}
+
 .marker-dot {
-  fill: #ef4444; /* red */
+  display: none;
+}
+
+.marker-pin {
+  fill: #0f2339;
   stroke: #fff;
-  stroke-width: 2;
+  stroke-width: 1.4;
 }
 
-.marker-label {
-  fill: #111;
-  font-size: 8px;
+.office-marker--gold .marker-pin {
+  fill: #c29a63;
+}
+
+.marker-pin-core {
+  fill: #fff;
+}
+
+.office-pin-cards {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.office-pin-card {
+  pointer-events: auto;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 152px;
+  padding: 0.35rem;
+  border: 1px solid rgba(15, 35, 57, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 12px 28px rgba(15, 35, 57, 0.14);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.office-pin-card:hover,
+.office-pin-card.is-expanded {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(15, 35, 57, 0.18);
+}
+
+.office-pin-card--dubai {
+  left: 46%;
+  top: 28%;
+}
+
+.office-pin-card--india {
+  left: 58%;
+  top: 22%;
+}
+
+.office-pin-card-media {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.office-pin-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.office-pin-card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0.08rem;
+}
+
+.office-pin-card-body strong {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0f2339;
+  line-height: 1.1;
+}
+
+.office-pin-card-body span {
+  font-size: 0.62rem;
   font-weight: 600;
+  color: #64748b;
 }
 
-/* Card */
+.office-pin-card--navy {
+  border-color: rgba(15, 35, 57, 0.18);
+}
+
+.office-pin-card--gold {
+  border-color: rgba(194, 154, 99, 0.35);
+}
+
+.office-compass {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.85rem;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
 .office-card {
   position: absolute;
-  right: 20px;
-  bottom: 30px;
-  width: 260px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  bottom: 1rem;
+  width: min(280px, calc(100% - 2rem));
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 16px;
+  border: 1px solid rgba(15, 35, 57, 0.1);
+  box-shadow: 0 18px 40px rgba(15, 35, 57, 0.16);
   overflow: hidden;
-  animation: cardIn 0.3s ease;
+  z-index: 6;
+  animation: cardIn 0.28s ease;
+}
+
+.office-card--dubai {
+  left: 1rem;
+}
+
+.office-card--india {
+  right: 1rem;
+  left: auto;
 }
 
 .close-card {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #fff;
-  border: none;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e2e8f0;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  font-size: 1.1rem;
+  line-height: 1;
   cursor: pointer;
+  color: #0f2339;
 }
 
 .office-image img {
   width: 100%;
-  height: 140px;
+  height: 120px;
   object-fit: cover;
+  display: block;
 }
 
 .office-content {
-  padding: 12px;
+  padding: 0.85rem 0.95rem 1rem;
+}
+
+.office-company {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c29a63;
 }
 
 .office-content h3 {
-  margin: 4px 0;
-  font-size: 16px;
-  color: #111;
+  margin: 0.2rem 0 0.3rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f2339;
 }
 
 .office-address {
-  font-size: 13px;
-  color: #555;
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+.office-other {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.office-other-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.office-other-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.office-other-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #0f2339;
+}
+
+.office-other-list em {
+  font-style: normal;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.office-other-list em.is-live {
+  color: #c9242b;
+}
+
+.office-reach-foot {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 1.3fr 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border-top: 1px solid #eef2f7;
+  background: #fff;
+}
+
+.office-reach-foot-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0f2339;
+  line-height: 1.3;
+  padding-right: 0.65rem;
+  border-right: 1px solid #eef2f7;
+}
+
+.office-reach-foot-item i {
+  color: #c29a63;
+  font-size: 0.95rem;
+}
+
+.office-reach-foot-locs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding-right: 0.65rem;
+  border-right: 1px solid #eef2f7;
+}
+
+.office-reach-foot-label {
+  width: 100%;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.office-reach-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #0f2339;
+}
+
+.office-reach-chip--navy i {
+  color: #0f2339;
+}
+
+.office-reach-chip--gold i {
+  color: #c29a63;
+}
+
+.office-reach-foot-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+}
+
+.office-reach-foot-dots span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.office-reach-foot-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+  display: inline-block;
 }
 
 @keyframes cardIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .office-reach-foot {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .office-reach-foot-item,
+  .office-reach-foot-locs {
+    border-right: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .office-reach-head {
+    flex-direction: column;
+  }
+
+  .office-reach-note {
+    max-width: none;
+  }
+
+  .office-map-stage,
+  .world-map {
+    min-height: 340px;
+  }
+
+  .office-pin-card--dubai {
+    left: 0.85rem;
+    top: 1rem;
+  }
+
+  .office-pin-card--india {
+    right: 0.85rem;
+    left: auto;
+    top: 1rem;
+  }
+
+  .office-reach-foot {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .office-pin-card {
+    width: 138px;
+  }
+
+  .office-card {
+    left: 0.65rem !important;
+    right: 0.65rem !important;
+    width: auto;
+  }
 }

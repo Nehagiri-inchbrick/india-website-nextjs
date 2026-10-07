@@ -17,7 +17,7 @@ export const INVESTOR_PAGE_CHAPTERS = [
     id: 'discover',
     index: '03',
     title: 'Plan your move',
-    summary: 'Match opportunities, model payment plans, preview ROI — with upfront pricing.',
+    summary: 'Model payment plans and preview ROI — with upfront pricing.',
   },
   {
     id: 'partner',
@@ -34,7 +34,6 @@ export const INVESTOR_PAGE_NAV = [
   { id: 'market-growth', label: 'Growth', chapter: 'markets' },
   { id: 'top-projects', label: 'Projects', chapter: 'projects' },
   { id: 'compare-projects', label: 'Compare', chapter: 'projects' },
-  { id: 'build-investment', label: 'Match plan', chapter: 'discover' },
   { id: 'payment-plan', label: 'Payments', chapter: 'discover' },
   { id: 'growth-visualizer', label: 'ROI', chapter: 'discover' },
   { id: 'investment-journey', label: 'Journey', chapter: 'partner' },

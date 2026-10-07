@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 const ALL_CITIES = [
   {
@@ -55,6 +55,32 @@ const ALL_CITIES = [
     chartColor: '#818cf8',
     series: [4800, 6000, 7800, 9200, 11000],
   },
+  {
+    id: 'hyderabad',
+    name: 'Hyderabad',
+    tag: 'IT Corridor',
+    tagType: 'growth',
+    price: '₹6,800/sq.ft',
+    priceVal: 6800,
+    yield: '4.6%',
+    growth: '+29%',
+    image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80',
+    chartColor: '#eab308',
+    series: [4200, 5500, 7200, 8800, 10500],
+  },
+  {
+    id: 'chennai',
+    name: 'Chennai',
+    tag: 'Stable Yield',
+    tagType: 'demand',
+    price: '₹7,200/sq.ft',
+    priceVal: 7200,
+    yield: '4.3%',
+    growth: '+22%',
+    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+    chartColor: '#ec4899',
+    series: [4000, 5200, 6800, 8200, 9800],
+  },
 ];
 
 const CHART_YEARS = ['2020', '2021', '2022', '2023', '2024'];
@@ -66,6 +92,14 @@ export default function InvestorCityCompareSection() {
   const [cityFilter, setCityFilter] = useState('all');
   const [hoveredYearIdx, setHoveredYearIdx] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const cardsViewportRef = useRef(null);
+
+  const scrollCards = useCallback((direction) => {
+    const viewport = cardsViewportRef.current;
+    if (!viewport) return;
+    // Scroll by one full page of visible cards (3 on desktop, fewer on smaller screens)
+    viewport.scrollBy({ left: direction * viewport.clientWidth, behavior: 'smooth' });
+  }, []);
 
   // Handle city selection change in the Compare widget
   const handleRemoveCity = (cityId) => {
@@ -152,44 +186,76 @@ export default function InvestorCityCompareSection() {
           {/* Cards & Widget Row */}
           <div className="inv-compare-main-grid">
 
-            {/* Left 4 City Cards */}
-            <div className="inv-compare-cards-row">
-              {ALL_CITIES.map((city) => (
-                <div key={city.id} className="inv-city-card">
-                  <div className="inv-city-card-img-wrap">
-                    <img src={city.image} alt={city.name} className="inv-city-card-img" />
-                    <button type="button" className="inv-city-card-icon-btn" title="View details">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                      </svg>
-                    </button>
-                  </div>
+            {/* City cards slider — 3 visible per row */}
+            <div className="inv-compare-cards-slider">
+              <button
+                type="button"
+                className="inv-compare-cards-nav-btn inv-compare-cards-nav-btn--prev"
+                aria-label="Previous cities"
+                onClick={() => scrollCards(-1)}
+              >
+                <i className="fas fa-chevron-left" aria-hidden="true" />
+              </button>
 
-                  <div className="inv-city-card-content">
-                    <div className="inv-city-card-top">
-                      <h3 className="inv-city-card-name">{city.name}</h3>
-                      <span className={`inv-city-tag inv-city-tag--${city.tagType}`}>
-                        {city.tag}
-                      </span>
-                    </div>
+              <div
+                className="inv-compare-cards-viewport"
+                ref={cardsViewportRef}
+                tabIndex={0}
+              >
+                <div
+                  className="inv-compare-cards-track"
+                  role="list"
+                  aria-label="Top cities to compare"
+                >
+                  {ALL_CITIES.map((city) => (
+                    <div key={city.id} className="inv-compare-card-slide" role="listitem">
+                      <div className="inv-city-card">
+                        <div className="inv-city-card-img-wrap">
+                          <img src={city.image} alt={city.name} className="inv-city-card-img" />
+                          <button type="button" className="inv-city-card-icon-btn" title="View details">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                          </button>
+                        </div>
 
-                    <div className="inv-city-card-metrics">
-                      <div className="inv-city-metric">
-                        <span className="inv-metric-lbl">Avg. Property Price</span>
-                        <strong className="inv-metric-val">{city.price}</strong>
-                      </div>
-                      <div className="inv-city-metric">
-                        <span className="inv-metric-lbl">Rental Yield</span>
-                        <strong className="inv-metric-val">{city.yield}</strong>
-                      </div>
-                      <div className="inv-city-metric">
-                        <span className="inv-metric-lbl">Growth (3Y)</span>
-                        <strong className="inv-metric-val inv-metric-val--growth">{city.growth}</strong>
+                        <div className="inv-city-card-content">
+                          <div className="inv-city-card-top">
+                            <h3 className="inv-city-card-name">{city.name}</h3>
+                            <span className={`inv-city-tag inv-city-tag--${city.tagType}`}>
+                              {city.tag}
+                            </span>
+                          </div>
+
+                          <div className="inv-city-card-metrics">
+                            <div className="inv-city-metric">
+                              <span className="inv-metric-lbl">Avg. Property Price</span>
+                              <strong className="inv-metric-val">{city.price}</strong>
+                            </div>
+                            <div className="inv-city-metric">
+                              <span className="inv-metric-lbl">Rental Yield</span>
+                              <strong className="inv-metric-val">{city.yield}</strong>
+                            </div>
+                            <div className="inv-city-metric">
+                              <span className="inv-metric-lbl">Growth (3Y)</span>
+                              <strong className="inv-metric-val inv-metric-val--growth">{city.growth}</strong>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <button
+                type="button"
+                className="inv-compare-cards-nav-btn inv-compare-cards-nav-btn--next"
+                aria-label="Next cities"
+                onClick={() => scrollCards(1)}
+              >
+                <i className="fas fa-chevron-right" aria-hidden="true" />
+              </button>
             </div>
 
             {/* Right Compare Widget Box */}

@@ -850,4 +850,33 @@
       sectionObs.observe(sec);
     });
   }
+
+  var metroTabs = Array.prototype.slice.call(
+    document.querySelectorAll(".nri-metro-city-tab")
+  );
+  var metroCards = Array.prototype.slice.call(
+    document.querySelectorAll(".nri-metro-card[data-metro-city]")
+  );
+  if (metroTabs.length && metroCards.length) {
+    metroTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var city = tab.getAttribute("data-metro-city");
+        metroTabs.forEach(function (t) {
+          var on = t === tab;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        metroCards.forEach(function (card) {
+          card.classList.toggle(
+            "is-active",
+            card.getAttribute("data-metro-city") === city
+          );
+        });
+        var target = document.getElementById("nri-metro-" + city);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      });
+    });
+  }
 })();

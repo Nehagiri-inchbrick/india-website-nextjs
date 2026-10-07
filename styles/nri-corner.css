@@ -31,7 +31,7 @@ body.nri-page .html-body-page {
   margin: 0 auto;
 }
 
-/* ── Hero: full-banner single project spotlight ── */
+/* ── Hero: DLF Privana spotlight (reference layout) ── */
 .nri-hero--banner {
   position: relative;
   overflow: hidden;
@@ -39,10 +39,12 @@ body.nri-page .html-body-page {
 }
 
 .nri-hero--spotlight {
-  min-height: min(88vh, 720px);
+  position: relative;
+  min-height: min(96vh, 860px);
   display: flex;
   align-items: stretch;
-  color: #fff;
+  color: #0f2339;
+  background: #1c2a40;
 }
 
 .nri-hero-spot-bg {
@@ -55,54 +57,262 @@ body.nri-page .html-body-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
-  transform: scale(1.02);
+  object-position: center 40%;
+  filter: saturate(1.18) contrast(1.08) brightness(1.04);
+  transform: scale(1.03);
 }
 
 .nri-hero-spot-scrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(105deg, rgba(10, 22, 36, 0.94) 0%, rgba(15, 35, 57, 0.82) 42%, rgba(15, 35, 57, 0.45) 68%, rgba(15, 35, 57, 0.25) 100%),
-    linear-gradient(180deg, transparent 55%, rgba(10, 22, 36, 0.85) 100%);
+    linear-gradient(
+      100deg,
+      rgba(255, 248, 238, 0.55) 0%,
+      rgba(255, 248, 238, 0.28) 22%,
+      rgba(255, 248, 238, 0.06) 42%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 48% 42% at 12% 78%,
+      rgba(201, 36, 43, 0.14),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 30%,
+      transparent 62%,
+      rgba(15, 35, 57, 0.22) 100%
+    );
+  pointer-events: none;
 }
 
-.nri-hero-spot-glow {
+.nri-hero-spot-partner {
   position: absolute;
-  left: -8%;
-  top: 20%;
-  width: min(55vw, 520px);
-  height: min(55vw, 520px);
-  background: radial-gradient(circle, rgba(194, 154, 99, 0.22) 0%, transparent 68%);
+  top: 1.55rem;
+  right: max(1.75rem, calc((100% - 1140px) / 2));
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
   pointer-events: none;
+}
+
+.nri-hero-spot-partner-text {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+  color: #fff;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.45);
+  line-height: 1.15;
+}
+
+.nri-hero-spot-flight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #fff;
+  font-size: 0.9rem;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.nri-hero-spot-flight::after {
+  content: "";
+  width: 72px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #c29a63, transparent);
+  transform: rotate(-8deg);
 }
 
 .nri-hero-spot-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(1140px, 92%);
   margin: 0 auto;
-  padding: clamp(5.5rem, 10vw, 7rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  padding: clamp(5rem, 8.5vw, 4.5rem) 0 3.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .nri-hero-spot-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 400px);
-  gap: clamp(1.5rem, 4vw, 2.75rem);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
 }
 
 .nri-hero-spot-copy {
-  max-width: none;
+  max-width: 540px;
+  padding-top: 0.5rem;
+}
+
+.nri-hero-spot-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 1rem;
+  padding: 0.38rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 36, 43, 0.28);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0f2339;
+  box-shadow: 0 8px 22px rgba(15, 35, 57, 0.1);
+}
+
+.nri-hero-spot-kicker-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--nri-red);
+  box-shadow: 0 0 10px rgba(201, 36, 43, 0.65);
+}
+
+.nri-hero-spot-title {
+  margin: 0 0 0.85rem;
+  line-height: 1.06;
+}
+
+.nri-hero-spot-title-line {
+  display: block;
+}
+
+.nri-hero-spot-title-line:first-child {
+  font-size: clamp(0.88rem, 1.7vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f2339;
+  margin-bottom: 0.2rem;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.nri-hero-spot-title-line--name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.7rem, 6.8vw, 4.25rem);
+  font-weight: 700;
+  color: #0f2339;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.35);
+}
+
+.nri-hero-spot-title-line--sub {
+  margin-top: 0.15rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.08rem, 2.3vw, 1.45rem);
+  font-weight: 500;
+  font-style: italic;
+  color: #0f2339;
+}
+
+.nri-hero-spot-lead {
+  margin: 0 0 1.2rem;
+  max-width: 33rem;
+  font-size: clamp(0.9rem, 1.45vw, 0.98rem);
+  line-height: 1.65;
+  color: #1e293b;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.nri-hero-spot-lead strong {
+  color: var(--nri-red);
+  font-weight: 800;
+}
+
+.nri-hero-spot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1.35rem;
+}
+
+.nri-hero--spotlight .nri-btn--primary.nri-btn--light {
+  background: linear-gradient(135deg, #e03a40 0%, var(--nri-red) 55%, var(--nri-red-dark) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(201, 36, 43, 0.38);
+}
+
+.nri-hero--spotlight .nri-btn--primary.nri-btn--light:hover {
+  filter: brightness(1.06);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.nri-hero--spotlight .nri-btn--outline-light {
+  border: 1.5px solid var(--nri-red);
+  color: var(--nri-red);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+}
+
+.nri-hero--spotlight .nri-btn--outline-light:hover {
+  background: var(--nri-red);
+  color: #fff;
+  border-color: var(--nri-red);
+}
+
+.nri-hero-spot-trust {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.35rem;
+  max-width: 36rem;
+  border-radius: 16px;
+  background: rgba(10, 22, 36, 0.62);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 32px rgba(15, 35, 57, 0.22);
+}
+
+.nri-hero-spot-trust li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #fff;
+  min-width: 8.8rem;
+}
+
+.nri-hero-spot-trust i {
+  color: #f87171;
+  font-size: 0.92rem;
+  width: 1.15rem;
+  text-align: center;
+}
+
+.nri-hero-spot-trust strong {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.nri-hero-spot-trust small {
+  display: block;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 0.1rem;
 }
 
 .nri-hero-spot-chart {
-  padding: 1.15rem 1.2rem 1.1rem;
-  border-radius: 16px;
-  background: rgba(10, 22, 36, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+  margin-top: 0.35rem;
+  padding: 1.2rem 1.25rem 1.05rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 22px 50px rgba(15, 35, 57, 0.16);
+  backdrop-filter: blur(16px);
 }
 
 .nri-hero-spot-chart-head {
@@ -110,43 +320,46 @@ body.nri-page .html-body-page {
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.45rem;
 }
 
 .nri-hero-spot-chart-title {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 800;
-  letter-spacing: -0.01em;
-  color: #fff;
+  color: #0f2339;
 }
 
 .nri-hero-spot-chart-sub {
-  margin: 0.2rem 0 0;
-  font-size: 0.72rem;
+  margin: 0.15rem 0 0;
+  font-size: 0.7rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
+  color: #64748b;
 }
 
 .nri-hero-spot-chart-total {
   margin: 0;
-  flex-shrink: 0;
   text-align: right;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.35;
+  color: #94a3b8;
+  line-height: 1.3;
 }
 
 .nri-hero-spot-chart-total span {
   display: block;
-  font-size: 1.35rem;
+  font-size: 1.22rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   text-transform: none;
-  color: #b8f5a8;
+  color: #16a34a;
+}
+
+.nri-hero-spot-chart-total i {
+  font-size: 0.75rem;
+  margin-right: 0.15rem;
 }
 
 .nri-hero-spot-chart-fig {
@@ -160,203 +373,202 @@ body.nri-page .html-body-page {
 }
 
 .nri-hero-spot-chart-line {
-  filter: drop-shadow(0 2px 6px rgba(19, 136, 8, 0.45));
+  filter: drop-shadow(0 2px 6px rgba(194, 154, 99, 0.35));
 }
 
 .nri-hero-spot-chart-dot--last {
-  fill: #b8f5a8;
-  stroke: #fff;
-  stroke-width: 2;
+  fill: #c29a63;
+  stroke: #0f2339;
 }
 
 .nri-hero-spot-chart-legend {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.35rem;
+  gap: 0.3rem;
   list-style: none;
-  margin: 0.65rem 0 0;
-  padding: 0.55rem 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0.45rem 0 0;
+  padding: 0.5rem 0 0;
+  border-top: 1px solid rgba(15, 35, 57, 0.08);
 }
 
 .nri-hero-spot-chart-legend li {
   text-align: center;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: #94a3b8;
 }
 
 .nri-hero-spot-chart-legend strong {
   display: block;
-  margin-top: 0.15rem;
-  font-size: 0.82rem;
+  margin-top: 0.12rem;
+  font-size: 0.8rem;
   font-weight: 800;
-  color: #fff;
+  color: #16a34a;
   letter-spacing: 0;
   text-transform: none;
 }
 
 .nri-hero-spot-chart-note {
-  margin: 0.55rem 0 0;
-  font-size: 0.62rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.6rem;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.38);
+  color: #94a3b8;
   text-align: center;
 }
 
-.nri-hero-spot-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin: 0 0 1.25rem;
-  padding: 0.35rem 0.85rem 0.35rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(8px);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.nri-hero-spot-kicker-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--nri-gold);
-  box-shadow: 0 0 12px rgba(194, 154, 99, 0.85);
-}
-
-.nri-hero-spot-title {
-  margin: 0 0 1.1rem;
-  font-family: var(--font-site);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-}
-
-.nri-hero-spot-title-line {
-  display: block;
-}
-
-.nri-hero-spot-title-line:first-child {
-  font-size: clamp(1rem, 2.2vw, 1.35rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--nri-gold-soft);
-  margin-bottom: 0.35rem;
-}
-
-.nri-hero-spot-title-line--name {
-  font-size: clamp(2.75rem, 7.5vw, 4.5rem);
-  color: #fff;
-  text-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-.nri-hero-spot-title-line--sub {
-  margin-top: 0.35rem;
-  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
-  font-weight: 500;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.72);
-  letter-spacing: 0;
-}
-
-.nri-hero-spot-lead {
-  margin: 0;
-  max-width: 34rem;
-  font-size: clamp(0.92rem, 1.6vw, 1.02rem);
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.nri-hero-spot-lead strong {
-  color: var(--nri-gold-soft);
-  font-weight: 800;
-}
-
-.nri-hero-spot-metrics {
+.nri-hero-spot-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.65rem;
-  margin: 1.65rem 0 1.5rem;
-  padding: 0;
+  gap: 0.8rem;
+  width: min(100%, 760px);
+  margin-top: 0.15rem;
 }
 
-.nri-hero-spot-metric {
-  padding: 0.75rem 0.65rem;
-  border-radius: 12px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
+.nri-hero-spot-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.85rem 0.8rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 12px 28px rgba(15, 35, 57, 0.12);
+  backdrop-filter: blur(12px);
 }
 
-.nri-hero-spot-metric--growth {
-  background: linear-gradient(145deg, rgba(19, 136, 8, 0.35), rgba(255, 255, 255, 0.06));
-  border-color: rgba(19, 136, 8, 0.45);
+.nri-hero-spot-stat-ico {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.85rem;
 }
 
-.nri-hero-spot-metric dt {
-  margin: 0 0 0.25rem;
-  font-size: 0.6rem;
-  font-weight: 700;
+.nri-hero-spot-stat--growth .nri-hero-spot-stat-ico {
+  background: rgba(22, 163, 74, 0.12);
+  color: #16a34a;
+}
+
+.nri-hero-spot-stat--yield .nri-hero-spot-stat-ico {
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+}
+
+.nri-hero-spot-stat--segment .nri-hero-spot-stat-ico {
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+}
+
+.nri-hero-spot-stat--demand .nri-hero-spot-stat-ico {
+  background: rgba(201, 36, 43, 0.12);
+  color: var(--nri-red);
+}
+
+.nri-hero-spot-stat-label {
+  margin: 0;
+  font-size: 0.58rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: #64748b;
 }
 
-.nri-hero-spot-metric dd {
-  margin: 0;
-  font-size: clamp(0.95rem, 2vw, 1.15rem);
+.nri-hero-spot-stat-value {
+  margin: 0.12rem 0 0;
+  font-size: 0.95rem;
   font-weight: 800;
-  color: #fff;
-}
-
-.nri-hero-spot-metric--growth dd {
-  color: #b8f5a8;
-}
-
-.nri-hero-spot-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
-
-.nri-hero-spot-note {
-  margin: 1rem 0 0;
-  font-size: 0.68rem;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.42);
-  max-width: 32rem;
-}
-
-.nri-hero--spotlight .nri-btn--primary.nri-btn--light {
-  background: linear-gradient(135deg, var(--nri-gold) 0%, #a67c3a 100%);
   color: #0f2339;
-  border: none;
-  box-shadow: 0 12px 28px rgba(194, 154, 99, 0.35);
+  line-height: 1.15;
 }
 
-.nri-hero--spotlight .nri-btn--primary.nri-btn--light:hover {
-  filter: brightness(1.06);
-  color: #0a1624;
+.nri-hero-spot-stat-sub {
+  margin: 0.1rem 0 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
 }
 
-.nri-hero--spotlight .nri-btn--outline-light {
-  border: 1px solid rgba(255, 255, 255, 0.35);
+.nri-hero-spot-chat {
+  position: absolute;
+  right: max(1.25rem, calc((100% - 1140px) / 2));
+  bottom: 1.35rem;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.15rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--nri-red) 0%, var(--nri-red-dark) 100%);
   color: #fff;
-  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(201, 36, 43, 0.35);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.nri-hero--spotlight .nri-btn--outline-light:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.55);
+.nri-hero-spot-chat:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  color: #fff;
+}
+
+.nri-hero-spot-chat i {
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .nri-hero-spot-partner {
+    display: none;
+  }
+
+  .nri-hero-spot-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .nri-hero-spot-stats {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nri-hero-spot-chat {
+    position: static;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .nri-hero-spot-inner {
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .nri-hero-spot-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nri-hero-spot-trust {
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .nri-hero-spot-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nri-hero--spotlight .nri-btn--primary.nri-btn--light,
+  .nri-hero--spotlight .nri-btn--outline-light {
+    justify-content: center;
+  }
 }
 
 /* legacy split hero (unused) */
@@ -1074,925 +1286,534 @@ body.nri-page .html-body-page {
   line-height: 1.4;
 }
 
-/* ── Vertical City Growth Bar Chart (Matches Reference Design) ── */
-/* =========================================================
-   NRI CITY GROWTH — PREMIUM INVESTMENT BAR CHART
-   ========================================================= */
-
-/* =========================================================
-   NRI CITY GROWTH — PREMIUM INVESTMENT DASHBOARD
-   ========================================================= */
+/* ── City Growth & Yield Overview — glass pillars + trend line ── */
 
 .nri-vchart-card {
   position: relative;
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
+  padding: 1.4rem 1.2rem 1.35rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f8fb 100%);
+  border: 1px solid rgba(15, 35, 57, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 18px 44px rgba(15, 35, 57, 0.07);
+}
 
+.nri-vchart-decor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nri-vchart-decor--bl {
+  left: -40px;
+  bottom: -50px;
+  width: 220px;
+  height: 160px;
+  background:
+    radial-gradient(ellipse at 30% 70%, rgba(37, 99, 235, 0.18), transparent 60%),
+    radial-gradient(ellipse at 70% 40%, rgba(212, 160, 23, 0.2), transparent 55%);
+  filter: blur(2px);
+}
+
+.nri-vchart-decor--sky {
+  right: 2%;
+  top: 8%;
+  width: 280px;
+  height: 120px;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 100'%3E%3Cpath fill='%230f2339' d='M0 100V62h18V40h14v22h16V28h12v18h10V18h20v30h14V35h18v65H0zm140 0V48h12V22h16v26h10V38h14v20h12V30h18v20h10V55h16v45h-108z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right top;
+}
+
+.nri-vchart-card-head {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem 1.25rem;
+  margin-bottom: 0.85rem;
+  padding: 0 0.2rem;
+}
+
+.nri-vchart-kicker {
+  margin: 0 0 0.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c29a63;
+}
+
+.nri-vchart-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.95rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f2339;
+  line-height: 1.2;
+}
+
+.nri-vchart-title span {
+  color: #b8860b;
+}
+
+.nri-vchart-lead {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.nri-vchart-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  border: 1.5px solid #0f2339;
+  background: #f7f1e6;
+  color: #0f2339;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.nri-vchart-chip i {
+  color: #c29a63;
+}
+
+.nri-vchart-stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 0.2rem;
+  align-items: stretch;
+  min-height: 560px;
+}
+
+.nri-vchart-y-axis {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 3.6rem 0.4rem 11.2rem 0;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #64748b;
+  border-right: 2px solid #0f2339;
+}
+
+.nri-vchart-y-axis::before {
+  content: "";
+  position: absolute;
+  top: 3.25rem;
+  right: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid #0f2339;
+}
+
+.nri-vchart-y-label {
+  position: absolute;
+  left: 0.05rem;
+  top: 45%;
+  transform: rotate(-90deg);
+  transform-origin: left center;
+  white-space: nowrap;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #0f2339;
+}
+
+.nri-vchart-plot {
+  position: relative;
+  min-width: 0;
+  border-bottom: 2px solid #0f2339;
   overflow: hidden;
 }
 
-.nri-vchart-bar::first-child{
- background: linear-gradient(#d33434 0%, #9c1414 38%, #831c1c 100%) !important ;
-}
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.nri-vchart-card::before {
-  content: "CITY GROWTH INDEX";
-
+.nri-vchart-plot::after {
+  content: "";
   position: absolute;
-  top: 1.5rem;
-  right: 1.75rem;
-
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-
-  color: #94a3b8;
+  right: -2px;
+  bottom: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #0f2339;
 }
 
-
-/* =========================================================
-   BACKGROUND GRID
-   ========================================================= */
-
-.nri-vchart-bg-pattern {
+.nri-vchart-hgrid {
   position: absolute;
-  inset: 0;
-
+  left: 0;
+  right: 0;
+  top: 3.6rem;
+  bottom: 11.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   pointer-events: none;
-
-  opacity: 0.65;
-
-  background-image:
-    linear-gradient(
-      rgba(15, 35, 57, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(15, 35, 57, 0.035) 1px,
-      transparent 1px
-    );
-
-  background-size: 42px 42px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.65),
-      transparent 90%
-    );
+  z-index: 1;
 }
 
+.nri-vchart-hgrid span {
+  display: block;
+  width: 100%;
+  border-top: 1px dashed rgba(148, 163, 184, 0.4);
+}
 
-/* =========================================================
-   CHART GRID
-   ========================================================= */
+.nri-vchart-trend {
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  top: 3.2rem;
+  height: 320px;
+  width: 96%;
+  z-index: 5;
+  pointer-events: none;
+  overflow: visible;
+}
 
 .nri-vchart-grid {
   position: relative;
-  z-index: 2;
-
+  z-index: 3;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-
-  gap: clamp(0.65rem, 2vw, 1.5rem);
-
+  gap: clamp(0.4rem, 1.3vw, 1rem);
   align-items: end;
-
-  min-height: 460px;
-
-  padding:
-    3.5rem
-    clamp(0.25rem, 1vw, 1rem)
-    0;
+  min-height: 540px;
+  padding: 0.75rem 0.3rem 0;
 }
-
-
-/* =========================================================
-   CITY COLUMN
-   ========================================================= */
 
 .nri-vchart-col {
   position: relative;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   min-width: 0;
-  /* height: 100%; */
-
   text-align: center;
-
-  transition:
-    transform 0.35s cubic-bezier(.22,1,.36,1);
+  transition: transform 0.3s ease;
 }
 
 .nri-vchart-col:hover {
-  transform: translateY(-7px);
-  z-index: 5;
+  transform: translateY(-5px);
+  z-index: 6;
 }
-
-
-/* =========================================================
-   VALUE AREA
-   ========================================================= */
 
 .nri-vchart-top {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-
   width: 100%;
-  min-height: 72px;
-
-  margin-bottom: 0.7rem;
-
+  min-height: 64px;
+  margin-bottom: 0.4rem;
   position: relative;
-  z-index: 5;
+  z-index: 6;
+  gap: 0.28rem;
 }
 
-
-/* =========================================================
-   VALUE BADGE
-   ========================================================= */
+.nri-vchart-col--gold .nri-vchart-top {
+  min-height: 78px;
+}
 
 .nri-vchart-val {
-  position: relative;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  min-width: 72px;
-
-  padding: 0.5rem 0.75rem;
-
-  border-radius: 12px;
-
-  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
-  font-weight: 900;
-
-  letter-spacing: -0.04em;
-
-  color: #087f5b;
-
-  background: rgba(255,255,255,0.96);
-
-  border: 1px solid rgba(16,185,129,0.18);
-
-  box-shadow:
-    0 8px 22px rgba(15,35,57,0.08),
-    0 0 0 4px rgba(16,185,129,0.035);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  min-width: 54px;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--c, #0f2339);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--c, #0f2339) 35%, transparent);
 }
-
-.nri-vchart-val::after {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  bottom: -6px;
-
-  width: 10px;
-  height: 10px;
-
-  transform: translateX(-50%) rotate(45deg);
-
-  background: #ffffff;
-
-  border-right: 1px solid rgba(16,185,129,0.18);
-  border-bottom: 1px solid rgba(16,185,129,0.18);
-}
-
-.nri-vchart-col:hover .nri-vchart-val {
-  transform: translateY(-4px) scale(1.05);
-
-  box-shadow:
-    0 14px 30px rgba(16,185,129,0.16),
-    0 0 0 5px rgba(16,185,129,0.05);
-}
-
-
-/* GOLD / FEATURED CITY */
-
-.nri-vchart-col--gold .nri-vchart-val {
-  color: #9a671d;
-
-  border-color: rgba(194,154,99,0.32);
-
-  box-shadow:
-    0 8px 22px rgba(194,154,99,0.12),
-    0 0 0 4px rgba(194,154,99,0.04);
-}
-
-
-/* =========================================================
-   TOP PERFORMER
-   ========================================================= */
 
 .nri-vchart-crown-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-
-  margin-bottom: 0.45rem;
-
-  padding: 0.3rem 0.7rem;
-
+  gap: 0.28rem;
+  margin-bottom: 0.2rem;
+  padding: 0.22rem 0.55rem;
   border-radius: 999px;
-
-  background: #fff8e9;
-
-  border: 1px solid rgba(194,154,99,0.35);
-
-  color: #9a671d;
-
-  font-size: 0.55rem;
+  background: linear-gradient(180deg, #f0d48a, #d4af37);
+  border: 1px solid #0f2339;
+  color: #0f2339;
+  font-size: 0.5rem;
   font-weight: 900;
-
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-
-  box-shadow:
-    0 6px 16px rgba(194,154,99,0.12);
-
-  animation: nriBadgeFloat 3s ease-in-out infinite;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
 }
-
-@keyframes nriBadgeFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
-
-/* =========================================================
-   BAR AREA
-   ========================================================= */
 
 .nri-vchart-bar-container {
   position: relative;
-
-  width: min(76px, 76%);
-
-  height: var(--bar-height, 235px);
-
+  width: min(64px, 72%);
+  height: 320px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.15rem;
+  z-index: 3;
 }
 
-
-/* Ground shadow */
-
-.nri-vchart-bar-container::after {
-  content: "";
-
+.nri-vchart-pedestal {
   position: absolute;
-
   bottom: -8px;
   left: 50%;
-
-  width: 145%;
-  height: 12px;
-
+  width: 118%;
+  height: 18px;
   transform: translateX(-50%);
-
   border-radius: 50%;
-
-  background: rgba(15,35,57,0.10);
-
-  filter: blur(7px);
-
-  z-index: -1;
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--c) 55%, transparent), transparent 70%);
+  filter: blur(1px);
+  z-index: 0;
+  pointer-events: none;
 }
-
-
-/* =========================================================
-   PREMIUM BAR
-   ========================================================= */
 
 .nri-vchart-bar {
   position: relative;
-
   width: 100%;
-  height: 100%;
-
+  height: var(--bar-pct, 50%);
+  z-index: 2;
   overflow: hidden;
-
-  border-radius: 16px 16px 7px 7px;
-
+  border-radius: 14px 14px 8px 8px;
+  clip-path: polygon(12% 0, 88% 0, 100% 8%, 100% 100%, 0 100%, 0 8%);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--c2) 75%, #fff) 0%, var(--c) 55%, color-mix(in srgb, var(--c) 70%, #000) 100%);
+  box-shadow:
+    inset 2px 0 8px rgba(255, 255, 255, 0.35),
+    inset -3px 0 10px rgba(0, 0, 0, 0.22),
+    0 14px 28px color-mix(in srgb, var(--c) 28%, transparent);
   transform-origin: bottom center;
-
-  background:
-    linear-gradient(
-      180deg,
-      #34d399 0%,
-      #10b981 38%,
-      #087f5b 100%
-    );
-
-  box-shadow:
-    inset 1px 0 rgba(255,255,255,0.35),
-    inset -1px 0 rgba(0,80,60,0.16),
-    0 18px 38px rgba(5,118,83,0.20);
-
   transform: scaleY(0);
-
-  animation:
-    nriBarGrow
-    1.15s
-    cubic-bezier(.22,1,.36,1)
-    forwards;
-
-  transition:
-    transform 0.4s cubic-bezier(.22,1,.36,1),
-    filter 0.3s ease,
-    box-shadow 0.3s ease;
+  animation: nriBarGrow 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.nri-vchart-skyline {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 78%;
+  opacity: 0.38;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M8 160V95h10V70h8v25h8V55h12v40h7V80h9v25h8V48h11v45h8V90h11v70H8zm0 0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% 100%;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
 
-/* Featured / highest bar */
-
-.nri-vchart-col--gold .nri-vchart-bar {
+.nri-vchart-glass {
+  position: absolute;
+  inset: 0;
   background:
-    linear-gradient(
-      180deg,
-      #f0cc86 0%,
-      #d2a75e 42%,
-      #a77a38 100%
-    );
-
-  box-shadow:
-    inset 1px 0 rgba(255,255,255,0.45),
-    inset -1px 0 rgba(120,80,20,0.18),
-    0 20px 42px rgba(194,154,99,0.28);
+    linear-gradient(105deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.08) 28%, transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 30%);
+  pointer-events: none;
 }
 
-
-/* =========================================================
-   BAR GROWTH
-   ========================================================= */
+.nri-vchart-col:nth-child(1) .nri-vchart-bar { animation-delay: 0.04s; }
+.nri-vchart-col:nth-child(2) .nri-vchart-bar { animation-delay: 0.1s; }
+.nri-vchart-col:nth-child(3) .nri-vchart-bar { animation-delay: 0.16s; }
+.nri-vchart-col:nth-child(4) .nri-vchart-bar { animation-delay: 0.22s; }
+.nri-vchart-col:nth-child(5) .nri-vchart-bar { animation-delay: 0.28s; }
+.nri-vchart-col:nth-child(6) .nri-vchart-bar { animation-delay: 0.34s; }
 
 @keyframes nriBarGrow {
-  0% {
-    transform: scaleY(0);
-    opacity: 0;
-  }
-
-  70% {
-    transform: scaleY(1.035);
-  }
-
-  100% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
+  0% { transform: scaleY(0); opacity: 0.35; }
+  100% { transform: scaleY(1); opacity: 1; }
 }
-
-
-/* =========================================================
-   ANIMATION DELAYS
-   ========================================================= */
-
-.nri-vchart-col:nth-child(1) .nri-vchart-bar {
-  animation-delay: .05s;
-}
-
-.nri-vchart-col:nth-child(2) .nri-vchart-bar {
-  animation-delay: .13s;
-}
-
-.nri-vchart-col:nth-child(3) .nri-vchart-bar {
-  animation-delay: .21s;
-}
-
-.nri-vchart-col:nth-child(4) .nri-vchart-bar {
-  animation-delay: .29s;
-}
-
-.nri-vchart-col:nth-child(5) .nri-vchart-bar {
-  animation-delay: .37s;
-}
-
-.nri-vchart-col:nth-child(6) .nri-vchart-bar {
-  animation-delay: .45s;
-}
-
-
-/* =========================================================
-   HOVER BAR
-   ========================================================= */
 
 .nri-vchart-col:hover .nri-vchart-bar {
-  transform:
-    scaleY(1)
-    translateY(-8px)
-    scaleX(1.06);
-
-  filter:
-    brightness(1.06)
-    saturate(1.08);
-
-  box-shadow:
-    0 26px 50px rgba(5,118,83,0.28),
-    inset 1px 0 rgba(255,255,255,0.4);
+  filter: brightness(1.05) saturate(1.05);
 }
-
-.nri-vchart-col--gold:hover .nri-vchart-bar {
-  box-shadow:
-    0 26px 52px rgba(194,154,99,0.34),
-    inset 1px 0 rgba(255,255,255,0.45);
-}
-
-
-/* =========================================================
-   BAR HIGHLIGHT
-   ========================================================= */
-
-.nri-vchart-bar::before {
-  content: "";
-
-  position: absolute;
-
-  top: -20%;
-  left: -80%;
-
-  width: 38%;
-  height: 140%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.32),
-      transparent
-    );
-
-  transform: skewX(-18deg);
-
-  animation:
-    nriBarShine
-    4.5s
-    ease-in-out
-    infinite;
-
-  pointer-events: none;
-}
-
-@keyframes nriBarShine {
-  0% {
-    left: -80%;
-  }
-
-  35%,
-  100% {
-    left: 145%;
-  }
-}
-
-
-/* =========================================================
-   SUBTLE BAR LINES
-   ========================================================= */
-
-.nri-vchart-bar::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 34px,
-      rgba(255,255,255,0.055) 35px,
-      transparent 36px
-    );
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   SVG TREND
-   ========================================================= */
-
-.nri-vchart-bar-trend {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  pointer-events: none;
-
-  opacity: 0.55;
-
-  z-index: 2;
-
-  transition:
-    opacity .3s ease,
-    transform .3s ease;
-}
-
-.nri-vchart-col:hover .nri-vchart-bar-trend {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-
-/* =========================================================
-   CITY INFORMATION
-   ========================================================= */
 
 .nri-vchart-bottom {
   position: relative;
   z-index: 3;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: 100%;
-
-  gap: 0.35rem;
+  gap: 0.22rem;
+  min-height: 9.8rem;
 }
 
-
-/* CITY ICON */
-
 .nri-vchart-icon-circle {
-  width: 44px;
-  height: 44px;
-
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  margin-bottom: 0.25rem;
-
-  border-radius: 14px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(15,35,57,0.08);
-
-  color: #087f5b;
-
-  font-size: 0.95rem;
-
-  box-shadow:
-    0 8px 20px rgba(15,35,57,0.08);
-
-  transition:
-    transform .3s ease,
-    box-shadow .3s ease;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid color-mix(in srgb, var(--c) 35%, #e2e8f0);
+  color: var(--c);
+  font-size: 0.82rem;
+  box-shadow: 0 4px 12px rgba(15, 35, 57, 0.06);
 }
-
-.nri-vchart-col:hover .nri-vchart-icon-circle {
-  transform:
-    translateY(-4px)
-    rotate(-3deg);
-
-  background: #f0fdf8;
-
-  box-shadow:
-    0 14px 28px rgba(16,185,129,0.15);
-}
-
-.nri-vchart-col--gold .nri-vchart-icon-circle {
-  color: #a66a18;
-
-  background: #fffaf0;
-
-  border-color: rgba(194,154,99,0.25);
-}
-
-
-/* CITY */
 
 .nri-vchart-city {
   margin: 0;
-
-  font-family: var(--font-site);
-
-  font-size: clamp(0.82rem, 1.3vw, 1rem);
-
-  font-weight: 850;
-
-  line-height: 1.2;
-
-  letter-spacing: -0.025em;
-
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
   color: #0f2339;
-
-  transition:
-    color .25s ease,
-    transform .25s ease;
+  line-height: 1.2;
 }
-
-.nri-vchart-col:hover .nri-vchart-city {
-  color: #087f5b;
-
-  transform: translateY(-2px);
-}
-
-.nri-vchart-col--gold:hover .nri-vchart-city {
-  color: #a66a18;
-}
-
-
-/* CORRIDOR */
 
 .nri-vchart-sub {
   margin: 0;
-
-  max-width: 145px;
-
   font-size: 0.65rem;
-
-  font-weight: 600;
-
-  line-height: 1.4;
-
-  color: #718096;
+  line-height: 1.35;
+  color: #64748b;
+  max-width: 9.2rem;
 }
-
-
-/* =========================================================
-   GROWTH / YIELD PILL
-   ========================================================= */
 
 .nri-vchart-yield-pill {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-
-  margin-top: 0.4rem;
-
-  padding: 0.3rem 0.7rem;
-
+  gap: 0.28rem;
+  margin-top: 0.2rem;
+  padding: 0.28rem 0.55rem;
   border-radius: 999px;
-
-  background: #effaf5;
-
-  border: 1px solid rgba(16,185,129,0.16);
-
-  color: #087f5b;
-
+  background: color-mix(in srgb, var(--c) 10%, #fff);
+  border: 1px solid color-mix(in srgb, var(--c) 28%, transparent);
+  color: color-mix(in srgb, var(--c) 85%, #0f2339);
   font-size: 0.64rem;
-  font-weight: 800;
-
-  white-space: nowrap;
-
-  transition:
-    transform .3s ease,
-    background .3s ease,
-    box-shadow .3s ease;
+  font-weight: 700;
 }
-
-.nri-vchart-col:hover .nri-vchart-yield-pill {
-  transform: translateY(-2px);
-
-  background: #e5f8ef;
-
-  box-shadow:
-    0 7px 16px rgba(16,185,129,0.12);
-}
-
-.nri-vchart-col--gold .nri-vchart-yield-pill {
-  background: #fff8ea;
-
-  border-color: rgba(194,154,99,0.25);
-
-  color: #9a671d;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
 
 .nri-vchart-footer-rule {
-  position: relative;
-  z-index: 2;
-
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  gap: 1rem;
-
-  width: 100%;
-  max-width: 760px;
-
-  margin: 2.25rem auto 0;
-
-  text-align: center;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+  padding: 0 0.35rem;
 }
 
 .nri-vchart-footer-line {
   flex: 1;
-
   height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(15,35,57,0.12)
-    );
-}
-
-.nri-vchart-footer-line:last-of-type {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(15,35,57,0.12),
-      transparent
-    );
+  background: linear-gradient(90deg, transparent, rgba(15, 35, 57, 0.12), transparent);
 }
 
 .nri-vchart-footer-text {
-  font-size: 0.63rem;
-
-  color: #94a3b8;
-
+  font-size: 0.66rem;
+  color: #64748b;
+  text-align: center;
   font-weight: 600;
-
-  white-space: nowrap;
+  max-width: 34rem;
 }
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
 
 @media (max-width: 1024px) {
-
-  .nri-vchart-card {
-    padding: 1.5rem;
+  .nri-vchart-stage {
+    grid-template-columns: 1fr;
+    min-height: 0;
   }
 
-  .nri-vchart-grid {
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 2.5rem 1rem;
-
-    min-height: auto;
+  .nri-vchart-y-axis,
+  .nri-vchart-hgrid,
+  .nri-vchart-trend {
+    display: none;
   }
 
-  .nri-vchart-bar-container {
-    width: 70px;
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 640px) {
-
-  .nri-vchart-card {
-    padding: 1.25rem 0.9rem;
-
-    border-radius: 20px;
+  .nri-vchart-plot {
+    border-bottom: none;
   }
 
-  .nri-vchart-card::before {
+  .nri-vchart-plot::after {
     display: none;
   }
 
   .nri-vchart-grid {
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 2.5rem 0.75rem;
-
-    padding-top: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem 0.75rem;
+    min-height: auto;
   }
 
   .nri-vchart-bar-container {
-    width: 62px;
-
-    height: var(--bar-height, 190px);
-
-    margin-bottom: 1.1rem;
-  }
-
-  .nri-vchart-val {
-    min-width: 62px;
-
-    padding: 0.42rem 0.55rem;
-
-    font-size: 0.92rem;
-  }
-
-  .nri-vchart-icon-circle {
-    width: 40px;
-    height: 40px;
-
-    border-radius: 12px;
-  }
-
-  .nri-vchart-city {
-    font-size: 0.82rem;
-  }
-
-  .nri-vchart-sub {
-    max-width: 120px;
-
-    font-size: 0.6rem;
-  }
-
-  .nri-vchart-yield-pill {
-    font-size: 0.58rem;
-
-    padding: 0.28rem 0.55rem;
-  }
-
-  .nri-vchart-footer-rule {
-    gap: 0.5rem;
-
-    margin-top: 1.75rem;
-  }
-
-  .nri-vchart-footer-text {
-    font-size: 0.56rem;
+    height: 210px;
+    width: 54px;
   }
 }
 
+@media (max-width: 720px) {
+  .nri-vchart-card-head {
+    flex-direction: column;
+  }
 
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
+  .nri-vchart-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nri-vchart-bottom {
+    min-height: 8.8rem;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-
-  .nri-vchart-bar,
-  .nri-vchart-crown-pill,
-  .nri-vchart-bar::before {
-    animation: none !important;
-  }
-
   .nri-vchart-bar {
-    transform: scaleY(1);
+    animation: none !important;
+    transform: none;
+    opacity: 1;
   }
 
-  .nri-vchart-col,
-  .nri-vchart-val,
-  .nri-vchart-icon-circle,
-  .nri-vchart-yield-pill {
-    transition: none !important;
+  .nri-vchart-col {
+    transition: none;
   }
 }
+
 /* ── Metro showdown (city compare) ── */
 .nri-metro-arena {
-  padding: clamp(3rem, 6vw, 4.25rem) 0;
+  padding: clamp(3rem, 6vw, 4.75rem) 0;
   background:
     radial-gradient(circle at 100% 0%, rgba(194, 154, 99, 0.12), transparent 45%),
+    radial-gradient(circle at 0% 20%, rgba(201, 36, 43, 0.05), transparent 40%),
     linear-gradient(180deg, #f8f9fb 0%, var(--nri-bg) 100%);
 }
 
 .nri-metro-arena-head {
   text-align: center;
-  max-width: 36rem;
-  margin: 0 auto 2rem;
+  max-width: 40rem;
+  margin: 0 auto 1.25rem;
 }
 
 .nri-metro-arena-eyebrow {
-  margin: 0 0 0.5rem;
-  font-size: 0.68rem;
+  display: inline-flex;
+  margin: 0 0 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 36, 43, 0.22);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.66rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--nri-red);
 }
 
 .nri-metro-arena-head h2 {
   margin: 0;
-  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-size: clamp(1.85rem, 4.2vw, 2.55rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--nri-navy);
 }
 
@@ -2001,156 +1822,443 @@ body.nri-page .html-body-page {
   color: var(--nri-gold);
 }
 
+.nri-metro-arena-head h2 i {
+  margin-left: 0.2rem;
+  font-size: 0.72em;
+  color: var(--nri-gold);
+  vertical-align: middle;
+}
+
 .nri-metro-arena-head p {
-  margin: 0.65rem 0 0;
+  margin: 0.7rem auto 0;
+  max-width: 34rem;
   font-size: 0.92rem;
   line-height: 1.65;
   color: var(--nri-muted);
 }
 
+.nri-metro-city-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 1.65rem;
+  padding: 0.3rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--nri-border);
+  box-shadow: 0 10px 28px rgba(15, 35, 57, 0.06);
+}
+
+.nri-metro-city-tab {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  background: transparent;
+  color: #64748b;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nri-metro-city-tab:hover {
+  color: var(--nri-navy);
+}
+
+.nri-metro-city-tab.is-active {
+  background: var(--nri-navy);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(15, 35, 57, 0.22);
+}
+
 .nri-metro-arena-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.1rem;
   align-items: stretch;
 }
 
-.nri-metro-pillar {
-  position: relative;
-  padding: 1.35rem 1.2rem 1.25rem;
-  border-radius: 20px;
+.nri-metro-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 22px;
   background: #fff;
-  border: 1px solid var(--nri-border);
-  box-shadow: 0 16px 40px rgba(15, 35, 57, 0.07);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(15, 35, 57, 0.08);
+  box-shadow: 0 18px 42px rgba(15, 35, 57, 0.08);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.nri-metro-pillar:hover {
+.nri-metro-card:hover,
+.nri-metro-card.is-active {
   transform: translateY(-4px);
-  box-shadow: 0 22px 48px rgba(15, 35, 57, 0.12);
+  box-shadow: 0 24px 52px rgba(15, 35, 57, 0.14);
 }
 
-.nri-metro-pillar--lead {
+.nri-metro-card--gold.is-active,
+.nri-metro-card--gold:hover {
   border-color: rgba(194, 154, 99, 0.45);
-  background: linear-gradient(165deg, #fff 0%, rgba(242, 214, 162, 0.12) 100%);
 }
 
-.nri-metro-pillar--lead::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto auto 0;
+.nri-metro-card--navy.is-active,
+.nri-metro-card--navy:hover {
+  border-color: rgba(15, 35, 57, 0.28);
+}
+
+.nri-metro-card--red.is-active,
+.nri-metro-card--red:hover {
+  border-color: rgba(201, 36, 43, 0.32);
+}
+
+.nri-metro-card-media {
+  position: relative;
+  height: 168px;
+  overflow: hidden;
+}
+
+.nri-metro-card-img {
   width: 100%;
-  height: 4px;
-  border-radius: 20px 20px 0 0;
-  background: linear-gradient(90deg, var(--nri-gold), var(--nri-red));
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.02);
 }
 
-.nri-metro-rank {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  padding: 0.25rem 0.55rem;
+.nri-metro-card-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(15, 35, 57, 0.15) 0%, rgba(15, 35, 57, 0.55) 55%, rgba(15, 35, 57, 0.82) 100%);
+  pointer-events: none;
+}
+
+.nri-metro-card-crown {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.65rem;
   border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
   font-size: 0.62rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(217, 119, 6, 0.35);
+}
+
+.nri-metro-card-heat {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
   color: var(--nri-navy);
-  background: rgba(15, 35, 57, 0.06);
+  font-size: 0.64rem;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(15, 35, 57, 0.16);
 }
 
-.nri-metro-pillar--lead .nri-metro-rank {
-  background: rgba(194, 154, 99, 0.2);
-  color: #7a5a28;
+.nri-metro-card-heat i {
+  color: var(--nri-gold);
 }
 
-.nri-metro-pillar h3 {
+.nri-metro-card-place {
+  position: absolute;
+  left: 0.95rem;
+  right: 0.95rem;
+  bottom: 0.85rem;
+  z-index: 2;
+  color: #fff;
+}
+
+.nri-metro-card-place h3 {
   margin: 0;
   font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--nri-navy);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
-.nri-metro-tag {
-  margin: 0.25rem 0 1rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--nri-muted);
-}
-
-.nri-metro-growth-top {
+.nri-metro-card-place p {
+  margin: 0.2rem 0 0;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.4rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #94a3b8;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
 }
 
-.nri-metro-growth-top strong {
-  font-size: 1rem;
-  color: #15803d;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.nri-metro-growth-track {
-  height: 8px;
-  border-radius: 999px;
-  background: #e2e8f0;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.nri-metro-growth-fill {
-  display: block;
-  height: 100%;
-  width: calc(var(--nri-metro-pct, 50) * 1%);
-  border-radius: inherit;
-  background: linear-gradient(90deg, #15803d, #22c55e, var(--nri-gold));
-}
-
-.nri-metro-facts {
+.nri-metro-card-metrics {
   list-style: none;
   margin: 0;
-  padding: 0.75rem 0 0;
-  border-top: 1px dashed var(--nri-border);
+  padding: 0.95rem 0.95rem 0.35rem;
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.45rem;
 }
 
-.nri-metro-facts li {
+.nri-metro-card-metrics li {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 0.78rem;
-  color: var(--nri-muted);
+  align-items: flex-start;
+  gap: 0.4rem;
+  min-width: 0;
 }
 
-.nri-metro-facts strong {
-  font-size: 0.88rem;
+.nri-metro-card-metrics i {
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  color: var(--metro-accent);
+  background: var(--metro-accent-soft);
+}
+
+.nri-metro-card-metrics strong {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--nri-navy);
+  line-height: 1.2;
+}
+
+.nri-metro-card-metrics span {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #94a3b8;
+  line-height: 1.25;
+}
+
+.nri-metro-trend {
+  padding: 0.55rem 0.95rem 0.85rem;
+  flex: 1;
+}
+
+.nri-metro-trend h4 {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
   font-weight: 800;
   color: var(--nri-navy);
 }
 
+.nri-metro-trend h4 span {
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.nri-metro-trend-chart {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.35rem;
+  align-items: stretch;
+  min-height: 168px;
+}
+
+.nri-metro-trend-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.15rem 0 1.35rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-align: right;
+}
+
+.nri-metro-trend-plot {
+  position: relative;
+  min-width: 0;
+  height: 168px;
+  padding: 0.15rem 0.15rem 0;
+}
+
+.nri-metro-trend-grid {
+  position: absolute;
+  inset: 0.15rem 0 1.35rem;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent calc(25% - 1px),
+    rgba(15, 35, 57, 0.07) calc(25% - 1px),
+    rgba(15, 35, 57, 0.07) 25%
+  );
+  pointer-events: none;
+}
+
+.nri-metro-trend-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0.15rem;
+  height: calc(100% - 1.5rem);
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.nri-metro-trend-bars {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.35rem;
+  height: 100%;
+  align-items: end;
+  padding-bottom: 1.35rem;
+}
+
+.nri-metro-trend-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 0;
+  gap: 0.2rem;
+}
+
+.nri-metro-trend-val {
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: var(--metro-chart);
+  line-height: 1;
+}
+
+.nri-metro-trend-bar {
+  display: block;
+  width: 100%;
+  max-width: 28px;
+  height: var(--h, 40%);
+  border-radius: 6px 6px 3px 3px;
+  background: var(--metro-chart);
+  box-shadow: 0 8px 16px color-mix(in srgb, var(--metro-chart) 28%, transparent);
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  animation: nriBarGrow 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.nri-metro-trend-col:nth-child(1) .nri-metro-trend-bar { animation-delay: 0.04s; }
+.nri-metro-trend-col:nth-child(2) .nri-metro-trend-bar { animation-delay: 0.1s; }
+.nri-metro-trend-col:nth-child(3) .nri-metro-trend-bar { animation-delay: 0.16s; }
+.nri-metro-trend-col:nth-child(4) .nri-metro-trend-bar { animation-delay: 0.22s; }
+.nri-metro-trend-col:nth-child(5) .nri-metro-trend-bar { animation-delay: 0.28s; }
+
+.nri-metro-trend-year {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.nri-metro-card-foot {
+  margin-top: auto;
+  padding: 0.85rem 0.95rem;
+  background: var(--metro-accent-soft);
+  border-top: 1px solid color-mix(in srgb, var(--metro-accent) 12%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.nri-metro-card-foot p {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #334155;
+  font-weight: 600;
+}
+
+.nri-metro-card-foot p i {
+  margin-top: 0.12rem;
+  color: var(--metro-accent);
+}
+
+.nri-metro-card-foot a {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--metro-accent);
+  text-decoration: none;
+}
+
+.nri-metro-card-foot a:hover {
+  text-decoration: underline;
+}
+
 .nri-metro-arena-foot {
   margin: 1.25rem auto 0;
-  max-width: 40rem;
+  max-width: 42rem;
   text-align: center;
   font-size: 0.72rem;
   color: #94a3b8;
   line-height: 1.5;
 }
 
-.nri-metro-arena-cta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.65rem;
-  margin-top: 1.35rem;
+@media (max-width: 1024px) {
+  .nri-metro-arena-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .nri-metro-card-media {
+    height: 180px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nri-metro-city-tabs {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .nri-metro-city-tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.55rem;
+    font-size: 0.75rem;
+  }
+
+  .nri-metro-card-metrics {
+    gap: 0.35rem;
+  }
+
+  .nri-metro-card-metrics strong {
+    font-size: 0.74rem;
+  }
 }
 
 /* â”€â”€ Why cards (legacy) â”€â”€ */
@@ -2222,52 +2330,63 @@ body.nri-page .html-body-page {
 
 /* ── Combined journey + support (compact path) ── */
 .nri-path {
-  padding: clamp(2.75rem, 5vw, 3.75rem) 0;
-  background:
-    radial-gradient(circle at 0% 100%, rgba(201, 36, 43, 0.06), transparent 42%),
-    radial-gradient(circle at 100% 0%, rgba(194, 154, 99, 0.14), transparent 38%),
-    #fff;
+  padding: clamp(3rem, 6vw, 4.25rem) 0;
+  background: #f7f5f2;
   border-block: 1px solid var(--nri-border);
+}
+
+.nri-path > .nri-container {
+  width: min(1180px, 94%);
 }
 
 .nri-path-head {
   text-align: center;
-  max-width: 38rem;
-  margin: 0 auto 1.75rem;
+  max-width: 42rem;
+  margin: 0 auto 2.25rem;
 }
 
 .nri-path-kicker {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  margin: 0 0 0.65rem;
+  gap: 0.85rem;
+  margin: 0 0 0.85rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--nri-red);
+  color: var(--nri-gold);
 }
 
-.nri-path-kicker i {
-  color: var(--nri-gold);
+.nri-path-kicker::before,
+.nri-path-kicker::after {
+  content: "";
+  width: 2.25rem;
+  height: 1px;
+  background: var(--nri-gold);
 }
 
 .nri-path-head h2 {
   margin: 0;
-  font-size: clamp(1.55rem, 3.5vw, 2.1rem);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: clamp(1.65rem, 3.8vw, 2.35rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.2;
   color: var(--nri-navy);
 }
 
 .nri-path-head h2 em {
-  font-style: normal;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
   color: var(--nri-gold);
 }
 
 .nri-path-lead {
-  margin: 0.65rem 0 0;
+  margin: 0.85rem auto 0;
+  max-width: 36rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 0.92rem;
   line-height: 1.65;
   color: var(--nri-muted);
@@ -2275,81 +2394,119 @@ body.nri-page .html-body-page {
 
 .nri-path-steps {
   list-style: none;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.75rem;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0.5rem;
-  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
 }
 
-.nri-path-steps::before {
-  content: "";
-  position: absolute;
-  top: 1.35rem;
-  left: 8%;
-  right: 8%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--nri-gold), rgba(194, 154, 99, 0.25));
-  z-index: 0;
-  pointer-events: none;
+.nri-path-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: var(--nri-gold);
+  font-size: 0.72rem;
+  padding-top: 0.35rem;
 }
 
 .nri-path-step {
   position: relative;
   z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 9.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 0.65rem 0.35rem 0.75rem;
-  border-radius: 14px;
+  padding: 1.35rem 0.55rem 1.15rem;
+  border-radius: 16px;
   background: #fff;
-  border: 1px solid var(--nri-border);
-  box-shadow: 0 8px 22px rgba(15, 35, 57, 0.05);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(194, 154, 99, 0.35);
+  box-shadow: 0 10px 28px rgba(15, 35, 57, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nri-path-step:hover {
   transform: translateY(-3px);
-  border-color: rgba(194, 154, 99, 0.5);
-  box-shadow: 0 12px 28px rgba(15, 35, 57, 0.1);
+  box-shadow: 0 14px 32px rgba(15, 35, 57, 0.1);
 }
 
 .nri-path-step-num {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: 0.45rem;
+  width: 1.85rem;
+  height: 1.85rem;
   border-radius: 50%;
-  font-size: 0.65rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.62rem;
   font-weight: 800;
   color: #fff;
-  background: linear-gradient(145deg, var(--nri-navy), var(--nri-navy-deep));
-  box-shadow: 0 4px 12px rgba(15, 35, 57, 0.25);
+  background: var(--nri-gold);
+  box-shadow: 0 4px 12px rgba(15, 35, 57, 0.18);
 }
 
-.nri-path-step:nth-child(3) .nri-path-step-num,
-.nri-path-step:nth-child(6) .nri-path-step-num {
-  background: linear-gradient(145deg, var(--nri-gold), #a67c3a);
+.nri-path-step--red .nri-path-step-num {
+  background: var(--nri-red);
+}
+
+.nri-path-step-ico {
+  width: 3.35rem;
+  height: 3.35rem;
+  margin: 0.35rem 0 0.7rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3ebe0;
+  color: var(--nri-navy);
+  font-size: 1.15rem;
+}
+
+.nri-path-step--red .nri-path-step-ico {
+  background: #f3ebe0;
+  color: var(--nri-navy);
 }
 
 .nri-path-step strong {
   display: block;
-  font-size: 0.78rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.92rem;
   font-weight: 800;
   color: var(--nri-navy);
   line-height: 1.2;
 }
 
 .nri-path-step-hint {
-  margin-top: 0.2rem;
-  font-size: 0.62rem;
+  margin-top: 0.3rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #94a3b8;
   line-height: 1.3;
+}
+
+.nri-path-step::after {
+  content: "";
+  display: block;
+  width: 1.65rem;
+  height: 3px;
+  margin-top: 0.85rem;
+  border-radius: 999px;
+  background: var(--nri-gold);
+}
+
+.nri-path-step--red::after {
+  background: var(--nri-red);
 }
 
 .nri-path-cta {
@@ -2357,25 +2514,63 @@ body.nri-page .html-body-page {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.75rem;
   margin-top: 0.25rem;
 }
 
-.nri-path-cta .nri-btn--outline-dark {
-  border-color: rgba(15, 35, 57, 0.22);
+.nri-path-cta .nri-btn--primary {
+  background: var(--nri-red);
+  border-color: var(--nri-red);
+  border-radius: 999px;
+  padding-inline: 1.35rem;
 }
 
-@media (max-width: 900px) {
+.nri-path-cta .nri-btn--primary:hover {
+  background: var(--nri-red-dark);
+  border-color: var(--nri-red-dark);
+}
+
+.nri-btn--outline-gold,
+.nri-path-cta .nri-btn--outline-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1.5px solid var(--nri-gold);
+  color: var(--nri-navy);
+  background: #fff;
+  border-radius: 999px;
+  padding-inline: 1.25rem;
+}
+
+.nri-btn--outline-gold i,
+.nri-path-cta .nri-btn--outline-gold i {
+  color: var(--nri-gold);
+}
+
+.nri-btn--outline-gold:hover,
+.nri-path-cta .nri-btn--outline-gold:hover {
+  background: rgba(194, 154, 99, 0.1);
+  border-color: var(--nri-gold);
+  color: var(--nri-navy);
+}
+
+@media (max-width: 1024px) {
   .nri-path-steps {
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem 0.75rem;
   }
 
-  .nri-path-steps::before {
+  .nri-path-sep {
     display: none;
   }
+
+  .nri-path-step {
+    max-width: none;
+  }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .nri-path-steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

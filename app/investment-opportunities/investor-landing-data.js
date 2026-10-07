@@ -16,7 +16,7 @@ export const INVESTOR_FEATURED_BANNER = {
   locationLine: 'Gurugram • 3 & 4 BHK',
   exploreHref: '/listings',
   roiHref: '#growth-visualizer',
-  image: '/images/investment-hero-bg.jpg',
+  image: '/images/investment-hero-banner-bg.jpg',
 };
 
 export const LANDING_HERO_FEATURES = [

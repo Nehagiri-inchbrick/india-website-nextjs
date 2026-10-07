@@ -1,9 +1,9 @@
 import React from 'react';
 import '@/hero-banner.css';
 
-export default function HeroBanner() {
+export default function HeroBanner({ compact = false }) {
   return (
-    <section className="hero-cinema">
+    <section className={`hero-cinema${compact ? ' hero-cinema--compact' : ''}`}>
       <div className="hero-cinema-center">
         <div className="hero-banner-brand">
           <div className="hero-banner-logo">🏢</div>

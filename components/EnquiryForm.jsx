@@ -1,9 +1,15 @@
 "use client";
-import React, { useState } from 'react';
-import '@/components/EnquiryForm.css';
 
-export default function EnquiryForm() {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+import React, { useState } from "react";
+import "@/components/EnquiryForm.css";
+
+export default function EnquiryForm({ embedded = false }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -13,65 +19,111 @@ export default function EnquiryForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Placeholder: In a real app you would send this data to an API.
-    console.log('Enquiry submitted:', formData);
     setSubmitted(true);
-    // Reset form after a short delay
     setTimeout(() => {
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      setFormData({ name: "", email: "", phone: "", message: "" });
       setSubmitted(false);
     }, 3000);
   };
 
   return (
-    <section className="enquiry-section">
-      <h2 className="enquiry-title">Get in Touch</h2>
-      <div className="enquiry-container">
+    <section
+      className={`enquiry-section${embedded ? " enquiry-section--embedded" : ""}`}
+      aria-labelledby="enquiry-title"
+    >
+      <div className="enquiry-panel">
+        <header className="enquiry-head">
+          <span className="enquiry-mark" aria-hidden="true" />
+          <p className="enquiry-eyebrow">Get in touch</p>
+          <h2 id="enquiry-title" className="enquiry-title">
+            Your Global Real Estate <em>Partner</em>
+          </h2>
+          <p className="enquiry-lead">
+            From India to Dubai — and beyond — we connect NRIs to trusted property opportunities
+            with local expertise and global standards.
+          </p>
+        </header>
+
+        <ul className="enquiry-chips" aria-label="Why Inchbrick">
+          <li>
+            <i className="fas fa-globe" aria-hidden="true" /> Global Presence
+          </li>
+          <li>
+            <i className="fas fa-shield-halved" aria-hidden="true" /> Trusted Partner
+          </li>
+          <li>
+            <i className="fas fa-users" aria-hidden="true" /> Expert Support
+          </li>
+        </ul>
+
         <form className="enquiry-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="enquiry-input"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="enquiry-input"
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-            className="enquiry-input"
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            className="enquiry-textarea"
-          />
+          <label className="enquiry-field">
+            <span className="enquiry-ico" aria-hidden="true">
+              <i className="fas fa-user" />
+            </span>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="enquiry-input"
+            />
+          </label>
+          <label className="enquiry-field">
+            <span className="enquiry-ico" aria-hidden="true">
+              <i className="fas fa-envelope" />
+            </span>
+            <input
+              type="email"
+              name="email"
+              placeholder="you@yourmail.com"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="enquiry-input"
+            />
+          </label>
+          <label className="enquiry-field">
+            <span className="enquiry-ico" aria-hidden="true">
+              <i className="fas fa-phone" />
+            </span>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="+91 98765 43210"
+              value={formData.phone}
+              onChange={handleChange}
+              className="enquiry-input"
+            />
+          </label>
+          <label className="enquiry-field enquiry-field--area">
+            <span className="enquiry-ico" aria-hidden="true">
+              <i className="fas fa-comment-dots" />
+            </span>
+            <textarea
+              name="message"
+              placeholder="Tell us what you're looking for..."
+              value={formData.message}
+              onChange={handleChange}
+              required
+              className="enquiry-textarea"
+            />
+          </label>
           <button type="submit" className="enquiry-submit" disabled={submitted}>
-            {submitted ? 'Sent!' : 'Send Enquiry'}
+            {submitted ? "Sent — thank you!" : "Send Enquiry"}
+            {!submitted && <i className="fas fa-arrow-right" aria-hidden="true" />}
           </button>
         </form>
-        <div className="contact-details">
-          <h3>Our Offices</h3>
-          <p><strong>India:</strong> New Delhi, India</p>
-          <p><strong>Dubai:</strong> Dubai, United Arab Emirates</p>
-          <p><strong>Phone:</strong> +91 00000 00000 | +971 000 000 000</p>
-          <p><strong>Email:</strong> info@inchbrick.com</p>
+
+        <div className="enquiry-foot">
+          <a href="tel:+919876543210">
+            <i className="fas fa-phone" aria-hidden="true" /> +91 98765 43210
+          </a>
+          <a href="mailto:info@inchbrick.com">
+            <i className="fas fa-envelope" aria-hidden="true" /> info@inchbrick.com
+          </a>
         </div>
       </div>
     </section>

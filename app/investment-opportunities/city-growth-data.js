@@ -10,7 +10,7 @@ export const POPULAR_CITIES_GROWTH = [
     rentalYieldPct: 5.4,
     activeProjectsCount: 24,
     description: 'Premier financial & technology corridor with massive infrastructure upgrades like Dwarka Expressway & SPR.',
-    sparkline: [100, 114, 128, 145, 162],
+    sparkline: [100, 122, 112, 138, 128, 162],
     growthTimeline: [
       { year: '2021', avgPrice: 8200, growth: 5.2 },
       { year: '2022', avgPrice: 9350, growth: 14.0 },
@@ -108,7 +108,7 @@ export const POPULAR_CITIES_GROWTH = [
     rentalYieldPct: 3.8,
     activeProjectsCount: 32,
     description: 'India\'s financial capital seeing strong appreciation in Worli, BKC, Thane, and Navi Mumbai corridors.',
-    sparkline: [100, 108, 119, 128, 138],
+    sparkline: [100, 114, 106, 124, 116, 138],
     growthTimeline: [
       { year: '2021', avgPrice: 17700, growth: 4.1 },
       { year: '2022', avgPrice: 19100, growth: 7.9 },
@@ -206,7 +206,7 @@ export const POPULAR_CITIES_GROWTH = [
     rentalYieldPct: 6.2,
     activeProjectsCount: 28,
     description: 'High IT employee rental demand driving double-digit appreciation across Whitefield, Sarjapur, and North Bengaluru.',
-    sparkline: [100, 111, 124, 134, 144],
+    sparkline: [100, 118, 110, 130, 122, 144],
     growthTimeline: [
       { year: '2021', avgPrice: 6800, growth: 6.0 },
       { year: '2022', avgPrice: 7600, growth: 11.7 },
@@ -304,7 +304,7 @@ export const POPULAR_CITIES_GROWTH = [
     rentalYieldPct: 5.1,
     activeProjectsCount: 22,
     description: 'Rapid commercial expansion in Gachibowli, Tellapur & Kokapet making it a powerhouse for capital growth.',
-    sparkline: [100, 112, 127, 139, 151],
+    sparkline: [100, 120, 112, 136, 126, 151],
     growthTimeline: [
       { year: '2021', avgPrice: 5560, growth: 8.2 },
       { year: '2022', avgPrice: 6300, growth: 13.3 },
@@ -402,7 +402,7 @@ export const POPULAR_CITIES_GROWTH = [
     rentalYieldPct: 5.6,
     activeProjectsCount: 26,
     description: 'Jewar International Airport & Film City catalyst creating highest land appreciation in North India.',
-    sparkline: [100, 114, 129, 138, 148],
+    sparkline: [100, 121, 113, 134, 125, 148],
     growthTimeline: [
       { year: '2021', avgPrice: 5310, growth: 7.2 },
       { year: '2022', avgPrice: 6050, growth: 13.9 },
@@ -500,7 +500,7 @@ export const POPULAR_CITIES_GROWTH = [
     rentalYieldPct: 5.5,
     activeProjectsCount: 20,
     description: 'Stable IT & manufacturing hub with growing demand in Hinjewadi, Kharadi, and Baner.',
-    sparkline: [100, 106, 114, 125, 135],
+    sparkline: [100, 112, 104, 122, 114, 135],
     growthTimeline: [
       { year: '2021', avgPrice: 5990, growth: 3.5 },
       { year: '2022', avgPrice: 6350, growth: 6.0 },
