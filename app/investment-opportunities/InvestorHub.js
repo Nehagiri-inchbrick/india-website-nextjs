@@ -3,10 +3,11 @@ import InvestorMotion from './InvestorMotion';
 import InvestorHeroSection from './InvestorHeroSection';
 import InvestorPageNav from './InvestorPageNav';
 import InvestorHeroSearchResults from './InvestorHeroSearchResults';
-import InvestorCityCompareSection from './InvestorCityCompareSection';
+import InvestorCityGrowthShowcaseSection from './InvestorCityGrowthShowcaseSection';
 import InvestorPopularAreasSection from './InvestorPopularAreasSection';
 import InvestorMarketGrowthSection from './InvestorMarketGrowthSection';
-import InvestorTopProjectsSection from './InvestorTopProjectsSection';
+import InvestorTopProductsSection from './InvestorTopProductsSection';
+import InvestorPicksSection from './InvestorPicksSection';
 import InvestorCompareProjectsSection from './InvestorCompareProjectsSection';
 import InvestorPaymentPlanSection from './InvestorPaymentPlanSection';
 import InvestorTransparentPricingSection from './InvestorTransparentPricingSection';
@@ -22,18 +23,23 @@ export default function InvestorHub() {
       <InvestorMotion />
 
       <InvestorHeroSection />
+
+      <div className="inv-post-hero" aria-label="City growth, products, and investor picks">
+        <InvestorCityGrowthShowcaseSection />
+        <InvestorTopProductsSection />
+        <InvestorPicksSection />
+      </div>
+
       <InvestorPageNav />
 
       <div className="inv-land-chapter" data-chapter={markets.id}>
         <InvestorHeroSearchResults />
-        <InvestorCityCompareSection />
         <InvestorTransparentPricingSection />
         <InvestorPopularAreasSection />
         <InvestorMarketGrowthSection />
       </div>
 
       <div className="inv-land-chapter inv-land-chapter--soft" data-chapter={projects.id}>
-        <InvestorTopProjectsSection />
         <InvestorCompareProjectsSection />
       </div>
 

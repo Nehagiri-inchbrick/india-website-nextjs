@@ -11,7 +11,7 @@ export const INVESTOR_PAGE_CHAPTERS = [
     id: 'projects',
     index: '02',
     title: 'Pick & compare projects',
-    summary: 'See what is selling fast, explore the top 10, then compare side by side.',
+    summary: 'Top products and investors’ picks — then compare projects side by side.',
   },
   {
     id: 'discover',
@@ -28,11 +28,11 @@ export const INVESTOR_PAGE_CHAPTERS = [
 ];
 
 export const INVESTOR_PAGE_NAV = [
-  { id: 'city-compare', label: 'Compare cities', chapter: 'markets' },
+  { id: 'top-products', label: 'Top products', chapter: 'projects' },
+  { id: 'investors-pick', label: "Investors' pick", chapter: 'projects' },
   { id: 'transparent-pricing', label: 'Clear pricing', chapter: 'markets' },
   { id: 'popular-areas', label: 'Corridors', chapter: 'markets' },
   { id: 'market-growth', label: 'Growth', chapter: 'markets' },
-  { id: 'top-projects', label: 'Projects', chapter: 'projects' },
   { id: 'compare-projects', label: 'Compare', chapter: 'projects' },
   { id: 'payment-plan', label: 'Payments', chapter: 'discover' },
   { id: 'growth-visualizer', label: 'ROI', chapter: 'discover' },

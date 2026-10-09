@@ -43,11 +43,34 @@ body:not(:has(.ix2)) :where(
 /*
  * Override legacy serif in page CSS. Never target Font Awesome icon classes —
  * the old blanket [class] rule beat .fab/.fas and showed empty icons.
+ * Investor display titles keep Playfair / Great Vibes.
  */
-body:not(:has(.ix2)) :where([class]):not(.hero-cinema):not(.hero-cinema *):not(.fa):not(.fas):not(
-    .far
-  ):not(.fal):not(.fat):not(.fad):not(.fab) {
+body:not(:has(.ix2))
+  :where([class]):not(.hero-cinema):not(.hero-cinema *):not(.fa):not(.fas):not(.far):not(.fal):not(
+    .fat
+  ):not(.fad):not(.fab):not(.inv-cgrowth-title):not(.inv-cgrowth-title *):not(.inv-cgrowth-pct):not(
+    .inv-pcmp-title
+  ):not(.inv-pcmp-title *):not(.inv-pcmp-float):not(.inv-growth-title-accent):not(
+    .inv-pps-title span
+  ):not(.inv-growth-board-title span) {
   font-family: inherit !important;
+}
+
+body:not(:has(.ix2)) :where(
+  .inv-cgrowth-title,
+  .inv-cgrowth-title-navy,
+  .inv-cgrowth-title-gold,
+  .inv-cgrowth-pct,
+  .inv-pcmp-title-gold,
+  .inv-pcmp-title span,
+  .inv-pps-title span,
+  .inv-growth-board-title span
+) {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif !important;
+}
+
+body:not(:has(.ix2)) :where(.inv-pcmp-float) {
+  font-family: 'Great Vibes', cursive !important;
 }
 
 /* Font Awesome — must stay after inherit rule; solid vs brands weights differ */

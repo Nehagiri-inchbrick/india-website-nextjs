@@ -591,8 +591,23 @@
     );
   }
 
+  function whatsappHref(prop) {
+    const text = encodeURIComponent(
+      "Hi Inchbrick, I'm interested in " +
+        (prop.name || "this property") +
+        " (" +
+        (prop.price || "") +
+        ") — " +
+        (prop.location || "") +
+        (prop.city ? ", " + prop.city : "") +
+        ". Please share details."
+    );
+    return "https://wa.me/919876543210?text=" + text;
+  }
+
   function renderSidebar(prop) {
     const emi = estimateEmi(prop.priceVal);
+    const waHref = whatsappHref(prop);
     return (
       '<aside class="ld-sidebar">' +
       '<div class="ld-sidebar-card">' +
@@ -623,6 +638,9 @@
       "</div>" +
       '<div class="ld-sidebar-actions">' +
       '<a href="#ld-inquiry" class="ld-btn ld-btn-primary ld-btn-glow"><i class="fas fa-calendar-check"></i> Book Site Visit</a>' +
+      '<a href="' +
+      waHref +
+      '" class="ld-btn ld-btn-whatsapp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>' +
       '<button type="button" class="ld-btn ld-btn-outline ld-btn-block" id="ldSidebarCompare"><i class="fas fa-scale-balanced"></i> Compare property</button>' +
       '<div class="ld-sidebar-action-row">' +
       '<a href="tel:+919876543210" class="ld-btn ld-btn-outline"><i class="fas fa-phone"></i> Call</a>' +
@@ -767,7 +785,9 @@
       esc(prop.price) +
       "</strong></div>" +
       '<a href="tel:+919876543210" class="ld-mobile-bar-btn ld-mobile-bar-call"><i class="fas fa-phone"></i> Call</a>' +
-      '<a href="#ld-compare" class="ld-mobile-bar-btn ld-mobile-bar-compare"><i class="fas fa-scale-balanced"></i> Compare</a>' +
+      '<a href="' +
+      whatsappHref(prop) +
+      '" class="ld-mobile-bar-btn ld-mobile-bar-wa" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>' +
       '<a href="#ld-inquiry" class="ld-mobile-bar-btn ld-mobile-bar-cta"><i class="fas fa-calendar-check"></i> Visit</a>' +
       "</div></div>";
 

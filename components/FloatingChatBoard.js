@@ -46,11 +46,11 @@ const BOT_RESPONSES = {
 };
 
 export default function FloatingChatBoard() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(1);
+  const [unreadCount, setUnreadCount] = useState(0);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {

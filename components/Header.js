@@ -155,6 +155,12 @@ const NAV_ITEMS = [
         icon: 'fa-compass-drafting',
       },
       {
+        label: 'Creative & Digital Agency',
+        href: '/creative-digital-agency',
+        desc: 'Events, digital, SEO & brand growth',
+        icon: 'fa-pen-nib',
+      },
+      {
         label: 'Lifestyle Collections',
         href: '/lifestyle',
         desc: 'Spiritual, luxury, wellness & more',
@@ -243,7 +249,7 @@ export default function Header() {
     if (pathname.startsWith('/nri')) return 'nri';
     if (pathname.startsWith('/blog') || pathname.startsWith('/market')) return 'blog';
     if (pathname.startsWith('/events')) return 'events';
-    if (pathname.startsWith('/contact') || pathname.startsWith('/home-buying') || pathname.startsWith('/home-loan') || pathname.startsWith('/emi') || pathname.startsWith('/compare') || pathname.startsWith('/saved') || pathname.startsWith('/recent-views') || pathname.startsWith('/investment') || pathname.startsWith('/design')) return 'services';
+    if (pathname.startsWith('/contact') || pathname.startsWith('/home-buying') || pathname.startsWith('/home-loan') || pathname.startsWith('/emi') || pathname.startsWith('/compare') || pathname.startsWith('/saved') || pathname.startsWith('/recent-views') || pathname.startsWith('/investment') || pathname.startsWith('/design') || pathname.startsWith('/interior') || pathname.startsWith('/creative-digital') || pathname.startsWith('/lifestyle')) return 'services';
     return '';
   }
 

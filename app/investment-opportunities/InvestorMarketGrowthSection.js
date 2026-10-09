@@ -7,6 +7,7 @@ import {
   MARKET_GROWTH_PERIODS,
   MARKET_GROWTH_SERIES,
   MARKET_GROWTH_TYPES,
+  MARKET_GROWTH_YEARS,
 } from './investor-landing-data';
 
 const CHART = { w: 860, h: 440, pad: { t: 50, r: 60, b: 75, l: 85 } };
@@ -30,26 +31,41 @@ function yToPx(value, pad) {
 export default function InvestorMarketGrowthSection() {
   const [period, setPeriod] = useState('5y');
   const [assetType, setAssetType] = useState('residential');
+  const [selectedYear, setSelectedYear] = useState('all');
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
   const points = useMemo(() => {
     const full = MARKET_GROWTH_SERIES[assetType] ?? MARKET_GROWTH_SERIES.residential;
-    const count = MARKET_GROWTH_PERIOD_SLICE[period] ?? full.length;
-    return full.slice(-count);
-  }, [period, assetType]);
+    let series = full;
+    if (selectedYear !== 'all') {
+      const endIdx = full.findIndex((p) => p.year === selectedYear);
+      series = endIdx >= 0 ? full.slice(0, endIdx + 1) : full;
+    }
+    const count = MARKET_GROWTH_PERIOD_SLICE[period] ?? series.length;
+    return series.slice(-Math.min(count, series.length));
+  }, [period, assetType, selectedYear]);
 
-  // Find the index of the bar with the highest value
   const maxIdx = useMemo(() => {
     if (points.length === 0) return -1;
     let best = 0;
-    points.forEach((p, i) => { if (p.value > points[best].value) best = i; });
+    points.forEach((p, i) => {
+      if (p.value > points[best].value) best = i;
+    });
     return best;
   }, [points]);
 
+  const focusIdx = useMemo(() => {
+    if (selectedYear === 'all') return maxIdx;
+    const idx = points.findIndex((p) => p.year === selectedYear);
+    return idx >= 0 ? idx : maxIdx;
+  }, [points, selectedYear, maxIdx]);
+
   const activeTypeLabel = MARKET_GROWTH_TYPES.find((t) => t.id === assetType)?.label ?? 'Residential';
-  const latestVal = points.length > 0 ? points[points.length - 1].value : 0;
+  const focusPoint = points[focusIdx] ?? points[points.length - 1];
+  const latestVal = focusPoint?.value ?? 0;
   const firstVal = points.length > 0 ? points[0].value : 0;
   const growthChange = (latestVal - firstVal).toFixed(1);
+  const yearLabel = selectedYear === 'all' ? 'Latest' : selectedYear;
 
   const innerW = CHART.w - CHART.pad.l - CHART.pad.r;
   const innerH = CHART.h - CHART.pad.t - CHART.pad.b;
@@ -75,19 +91,55 @@ export default function InvestorMarketGrowthSection() {
 
         {/* Controls Row */}
         <div className="inv-mkt-growth-controls">
-          <div className="inv-mkt-growth-period" role="tablist" aria-label="Time horizon">
-            {MARKET_GROWTH_PERIODS.map((p) => (
+          <div className="inv-mkt-growth-year-wrap">
+            <span className="inv-mkt-growth-year-label" id="inv-mkt-growth-year-label">
+              Year
+            </span>
+            <div
+              className="inv-mkt-growth-years"
+              role="tablist"
+              aria-labelledby="inv-mkt-growth-year-label"
+            >
               <button
-                key={p.id}
                 type="button"
                 role="tab"
-                aria-selected={period === p.id}
-                className={`inv-mkt-growth-tab${period === p.id ? ' is-active' : ''}`}
-                onClick={() => setPeriod(p.id)}
+                aria-selected={selectedYear === 'all'}
+                className={`inv-mkt-growth-year-btn${selectedYear === 'all' ? ' is-active' : ''}`}
+                onClick={() => setSelectedYear('all')}
               >
-                {p.label}
+                All
               </button>
-            ))}
+              {MARKET_GROWTH_YEARS.map((y) => (
+                <button
+                  key={y}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedYear === y}
+                  className={`inv-mkt-growth-year-btn${selectedYear === y ? ' is-active' : ''}`}
+                  onClick={() => setSelectedYear(y)}
+                >
+                  {y}
+                </button>
+              ))}
+            </div>
+            <div className="inv-mkt-growth-period-select">
+              <label htmlFor="inv-mkt-growth-period" className="inv-sr-only">
+                Time horizon
+              </label>
+              <select
+                id="inv-mkt-growth-period"
+                value={period}
+                onChange={(e) => setPeriod(e.target.value)}
+                aria-label="Select time horizon"
+              >
+                {MARKET_GROWTH_PERIODS.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
+              <i className="fas fa-chevron-down" aria-hidden="true" />
+            </div>
           </div>
 
           <div className="inv-mkt-growth-types" role="tablist" aria-label="Property type">
@@ -115,17 +167,18 @@ export default function InvestorMarketGrowthSection() {
               <h3>{MARKET_GROWTH_META.chartTitle}</h3>
               <p>
                 {activeTypeLabel} · {MARKET_GROWTH_META.geography}
+                {selectedYear !== 'all' ? ` · Through ${selectedYear}` : ''}
               </p>
             </div>
             <div className="inv-mkt-growth-stat-pills">
               <div className="inv-mkt-stat-badge">
-                <span className="inv-mkt-stat-label">Current YoY Growth</span>
+                <span className="inv-mkt-stat-label">{yearLabel} YoY Growth</span>
                 <strong className="inv-mkt-stat-val">+{latestVal}%</strong>
               </div>
               <div className="inv-mkt-stat-badge">
                 <span className="inv-mkt-stat-label">Period Gain</span>
                 <strong className="inv-mkt-stat-val inv-mkt-stat-val--gold">
-                  {growthChange >= 0 ? `+${growthChange}%` : `${growthChange}%`}
+                  {Number(growthChange) >= 0 ? `+${growthChange}%` : `${growthChange}%`}
                 </strong>
               </div>
             </div>
@@ -313,14 +366,15 @@ export default function InvestorMarketGrowthSection() {
 
                 const colorScheme = BAR_COLORS[idx % BAR_COLORS.length];
                 const isHovered = hoveredIdx === idx;
-                const isMax = idx === maxIdx;
+                const isMax = idx === focusIdx;
+                const dimOthers = selectedYear !== 'all' && !isMax;
 
                 return (
                   <g
                     key={`bar-group-${p.year}`}
                     onMouseEnter={() => setHoveredIdx(idx)}
                     onMouseLeave={() => setHoveredIdx(null)}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer', opacity: dimOthers ? 0.45 : 1 }}
                   >
                     {/* Pulsing glow ring for the top bar */}
                     {isMax && (

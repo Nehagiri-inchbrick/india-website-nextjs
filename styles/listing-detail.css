@@ -1382,6 +1382,26 @@
   background: rgba(194, 154, 99, 0.06);
 }
 
+.ld-btn-whatsapp,
+.ld-sidebar .ld-btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  border: 1px solid #1ebe57;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.28);
+}
+
+.ld-btn-whatsapp:hover,
+.ld-sidebar .ld-btn-whatsapp:hover {
+  background: #1ebe57;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.36);
+}
+
+.ld-btn-whatsapp i {
+  font-size: 1.05em;
+}
+
 /* Sidebar — News & Articles */
 .ld-sidebar-news {
   margin-top: 1rem;
@@ -1919,6 +1939,17 @@
     background: #f1f5f9;
     color: var(--ld-dark);
     border: 1px solid var(--ld-border);
+  }
+
+  .ld-mobile-bar-wa {
+    background: #25d366;
+    color: #fff;
+    border: 1px solid #1ebe57;
+  }
+
+  .ld-mobile-bar-wa:hover {
+    background: #1ebe57;
+    color: #fff;
   }
 
   .ld-mobile-bar-cta {

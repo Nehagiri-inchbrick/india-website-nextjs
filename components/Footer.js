@@ -122,6 +122,7 @@ export default function Footer() {
                   <Link href="/saved-properties">Saved Properties</Link>
                   <Link href="/recent-views">Recent Views</Link>
                   <Link href="/interior-design">Interior Design</Link>
+                  <Link href="/creative-digital-agency">Creative &amp; Digital Agency</Link>
                   <Link href="/contact">Property Legal Check</Link>
                   <Link href="/contact">Site Visit Booking</Link>
                   <Link href="/nri-corner">NRI Property Services</Link>

@@ -277,6 +277,9 @@ export const MARKET_GROWTH_PERIOD_SLICE = {
   '5y': 5,
 };
 
+/** Calendar years available in MARKET_GROWTH_SERIES (shared across asset types). */
+export const MARKET_GROWTH_YEARS = ['2022', '2023', '2024', '2025', '2026'];
+
 /** Ranked city list — ordered by growthPct (same metric as CITY_MARKET_COMPARE). */
 export const TOP_MARKETS_META = {
   metric: 'weighted residential price CAGR',
@@ -448,10 +451,12 @@ export const TOP_PERFORMING_PROJECTS = [
 export const COMPARE_PROJECTS_DEFAULT = ['dlf-privana', 'eldeco-live-greens', 'brigade-utopia'];
 
 export const COMPARE_PROJECTS_META = {
-  eyebrow: 'Compare projects',
-  title: 'See the Difference. Choose With Confidence.',
-  lead: 'Pick up to three projects — photos and metrics in a side-by-side board.',
-  starredNote: '* Price growth and rental yield based on trailing 18-month project and corridor data (Q4 2024).',
+  eyebrow: 'Property Comparison',
+  titleLine1: 'Compare Properties.',
+  titleLine2: 'Make the Right Choice.',
+  lead: 'Compare price, location, amenities and investment potential — side by side — so you can choose with clarity.',
+  floatLine: 'Two Properties. One Better Future.',
+  starredNote: '* Growth & yield: trailing 18-month data (Q4 2024).',
 };
 
 /** Trailing 12M city snapshots — separate from multi-year MARKET_GROWTH chart. */
@@ -713,6 +718,157 @@ export const TOP10_INVESTMENT_PROJECTS = [
     demand: 'medium',
     paymentPlan: 'Construction Linked',
     href: '/listings',
+  },
+];
+
+/** Creative Top Products showcase — interactive featured + stack. */
+export const TOP_PRODUCTS_META = {
+  eyebrow: 'Top products',
+  title: 'Products worth putting capital behind',
+  lead: 'Tap a product to spotlight it — growth, yield, and entry ticket in one glance.',
+};
+
+export const TOP_PRODUCTS = [
+  {
+    id: 'dlf-privana',
+    badge: 'Flagship',
+    name: 'DLF Privana',
+    city: 'Gurugram',
+    corridor: 'Golf Course Extension',
+    segment: 'Luxury residential',
+    price: '₹4.5 Cr onwards',
+    growth: '+11.2%',
+    yield: '3.8%',
+    plan: '20:80',
+    hook: 'NRI favourite with strong resale depth and a flexible payment spine.',
+    img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80',
+    href: '/listing-detail?id=1',
+  },
+  {
+    id: 'brigade-utopia',
+    badge: 'IT belt',
+    name: 'Brigade Utopia',
+    city: 'Bengaluru',
+    corridor: 'Outer Ring Road',
+    segment: 'Premium residential',
+    price: '₹98 L onwards',
+    growth: '+9.4%',
+    yield: '4.2%',
+    plan: '10:90',
+    hook: 'Rental-ready ORR micro-market with tenant depth from tech campuses.',
+    img: 'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=1200&q=80',
+    href: '/listings?city=bangalore',
+  },
+  {
+    id: 'yeida-plots',
+    badge: 'Land play',
+    name: 'YEIDA Investment Plots',
+    city: 'Noida',
+    corridor: 'YEIDA · Jewar',
+    segment: 'Plotted',
+    price: '₹55 L onwards',
+    growth: '+14.6%',
+    yield: '2.1%',
+    plan: '25:75',
+    hook: 'Airport-corridor land with the sharpest appreciation in our tracked set.',
+    img: 'https://images.unsplash.com/photo-1500382017468-9040fed747ef?auto=format&fit=crop&w=1200&q=80',
+    href: '/listings?city=noida',
+  },
+  {
+    id: 'lodha-belvedere',
+    badge: 'Coastal',
+    name: 'Lodha Belvedere',
+    city: 'Mumbai',
+    corridor: 'Worli · Coastal Road',
+    segment: 'Ultra luxury',
+    price: '₹4.6 Cr onwards',
+    growth: '+8.5%',
+    yield: '2.9%',
+    plan: '20:80',
+    hook: 'Scarce Worli inventory for investors chasing prestige and liquidity.',
+    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+    href: '/listing-detail?id=1',
+  },
+  {
+    id: 'prestige-city',
+    badge: 'South play',
+    name: 'Prestige City',
+    city: 'Hyderabad',
+    corridor: 'Financial District',
+    segment: 'Township',
+    price: '₹85 L onwards',
+    growth: '+10.5%',
+    yield: '4.4%',
+    plan: '10:90',
+    hook: 'Balanced ticket with township amenities and strong IT rental demand.',
+    img: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80',
+    href: '/listings?city=hyderabad',
+  },
+];
+
+/** Investors' Pick — desk-curated shortlist with advisor notes. */
+export const INVESTORS_PICK_META = {
+  eyebrow: "Investors' pick",
+  title: 'What active investors are shortlisting',
+  lead: 'Hand-picked by the Inchbrick desk from live enquiries, site visits, and corridor momentum.',
+};
+
+export const INVESTORS_PICKS = [
+  {
+    id: 'pick-privana',
+    rank: '01',
+    name: 'DLF Privana',
+    city: 'Gurugram',
+    tag: 'Most enquired',
+    price: '₹4.5 Cr+',
+    growth: '+11.2%',
+    yield: '3.8%',
+    why: 'NRIs from UAE & UK keep coming back — transparent milestones and Golf Course Ext. liquidity.',
+    investor: 'Desk note',
+    img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80',
+    href: '/listing-detail?id=1',
+  },
+  {
+    id: 'pick-utopia',
+    rank: '02',
+    name: 'Brigade Utopia',
+    city: 'Bengaluru',
+    tag: 'Yield leader',
+    price: '₹98 L+',
+    growth: '+9.4%',
+    yield: '4.2%',
+    why: 'Best rental depth in our South stack — ORR tenants and a light 10:90 entry.',
+    investor: 'Desk note',
+    img: 'https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=900&q=80',
+    href: '/listings?city=bangalore',
+  },
+  {
+    id: 'pick-yeida',
+    rank: '03',
+    name: 'YEIDA Plots',
+    city: 'Noida',
+    tag: 'Growth bet',
+    price: '₹55 L+',
+    growth: '+14.6%',
+    yield: '2.1%',
+    why: 'Investors chasing 5–7 year capital gain lean here as Jewar timelines firm up.',
+    investor: 'Desk note',
+    img: 'https://images.unsplash.com/photo-1500382017468-9040fed747ef?auto=format&fit=crop&w=900&q=80',
+    href: '/listings?city=noida',
+  },
+  {
+    id: 'pick-eldeco',
+    rank: '04',
+    name: 'Eldeco Live by the Greens',
+    city: 'Noida',
+    tag: 'Balanced ticket',
+    price: '₹2.8 Cr+',
+    growth: '+10.2%',
+    yield: '3.5%',
+    why: 'Sweet spot for end-use + invest — greens, metro access, and a clean 30:70 plan.',
+    investor: 'Desk note',
+    img: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80',
+    href: '/listings?city=noida',
   },
 ];
 

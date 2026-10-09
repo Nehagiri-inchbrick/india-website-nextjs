@@ -42,35 +42,46 @@ export default function InvestorGrowthVisualizer() {
     setAmount(p.priceInr);
   }
 
-  const estimated = useMemo(() => Math.round(amount * Math.pow(1 + rate, years)), [amount, years, rate]);
+  const estimated = useMemo(
+    () => Math.round(amount * Math.pow(1 + rate, years)),
+    [amount, years, rate]
+  );
   const gainPct = amount > 0 ? (((estimated - amount) / amount) * 100).toFixed(1) : '0';
+  const gainAmt = estimated - amount;
 
   const sliderMin = selectedProject ? Math.round(selectedProject.priceInr * 0.5) : 50_00_000;
   const sliderMax = selectedProject ? Math.round(selectedProject.priceInr * 2) : 10_00_00_000;
   const sliderVal = Math.min(Math.max(amount, sliderMin), sliderMax);
+  const sliderPct =
+    sliderMax > sliderMin ? ((sliderVal - sliderMin) / (sliderMax - sliderMin)) * 100 : 0;
 
   return (
     <section
-      className="inv-growth inv-growth--creative inv-growth--short inv-creative inv-creative--dark inv-land-block inv-reveal"
+      className="inv-growth inv-growth--board inv-land-block inv-reveal"
       id="growth-visualizer"
       aria-labelledby="inv-growth-title"
     >
-      <div className="inv-creative-bg inv-creative-bg--dark" aria-hidden="true" />
-
-      <div className="inv-wrap inv-creative-inner">
-        <header className="inv-growth-head inv-growth-head--creative inv-growth-head--short">
-          <h2 id="inv-growth-title">
-            See Where Your Investment <span className="inv-growth-title-accent">Could Go</span>
+      <div className="inv-wrap">
+        <header className="inv-growth-board-head">
+          <p className="inv-growth-board-eyebrow">
+            <span className="inv-growth-board-eyebrow-line" aria-hidden="true" />
+            Growth Path
+          </p>
+          <h2 id="inv-growth-title" className="inv-growth-board-title">
+            See Where Your Investment <span>Could Go</span>
           </h2>
-          <p className="inv-growth-head-lead">Project list price · illustrative growth only.</p>
+          <p className="inv-growth-board-lead">
+            Project list price with illustrative compounding — adjust hold period and amount to preview
+            potential value.
+          </p>
         </header>
 
-        <div className="inv-growth-compact" aria-live="polite">
-          <div className="inv-growth-compact-controls">
-            <label className="inv-growth-compact-field">
+        <div className="inv-growth-board" aria-live="polite">
+          <div className="inv-growth-board-controls">
+            <label className="inv-growth-board-field">
               <span>Project · list price</span>
               <select
-                className="inv-growth-project-select"
+                className="inv-growth-board-select"
                 value={projectId}
                 onChange={(e) => onProjectChange(e.target.value)}
                 aria-label="Select project and list price"
@@ -83,51 +94,67 @@ export default function InvestorGrowthVisualizer() {
               </select>
             </label>
 
-            <div className="inv-growth-compact-field">
-              <span>Hold</span>
-              <div className="inv-growth-segment inv-growth-segment--period" role="group" aria-label="Years">
+            <div className="inv-growth-board-field">
+              <span>Hold period</span>
+              <div className="inv-growth-board-periods" role="group" aria-label="Years">
                 {PERIODS.map((y) => (
                   <button
                     key={y}
                     type="button"
-                    className={`inv-growth-segment-btn${years === y ? ' is-active' : ''}`}
+                    className={`inv-growth-board-period${years === y ? ' is-active' : ''}`}
                     onClick={() => setYears(y)}
                     aria-pressed={years === y}
                   >
-                    {y}Y
+                    {y} Years
                   </button>
                 ))}
               </div>
             </div>
-          </div>
 
-          <div className="inv-growth-compact-field inv-growth-compact-field--range">
-            <div className="inv-growth-field-top">
-              <span>Amount</span>
-              <strong>{formatCompactInr(amount)}</strong>
+            <div className="inv-growth-board-field inv-growth-board-field--range">
+              <div className="inv-growth-board-field-top">
+                <span>Investment amount</span>
+                <strong>{formatCompactInr(amount)}</strong>
+              </div>
+              <input
+                type="range"
+                className="inv-growth-board-range"
+                min={sliderMin}
+                max={sliderMax}
+                step={STEP_AMOUNT}
+                value={sliderVal}
+                onChange={(e) => setAmount(Number(e.target.value))}
+                aria-label="Investment amount"
+                style={{ '--growth-pct': `${sliderPct}%` }}
+              />
             </div>
-            <input
-              type="range"
-              className="inv-growth-range"
-              min={sliderMin}
-              max={sliderMax}
-              step={STEP_AMOUNT}
-              value={sliderVal}
-              onChange={(e) => setAmount(Number(e.target.value))}
-              aria-label="Investment amount"
-            />
           </div>
 
-          <p className="inv-growth-compact-result">
-            <strong>{formatCompactInr(amount)}</strong>
-            <span className="inv-growth-compact-arrow" aria-hidden="true">
-              →
-            </span>
-            <strong className="inv-growth-compact-future">{formatCompactInr(estimated)}</strong>
-            <span className="inv-growth-compact-meta">
-              {years}Y · +{gainPct}% · ~{selectedProject?.growthPct}% p.a.
-            </span>
-          </p>
+          <aside className="inv-growth-board-result">
+            <p className="inv-growth-board-result-kicker">Projected value</p>
+            <p className="inv-growth-board-result-path">
+              <span>{formatCompactInr(amount)}</span>
+              <i className="fas fa-arrow-right" aria-hidden="true" />
+              <strong>{formatCompactInr(estimated)}</strong>
+            </p>
+            <dl className="inv-growth-board-result-meta">
+              <div>
+                <dt>Horizon</dt>
+                <dd>{years} years</dd>
+              </div>
+              <div>
+                <dt>Illustrative gain</dt>
+                <dd>
+                  +{gainPct}% · {formatCompactInr(gainAmt)}
+                </dd>
+              </div>
+              <div>
+                <dt>Assumed CAGR</dt>
+                <dd>~{selectedProject?.growthPct}% p.a.</dd>
+              </div>
+            </dl>
+            <p className="inv-growth-board-note">Illustrative only — not a forecast or guarantee.</p>
+          </aside>
         </div>
       </div>
     </section>

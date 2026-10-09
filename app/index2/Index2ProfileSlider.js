@@ -60,19 +60,15 @@ export default function Index2ProfileSlider({ profiles }) {
             style={{
               '--ix2-accent': profile.accent,
               '--ix2-stagger': i,
+              '--ix2-card-image': `url('${profile.image}')`,
             }}
-            aria-label={`${profile.title}. ${profile.description}`}
+            aria-label={profile.title}
             onClick={() => onProfileClick(profile)}
           >
-            <span className="ix2-card-media">
-              <img src={profile.image} alt="" loading="eager" />
-            </span>
+            <span className="ix2-card-bg" aria-hidden="true" />
+            <span className="ix2-card-shade" aria-hidden="true" />
             <span className="ix2-card-body">
-              <span className="ix2-card-ico" aria-hidden="true">
-                <i className={`fas ${profile.icon}`} />
-              </span>
               <span className="ix2-card-title">{profile.title}</span>
-              <span className="ix2-card-desc">{profile.description}</span>
               <span className="ix2-card-go" aria-hidden="true">
                 <i className="fas fa-arrow-right" />
               </span>
